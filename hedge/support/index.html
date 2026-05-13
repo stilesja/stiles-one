@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hedge — Support</title>
+  <meta name="description" content="Support and FAQ for the Hedge trivia game.">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <main>
+    <p class="back"><a href="/hedge/">← Hedge</a></p>
+
+    <h1>Support</h1>
+    <p>Questions, bug reports, or feedback? Email <a href="mailto:jason@stiles.one">jason@stiles.one</a> and you'll get a real human reply.</p>
+
+    <h2>Frequently asked</h2>
+
+    <h3>Can I replay a question after answering it?</h3>
+    <p>No. Once you commit an answer, it's locked. Replays would destroy the calibration signal — the whole point of the game is to learn what your confidence actually means, and that only works if every answer counts.</p>
+
+    <h3>What happens if I miss a day?</h3>
+    <p>Your streak survives one missed day as a grace period — play "today" by the end of the day after, and the streak stays alive. Two missed days in a row breaks it.</p>
+
+    <h3>How is the score calculated?</h3>
+    <p>Each answer is scored using the Brier scoring rule — a confidence-weighted formula used by professional forecasters. At 50% confidence, every answer is worth 0.75 (the baseline). Bet higher and you put points on the line: a 99%-confident correct answer scores almost a full 1.00, but a 99%-confident wrong answer scores almost zero.</p>
+
+    <h3>What does the calibration chart mean?</h3>
+    <p>The chart on the Stats screen plots your accuracy at each confidence level against the perfect-calibration reference line (y = x). Bars above the line mean you're underconfident — your 70%s are actually 85% right. Bars below mean overconfident — your 90%s are only 65% right. Over time, the chart tells you whether you trust yourself too much, or not enough.</p>
+
+    <h3>Will there be more questions?</h3>
+    <p>Yes. New batches are pushed via Expo Updates, so you don't need to manually update the app to receive them.</p>
+
+    <h3>Does Hedge work offline?</h3>
+    <p>Yes — once you've launched the app at least once, all gameplay is local. No internet required.</p>
+
+    <h3>Will my data sync across devices?</h3>
+    <p>Not yet. iCloud sync is on the future-features list. For now everything is stored locally per-device.</p>
+
+    <h3>How do I delete my data?</h3>
+    <p>Uninstall the app — that's it. All Hedge data lives in the app's local container on your device, and iOS deletes it when the app is removed. There is nothing to delete on any server because nothing is stored on any server.</p>
+  </main>
+</body>
+</html>
