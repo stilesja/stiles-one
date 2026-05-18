@@ -23,7 +23,7 @@
     <h3>How is the score calculated?</h3>
     <p>Hedge doesn't just check whether you got the answer right. It checks whether you got the <em>confidence</em> right. The math is called <strong>Brier scoring</strong>, and it's designed to punish bullshit confidence and reward honest uncertainty.</p>
     <p>Every question is worth between <strong>0.00 and 1.00</strong> points. You earn the most when you're right AND confident. You lose the most when you're wrong AND confident. Hedging at 50% earns 0.75 either way — that's your <strong>honesty baseline</strong>.</p>
-    <p>5 questions per round → max score is <strong>5.00</strong>, baseline (all 50% guesses) is <strong>3.75</strong>.</p>
+    <p>5 questions per round → max score is <strong>5.00</strong>, baseline (all 50% guesses) is <strong>3.75</strong>, theoretical floor (all wrong at 99% confidence) is <strong>0.10</strong>. Brier penalizes overconfidence asymptotically, never to infinity — even your worst possible round earns something, which is the same reason a perfect round is asymptotically 1.00 per question rather than infinite. The math is symmetric on purpose.</p>
 
     <h3>Why doesn't a correct answer always score 1.00?</h3>
     <p>Because Hedge measures <em>calibration</em>, not just accuracy. A correct answer at 99% confidence scores 1.00. A correct answer at 50% confidence scores 0.75. Same outcome, different bets, different rewards.</p>
@@ -39,7 +39,7 @@
     <p>That 0.75 is the <strong>honesty baseline</strong>. You only beat it by knowing more than nothing, and you only fall below it by betting confidence you didn't have.</p>
 
     <h3>Why is being confidently wrong so brutal?</h3>
-    <p>A wrong answer at 99% confidence scores 0.00.</p>
+    <p>A wrong answer at 99% confidence scores 0.02.</p>
     <pre><code>score = 1 − (0.01 − 1)² = 1 − 0.98 = 0.02</code></pre>
     <p>Hedge is built on the idea that "I'm sure" should mean "I'm sure" — and getting that wrong is genuinely diagnostic. Over many rounds, those zero-point losses tell you which categories you systematically overrate yourself in. That's the whole calibration story.</p>
 
@@ -71,7 +71,7 @@
         <tr><td>70%</td><td>0.91</td><td>0.51</td></tr>
         <tr><td>80%</td><td>0.96</td><td>0.36</td></tr>
         <tr><td>90%</td><td>0.99</td><td>0.19</td></tr>
-        <tr><td>99%</td><td>1.00</td><td>0.00</td></tr>
+        <tr><td>99%</td><td>1.00</td><td>0.02</td></tr>
       </tbody>
     </table>
     <p>Notice how the 50% row is symmetric — the only place where correctness doesn't matter. Above 50%, being right pays more and being wrong costs more, and the gap widens fast.</p>
