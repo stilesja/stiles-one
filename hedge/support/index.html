@@ -24,7 +24,62 @@
     <p>Your streak survives one missed day as a grace period — play "today" by the end of the day after, and the streak stays alive. Two missed days in a row breaks it.</p>
 
     <h3>How is the score calculated?</h3>
-    <p>Each answer is scored using the Brier scoring rule — a confidence-weighted formula used by professional forecasters. At 50% confidence, every answer is worth 0.75 (the baseline). Bet higher and you put points on the line: a 99%-confident correct answer scores almost a full 1.00, but a 99%-confident wrong answer scores almost zero.</p>
+    <p>Hedge doesn't just check whether you got the answer right. It checks whether you got the <em>confidence</em> right. The math is called <strong>Brier scoring</strong>, and it's designed to punish bullshit confidence and reward honest uncertainty.</p>
+    <p>Every question is worth between <strong>0.00 and 1.00</strong> points. You earn the most when you're right AND confident. You lose the most when you're wrong AND confident. Hedging at 50% earns 0.75 either way — that's your <strong>honesty baseline</strong>.</p>
+    <p>5 questions per round → max score is <strong>5.00</strong>, baseline (all 50% guesses) is <strong>3.75</strong>.</p>
+
+    <h3>Why doesn't a correct answer always score 1.00?</h3>
+    <p>Because Hedge measures <em>calibration</em>, not just accuracy. A correct answer at 99% confidence scores ~1.00. A correct answer at 50% confidence scores 0.75. Same outcome, different bets, different rewards.</p>
+    <p>The formula:</p>
+    <pre><code>score = 1 − (your_confidence_in_the_truth − 1)²</code></pre>
+    <p>If you said TRUE at 80% and the answer was TRUE, your confidence in the truth was 0.80, so:</p>
+    <pre><code>score = 1 − (0.80 − 1)² = 1 − 0.04 = 0.96</code></pre>
+    <p>You bet 80% and won — close to perfect, but not max because you held back 20% of the bet.</p>
+
+    <h3>Why does 50% still earn points (0.75)?</h3>
+    <p>Because admitting "I have no idea" is a <em>correct</em> description of your knowledge state when you have no idea. Honest calibration is rewarded.</p>
+    <p>50% confidence in Hedge means "I'm flipping a mental coin." If your coin flip happens to be right, that's luck — Brier doesn't pay you extra for it. If it's wrong, you weren't really wrong about <em>anything you claimed to know</em> — Brier doesn't punish you either. Both outcomes score <strong>0.75</strong>.</p>
+    <p>That 0.75 is the <strong>honesty baseline</strong>. You only beat it by knowing more than nothing, and you only fall below it by betting confidence you didn't have.</p>
+
+    <h3>Why is being confidently wrong so brutal?</h3>
+    <p>A wrong answer at 99% confidence scores ~0.00 — basically nothing.</p>
+    <pre><code>score = 1 − (0.01 − 1)² = 1 − 0.98 = 0.02</code></pre>
+    <p>Hedge is built on the idea that "I'm sure" should mean "I'm sure" — and getting that wrong is genuinely diagnostic. Over many rounds, those zero-point losses tell you which categories you systematically overrate yourself in. That's the whole calibration story.</p>
+
+    <h3>What's a good score?</h3>
+    <p>Hedge classifies each round into one of these tiers at the celebration screen:</p>
+    <table>
+      <thead>
+        <tr><th>Score</th><th>Tier</th><th>What it means</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>&lt; 3.75</td><td><strong>Oof</strong></td><td>You over-bet on wrong answers</td></tr>
+        <tr><td>3.75</td><td><strong>Baseline</strong></td><td>5 honest "no clue" answers</td></tr>
+        <tr><td>3.75 – 4.00</td><td><strong>Room to Grow</strong></td><td>Above baseline — some signal</td></tr>
+        <tr><td>4.00 – 4.99</td><td><strong>Strong Round</strong></td><td>You bet confidence and it paid off</td></tr>
+        <tr><td>4.99+</td><td><strong>Flawless</strong></td><td>5/5 correct</td></tr>
+        <tr><td>5.00</td><td><strong>Maximum</strong></td><td>Perfect round at 99% on every question</td></tr>
+      </tbody>
+    </table>
+    <p>Anything above 3.75 means you knew something the math could detect. Anything above 4.00 means you bet confidently and were right to do so.</p>
+
+    <h3>What's the full scoring table?</h3>
+    <p>Score per (confidence, outcome) combination:</p>
+    <table>
+      <thead>
+        <tr><th>Confidence</th><th>If Correct</th><th>If Wrong</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>50%</td><td>0.75</td><td>0.75</td></tr>
+        <tr><td>60%</td><td>0.84</td><td>0.64</td></tr>
+        <tr><td>70%</td><td>0.91</td><td>0.51</td></tr>
+        <tr><td>80%</td><td>0.96</td><td>0.36</td></tr>
+        <tr><td>90%</td><td>0.99</td><td>0.19</td></tr>
+        <tr><td>99%</td><td>~1.00</td><td>~0.00</td></tr>
+      </tbody>
+    </table>
+    <p>Notice how the 50% row is symmetric — the only place where correctness doesn't matter. Above 50%, being right pays more and being wrong costs more, and the gap widens fast.</p>
+    <p><em>Hedge scores your bet more than your answer. Bet what you know, hedge what you don't, and the math will keep you honest over time.</em></p>
 
     <h3>What does the calibration chart mean?</h3>
     <p>The chart on the Stats screen plots your accuracy at each confidence level against the perfect-calibration reference line (y = x). Bars above the line mean you're underconfident — your 70%s are actually 85% right. Bars below mean overconfident — your 90%s are only 65% right. Over time, the chart tells you whether you trust yourself too much, or not enough.</p>
