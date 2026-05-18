@@ -47,21 +47,20 @@
     <p>Hedge is built on the idea that "I'm sure" should mean "I'm sure" — and getting that wrong is genuinely diagnostic. Over many rounds, those zero-point losses tell you which categories you systematically overrate yourself in. That's the whole calibration story.</p>
 
     <h3>What's a good score?</h3>
-    <p>Hedge classifies each round into one of these tiers at the celebration screen:</p>
+    <p>Hedge classifies each round into one of these tiers at the celebration screen. The rules check whether you got all 5 right FIRST, and only fall back to the score threshold if you didn't:</p>
     <table>
       <thead>
-        <tr><th>Score</th><th>Tier</th><th>What it means</th></tr>
+        <tr><th>When</th><th>Tier</th></tr>
       </thead>
       <tbody>
-        <tr><td>&lt; 3.75</td><td><strong>Oof</strong></td><td>You over-bet on wrong answers</td></tr>
-        <tr><td>3.75</td><td><strong>Baseline</strong></td><td>5 honest "no clue" answers</td></tr>
-        <tr><td>3.75 – 4.00</td><td><strong>Room to Grow</strong></td><td>Above baseline — some signal</td></tr>
-        <tr><td>4.00 – 4.99</td><td><strong>Strong Round</strong></td><td>You bet confidence and it paid off</td></tr>
-        <tr><td>4.99+</td><td><strong>Flawless</strong></td><td>5/5 correct</td></tr>
-        <tr><td>5.00</td><td><strong>Maximum</strong></td><td>Perfect round at 99% on every question</td></tr>
+        <tr><td>5/5 correct at 99% confidence each</td><td><strong>Maximum</strong></td></tr>
+        <tr><td>5/5 correct, any lower confidence</td><td><strong>Flawless</strong></td></tr>
+        <tr><td>Not 5/5, score 4.00 or higher</td><td><strong>Strong Round</strong></td></tr>
+        <tr><td>Not 5/5, score 3.75 – 4.00</td><td><strong>Room to Grow</strong></td></tr>
+        <tr><td>Score under 3.75</td><td><strong>Oof</strong></td></tr>
       </tbody>
     </table>
-    <p>Anything above 3.75 means you knew something the math could detect. Anything above 4.00 means you bet confidently and were right to do so.</p>
+    <p><strong>3.75 is the baseline</strong> — what you'd score if you bet 50% on all 5 questions. Anything above it means real signal. And getting all 5 right always counts as Flawless or Maximum, even if you hedged the confidence — because the math only tracks the gap between your bet and the outcome, and "right" closes that gap regardless of how big the bet was.</p>
 
     <h3>What's the full scoring table?</h3>
     <p>Score per (confidence, outcome) combination:</p>
