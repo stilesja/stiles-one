@@ -20,9 +20,6 @@
     <h3>Can I replay a question after answering it?</h3>
     <p>No. Once you commit an answer, it's locked. Replays would destroy the calibration signal — the whole point of the game is to learn what your confidence actually means, and that only works if every answer counts.</p>
 
-    <h3>What happens if I miss a day?</h3>
-    <p>Your streak survives one missed day as a grace period — play "today" by the end of the day after, and the streak stays alive. Two missed days in a row breaks it.</p>
-
     <h3>How is the score calculated?</h3>
     <p>Hedge doesn't just check whether you got the answer right. It checks whether you got the <em>confidence</em> right. The math is called <strong>Brier scoring</strong>, and it's designed to punish bullshit confidence and reward honest uncertainty.</p>
     <p>Every question is worth between <strong>0.00 and 1.00</strong> points. You earn the most when you're right AND confident. You lose the most when you're wrong AND confident. Hedging at 50% earns 0.75 either way — that's your <strong>honesty baseline</strong>.</p>
