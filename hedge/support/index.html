@@ -26,7 +26,7 @@
     <p>5 questions per round → max score is <strong>5.00</strong>, baseline (all 50% guesses) is <strong>3.75</strong>.</p>
 
     <h3>Why doesn't a correct answer always score 1.00?</h3>
-    <p>Because Hedge measures <em>calibration</em>, not just accuracy. A correct answer at 99% confidence scores ~1.00. A correct answer at 50% confidence scores 0.75. Same outcome, different bets, different rewards.</p>
+    <p>Because Hedge measures <em>calibration</em>, not just accuracy. A correct answer at 99% confidence scores 1.00. A correct answer at 50% confidence scores 0.75. Same outcome, different bets, different rewards.</p>
     <p>The formula:</p>
     <pre><code>score = 1 − (your_confidence_in_the_truth − 1)²</code></pre>
     <p>If you said TRUE at 80% and the answer was TRUE, your confidence in the truth was 0.80, so:</p>
@@ -39,7 +39,7 @@
     <p>That 0.75 is the <strong>honesty baseline</strong>. You only beat it by knowing more than nothing, and you only fall below it by betting confidence you didn't have.</p>
 
     <h3>Why is being confidently wrong so brutal?</h3>
-    <p>A wrong answer at 99% confidence scores ~0.00 — basically nothing.</p>
+    <p>A wrong answer at 99% confidence scores 0.00.</p>
     <pre><code>score = 1 − (0.01 − 1)² = 1 − 0.98 = 0.02</code></pre>
     <p>Hedge is built on the idea that "I'm sure" should mean "I'm sure" — and getting that wrong is genuinely diagnostic. Over many rounds, those zero-point losses tell you which categories you systematically overrate yourself in. That's the whole calibration story.</p>
 
@@ -71,7 +71,7 @@
         <tr><td>70%</td><td>0.91</td><td>0.51</td></tr>
         <tr><td>80%</td><td>0.96</td><td>0.36</td></tr>
         <tr><td>90%</td><td>0.99</td><td>0.19</td></tr>
-        <tr><td>99%</td><td>~1.00</td><td>~0.00</td></tr>
+        <tr><td>99%</td><td>1.00</td><td>0.00</td></tr>
       </tbody>
     </table>
     <p>Notice how the 50% row is symmetric — the only place where correctness doesn't matter. Above 50%, being right pays more and being wrong costs more, and the gap widens fast.</p>
