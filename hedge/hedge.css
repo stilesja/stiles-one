@@ -1,0 +1,86 @@
+/*
+ * Hedge — ocean / amber theme.
+ *
+ * Loaded AFTER the global stiles-one styles.css. Only retones the Hedge
+ * subtree by overriding CSS custom properties on `body.hedge` plus the
+ * body radial gradients (which use literal rgba values, not vars). The
+ * rest of stiles.one keeps its native palette.
+ *
+ * Palette mirrors the in-app Ocean + Amber theme: deep ocean teal as the
+ * page surface, brand amber for the accent (HEDGE wordmark color, START
+ * orb, links). Light mode keeps the same amber accent against a cooler
+ * teal-tinged off-white background.
+ */
+
+body.hedge {
+  --bg: #f4f8f9;
+  --bg-deep: #e6eef0;
+  --surface: #ffffff;
+  --text: #0a1a22;
+  --muted: #4a6068;
+  --accent:   #d97706; /* amber, deeper for light-mode contrast */
+  --accent-2: #f59e0b;
+  --accent-3: #ea580c;
+  --accent-soft: rgba(217, 119, 6, 0.10);
+  --border: #d8e2e5;
+  --chip-bg: rgba(217, 119, 6, 0.12);
+  --chip-text: #b45309;
+  --chip-dot: #d97706;
+  --shadow-sm: 0 1px 2px rgba(10, 26, 34, 0.05);
+  --shadow-md: 0 4px 12px rgba(10, 26, 34, 0.07), 0 16px 32px rgba(10, 26, 34, 0.05);
+  --shadow-lg: 0 12px 28px rgba(217, 119, 6, 0.16), 0 24px 60px rgba(56, 122, 144, 0.10);
+}
+
+@media (prefers-color-scheme: dark) {
+  body.hedge {
+    --bg: #0e2a35;          /* deep ocean */
+    --bg-deep: #08222d;
+    --surface: #143b48;
+    --text: #eef5f7;
+    --muted: #8aa3ac;
+    --accent:   #f5a623;    /* amber, brighter for dark contrast */
+    --accent-2: #fbbf24;
+    --accent-3: #ec7a3a;
+    --accent-soft: rgba(245, 166, 35, 0.14);
+    --border: #1f4554;
+    --chip-bg: rgba(245, 166, 35, 0.14);
+    --chip-text: #fbbf24;
+    --chip-dot: #f5a623;
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.5);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.45), 0 16px 32px rgba(0, 0, 0, 0.35);
+    --shadow-lg: 0 12px 28px rgba(245, 166, 35, 0.25), 0 24px 60px rgba(30, 100, 130, 0.20);
+  }
+}
+
+/*
+ * The global body::before paints three radial gradients with literal
+ * rgba() stops (CSS vars aren't substituted into the linear/radial color
+ * stops in the original file). Re-paint those for Hedge — amber warm at
+ * the corners, ocean teal as the cool middle wash.
+ */
+body.hedge::before {
+  background:
+    radial-gradient(900px 500px at 85% -10%, rgba(245, 158, 11, 0.10), transparent 60%),
+    radial-gradient(800px 480px at -10% 15%, rgba(56, 122, 144, 0.14), transparent 60%),
+    radial-gradient(700px 420px at 50% 110%, rgba(245, 158, 11, 0.08), transparent 60%),
+    var(--bg);
+}
+
+@media (prefers-color-scheme: dark) {
+  body.hedge::before {
+    background:
+      radial-gradient(900px 500px at 85% -10%, rgba(245, 166, 35, 0.18), transparent 60%),
+      radial-gradient(800px 480px at -10% 15%, rgba(30, 100, 130, 0.32), transparent 60%),
+      radial-gradient(700px 420px at 50% 110%, rgba(245, 166, 35, 0.14), transparent 60%),
+      var(--bg);
+  }
+}
+
+/*
+ * Tighten the grain on Hedge pages a touch — the global noise overlay at
+ * 0.5 opacity reads as paper on light backgrounds (nice for stiles.one
+ * but slightly busy for Hedge's calmer ocean look).
+ */
+body.hedge::after {
+  opacity: 0.32;
+}
