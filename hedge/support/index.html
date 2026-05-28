@@ -21,27 +21,28 @@
     <p>No. Once you commit an answer, it's locked. Replays would destroy the calibration signal — the whole point of the game is to learn what your confidence actually means, and that only works if every answer counts.</p>
 
     <h3>How is the score calculated?</h3>
-    <p>Hedge doesn't just check whether you got the answer right. It checks whether you got the <em>confidence</em> right. The math is called <strong>Brier scoring</strong>, and it's designed to punish bullshit confidence and reward honest uncertainty.</p>
-    <p>Every question is worth between <strong>0.00 and 1.00</strong> points. You earn the most when you're right AND confident. You lose the most when you're wrong AND confident. Hedging at 50% earns 0.75 either way — that's your <strong>honesty baseline</strong>.</p>
-    <p>5 questions per round → max score is <strong>5.00</strong>, baseline (all 50% guesses) is <strong>3.75</strong>, theoretical floor (all wrong at 99% confidence) is <strong>0.10</strong>. Brier penalizes overconfidence asymptotically, never to infinity — even your worst possible round earns something, which is the same reason a perfect round is asymptotically 1.00 per question rather than infinite. The math is symmetric on purpose.</p>
+    <p>Hedge doesn't just check whether you got the answer right. It checks whether you got the <em>confidence</em> right. The math is built to punish bullshit confidence and reward honest uncertainty.</p>
+    <p>Every question is worth up to <strong>20 points</strong>, and a 5-question round is scored out of <strong>100</strong>. You earn the most when you're right AND confident. You lose the most when you're wrong AND confident. Hedging at 50% earns <strong>15 points</strong> either way — what <strong>pure guessing</strong> is worth.</p>
+    <p>So a round runs 0–100: a perfect round (all right, all bet at 99%) → <strong>100</strong>; all 50% guesses → <strong>75</strong> (the baseline); a round of confident misses bottoms out near <strong>0</strong>.</p>
+    <p>The points are a display transform on top of <strong>Brier scoring</strong> — each question scores 0–1 under the hood; we multiply by 20 so the numbers you see are 0–100. Brier penalizes overconfidence asymptotically, never to infinity — even your worst round earns a little, and a perfect answer approaches (never exceeds) the cap. The math is symmetric on purpose.</p>
 
-    <h3>Why doesn't a correct answer always score 1.00?</h3>
-    <p>Because Hedge measures <em>calibration</em>, not just accuracy. A correct answer at 99% confidence scores 1.00. A correct answer at 50% confidence scores 0.75. Same outcome, different bets, different rewards.</p>
-    <p>The formula:</p>
+    <h3>Why doesn't a correct answer always score the full 20?</h3>
+    <p>Because Hedge measures <em>calibration</em>, not just accuracy. A correct answer at 99% confidence scores 20. A correct answer at 50% confidence scores 15. Same outcome, different bets, different rewards.</p>
+    <p>The underlying formula (per question, before the ×20 display):</p>
     <pre><code>score = 1 − (your_confidence_in_the_truth − 1)²</code></pre>
-    <p>If you said TRUE at 80% and the answer was TRUE, your confidence in the truth was 0.80, so:</p>
-    <pre><code>score = 1 − (0.80 − 1)² = 1 − 0.04 = 0.96</code></pre>
+    <p>If you said TRUE at 80% and the answer was TRUE, your confidence in the truth was 0.80:</p>
+    <pre><code>score = 1 − (0.80 − 1)² = 0.96   →  0.96 × 20 ≈ 19 points</code></pre>
     <p>You bet 80% and won — close to perfect, but not max because you held back 20% of the bet.</p>
 
-    <h3>Why does 50% still earn points (0.75)?</h3>
+    <h3>Why does 50% still earn points (15)?</h3>
     <p>Because admitting "I have no idea" is a <em>correct</em> description of your knowledge state when you have no idea. Honest calibration is rewarded.</p>
-    <p>50% confidence in Hedge means "I'm flipping a mental coin." If your coin flip happens to be right, that's luck — Brier doesn't pay you extra for it. If it's wrong, you weren't really wrong about <em>anything you claimed to know</em> — Brier doesn't punish you either. Both outcomes score <strong>0.75</strong>.</p>
-    <p>That 0.75 is the <strong>honesty baseline</strong>. You only beat it by knowing more than nothing, and you only fall below it by betting confidence you didn't have.</p>
+    <p>50% confidence in Hedge means "I'm flipping a mental coin." If your coin flip happens to be right, that's luck — the math doesn't pay you extra. If it's wrong, you weren't really wrong about <em>anything you claimed to know</em> — so it doesn't punish you either. Both outcomes score <strong>15</strong>.</p>
+    <p>That 15 (out of 20) is what <strong>pure guessing</strong> scores. You only beat it by knowing more than nothing, and you only fall below it by betting confidence you didn't have.</p>
 
     <h3>Why is being confidently wrong so brutal?</h3>
-    <p>A wrong answer at 99% confidence scores 0.02.</p>
-    <pre><code>score = 1 − (0.01 − 1)² = 1 − 0.98 = 0.02</code></pre>
-    <p>Hedge is built on the idea that "I'm sure" should mean "I'm sure" — and getting that wrong is genuinely diagnostic. Over many rounds, those near-zero losses tell you which categories you systematically overrate yourself in. That's the whole calibration story.</p>
+    <p>A wrong answer at 99% confidence scores <strong>0</strong> points (0.02 of 1 before rounding):</p>
+    <pre><code>score = 1 − (0.01 − 1)² = 0.02   →  ≈ 0 points</code></pre>
+    <p>You bet 99% on something you got wrong. Hedge is built on the idea that "I'm sure" should mean "I'm sure" — and getting that wrong is genuinely diagnostic. Over many rounds, those near-zero losses tell you which categories you systematically overrate yourself in. That's the whole calibration story.</p>
 
     <h3>What's a good score?</h3>
     <p>Hedge classifies each round into one of these tiers at the celebration screen. The rules check whether you got all 5 right FIRST, and only fall back to the score threshold if you didn't:</p>
@@ -50,38 +51,39 @@
         <tr><th>When</th><th>Tier</th></tr>
       </thead>
       <tbody>
-        <tr><td>5/5 correct at 99% confidence each</td><td><strong>Maximum</strong></td></tr>
+        <tr><td>5/5 correct, all bet at 99%</td><td><strong>Maximum</strong></td></tr>
         <tr><td>5/5 correct, any lower confidence</td><td><strong>Flawless</strong></td></tr>
-        <tr><td>Not 5/5, score 4.00 or higher</td><td><strong>Strong Round</strong></td></tr>
-        <tr><td>Not 5/5, score 3.75 – 3.99</td><td><strong>Room to Grow</strong></td></tr>
-        <tr><td>Score under 3.75</td><td><strong>Oof</strong></td></tr>
+        <tr><td>Not 5/5, score 80 or higher</td><td><strong>Strong round</strong></td></tr>
+        <tr><td>Not 5/5, score 75–79</td><td><strong>Mixed bag</strong></td></tr>
+        <tr><td>Score under 75</td><td><strong>Off day</strong></td></tr>
       </tbody>
     </table>
-    <p><strong>3.75 is the baseline</strong> — what you'd score if you bet 50% on all 5 questions. Anything above it means real signal. And getting all 5 right always counts as Flawless or Maximum, even if you hedged the confidence — because the math only tracks the gap between your bet and the outcome, and "right" closes that gap regardless of how big the bet was.</p>
+    <p><strong>75 is the baseline</strong> — what you'd score betting 50% on all 5. Anything above it means real signal. And getting all 5 right always lands as Flawless or Maximum even if you hedged the confidence — because the math only tracks the gap between your bet and the outcome, and "right" closes that gap regardless of how big the bet was.</p>
 
     <h3>What's the full scoring table?</h3>
-    <p>Score per (confidence, outcome) combination:</p>
+    <p>Points per (confidence, outcome) combination:</p>
     <table>
       <thead>
         <tr><th>Confidence</th><th>If Correct</th><th>If Wrong</th></tr>
       </thead>
       <tbody>
-        <tr><td>50%</td><td>0.75</td><td>0.75</td></tr>
-        <tr><td>60%</td><td>0.84</td><td>0.64</td></tr>
-        <tr><td>70%</td><td>0.91</td><td>0.51</td></tr>
-        <tr><td>80%</td><td>0.96</td><td>0.36</td></tr>
-        <tr><td>90%</td><td>0.99</td><td>0.19</td></tr>
-        <tr><td>99%</td><td>1.00</td><td>0.02</td></tr>
+        <tr><td>50%</td><td>15</td><td>15</td></tr>
+        <tr><td>60%</td><td>17</td><td>13</td></tr>
+        <tr><td>70%</td><td>18</td><td>10</td></tr>
+        <tr><td>80%</td><td>19</td><td>7</td></tr>
+        <tr><td>90%</td><td>20</td><td>4</td></tr>
+        <tr><td>99%</td><td>20</td><td>0</td></tr>
       </tbody>
     </table>
-    <p>Notice how the 50% row is symmetric — the only place where correctness doesn't matter. Above 50%, being right pays more and being wrong costs more, and the gap widens fast.</p>
+    <p>The 50% row is symmetric — the only place where correctness doesn't matter. Above 50%, being right pays more and being wrong costs more, and the gap widens fast. (90% and 99% both round to 20 points when you're right; the difference between them lives in the raw calibration math behind the chart, not the displayed points — and on the wrong side it's the difference between losing a little and losing everything.)</p>
     <p><em>Hedge scores your bet more than your answer. Bet what you know, hedge what you don't, and the math will keep you honest over time.</em></p>
 
-    <h3>What does the calibration chart mean?</h3>
-    <p>The chart on the Stats screen plots your accuracy at each confidence level against the perfect-calibration reference line (y = x). Bars above the line mean you're underconfident — your 70%s are actually 85% right. Bars below mean overconfident — your 90%s are only 65% right. Over time, the chart tells you whether you trust yourself too much, or not enough.</p>
+    <h3>What does the Pulse calibration chart mean?</h3>
+    <p>The chart on the <strong>Pulse</strong> screen plots your accuracy at each confidence level against the perfect-calibration line. Dots above the line mean you're <strong>underconfident</strong> — your 70%s are actually 85% right. Dots below mean <strong>overconfident</strong> — your 90%s are only 65% right. Dot size reflects how many answers you have at that confidence; the more you play, the more honest the picture gets.</p>
+    <p>The chart stays locked behind a frosted preview until you've banked enough answers (about a week or two) to make it meaningful — otherwise a single early hot streak would falsely tell you you're a forecasting genius. PROGRESS (the other Pulse tab) is live from day one and shows your streak, total points, and records.</p>
 
     <h3>Will there be more questions?</h3>
-    <p>Yes. New batches are delivered over the air, so you don't need to manually update the app from the App Store to receive them.</p>
+    <p>Yes. New questions and updates are delivered over the air, so you don't need to manually update Hedge from the App Store to receive them. The home screen will warn you ("N days of questions left — update for more") when scheduled content is running low, in case auto-update is turned off.</p>
 
     <h3>Does Hedge work offline?</h3>
     <p>Yes — once you've launched the app at least once, all gameplay is local. No internet required.</p>
