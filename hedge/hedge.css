@@ -84,3 +84,8 @@ body.hedge::before {
 body.hedge::after {
   opacity: 0.32;
 }
+
+/* App Store badge on the Hedge landing page. */
+.appstore { margin: 1.6rem 0 0.5rem; }
+.appstore a { display: inline-block; }
+.appstore img { display: block; }
