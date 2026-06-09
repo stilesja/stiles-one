@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hedge: How It's Built</title>
+  <meta name="description" content="The engineering behind Hedge: a fully on-device iOS calibration game backed by a self-hosted LLM content pipeline.">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="stylesheet" href="../hedge.css">
+  <style>
+    .shots {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin: 1.75rem 0 0.5rem;
+    }
+    .shots img {
+      width: min(30%, 240px);
+      height: auto;
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-md);
+    }
+    @media (max-width: 520px) {
+      .shots img { width: min(45%, 200px); }
+    }
+    .stack-line { color: var(--muted); font-size: 0.95rem; margin: 0.4rem 0; }
+    .stack-line strong { color: var(--text); }
+  </style>
+</head>
+<body class="hedge">
+  <main>
+    <p class="back"><a href="../">← Hedge</a></p>
+
+    <span class="chip">Case study</span>
+    <h1>Hedge: How It's Built</h1>
+    <p class="lead">A fully on-device iOS calibration game, backed by a self-hosted LLM content pipeline.</p>
+
+    <p class="stack-line"><strong>Stack:</strong> Expo SDK 55 · React Native 0.83 · React 19 · TypeScript · expo-sqlite · Node + Hono · SQLite · Anthropic API</p>
+    <p class="stack-line"><strong>Platform:</strong> iOS · <strong>Backend for the game:</strong> none, fully on-device · <strong>Status:</strong> v1.1.0, in App Store review</p>
+
+    <div class="shots">
+      <img src="shots/1-home.jpg" alt="Home screen: the START orb on a deep-ocean gradient">
+      <img src="shots/2-confidence.jpg" alt="A question with the confidence bet set to 80 percent">
+      <img src="shots/6-calibration.jpg" alt="The calibration chart: accuracy versus confidence, with a per-category breakdown">
+    </div>
+
+    <h2>The idea</h2>
+    <p>Most trivia rewards luck and process-of-elimination. Hedge rewards self-knowledge. Every day you get five true/false questions, and for each one you set a confidence level (50, 60, 70, 80, 90, or 99 percent) before locking in.</p>
+    <p>Scoring is <strong>Brier-based</strong>: a wrong answer at 99 percent is brutal, a hedge at 50 percent is neutral, and being right is only worth the most if you were also confident. Over many rounds, a per-confidence calibration chart reveals whether you are systematically over- or under-confident, and in which categories. The trivia is the surface. The real product is a personal calibration instrument.</p>
+
+    <h2>What makes it interesting</h2>
+    <p>This is a small app with a deliberately large amount of system behind it. The parts I am most happy with:</p>
+
+    <h3>A shared TypeScript core that prevents drift</h3>
+    <p>Three surfaces (the game, an authoring app, and a server) all import one package, <code>@hedge/shared</code>, which owns the canonical types, the Brier scoring function, the SQLite schema and migration ledger, the Zod validators, and the round scheduler. The scoring math and data model are physically impossible to drift between client and server because there is only one copy.</p>
+    <p>A nice constraint: the database interface is defined <em>structurally</em> to match expo-sqlite's async shape, so the shared package has zero React Native runtime dependency. That lets the test suite wrap <code>better-sqlite3</code> in the same interface and run pure logic under vitest with no simulator in the loop.</p>
+
+    <h3>Scoring that protects its own signal</h3>
+    <ul>
+      <li>Brier scores are stored denormalized next to each answer, so calibration queries are single-pass.</li>
+      <li>A clean split between the <em>stored</em> raw values (what the calibration math reads) and a <em>display</em> transform (scaled to a friendly 0 to 100), so players never see decimals or the word "Brier" while the underlying signal stays intact.</li>
+      <li>A <code>UNIQUE</code> constraint on <code>answers.question_id</code> enforces "once answered, locked, no replays." Removing it would let players retry for a better score and destroy the calibration data, so it is treated as a load-bearing invariant.</li>
+      <li>Streaks are computed on the fly from completed rounds rather than stored, which removes an entire class of counter-drift bugs.</li>
+    </ul>
+
+    <h3>A self-hosted LLM content pipeline</h3>
+    <p>A year of daily rounds is roughly 1,800 questions, and generated candidates only yield 30 to 50 percent through review. So content is a real system, not a folder of JSON:</p>
+    <ul>
+      <li><strong>Server-side generation</strong> calls Claude with a tightly constrained prompt (unambiguously true/false, sourceable, calibrated for a US audience). Large batches are chunked and the static prompt prefix is prompt-cached, so cost stays low and outputs never truncate against the token ceiling.</li>
+      <li><strong>Multi-stage deduplication.</strong> An exclusion list blocks exact regeneration, a TF-IDF cosine pass plus a proper-noun entity-overlap pass flags rewordings, and a second "critic" model adjudicates whether two questions are really the same fact. This catches the same fact framed two different ways, which exact-match matching misses entirely.</li>
+      <li><strong>A phone-based review app</strong> so vetting thousands of questions is a couch task in 30-second bursts instead of a desk marathon. It holds no data of its own and talks to the authoring server over Tailscale with bearer-token auth.</li>
+      <li><strong>A balancing scheduler</strong> that fills each daily round under real constraints (at most two per category, mixed difficulty, mixed trick direction) and only ever touches future dates.</li>
+      <li><strong>One-tap publishing.</strong> The server builds the seed file in an isolated git worktree, runs a future-only safety gate that refuses to alter any past date (which would retroactively break players' streaks), and opens a reviewable diff. Merging it ships the content over the air.</li>
+    </ul>
+
+    <h3>Ship content without App Store review</h3>
+    <p>The game delivers new questions through <strong>Expo over-the-air updates</strong>: a push to <code>main</code> reaches players in about 30 seconds with no re-review. Native builds (new modules, icons) are a separate, deliberate manual step. Getting this right meant learning some sharp edges the hard way, including pinning <code>runtimeVersion</code> after a fingerprint policy silently orphaned older builds from the update stream, and adding path filters so documentation and tooling changes never burn a build minute.</p>
+
+    <h3>Data-driven theming and "special days"</h3>
+    <p>A composable, dark-first theme system (independent accent, background, and motif layers) sits on top of the base theme. A specific calendar date can also become a <strong>special day</strong>: a custom theme plus greeting that travels to the game <em>as data in the content file</em>, so a holiday look ships through the same update as questions, with no hardcoded packs and no rebuild. The end-of-round celebration escalates by performance tier, up to a perfect-game finale with confetti cannons firing in sequence from the bottom corners.</p>
+
+    <h2>Architecture</h2>
+    <pre><code>hedge/
+  apps/
+    game/             # Player app, ships to the App Store. Fully on-device.
+    admin/            # Question-authoring app. Thin HTTP client, never published.
+  packages/
+    shared/           # Canonical types, scoring, DB schema, validators, scheduler
+  services/
+    admin-server/     # Node + Hono + SQLite authoring backend (self-hosted)</code></pre>
+    <ul>
+      <li><strong>The shipped game has no backend.</strong> No accounts, no analytics, no telemetry. Everything is local SQLite. The App Store privacy label is "Data Not Collected," and that is literally true.</li>
+      <li><strong>The authoring stack is completely separate</strong> from the game bundle, which keeps admin code out of App Review and out of the shipped binary.</li>
+    </ul>
+
+    <h2>Tech stack</h2>
+    <table>
+      <thead>
+        <tr><th>Area</th><th>Choice</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>App framework</td><td>Expo SDK 55, React Native 0.83, React 19, TypeScript</td></tr>
+        <tr><td>Navigation</td><td>expo-router (typed routes)</td></tr>
+        <tr><td>Animation</td><td>Reanimated + Gesture Handler; calibration chart hand-drawn with Animated primitives (no Skia dependency by choice)</td></tr>
+        <tr><td>Persistence</td><td>expo-sqlite on device; append-only migration ledger in shared</td></tr>
+        <tr><td>Authoring server</td><td>Node + Hono + better-sqlite3, self-hosted, reached over Tailscale</td></tr>
+        <tr><td>Generation</td><td>Anthropic API + Zod validation, prompt-caching, a critic model for dedup</td></tr>
+        <tr><td>Tooling</td><td>pnpm workspaces, vitest, EAS Build + Expo OTA</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Engineering practices</h2>
+    <ul>
+      <li><strong>Pure logic lives in the shared package</strong> and is unit-tested with vitest, so the scheduler, dedup similarity, scoring, and publish safety-gate are covered without a simulator.</li>
+      <li><strong>Append-only migrations</strong> with two ledgers: one shared schema for game and server, one server-only ledger so authoring tables never reach the game database.</li>
+      <li><strong>Trunk-based with cost discipline:</strong> feature branches, path-filtered CI so only player-facing changes trigger builds, and OTA for everything that does not touch native code.</li>
+      <li><strong>Documentation as a first-class artifact:</strong> design, scoring, pipeline, admin, and release docs are checked into the repo and kept current with the code.</li>
+    </ul>
+
+    <h2>Status</h2>
+    <p>Built and submitted to the App Store, currently in review as v1.1.0. Roughly 740 verified questions scheduled out several months, generated and vetted through the pipeline above. Single-developer project, end to end: product, data model, scoring design, content tooling, and release engineering.</p>
+    <p>The calibration and scoring primitives are intentionally factored so they could power a planned sibling app (an active-recall study tool) without touching any of the trivia-specific code.</p>
+
+    <footer>
+      <a href="mailto:jason@stiles.one">jason@stiles.one</a>
+      <span>© <time datetime="2026">2026</time></span>
+    </footer>
+  </main>
+</body>
+</html>
