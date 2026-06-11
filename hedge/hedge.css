@@ -86,19 +86,20 @@ body.hedge::after {
 }
 
 /*
- * Hedge titles use the app's brand typeface. The landing page h1 gets the
- * full in-app HEDGE logo treatment (uppercase, tracked); sentence titles
- * like the build page keep mixed case at the brand font.
+ * The HEDGE brand name renders in the app's typeface (Space Grotesk,
+ * uppercase) wherever it appears in a title. The landing page h1 IS the
+ * wordmark; in sentence titles only the .brand-caps span gets the
+ * treatment and surrounding words keep the global font.
  */
-body.hedge h1 {
+h1.wordmark,
+.brand-caps {
   font-family: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
-  letter-spacing: -0.02em; /* Space Grotesk needs less tightening than the system stack */
-}
-/* Uppercase just the brand name inside a sentence-style title. */
-.brand-caps { text-transform: uppercase; }
-
-h1.wordmark {
   text-transform: uppercase;
+}
+.brand-caps {
+  letter-spacing: 0; /* undo the global h1 tightening; Space Grotesk caps need room */
+}
+h1.wordmark {
   letter-spacing: 0.14em;
   font-weight: 700;
   font-size: clamp(3.2rem, 9.5vw, 5.6rem);
