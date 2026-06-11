@@ -100,10 +100,10 @@ h1.wordmark,
   letter-spacing: 0; /* undo the global h1 tightening; Space Grotesk caps need room */
 }
 h1.wordmark {
-  letter-spacing: 0.14em;
+  letter-spacing: 0.18em;
   font-weight: 700;
   font-size: clamp(3.2rem, 9.5vw, 5.6rem);
-  margin-right: -0.14em; /* offset the trailing tracking space */
+  margin-right: -0.18em; /* offset the trailing tracking space */
 }
 
 /* App Store badge on the Hedge landing page. */
