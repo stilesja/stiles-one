@@ -85,6 +85,23 @@ body.hedge::after {
   opacity: 0.32;
 }
 
+/*
+ * Hedge titles use the app's brand typeface. The landing page h1 gets the
+ * full in-app HEDGE logo treatment (uppercase, tracked); sentence titles
+ * like the build page keep mixed case at the brand font.
+ */
+body.hedge h1 {
+  font-family: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  letter-spacing: -0.02em; /* Space Grotesk needs less tightening than the system stack */
+}
+h1.wordmark {
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-weight: 700;
+  font-size: clamp(3.2rem, 9.5vw, 5.6rem);
+  margin-right: -0.14em; /* offset the trailing tracking space */
+}
+
 /* App Store badge on the Hedge landing page. */
 .appstore { margin: 1.6rem 0 0.5rem; }
 .appstore a { display: inline-block; }
