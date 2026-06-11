@@ -97,7 +97,8 @@ h1.wordmark,
   text-transform: uppercase;
 }
 .brand-caps {
-  letter-spacing: 0; /* undo the global h1 tightening; Space Grotesk caps need room */
+  letter-spacing: 0.18em; /* same tracking as the landing wordmark */
+  margin-right: -0.18em;  /* tuck the colon back against the last letter's tracking */
 }
 h1.wordmark {
   letter-spacing: 0.18em;
