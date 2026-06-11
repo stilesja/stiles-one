@@ -94,6 +94,9 @@ body.hedge h1 {
   font-family: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
   letter-spacing: -0.02em; /* Space Grotesk needs less tightening than the system stack */
 }
+/* Uppercase just the brand name inside a sentence-style title. */
+.brand-caps { text-transform: uppercase; }
+
 h1.wordmark {
   text-transform: uppercase;
   letter-spacing: 0.14em;
