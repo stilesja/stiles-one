@@ -182,6 +182,12 @@ h3 {
   max-width: 38ch;
 }
 
+.bio {
+  font-size: 1.05rem;
+  max-width: 58ch;
+  margin: 1rem 0 0;
+}
+
 p { margin: 0.7rem 0; }
 .meta { color: var(--muted); font-size: 0.9rem; }
 
@@ -289,6 +295,14 @@ ul li::marker { color: var(--muted); }
   z-index: 1;
   margin: 0.35rem 0 0;
 }
+.cards > li .meta a {
+  display: inline;
+  font-weight: 600;
+  font-size: inherit;
+  color: var(--accent);
+}
+.cards > li .meta a::after { content: none; }
+.cards > li:hover .meta a:hover { text-decoration: underline; }
 
 footer {
   margin-top: 5rem;
@@ -304,6 +318,11 @@ footer {
 }
 footer a { color: var(--muted); }
 footer a:hover { color: var(--accent); }
+.footer-links {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+}
 
 time { font-variant-numeric: tabular-nums; }
 
