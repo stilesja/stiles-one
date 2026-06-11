@@ -96,10 +96,22 @@ h1.wordmark,
   font-family: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
   text-transform: uppercase;
 }
+
+/* The sentence part of a brand-led title always stacks under the wordmark,
+   a step smaller. */
+.title-rest {
+  display: block;
+  font-size: 0.72em;
+  letter-spacing: -0.01em; /* ease off the global h1 tightening a touch */
+}
 .brand-caps {
   letter-spacing: 0.18em; /* same tracking as the landing wordmark */
   margin-right: -0.18em;  /* tuck the colon back against the last letter's tracking */
 }
+
+/* When the brand-led title wraps, the smaller second line leaves too much
+   air between lines at the global 1.08 — pull them closer. */
+h1:has(.brand-caps) { line-height: 0.95; }
 h1.wordmark {
   letter-spacing: 0.18em;
   font-weight: 700;
