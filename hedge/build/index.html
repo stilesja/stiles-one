@@ -45,15 +45,15 @@
     <p class="stack-line"><strong>Platform:</strong> iOS · <strong>Backend for the game:</strong> none, fully on-device · <strong>Status:</strong> <a href="https://apps.apple.com/app/id6768878330">Live on the App Store</a> (v2.0.0)</p>
 
     <div class="shots">
-      <img src="shots/1-home.jpg" alt="Home screen: the START orb on a deep-ocean gradient">
-      <img src="shots/2-confidence.jpg" alt="A question with the confidence bet set to 80 percent">
-      <img src="shots/6-calibration.jpg" alt="The calibration chart: accuracy versus confidence, with a per-category breakdown">
+      <img src="shots/1-home.jpg" alt="Home screen: a 14-day streak, today's score orb, and the Gut Check pack orb peeking alongside it">
+      <img src="shots/2-round-score.jpg" alt="Round score: 81 out of 100, with a per-question breakdown of confidence against outcome">
+      <img src="shots/3-pulse.jpg" alt="The Pulse calibration chart: accuracy versus confidence, with a per-category breakdown below">
     </div>
 
     <h2>The idea</h2>
     <p>Most trivia rewards luck and process-of-elimination. Hedge rewards self-knowledge. Every day you get five true/false questions, and for each one you set a confidence level (50, 60, 70, 80, 90, or 99 percent) before locking in.</p>
     <p>Scoring is <strong>Brier-based</strong>: a wrong answer at 99 percent is brutal, a hedge at 50 percent is neutral, and being right is only worth the most if you were also confident. Over many rounds, a per-confidence calibration chart reveals whether you are systematically over- or under-confident, and in which categories. The trivia is the surface. The real product is a personal calibration instrument.</p>
-    <p>Two modes feed it. The daily round is five questions, about 90 seconds, played once and locked. <strong>Gut Check</strong> is the deep dive: a curated pack of 25+ questions on one topic, played in a single sitting, that ends with a focused read on how your gut performs there and that you can replay to chase mastery.</p>
+    <p>Two modes feed it. The daily round is five questions, about 90 seconds, played once and locked. <strong>Gut Check</strong> is the deep dive: a curated pack of 40 to 50 questions on one topic, played in a single sitting, that ends with a focused read on how your gut performs there and that you can replay to chase mastery.</p>
 
     <h2>What makes it interesting</h2>
     <p>This is a small app with a deliberately large amount of system behind it. The parts I am most happy with:</p>
@@ -71,11 +71,12 @@
     </ul>
 
     <h3>Gut Check: calibration as a deep dive</h3>
-    <p>The daily round measures you five questions at a time. Gut Check is the focused version, and its report splits one number into two. <strong>Calibration</strong> asks whether your confidence was honest: did your 80 percent bets actually land around 80 percent of the time? <strong>Conviction</strong> asks whether your gut committed: did you bet hard on the ones you knew and hedge the ones you didn't, or play everything safe in the middle? Both fall out of a Murphy decomposition of the Brier score (reliability and resolution), computed from the same confidence-and-outcome pairs the daily chart already uses, so the two modes share one scoring core.</p>
+    <p>The daily round measures you five questions at a time. Gut Check is the focused version, and its report splits one number into two. <strong>Calibration</strong> asks whether your confidence was honest: did your 80 percent bets actually land around 80 percent of the time? <strong>Conviction</strong> asks whether your gut committed: did you bet hard on the ones you knew and hedge the ones you didn't, or play everything safe in the middle?</p>
+    <p>The first version computed both straight from a Murphy decomposition of the Brier score, calibration as reliability and conviction as resolution. It read well in a textbook and badly in the app. Reliability is a squared error, so a visibly overconfident run still scored in the nineties, and the resolution term collapsed to zero the moment a player bet a single confidence level, which a short focused run does constantly. The shipped version keeps the decomposition under the hood but reports two numbers built to be robust and legible instead. Calibration is the gap the chart already shows you, the weighted distance of your bets from the perfect-calibration line, so the figure and the picture finally agree. Conviction is a Brier skill score: how far your bets beat a blind coin flip. Both still read from the same confidence-and-outcome pairs the daily chart uses, so the two modes share one scoring core.</p>
     <ul>
       <li><strong>Packs are a curation layer, not a second scoring system.</strong> Each pack maps to one of the six existing categories, so a Gut Check still rolls up into your overall calibration.</li>
       <li><strong>Pack questions are date-inert.</strong> They live in the same table as daily questions but at a far-future sentinel date, so availability is governed by what you have unlocked, never by the calendar. Every date-driven daily query guards against pulling them into a normal round.</li>
-      <li><strong>First play is real; replays are practice.</strong> The first time through a pack pools into your live calibration and writes an immutable snapshot. Replays go to a separate mastery store, because the "answered once, locked" rule that protects the daily signal applies here too. A replay charts your accuracy climbing toward mastery without overwriting the honest first read.</li>
+      <li><strong>First play is real; replays are practice.</strong> The first time through a pack pools into your live calibration and writes an immutable snapshot. Replays go to a separate mastery store, because the "answered once, locked" rule that protects the daily signal applies here too. A replay also reshuffles the questions so you re-read each fact instead of memorizing the deck order, and the shuffle is seeded by attempt, so pausing and resuming reproduces the same order with nothing stored. Its report sets each answer beside your first run and labels how it moved (improved, sharper, or slipped), so progress shows up per question, not just in the aggregate.</li>
       <li><strong>A points economy with nothing to drift.</strong> You spend Chips to open a pack, earned from lifetime points. The balance is computed on read from a monotonic points total, so there is no spendable counter sitting in the database to corrupt or exploit.</li>
     </ul>
 
