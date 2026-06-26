@@ -41,18 +41,19 @@
     <h1><span class="brand-caps">Hedge</span>: <span class="title-rest">How It's Built</span></h1>
     <p class="lead">A fully on-device iOS calibration game, backed by a self-hosted LLM content pipeline.</p>
 
-    <p class="stack-line"><strong>Stack:</strong> Expo SDK 55 · React Native 0.83 · React 19 · TypeScript · expo-sqlite · Node + Hono · SQLite · Anthropic API</p>
-    <p class="stack-line"><strong>Platform:</strong> iOS · <strong>Backend for the game:</strong> none, fully on-device · <strong>Status:</strong> <a href="https://apps.apple.com/app/id6768878330">Live on the App Store</a> (v1.1.0)</p>
+    <p class="stack-line"><strong>Stack:</strong> Expo SDK 55 · React Native 0.83 · React 19 · TypeScript · expo-sqlite · Node + Hono · SQLite · Gemini + Anthropic APIs</p>
+    <p class="stack-line"><strong>Platform:</strong> iOS · <strong>Backend for the game:</strong> none, fully on-device · <strong>Status:</strong> <a href="https://apps.apple.com/app/id6768878330">Live on the App Store</a> (v2.0.0)</p>
 
     <div class="shots">
-      <img src="shots/1-home.jpg" alt="Home screen: the START orb on a deep-ocean gradient">
-      <img src="shots/2-confidence.jpg" alt="A question with the confidence bet set to 80 percent">
-      <img src="shots/6-calibration.jpg" alt="The calibration chart: accuracy versus confidence, with a per-category breakdown">
+      <img src="shots/1-home.jpg" alt="Home screen: a 14-day streak, today's score orb, and the Gut Check pack orb peeking alongside it">
+      <img src="shots/2-round-score.jpg" alt="Round score: 81 out of 100, with a per-question breakdown of confidence against outcome">
+      <img src="shots/3-pulse.jpg" alt="The Pulse calibration chart: accuracy versus confidence, with a per-category breakdown below">
     </div>
 
     <h2>The idea</h2>
     <p>Most trivia rewards luck and process-of-elimination. Hedge rewards self-knowledge. Every day you get five true/false questions, and for each one you set a confidence level (50, 60, 70, 80, 90, or 99 percent) before locking in.</p>
     <p>Scoring is <strong>Brier-based</strong>: a wrong answer at 99 percent is brutal, a hedge at 50 percent is neutral, and being right is only worth the most if you were also confident. Over many rounds, a per-confidence calibration chart reveals whether you are systematically over- or under-confident, and in which categories. The trivia is the surface. The real product is a personal calibration instrument.</p>
+    <p>Two modes feed it. The daily round is five questions, about 90 seconds, played once and locked. <strong>Gut Check</strong> is the deep dive: a curated pack of 40 to 50 questions on one topic, played in a single sitting, that ends with a focused read on how your gut performs there and that you can replay to chase mastery.</p>
 
     <h2>What makes it interesting</h2>
     <p>This is a small app with a deliberately large amount of system behind it. The parts I am most happy with:</p>
@@ -69,15 +70,34 @@
       <li>Streaks are computed on the fly from completed rounds rather than stored, which removes an entire class of counter-drift bugs.</li>
     </ul>
 
+    <h3>Gut Check: calibration as a deep dive</h3>
+    <p>The daily round measures you five questions at a time. Gut Check is the focused version, and its report splits one number into two. <strong>Calibration</strong> asks whether your confidence was honest: did your 80 percent bets actually land around 80 percent of the time? <strong>Conviction</strong> asks whether your gut committed: did you bet hard on the ones you knew and hedge the ones you didn't, or play everything safe in the middle?</p>
+    <p>The first version computed both straight from a Murphy decomposition of the Brier score, calibration as reliability and conviction as resolution. It read well in a textbook and badly in the app. Reliability is a squared error, so a visibly overconfident run still scored in the nineties, and the resolution term collapsed to zero the moment a player bet a single confidence level, which a short focused run does constantly. The shipped version keeps the decomposition under the hood but reports two numbers built to be robust and legible instead. Calibration is the gap the chart already shows you, the weighted distance of your bets from the perfect-calibration line, so the figure and the picture finally agree. Conviction is a Brier skill score: how far your bets beat a blind coin flip. Both still read from the same confidence-and-outcome pairs the daily chart uses, so the two modes share one scoring core.</p>
+    <ul>
+      <li><strong>Packs are a curation layer, not a second scoring system.</strong> Each pack maps to one of the six existing categories, so a Gut Check still rolls up into your overall calibration.</li>
+      <li><strong>Pack questions are date-inert.</strong> They live in the same table as daily questions but at a far-future sentinel date, so availability is governed by what you have unlocked, never by the calendar. Every date-driven daily query guards against pulling them into a normal round.</li>
+      <li><strong>First play is real; replays are practice.</strong> The first time through a pack pools into your live calibration and writes an immutable snapshot. Replays go to a separate mastery store, because the "answered once, locked" rule that protects the daily signal applies here too. A replay also reshuffles the questions so you re-read each fact instead of memorizing the deck order, and the shuffle is seeded by attempt, so pausing and resuming reproduces the same order with nothing stored. Its report sets each answer beside your first run and labels how it moved (improved, sharper, or slipped), so progress shows up per question, not just in the aggregate.</li>
+      <li><strong>A points economy with nothing to drift.</strong> You spend Chips to open a pack, earned from lifetime points. The balance is computed on read from a monotonic points total, so there is no spendable counter sitting in the database to corrupt or exploit.</li>
+    </ul>
+
     <h3>A self-hosted LLM content pipeline</h3>
-    <p>A year of daily rounds is roughly 1,800 questions, and generated candidates only yield 30 to 50 percent through review. So content is a real system, not a folder of JSON:</p>
+    <p>Content is its own system here, not a folder of JSON, for two reasons. The first is originality: most trivia apps draw from the same shared question banks (free ones like OpenTDB, plus commercial licensed sets), so they end up asking the same questions as each other. Generating and verifying an in-house bank means Hedge's questions are written for it, not recycled from the well everyone else uses. The second is volume: a year of daily rounds is roughly 1,800 questions, and generated candidates only yield 30 to 50 percent through review.</p>
     <ul>
       <li><strong>Server-side generation</strong> calls Claude with a tightly constrained prompt (unambiguously true/false, sourceable, calibrated for a US audience). Large batches are chunked and the static prompt prefix is prompt-cached, so cost stays low and outputs never truncate against the token ceiling.</li>
       <li><strong>Multi-stage deduplication.</strong> An exclusion list blocks exact regeneration, a TF-IDF cosine pass plus a proper-noun entity-overlap pass flags rewordings, and a second "critic" model adjudicates whether two questions are really the same fact. This catches the same fact framed two different ways, which exact-match matching misses entirely.</li>
+      <li><strong>Source verification.</strong> Every cited URL is fetched and judged against the claim before a question reaches review. A source that is fabricated or that contradicts the answer drops the candidate; dead links get stripped. A hallucinated citation never reaches the queue.</li>
+      <li><strong>Source repair.</strong> When a question's sources cannot be verified, the server searches the web for a real source for the underlying fact (the explanation is the thing being validated, whether the answer is true or false), runs it through the same fetch-and-judge check, and swaps it in. Verdicts are persisted, so the reviewer sees them without re-checking.</li>
       <li><strong>A phone-based review app</strong> so vetting thousands of questions is a couch task in 30-second bursts instead of a desk marathon. It holds no data of its own and talks to the authoring server over Tailscale with bearer-token auth.</li>
       <li><strong>A balancing scheduler</strong> that fills each daily round under real constraints (at most two per category, mixed difficulty, mixed trick direction) and only ever touches future dates.</li>
       <li><strong>One-tap publishing.</strong> The server builds the seed file in an isolated git worktree, runs a future-only safety gate that refuses to alter any past date (which would retroactively break players' streaks), and opens a reviewable diff. Merging it ships the content over the air.</li>
     </ul>
+
+    <h3>A pluggable generator, judged across vendors</h3>
+    <p>Hand-curating the first Gut Check pack turned up a list of generation failures, and the worst was true/false balance. Opus 4.8 skewed hard toward true statements: only about a quarter of a batch came back false against a target of half, and a prompt rewrite aimed squarely at producing more false questions plateaued around a third. The other failures (drifting off the requested topic, telegraphing the answer) had the same shape. Every one of those rules was already in the prompt. The model just was not following them tightly.</p>
+    <p>The first fix tried to work around the skew instead of solving it. Each generated question comes with an "alternate", a truth-flipped rephrasing of the same fact, so a surplus true question can be swapped to its false twin and rebalance a batch for free. But Opus produced a usable alternate for only about a third of its questions, and not always a good one, so the lever ran short exactly when a batch was most lopsided. That reframed the problem from "build more balancing machinery" into "find a model that follows the balance rule on its own."</p>
+    <p>So I ran a bake-off instead: three models, one identical prompt, Opus 4.8 against Gemini 3.5 Flash and GPT-5.5. The metrics favored one model and reading the actual questions favored another. GPT-5.5 scored 95 percent on the alternate-phrasing metric but wrote flat, voiceless trivia and made the same "easy answer over the sharp false" mistake already on my list. Gemini Flash wrote questions with voice, the oblique near-miss shapes I had been hand-selecting, hit a clean 50 percent true/false split in every category, and is free. On the metrics alone, GPT-5.5 wins; reading twenty of its questions is what ruled it out.</p>
+    <p>The migration stayed small: a generation-only seam that routes by model id and keeps Anthropic prompt-caching intact, with the critic, deduplication, and source verification left on Anthropic. That makes the pipeline cross-vendor by construction, one model writing and a different vendor judging, which removes a shared-blind-spot failure mode for free.</p>
+    <p>The honest part came at sign-off. The pre-build check tested source reliability on one category, history, and concluded Gemini cited real URLs. The live run generated a sports batch, and the verifier dropped 16 of 20 questions. The facts were true, but Gemini had invented plausible deep links on official sites (nba.com, masters.com) that 404. History leans on Wikipedia, which it cites accurately; sports leans on official-site links, which it guesses. Two things held: the verifier did exactly its job and the bank was never polluted, and a one-paragraph prompt nudge to prefer Wikipedia took the drop from 16 of 20 back to 5 of 20, on a free model. A single-category check was one data point dressed up as a conclusion.</p>
 
     <h3>Ship content without App Store review</h3>
     <p>The game delivers new questions through <strong>Expo over-the-air updates</strong>: a push to <code>main</code> reaches players in about 30 seconds with no re-review. Native builds (new modules, icons) are a separate, deliberate manual step. Getting this right meant learning some sharp edges the hard way, including pinning <code>runtimeVersion</code> after a fingerprint policy silently orphaned older builds from the update stream, and adding path filters so documentation and tooling changes never burn a build minute.</p>
@@ -110,7 +130,7 @@
         <tr><td>Animation</td><td>Reanimated + Gesture Handler; calibration chart hand-drawn with Animated primitives (no Skia dependency by choice)</td></tr>
         <tr><td>Persistence</td><td>expo-sqlite on device; append-only migration ledger in shared</td></tr>
         <tr><td>Authoring server</td><td>Node + Hono + better-sqlite3, self-hosted, reached over Tailscale</td></tr>
-        <tr><td>Generation</td><td>Anthropic API + Zod validation, prompt-caching, a critic model for dedup</td></tr>
+        <tr><td>Generation</td><td>Multiple providers (Gemini + Anthropic) behind one seam, Zod validation, prompt-caching; an Anthropic critic for dedup, plus fetch-and-judge source verification</td></tr>
         <tr><td>Tooling</td><td>pnpm workspaces, vitest, EAS Build + Expo OTA</td></tr>
       </tbody>
     </table>
@@ -121,11 +141,12 @@
       <li><strong>Append-only migrations</strong> with two ledgers: one shared schema for game and server, one server-only ledger so authoring tables never reach the game database.</li>
       <li><strong>Trunk-based with cost discipline:</strong> feature branches, path-filtered CI so only player-facing changes trigger builds, and OTA for everything that does not touch native code.</li>
       <li><strong>Documentation as a first-class artifact:</strong> design, scoring, pipeline, admin, and release docs are checked into the repo and kept current with the code.</li>
+      <li><strong>A bias toward reading the output.</strong> Automated metrics rank generation candidates; a human reading twenty actual questions is what decides which model ships. The bake-off that picked the generator came down to voice, not counters.</li>
     </ul>
 
     <h2>Status</h2>
-    <p>Live on the App Store as v1.1.0. Roughly 740 verified questions scheduled out several months, generated and vetted through the pipeline above. Single-developer project, end to end: product, data model, scoring design, content tooling, and release engineering.</p>
-    <p>The calibration and scoring primitives are intentionally factored so they could power a planned sibling app (an active-recall study tool) without touching any of the trivia-specific code.</p>
+    <p>Live on the App Store as v2.0.0, which adds Gut Check on top of the daily round. Roughly 740 verified daily questions are scheduled out several months, alongside the first curated Gut Check packs, all generated and vetted through the pipeline above. Single-developer project, end to end: product, data model, scoring design, content tooling, and release engineering.</p>
+    <p>The calibration and scoring primitives are factored so one core powers both the daily round and Gut Check, and could power a planned sibling app (an active-recall study tool) without touching any of the trivia-specific code.</p>
 
     <footer>
       <a href="mailto:jason@stiles.one">jason@stiles.one</a>
