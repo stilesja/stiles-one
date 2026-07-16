@@ -142,14 +142,16 @@
       <li><strong>Trunk-based with cost discipline:</strong> feature branches, path-filtered CI so only player-facing changes trigger builds, and OTA for everything that does not touch native code.</li>
       <li><strong>Documentation as a first-class artifact:</strong> design, scoring, pipeline, admin, and release docs are checked into the repo and kept current with the code.</li>
       <li><strong>A bias toward reading the output.</strong> Automated metrics rank generation candidates; a human reading twenty actual questions is what decides which model ships. The bake-off that picked the generator came down to voice, not counters.</li>
+      <li><strong>Tests as messages to the future.</strong> A dormant seasonal-pack mechanism (year-wrap date windows) ships fully tested, with a registry pin that fails loudly the day the first seasonal pack is added, so whoever lands it re-reads the rules before it ships.</li>
     </ul>
 
     <h2>Status</h2>
-    <p>Live on the App Store as v2.0.0, which adds Gut Check on top of the daily round. Roughly 740 verified daily questions are scheduled out several months, alongside the first curated Gut Check packs, all generated and vetted through the pipeline above. Single-developer project, end to end: product, data model, scoring design, content tooling, and release engineering.</p>
+    <p>Live on the App Store as v2.0.0, which adds Gut Check on top of the daily round; everything since (features, fixes, and content) has shipped over the air to that same binary. Roughly 740 verified daily questions are scheduled out several months, alongside five curated Gut Check packs of about 245 more, all generated and vetted through the pipeline above. Single-developer project, end to end: product, data model, scoring design, content tooling, and release engineering.</p>
     <p>The calibration and scoring primitives are factored so one core powers both the daily round and Gut Check, and could power a planned sibling app (an active-recall study tool) without touching any of the trivia-specific code.</p>
+    <p>This page is the evergreen picture. Engineering events (campaigns, incidents, bake-offs) are documented as they happen in the <a href="../log/">build log</a>.</p>
 
     <footer>
-      <a href="mailto:jason@stiles.one">jason@stiles.one</a>
+      <a href="mailto:hedge@stiles.one">hedge@stiles.one</a>
       <span>© <time datetime="2026">2026</time></span>
     </footer>
   </main>
