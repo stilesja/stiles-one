@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The countdown was centered, and Todd was right anyway · Hedge Build Log</title>
+  <meta name="description" content="A beta tester said the countdown digits did not feel centered. He was right twice: an animation drift and the anatomy of the numeral 1.">
+  <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&display=swap">
+  <link rel="stylesheet" href="../../../styles.css">
+  <link rel="stylesheet" href="../../hedge.css">
+</head>
+<body class="hedge">
+  <main>
+    <p class="back"><a href="../">← Build log</a></p>
+
+    <span class="chip">Build log</span>
+    <h1>The countdown was centered, and Todd was right anyway</h1>
+    <p class="meta"><time datetime="2026-07-16">July 16, 2026</time></p>
+    <p class="lead">Hedge is a daily calibration trivia game I build solo; the architecture lives in the <a href="../../build/">case study</a>. This is the story of a countdown that measured centered and was not.</p>
+
+    <p>Before every question, Hedge counts you in: 3, 2, 1, each digit landing in a glowing orb, holding for most of a second, then shrinking away as the question arrives. My friendly neighborhood beta tester Todd told me the numbers were probably centered, but they did not "feel" centered. I knew exactly what he meant, because I had seen it too and blamed it on some artifact of the dev tooling I happened to be running that day. It is an easy report to shrug off. It's a measurement and a feeling, and the measurement says the feeling is wrong. But Todd is a designer with a great eye for detail.</p>
+
+    <p>The measurement was answering the wrong question.</p>
+
+    <p>When I opened the component, my comments already mentioned optical centering. A digit rendered in a text box sits where the font's metrics put it, and fonts reserve room below the baseline for descenders, the tails on letters like g and y. Digits have no descenders, so a "3" centered by its box floats visibly high in a circle. A previous pass had noticed this and nudged the digit down with a margin, forty points of it, with a comment explaining why. Fine so far.</p>
+
+    <p>The problem is that the digit does not just sit there. It holds, then it shrinks and fades. The shrink is a scale animation, and scale pivots on the center of the layout box. A margin is layout: it grows the box. So the ink sat below the pivot, and every time a digit shrank away, it also slid upward, three times per question, on every question, forever. Freeze any single frame and the ruler says centered, or close enough. Todd was not looking at a frame. He was watching motion, and the motion was wrong. The instrument and the human were answering different questions, and the human was answering the right one.</p>
+
+    <p>The fix is almost insultingly small: make the nudge a transform instead of a margin. A translate rides inside the parent's scale, so the correction shrinks with the glyph and the ink stays planted while it fades. I watched it once and the difference was obvious.</p>
+
+    <p>And then, with the drift gone, I finally saw the thing that had quietly bugged me for months: the "1" sits to the right. Not the "2", not the "3", just the "1". The reason is the flag hanging off its top left. The glyph's ink box spans from the tip of that flag to the right edge of the stem, and centering the box parks the stem right of the circle's center. Your eye does not read the box. It reads the stem. Typefaces paper over this in running text with side bearings, but a lone 130 point digit in a circle gets no such help. So the "1", and only the "1", now shifts six points left, partway toward its visual centroid (all the way would overcorrect, because the flag has real weight too). Todd signed off on a video that night, and the fix went out over the air the same evening.</p>
+
+    <p>I find the whole episode quite ironic. I ship an app whose entire pitch is that your confidence should match reality, and my countdown spent months being confidently wrong: measurably centered, actually not. Two real defects were hiding under one vague feeling, and both of them surfaced the moment we took the feeling seriously instead of the ruler. So that is the lesson I am keeping. When a person tells you something feels wrong and your instruments say otherwise, check what question the instruments are actually answering. Believe the human first. Then go find what they are seeing.</p>
+
+    <p>All thanks go to my good friend Todd for vocalizing what my gut should have known and my mind actively ignored. There are dozens of places in the app where his keen eye for detail has made Hedge a better experience for all of us!</p>
+
+    <footer>
+      <a href="mailto:hedge@stiles.one">hedge@stiles.one</a>
+      <span>© <time datetime="2026">2026</time></span>
+    </footer>
+  </main>
+</body>
+</html>
