@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>iPad support in a day, and then every screen Apple sells · Hedge Build Log</title>
+  <meta name="description" content="From a morning question to App Store approval: shipping iPad support for Hedge in one day, then enabling Mac and Vision Pro, with the traps and bugs along the way.">
+  <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&display=swap">
+  <link rel="stylesheet" href="../../../styles.css">
+  <link rel="stylesheet" href="../../hedge.css">
+</head>
+<body class="hedge">
+  <main>
+    <p class="back"><a href="../">← Build log</a></p>
+
+    <span class="chip">Build log</span>
+    <h1>iPad support in a day, and then every screen Apple sells</h1>
+    <p class="meta"><time datetime="2026-07-17">July 17, 2026</time></p>
+    <p class="lead">Hedge is a daily calibration trivia game I build solo; the architecture lives in the <a href="../../build/">case study</a>. This is the story of the day Hedge outgrew the iPhone.</p>
+
+    <p>Yesterday morning I asked a question I expected to schedule for some future month: I have an iPad mini, would iPad support for Hedge be hard? By that evening the answer was sitting in App Store Review, and this morning Apple approved it. Hedge 2.3.0 is live on iPad, and as of tonight it is enabled for Apple Silicon Macs and Apple Vision Pro too. Every screen Apple sells, from a codebase that was iPhone-only two days ago. Claude drove most of the code while I played art director, tester, and the guy who keeps saying "one more screen."</p>
+
+    <p>The first iPad build was a trap, and I nearly fell for it. It launched immediately and looked fine, just big, like the app was running on an SE instead of a Pro Max. That comfortable blown-up look turns out to be the signature of iPhone compatibility mode: the build tool had silently skipped regenerating the native project, so the iPad flag never made it into the binary and I was admiring a scaled phone app. The real iPad build, once actually produced, looked nothing like it: true text sizes, wide open space, and every layout question suddenly real.</p>
+
+    <p>The layout work settled into three rules I expect to keep. Questions and answers read in a 560 point column, because a trivia statement stretched across eleven hundred points is a ransom note. Every scrollable page holds its content to a centered 80 percent column, and the reason is not aesthetic: hold an iPad and your thumbs rest on the glass at the edges. The margins are grip space. And the empty canvas of the default theme got two enormous, barely-there diagonal light bands, one cool and one warm, so the big screen has some depth in all that extra canvas the app does not strictly need. iPads also honor Dynamic Type on reading text now, capped at a size every layout was actually tested at, plus a Larger Text toggle in Settings for bigger question text without changing your whole device. It's not the full 200% support required for an Apple sanctioned accessibility badge (yet), but if the text feels small on the large screen held at arm's length, this should help.</p>
+
+    <p>Walking every flow on the new screen size shook five real bugs out of the tree, including one that really only affected me: a dev shortcut I used when building gut check packs that I quit actually using once I had built real packs and executed them. It hardcoded a pack id that only existed when I set a different flag to inject fake packs for testing. I don't need fake packs now that I have actual packs but the dev setting wasn't set up for that. The result was a stranded app on an eternal loading screen with no error anywhere.</p>
+
+    <p>The best archaeology of the day was discovering my own tutorial had two different spotlight systems: one that measures where things actually are, and one that guesses using phone-shaped fractions. The guesses were fine for five years of iPhones and wrong on the first iPad. The measuring system was built with a warning comment about exactly this. Past me knew; present me got to rediscover it. The phone shaped spotlight system had already been relegated to a barely used help section of the app anyway. It previously lived inside the onboarding flow running each new installation through a fake round to teach users how to play. My friend Todd convinced me this was overkill and to get the user to actual game play as quickly as possible. I agreed, but couldn't bring myself to actually put the flow out of its misery. Thus setting myself up for fixing a bug that never actually existed until it rendered at tablet scale.</p>
+
+    <p>The App Store screenshots were their own small heist. The perfect-round celebration screen cannot be faked without dev chrome showing, so it had to be earned: read tomorrow's answer key straight out of the simulator's database, advance the app's dev clock a day, and play a genuine flawless round at 99 percent confidence. The celebration calls that a PROPHET round, but I don't quite feel like Nostradamus when I have to cheat to get all the questions right that I read and approved less than a month ago!</p>
+
+    <p>One more thing shipped last night and got its own entry: my tester Todd caught the countdown digits feeling off-center while every measurement said they were fine. He was right twice. That story is at <a href="../2026-07-16-todds-countdown/">The countdown was centered, and Todd was right anyway</a>.</p>
+
+    <p>On the Mac, honestly, it looks really good. The Designed for iPad build gets a proper title bar and window, the dark ocean theme feels at home next to native Mac apps, and the whole daily round plays fine with a mouse. A couple of clicks near the gesture-heavy surfaces take a beat longer under a pointer than they do under a finger (the same translation layer that makes iPad apps run on a Mac at all has to guess whether your click was going to become a drag), and I may chase that someday. Vision Pro I have not seen with my own eyes yet, but a friend with a headset and a strong opinion that iPad apps just work there talked me into flipping the availability switch tonight. If you play Hedge floating in a spatial window above your kitchen counter, tell me how the confidence swipe feels.</p>
+
+    <p>The one-way door is worth mentioning: Apple never lets you remove device support once you ship it. iPad is part of the QA surface forever now. A day of work bought a permanent obligation, and looking at the calibration chart at 420 points with room to breathe, I think it was a fair trade.</p>
+
+    <p>Hedge is on the <a href="https://apps.apple.com/app/id6768878330">App Store</a> for iPhone, iPad, Mac, and Vision Pro. Same five questions, same honest scoring, more glass.</p>
+
+    <footer>
+      <a href="mailto:hedge@stiles.one">hedge@stiles.one</a>
+      <span>© <time datetime="2026">2026</time></span>
+    </footer>
+  </main>
+</body>
+</html>
