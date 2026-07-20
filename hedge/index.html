@@ -56,6 +56,15 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&display=swap">
   <link rel="stylesheet" href="../styles.css">
   <link rel="stylesheet" href="hedge.css">
+  <style>
+    .quicklinks {
+      margin: 0.25rem 0 2rem;
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+    .quicklinks a { font-weight: 500; }
+    .quicklinks span { margin: 0 0.5rem; color: var(--muted); }
+  </style>
 </head>
 <body class="hedge">
   <main>
@@ -69,6 +78,14 @@
         <img src="appstore-badge.svg" alt="Download on the App Store" height="54">
       </a>
     </p>
+
+    <nav class="quicklinks" aria-label="Hedge pages">
+      <a href="build/">How it's built</a>
+      <span aria-hidden="true">·</span>
+      <a href="log/">Build log</a>
+      <span aria-hidden="true">·</span>
+      <a href="support/">Support</a>
+    </nav>
 
     <p>Five questions a day, about 90 seconds. This is <em>calibrated trivia</em>: the scoring rewards being right about how much you actually know, not just being right.</p>
 
