@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nobody had walked this path, so here's the map · Hedge Build Log</title>
+  <meta name="description" content="CloudKit in an Expo app: no maintained library existed, so here is the trail guide. Every pothole from simulator entitlements to a gitignore supply-chain bug, plus the extracted open-source bridge.">
+  <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&display=swap">
+  <link rel="stylesheet" href="../../../styles.css">
+  <link rel="stylesheet" href="../../hedge.css">
+</head>
+<body class="hedge">
+  <main>
+    <p class="back"><a href="../">← Build log</a></p>
+
+    <span class="chip">Build log</span>
+    <h1>Nobody had walked this path, so here's the map</h1>
+    <p class="meta"><time datetime="2026-07-20">July 20, 2026</time></p>
+    <p class="lead">Hedge is a daily calibration trivia game I build solo; the architecture lives in the <a href="../../build/">case study</a>. This is the practical companion to <a href="../2026-07-19-the-schema-had-already-done-it/">the sync design entry</a>: what it actually takes to use CloudKit from an Expo app, pothole by pothole.</p>
+
+    <p>I wanted iCloud sync in an Expo app, so I went looking for the library somebody had surely already built. The census came back bleak: a CloudKit-JS wrapper last touched in 2018, two sub-five-star hobby projects, and one package with 207 commits in five weeks followed by silence, a 171KB single Swift file, empty SwiftData and ML directories, and a roadmap made of issues the author filed against himself. None of the local-first sync stacks (WatermelonDB, RxDB, PowerSync, Electric) have a CloudKit adapter; they all assume a backend you operate, which is exactly what I refused to have. Nobody had walked this path. So this entry is the map, potholes included.</p>
+
+    <p>The first fork in the road was Apple's own blessed answer, CKSyncEngine. I skipped it. The engine requires iOS 17 and the remote-notifications entitlement, and adopting it would have ended Hedge's no-push posture just to get sync bootstrapped. Raw CKDatabase operations with fetch-on-foreground turned out to be all a turn-based daily game needs, and it sidesteps a documented plethora of push-delivery quirks. The whole native surface came to about 300 lines of stateless Swift in an Expo local module: account status, ensure zone, save records, fetch changes with a change token, plus the key-value store for settings. Everything else lives in TypeScript where I can test it.</p>
+
+    <p>Now the potholes, in the order they found me.</p>
+
+    <p><strong>The default zone is a trap.</strong> The private database's default zone cannot do change-token delta fetches at all. You want a custom zone from day one.</p>
+
+    <p><strong>codesign lies to you about simulator builds.</strong> Simulator builds carry entitlements in a linker section, not the code signature, so codesign reads back an empty list and looks exactly like a broken build. Better: if you "fix" it by signing the restricted entitlements properly, AMFI refuses to launch the app at all. The build that looked broken was correct all along.</p>
+
+    <p><strong>Container propagation takes its time.</strong> I spent 45 minutes staring at "Invalid bundle ID for container" with a provably correct client. I verified every layer on my side, embedded entitlements, project wiring, a fresh binary, before accepting that the fix was to wait for Apple's backend to propagate the App ID association. It eventually just started working.</p>
+
+    <p><strong>The zone API succeeds while failing.</strong> modifyRecordZones returns success at the top level even when the per-zone result inside it failed. My ensureZone reported "zone ready" for an hour while no zone existed. Check the per-zone Results.</p>
+
+    <p><strong>Record names are unique per zone, not per record type.</strong> My unlock record and my session record for the same pack shared a natural key, and the session silently lost every save to a conflict with the unlock. Namespace your record names.</p>
+
+    <p><strong>Dev data is radioactive.</strong> A development build signed into your real Apple ID will happily push your fake test rounds into the same cloud as your real history, and an append-only zone means clear-and-replay can't work: the replay conflicts against the original and your do-over silently un-happens. The answer is layered: CloudKit's Dev/Prod environment wall, a dev-only zone on top of it, and dev tooling that suspends sync before any data surgery.</p>
+
+    <p><strong>The first launch races the account handshake.</strong> A fresh install's first CloudKit status check can return couldNotDetermine, and if you don't retry, sync is quietly dead until the next foreground. I only caught it because I stepped away, came back, and noticed sync worked on the second look. Backoff retry went in the same night.</p>
+
+    <p>Then the one that earned its own lesson. The first real-device build produced total silence. Not errors, silence. I pulled the ipa apart and ran strings on the binary: zero occurrences of the module's name. The native half of my sync module had never been compiled in, because an unanchored <code>ios/</code> pattern in .gitignore, there to exclude the app's generated iOS project, also matched the module's <code>ios/</code> directory. The Swift file was never in git. Local builds worked for weeks off the loose files on disk; EAS archives from git and shipped the app without it. Every local check I had was structurally blind to the difference. Real-device testing didn't just exercise the app, it exercised the supply chain. I now autopsy every artifact before it touches a device: unzip the ipa, strings the binary, read the signed entitlements.</p>
+
+    <p>That autopsy habit immediately paid twice more. It revealed that EAS ad-hoc builds pin the CloudKit environment to Production (simulators run against Development), which matters because Production has no just-in-time schema: deploy your record types in the CloudKit Console or store users get silent nothing. And the production build failed its first attempt because the App Store provisioning profile predated the iCloud capability and needed a regeneration.</p>
+
+    <p>The Swift bridge is deliberately generic, stateless, container id passed on every call, and it's now running in a shipped App Store app. I've extracted it as an open-source package, <a href="https://github.com/stilesja/expo-cloudkit-bridge">expo-cloudkit-bridge</a> (on GitHub and npm), with the scope frozen at what you just read: private database, custom zone, change tokens, key-value store. The merge strategy stays in the app where it belongs, though the repo's SYNC_PATTERN.md documents the whole recipe if you want it. The library graveyard I surveyed at the top of this entry is full of maximal surfaces; I'd rather publish a small map that's been walked.</p>
+
+    <footer>
+      <a href="mailto:hedge@stiles.one">hedge@stiles.one</a>
+      <span>© <time datetime="2026">2026</time></span>
+    </footer>
+  </main>
+</body>
+</html>
