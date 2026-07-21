@@ -23,8 +23,12 @@
 
     <p>I wanted iCloud sync in an Expo app, so I went looking for the library somebody had surely already built. The census came back bleak: a CloudKit-JS wrapper last touched in 2018, two sub-five-star hobby projects, and one package with 207 commits in five weeks followed by silence, a 171KB single Swift file, empty SwiftData and ML directories, and a roadmap made of issues the author filed against himself. None of the local-first sync stacks (WatermelonDB, RxDB, PowerSync, Electric) have a CloudKit adapter; they all assume a backend you operate, which is exactly what I refused to have. Nobody had walked this path. So this entry is the map, potholes included.</p>
 
+    <h2 class="log-kicker">The road not taken</h2>
     <p>The first fork in the road was Apple's own blessed answer, CKSyncEngine. I skipped it. The engine requires iOS 17 and the remote-notifications entitlement, and adopting it would have ended Hedge's no-push posture just to get sync bootstrapped. Raw CKDatabase operations with fetch-on-foreground turned out to be all a turn-based daily game needs, and it sidesteps a documented plethora of push-delivery quirks. The whole native surface came to about 300 lines of stateless Swift in an Expo local module: account status, ensure zone, save records, fetch changes with a change token, plus the key-value store for settings. Everything else lives in TypeScript where I can test it.</p>
 
+    <aside class="log-pull">Nobody had walked this path. So this entry is the map, potholes included.</aside>
+
+    <h2 class="log-kicker">The potholes</h2>
     <p>Now the potholes, in the order they found me.</p>
 
     <p><strong>The default zone is a trap.</strong> The private database's default zone cannot do change-token delta fetches at all. You want a custom zone from day one.</p>
@@ -41,11 +45,15 @@
 
     <p><strong>The first launch races the account handshake.</strong> A fresh install's first CloudKit status check can return couldNotDetermine, and if you don't retry, sync is quietly dead until the next foreground. I only caught it because I stepped away, came back, and noticed sync worked on the second look. Backoff retry went in the same night.</p>
 
+    <h2 class="log-kicker">The supply-chain bug</h2>
     <p>Then the one that earned its own lesson. The first real-device build produced total silence. Not errors, silence. I pulled the ipa apart and ran strings on the binary: zero occurrences of the module's name. The native half of my sync module had never been compiled in, because an unanchored <code>ios/</code> pattern in .gitignore, there to exclude the app's generated iOS project, also matched the module's <code>ios/</code> directory. The Swift file was never in git. Local builds worked for weeks off the loose files on disk; EAS archives from git and shipped the app without it. Every local check I had was structurally blind to the difference. Real-device testing didn't just exercise the app, it exercised the supply chain. I now autopsy every artifact before it touches a device: unzip the ipa, strings the binary, read the signed entitlements.</p>
+
+    <aside class="log-pull">Real-device testing didn't just exercise the app, it exercised the supply chain.</aside>
 
     <p>That autopsy habit immediately paid twice more. It revealed that EAS ad-hoc builds pin the CloudKit environment to Production (simulators run against Development), which matters because Production has no just-in-time schema: deploy your record types in the CloudKit Console or store users get silent nothing. And the production build failed its first attempt because the App Store provisioning profile predated the iCloud capability and needed a regeneration.</p>
 
-    <p>The Swift bridge is deliberately generic, stateless, container id passed on every call, and it's now running in a shipped App Store app. I've extracted it as an open-source package, <a href="https://github.com/stilesja/expo-cloudkit-bridge">expo-cloudkit-bridge</a> (on GitHub and npm), with the scope frozen at what you just read: private database, custom zone, change tokens, key-value store. The merge strategy stays in the app where it belongs, though the repo's SYNC_PATTERN.md documents the whole recipe if you want it. The library graveyard I surveyed at the top of this entry is full of maximal surfaces; I'd rather publish a small map that's been walked.</p>
+    <h2 class="log-kicker">The extracted bridge</h2>
+    <p>The Swift bridge is deliberately generic, stateless, container id passed on every call, and it's now running in a shipped App Store app. I've extracted it as an open-source package, <a href="https://github.com/stilesja/expo-cloudkit-bridge">expo-cloudkit-bridge</a> (on GitHub and npm), with the scope frozen at what you just read: private database, custom zone, change tokens, key-value store. The merge strategy stays in the app where it belongs, though the repo's SYNC_PATTERN.md documents the whole recipe if you want it. The library graveyard I surveyed at the top of this entry is full of maximal surfaces; <strong>I'd rather publish a small map that's been walked.</strong></p>
 
     <footer>
       <a href="mailto:hedge@stiles.one">hedge@stiles.one</a>

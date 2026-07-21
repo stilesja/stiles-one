@@ -21,15 +21,21 @@
     <p class="meta"><time datetime="2026-07-12">July 12, 2026</time></p>
     <p class="lead">Hedge is a daily calibration trivia game I build solo; the architecture lives in the <a href="../../build/">case study</a>. This is the story of one long day of quality work.</p>
 
-    <p>I came back from vacation to six implementation plans I had asked an AI agent to write while I was gone, and spent one long day executing the quality plan with a fleet of Claude sub-agents. The structure was the point: every task got a fresh implementer agent and a two-stage review before anything landed, one reviewer checking the work against the plan's spec, a second judging the code on its own merits. Three workstreams and roughly forty reviewed commits later, the test suite had grown from 542 to 665, including a from-scratch harness for the authoring server (zero tests to thirty: auth, migrations, job single-flight, cancellation semantics), and all of it reached players and the content server the same day.</p>
+    <p>I came back from vacation to six implementation plans I had asked an AI agent to write while I was gone, and spent one long day executing the quality plan with a fleet of Claude sub-agents. The structure was the point: every task got a fresh implementer agent and a two-stage review before anything landed, one reviewer checking the work against the plan's spec, a second judging the code on its own merits. Three workstreams and roughly forty reviewed commits later, <strong>the test suite had grown from 542 to 665</strong>, including a from-scratch harness for the authoring server (zero tests to thirty: auth, migrations, job single-flight, cancellation semantics), and all of it reached players and the content server the same day.</p>
 
-    <p>The plans earned their keep as contracts. Every task carried exact file paths, code sketches, and a verify-before-editing rule, and that discipline paid off the first time a plausible review finding (a publish-gate rule supposedly colliding with a sentinel date) turned out to be the reviewer misreading the code. The right move was an investigation and a written no-change verdict, not a fix, and the process left room for that answer.</p>
+    <h2 class="log-kicker">Plans as contracts</h2>
+    <p>The plans earned their keep as contracts. Every task carried exact file paths, code sketches, and a verify-before-editing rule, and that discipline paid off the first time a plausible review finding (a publish-gate rule supposedly colliding with a sentinel date) turned out to be the reviewer misreading the code. <strong>The right move was an investigation and a written no-change verdict, not a fix</strong>, and the process left room for that answer.</p>
 
+    <h2 class="log-kicker">The bugs the fleet missed</h2>
     <p>For all that machinery, the two best bugs of the day were mine. I found them by playing my own app: a first-run reset race and coachmark spotlights that vanished mid screen-transition, both invisible to lint, types, tests, and every reviewer, agent or otherwise. Watching a real launch on a real simulator is still a test tier nothing else replaces.</p>
 
+    <aside class="log-pull">Watching a real launch on a real simulator is still a test tier nothing else replaces.</aside>
+
+    <h2 class="log-kicker">Watching real players</h2>
     <p>Watching real people play produced a feature the same day. Players kept trying to tap the confidence display, and the dots' overlapping hit zones kept landing their taps on the wrong stop. By evening that observation was chevron steppers with hold-to-repeat, honest hit bands, and a first-class path for VoiceOver, shipped in the same over-the-air update as the quality work.</p>
 
-    <p>And because it was a day about quality, I broke my own publish pipeline on the way out. The server deploy's <code>pnpm install</code> armed the repo's pre-push git hook on the content server for the first time, and the next content publish died inside a git worktree that deliberately has no dependencies installed. One pasted log, a one-line fix, republished within the hour, and the runbook now carries the lesson: anything that runs an install on the server changes git hook state.</p>
+    <h2 class="log-kicker">Breaking my own pipeline</h2>
+    <p>And because it was a day about quality, I broke my own publish pipeline on the way out. The server deploy's <code>pnpm install</code> armed the repo's pre-push git hook on the content server for the first time, and the next content publish died inside a git worktree that deliberately has no dependencies installed. One pasted log, a one-line fix, republished within the hour, and the runbook now carries the lesson: <strong>anything that runs an install on the server changes git hook state.</strong></p>
 
     <footer>
       <a href="mailto:hedge@stiles.one">hedge@stiles.one</a>
