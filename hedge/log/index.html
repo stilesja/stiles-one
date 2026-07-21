@@ -12,11 +12,52 @@
   <link rel="stylesheet" href="../../styles.css">
   <link rel="stylesheet" href="../hedge.css">
   <style>
-    .entries { list-style: none; padding: 0; margin: 1.5rem 0 0; }
-    .entries li { margin: 0 0 1.75rem; }
-    .entries .date { display: block; color: var(--muted); font-size: 0.9rem; margin-bottom: 0.15rem; }
+    /* Recent entries render as cards; older ones demote to the compact
+       archive list below (see HEDGE_PORTFOLIO.md "build log" for the
+       demotion rule). */
+    .entries { list-style: none; padding: 0; margin: 1.75rem 0 0; display: grid; gap: 1rem; }
+    .entries li {
+      position: relative;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 1.15rem 1.35rem 1.25rem;
+      box-shadow: var(--shadow-sm);
+      transition: box-shadow 0.18s ease, transform 0.18s ease, border-color 0.18s ease;
+    }
+    .entries li:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+      border-color: var(--accent);
+    }
+    .entries .date {
+      display: block;
+      color: var(--muted);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.3rem;
+    }
     .entries a { font-size: 1.15rem; font-weight: 700; }
-    .entries p { margin: 0.35rem 0 0; color: var(--muted); }
+    /* Stretch the title link over the whole card. */
+    .entries a::after { content: ""; position: absolute; inset: 0; border-radius: 18px; }
+    .entries p { margin: 0.4rem 0 0; color: var(--muted); }
+    /* The muted grey is tuned for the page bg; on the lighter card
+       surface it dips below comfortable contrast in dark mode. */
+    @media (prefers-color-scheme: dark) {
+      .entries p { color: #a9bec6; }
+    }
+
+    .archive { list-style: none; padding: 0; margin: 0.6rem 0 0; }
+    .archive li {
+      display: flex;
+      gap: 1rem;
+      align-items: baseline;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .archive .date { color: var(--muted); font-size: 0.85rem; min-width: 6.6rem; flex-shrink: 0; }
+    .archive a { font-weight: 600; }
   </style>
 </head>
 <body class="hedge">
@@ -58,10 +99,13 @@
         <a href="2026-07-16-todds-countdown/">The countdown was centered, and Todd was right anyway</a>
         <p>A tester said the countdown digits did not feel centered, and the measurements said he was wrong. He was right twice: a shrink animation that dragged the digit upward, and the anatomy of the numeral 1.</p>
       </li>
+    </ul>
+
+    <h2 class="log-kicker">Earlier entries</h2>
+    <ul class="archive">
       <li>
-        <span class="date"><time datetime="2026-07-12">July 12, 2026</time></span>
+        <span class="date"><time datetime="2026-07-12">Jul 12, 2026</time></span>
         <a href="2026-07-12-agent-fleet/">Six plans, one day, and an agent fleet</a>
-        <p>Executing a quality campaign with Claude sub-agents: two-stage reviews, 123 new tests, a same-day feature from watching real players, and a self-inflicted publish outage on the way out.</p>
       </li>
     </ul>
 
