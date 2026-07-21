@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The compositor doesn't care how pretty it is, only how big · Hedge Build Log</title>
+  <meta name="description" content="An iPad button lag traced to decorative background gradients: compositor cost scales with layer area, not visual complexity. The fix was to shrink the work, not cache it.">
+  <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&display=swap">
+  <link rel="stylesheet" href="../../../styles.css">
+  <link rel="stylesheet" href="../../hedge.css">
+</head>
+<body class="hedge">
+  <main>
+    <p class="back"><a href="../">← Build log</a></p>
+
+    <span class="chip">Build log</span>
+    <h1>The compositor doesn't care how pretty it is, only how big</h1>
+    <p class="meta"><time datetime="2026-07-18">July 18, 2026</time></p>
+    <p class="lead">Hedge is a daily calibration trivia game I build solo; the architecture lives in the <a href="../../build/">case study</a>. A follow-up to <a href="../2026-07-17-ipad-in-a-day/">the iPad entry</a>: the one bug that survived the port, found by feel and convicted by a kill-switch A/B.</p>
+
+    <p>The bug report was mine this time, and it was a feeling again: on iPad, some buttons take a beat. Press the back orb and there's a hesitation before the screen moves. Press TRUE or FALSE mid-round and it's instant. iPhone, instant everywhere. Claude's first theory was environmental, that I was playing the iPad build on my Mac through Apple's translation layer and the mouse-to-touch synthesis was eating the time. Tidy explanation, and I didn't buy it, so I checked: the iPad simulator reproduced the beat with no translation layer in sight. Same moral as <a href="../2026-07-16-todds-countdown/">the countdown entry</a>. The observation beats the tidy explanation.</p>
+
+    <p>With the environment cleared, the pattern in my own examples became the lead: every laggy button navigates to another screen, and every instant button changes state within its screen. Then one cheap experiment split the remaining hypothesis space in half. Watch the pressed state. The back orb dims the instant my finger lands, holds dim while held, and the beat happens after release, in the transition itself. So the touch pipeline was healthy and the cost lived in mounting and animating the next screen.</p>
+
+    <p>What does every iPad screen render that no iPhone screen does? Ambient background bands, a tablet-only decoration, big soft diagonal gradients that make the wide canvas feel intentional. A kill-switch A/B convicted them in one run: bands off, no beat.</p>
+
+    <p>The numbers explained everything. Each band was drawn as a rotated square sized to the screen's full diagonal span, roughly 2,750 points on a side, call it 120MB of texture at 2x, with the visible gradient occupying the middle third. And a stack transition composites two screens at once, the one leaving and the one arriving, so the compositor was pushing four of those giant layers through every navigation.</p>
+
+    <p>The obvious fix made it worse, which turned out to be the most useful result of the night. shouldRasterizeIOS is the classic remedy, cache the expensive subtree as a bitmap, and under the new architecture it re-rasterized those giant layers without ever reusing the cache: all of the cost, none of the benefit, a measurably longer beat. Its failure reframed the problem. Stop trying to cache the work. Shrink the work.</p>
+
+    <p>Two changes did it. First, the bands became rotated rectangles sized to the gradient you can actually see instead of squares sized to the diagonal. Second, the layers are laid out at one quarter resolution and GPU-upscaled four times, because a uniform scale commutes with a rotation and a soft gradient has no detail to blur. Roughly eighty times less texture area, pixel-identical to my eye, and the iPad transition now matches the iPhone. It fixed the Mac too, which is a polite way of saying the Mac was never the problem.</p>
+
+    <p>There was a tempting endgame beyond that: render the backdrop once at the navigator root and make every screen transparent, so transitions composite no bands at all. I rejected it. It's an architecture refactor to eliminate a cost that can no longer be felt, and the write-once rule of this log applies to code too: know when the story is over.</p>
+
+    <p>What I'm keeping. Compositor cost scales with layer area, not visual complexity; a subtle gradient can outweigh your entire component tree. Memoization can't help, because the render function was never the expense. Decorative gradients should be rendered small and scaled up by the GPU, which is what it's for. And the pressed-state test is going in the permanent toolkit: it cleanly separates "the touch was slow" from "the response was slow," one glance, no profiler.</p>
+
+    <footer>
+      <a href="mailto:hedge@stiles.one">hedge@stiles.one</a>
+      <span>© <time datetime="2026">2026</time></span>
+    </footer>
+  </main>
+</body>
+</html>
