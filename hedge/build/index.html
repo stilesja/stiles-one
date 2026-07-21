@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Hedge: How It's Built</title>
-  <meta name="description" content="The engineering behind Hedge: a fully on-device iOS calibration game backed by a self-hosted LLM content pipeline.">
+  <meta name="description" content="The engineering behind Hedge: a no-backend calibration game for iPhone, iPad, and Mac, synced through the player's own iCloud and backed by a self-hosted LLM content pipeline.">
   <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -39,10 +39,10 @@
 
     <span class="chip">Case study</span>
     <h1><span class="brand-caps">Hedge</span>: <span class="title-rest">How It's Built</span></h1>
-    <p class="lead">A fully on-device iOS calibration game, backed by a self-hosted LLM content pipeline.</p>
+    <p class="lead">A no-backend calibration game for iPhone, iPad, and Mac, synced through the player's own iCloud and backed by a self-hosted LLM content pipeline.</p>
 
-    <p class="stack-line"><strong>Stack:</strong> Expo SDK 55 · React Native 0.83 · React 19 · TypeScript · expo-sqlite · Node + Hono · SQLite · Gemini + Anthropic APIs</p>
-    <p class="stack-line"><strong>Platform:</strong> iOS · <strong>Backend for the game:</strong> none, fully on-device · <strong>Status:</strong> <a href="https://apps.apple.com/app/id6768878330">Live on the App Store</a> (v2.0.0)</p>
+    <p class="stack-line"><strong>Stack:</strong> Expo SDK 55 · React Native 0.83 · React 19 · TypeScript · expo-sqlite · CloudKit · Node + Hono · SQLite · Gemini + Anthropic APIs</p>
+    <p class="stack-line"><strong>Platform:</strong> iPhone · iPad · Mac (Apple silicon) · <strong>Backend for the game:</strong> none of ours; on-device SQLite plus the player's own private iCloud · <strong>Status:</strong> <a href="https://apps.apple.com/app/id6768878330">Live on the App Store</a> (v2.4.0)</p>
 
     <div class="shots">
       <img src="shots/1-home.jpg" alt="Home screen: a 14-day streak, today's score orb, and the Gut Check pack orb peeking alongside it">
@@ -80,6 +80,19 @@
       <li><strong>A points economy with nothing to drift.</strong> You spend Chips to open a pack, earned from lifetime points. The balance is computed on read from a monotonic points total, so there is no spendable counter sitting in the database to corrupt or exploit.</li>
     </ul>
 
+    <h3>iCloud sync without a backend</h3>
+    <p>v2.4.0 made Hedge multi-device (iPhone, iPad, Mac) without giving it a server. Sync runs through the player's own CloudKit private database: storage counts towards their iCloud quota, the data lives under their Apple ID, and it is unreadable by me by construction. The App Store privacy label stays "Data Not Collected" because nothing is.</p>
+    <p>The design leans almost entirely on properties the data model already had:</p>
+    <ul>
+      <li><strong>The answer log is an append-only set of facts, so merging is a set union.</strong> Every merge is idempotent; replaying the entire cloud zone from scratch always converges to the same table. That one property makes every failure mode degrade to "try again on the next trigger," and sync can never break gameplay.</li>
+      <li><strong>The day-one <code>UNIQUE</code> constraint became the conflict arbiter.</strong> A cloud record's name is the answer's natural key (its question id) and saves are fail-if-exists, so the first device to reach the server owns an answer and the other adopts it. "Once answered, locked" binds the player; the reconciler is allowed to replace a losing row so devices converge.</li>
+      <li><strong>Counters never sync; facts do.</strong> Chips and streaks were already computed on read, so cross-device correctness fell out of merging the underlying facts. There is still no counter anywhere to drift.</li>
+      <li><strong>Mid-round handoff cost nothing.</strong> Home and round state derive from the answers table, so you can answer two questions on the phone and pick up the round at question three on the Mac. It worked the day record sync worked.</li>
+      <li><strong>The feature I expected to be hardest was free.</strong> Gut Check replay order is a deterministic shuffle seeded by pack and attempt number, so any device holding the attempt rows derives the identical order with nothing synced and nothing stored.</li>
+    </ul>
+    <p>The native layer is a deliberately thin, stateless Swift bridge (raw CKDatabase operations; even the change token round-trips through JS and lives in SQLite), so every merge decision is pure TypeScript in the shared package, covered by the same vitest suite as the scoring. Settings travel separately as last-writer-wins key-values, and because the app keeps its no-push-notification posture, a key-value "doorbell" write after each push nudges other live devices to pull, with foreground pulls as the convergence guarantee.</p>
+    <p>One hardening lesson shipped days after launch: dev builds and store builds sync to different CloudKit zones, and the local database survives swapping binaries, so sync state now records which zone its bookkeeping was earned against and invalidates itself on a mismatch. The recovery is a full re-push and re-pull, which the idempotent merge makes safe, and the fix healed every affected device in minutes with no user interaction. The bridge itself is extracted and published as an open-source package, <a href="https://github.com/stilesja/expo-cloudkit-bridge">expo-cloudkit-bridge</a>, with the merge patterns documented for reuse.</p>
+
     <h3>A self-hosted LLM content pipeline</h3>
     <p>Content is its own system here, not a folder of JSON, for two reasons. The first is originality: most trivia apps draw from the same shared question banks (free ones like OpenTDB, plus commercial licensed sets), so they end up asking the same questions as each other. Generating and verifying an in-house bank means Hedge's questions are written for it, not recycled from the well everyone else uses. The second is volume: a year of daily rounds is roughly 1,800 questions, and generated candidates only yield 30 to 50 percent through review.</p>
     <ul>
@@ -115,7 +128,7 @@
   services/
     admin-server/     # Node + Hono + SQLite authoring backend (self-hosted)</code></pre>
     <ul>
-      <li><strong>The shipped game has no backend.</strong> No accounts, no analytics, no telemetry. Everything is local SQLite. The App Store privacy label is "Data Not Collected," and that is literally true.</li>
+      <li><strong>The shipped game has no backend of ours.</strong> No accounts, no analytics, no telemetry. Everything lives in local SQLite plus, when sync is on, the player's own private CloudKit database, which no developer can read. The App Store privacy label is "Data Not Collected," and that is literally true.</li>
       <li><strong>The authoring stack is completely separate</strong> from the game bundle, which keeps admin code out of App Review and out of the shipped binary.</li>
     </ul>
 
@@ -129,6 +142,7 @@
         <tr><td>Navigation</td><td>expo-router (typed routes)</td></tr>
         <tr><td>Animation</td><td>Reanimated + Gesture Handler; calibration chart hand-drawn with Animated primitives (no Skia dependency by choice)</td></tr>
         <tr><td>Persistence</td><td>expo-sqlite on device; append-only migration ledger in shared</td></tr>
+        <tr><td>Sync</td><td>CloudKit private database through a hand-written stateless Swift bridge (open-sourced as expo-cloudkit-bridge); NSUbiquitousKeyValueStore for settings</td></tr>
         <tr><td>Authoring server</td><td>Node + Hono + better-sqlite3, self-hosted, reached over Tailscale</td></tr>
         <tr><td>Generation</td><td>Multiple providers (Gemini + Anthropic) behind one seam, Zod validation, prompt-caching; an Anthropic critic for dedup, plus fetch-and-judge source verification</td></tr>
         <tr><td>Tooling</td><td>pnpm workspaces, vitest, EAS Build + Expo OTA</td></tr>
@@ -137,7 +151,7 @@
 
     <h2>Engineering practices</h2>
     <ul>
-      <li><strong>Pure logic lives in the shared package</strong> and is unit-tested with vitest, so the scheduler, dedup similarity, scoring, and publish safety-gate are covered without a simulator.</li>
+      <li><strong>Pure logic lives in the shared package</strong> and is unit-tested with vitest, so the scheduler, dedup similarity, scoring, sync merge decisions, and publish safety-gate are covered without a simulator.</li>
       <li><strong>Append-only migrations</strong> with two ledgers: one shared schema for game and server, one server-only ledger so authoring tables never reach the game database.</li>
       <li><strong>Trunk-based with cost discipline:</strong> feature branches, path-filtered CI so only player-facing changes trigger builds, and OTA for everything that does not touch native code.</li>
       <li><strong>Documentation as a first-class artifact:</strong> design, scoring, pipeline, admin, and release docs are checked into the repo and kept current with the code.</li>
@@ -146,7 +160,7 @@
     </ul>
 
     <h2>Status</h2>
-    <p>Live on the App Store as v2.0.0, which adds Gut Check on top of the daily round; everything since (features, fixes, and content) has shipped over the air to that same binary. Roughly 740 verified daily questions are scheduled out several months, alongside five curated Gut Check packs of about 245 more, all generated and vetted through the pipeline above. Single-developer project, end to end: product, data model, scoring design, content tooling, and release engineering.</p>
+    <p>Live on the App Store as v2.4.0: v2.0.0 added Gut Check on top of the daily round, v2.3.0 brought the game to iPad and Mac, and v2.4.0 added iCloud sync across all of them; between binaries, features, fixes, and content ship over the air. Roughly 740 verified daily questions are scheduled out several months, alongside five curated Gut Check packs of about 245 more, all generated and vetted through the pipeline above. Single-developer project, end to end: product, data model, scoring design, sync architecture, content tooling, and release engineering.</p>
     <p>The calibration and scoring primitives are factored so one core powers both the daily round and Gut Check, and could power a planned sibling app (an active-recall study tool) without touching any of the trivia-specific code.</p>
     <p>This page is the evergreen picture. Engineering events (campaigns, incidents, bake-offs) are documented as they happen in the <a href="../log/">build log</a>.</p>
 
