@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The $112 night · Hedge Build Log</title>
+  <meta name="description" content="One overnight agent run burned $112 by putting every subagent on the flagship model. The next phase ran tiered for about $18, caught every bug that mattered, and produced an allocation rule: tier by blast radius.">
+  <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&display=swap">
+  <link rel="stylesheet" href="../../../styles.css">
+  <link rel="stylesheet" href="../../hedge.css">
+</head>
+<body class="hedge">
+  <main>
+    <p class="back"><a href="../">← Build log</a></p>
+
+    <span class="chip">Build log</span>
+    <h1>The $112 night</h1>
+    <p class="meta"><time datetime="2026-07-24">July 24, 2026</time></p>
+    <p class="lead">Hedge is a daily calibration trivia game I build solo; the architecture lives in the <a href="../../build/">case study</a>. This follows <a href="../2026-07-12-agent-fleet/">the agent-fleet entry</a>: what one night of un-tiered subagents cost, and the controlled experiment that fixed how the models get allocated.</p>
+
+    <p>Back in the quality-campaign entry I described how Hedge gets built now: every task goes to a fresh AI implementer agent, and nothing lands without two reviews, one against the spec and one against the code. That machinery was humming along this week, rebuilding my question-review tooling as a web app, and one night I let a whole phase of it run while I slept. I woke up to good code, a working special-days editor, and a bill: roughly thirty agent dispatches, every single one quietly running on the most expensive model available, implementers and reviewers alike. $112 of a $200 promotional credit, gone in one night.</p>
+
+    <h2 class="log-kicker">The bill</h2>
+    <p>The galling part wasn't the number, it was what the money bought. Most of those dispatches were doing careful, honest, completely mechanical work: porting screens I already had to a new surface, wiring forms to API calls that already existed. I had tiered models to task complexity in earlier sessions, but that habit lived in my head, and a new session doesn't inherit my head. <strong>It ran everything on the flagship because nobody told it not to.</strong> So this time the rule got written down where the sessions live, and the next phase became a controlled experiment.</p>
+
+    <h2 class="log-kicker">The experiment</h2>
+    <p>Same pipeline, same kind of work: the scheduling screen, the question bank, import, and PWA support. But this time the plan itself carried a model assignment per task. Mid-tier models did all seven implementation tasks and all the spec reviews. The flagship was allowed exactly three appearances, as a reviewer only: once each on the two paths that write to the production schedule, and once for a final pass over everything.</p>
+
+    <h2 class="log-kicker">What the cheap models caught</h2>
+    <p>The mid-tier agents were better than I'd been pricing in. Five of the seven implementation tasks landed clean on the first pass, and the spec reviewers caught real gaps in the other two. My favorite moment of the whole phase: one of the cheap implementers caught a bug in the plan it had been handed, a query limit of 5000 that the server would have rejected outright, because the server caps explicit limits at 1000. The expensive model wrote that plan. The cheap one refused to implement the mistake. Cheap does not mean credulous.</p>
+
+    <aside class="log-pull">The expensive model wrote that plan. The cheap one refused to implement the mistake.</aside>
+
+    <h2 class="log-kicker">What the expensive one caught</h2>
+    <p>And the flagship earned its three appearances. Its reviews found a race where a stale duplicate-check could paint its results over a newer preview, a hole where table rows you had selected and then filtered out of sight would still ride along into a schedule write, and an error message that told a comforting lie about why a day was full. Notice the shape of that list. Every real bug was in code that writes. None were in code that only reads. The whole phase cost about $18 against the first night's $112, and the bugs that mattered still got caught, because the expensive judgment was parked exactly where mistakes are irreversible.</p>
+
+    <aside class="log-pull">Every real bug was in code that writes. None were in code that only reads.</aside>
+
+    <h2 class="log-kicker">Blast radius</h2>
+    <p>So the lesson I'm keeping is not "use cheap models," it's an allocation rule. <strong>Tier by blast radius, not by difficulty.</strong> A fiddly porting job is still cheap-model work, because the review net catches whatever it fumbles and a fumble costs one revision. A schedule write that silently carries the wrong five questions into players' mornings is flagship work even when the code looks boring, because nothing downstream will ever flag it. The two-review structure is what makes this safe at all: implementers can be cheap precisely because every line they produce gets read twice, by a skeptic, on the way in. The reviewer is the last one holding the work before it ships. <strong>Pay for the skeptic.</strong></p>
+
+    <footer>
+      <a href="mailto:hedge@stiles.one">hedge@stiles.one</a>
+      <span>© <time datetime="2026">2026</time></span>
+    </footer>
+  </main>
+</body>
+</html>

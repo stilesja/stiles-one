@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>I deployed a ruler · Hedge Build Log</title>
+  <meta name="description" content="Three reasonable fixes, one surviving black bar. A temporary diagnostics card made the iPhone report its own viewport geometry and pinned 47 unpaintable points on a status-bar meta tag.">
+  <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&display=swap">
+  <link rel="stylesheet" href="../../../styles.css">
+  <link rel="stylesheet" href="../../hedge.css">
+</head>
+<body class="hedge">
+  <main>
+    <p class="back"><a href="../">← Build log</a></p>
+
+    <span class="chip">Build log</span>
+    <h1>I deployed a ruler</h1>
+    <p class="meta"><time datetime="2026-07-24">July 24, 2026</time></p>
+    <p class="lead">Hedge is a daily calibration trivia game I build solo; the architecture lives in the <a href="../../build/">case study</a>. This one is a debugging postmortem from the day Hedge's new authoring web app became an installed iPhone app, and the screen stopped cooperating.</p>
+
+    <p>This week I replaced Hedge's phone-based question-review app with a web app served straight off the Mac mini that already runs the content server. That story gets its own entry once the old app is officially retired. This entry is about the day the new one spent fighting my iPhone's screen, and the move that finally ended it.</p>
+
+    <h2 class="log-kicker">Under the clock</h2>
+    <p>The web app worked great in Safari. So I did the natural next thing and installed it to my home screen as a PWA, and the Dashboard title slid neatly under the clock. Only in the installed app, never in the browser. That one at least made sense: installed web apps run without browser chrome, so the page extends under the status bar and it is your job to ask the device where the unsafe zones are. The fix was to reserve all four safe-area edges, and after a redeploy the title dropped politely below the clock. One fix, one act. I thought that was the whole show.</p>
+
+    <h2 class="log-kicker">The bar that wouldn't sit still</h2>
+    <p>Then the bottom tab bar started wandering. On some screens it sat where a tab bar sits, on others it floated a whole bar-height too high, with a black stripe underneath where the page just ended. Nothing about the tab bar's own styling explained it, because the tab bar was never the problem: <strong>iOS sizes a standalone web app's viewport differently depending on whether the document can scroll</strong>, so every screen with different content got a different idea of where the bottom was. The fix was structural. The document itself never scrolls anymore; the app shell is exactly one viewport tall and the content pane scrolls inside it, the same way native apps have always done it. The tab bar snapped to one height everywhere.</p>
+
+    <p>And the black stripe survived. Uniform now, on every screen, which I suppose is a kind of progress.</p>
+
+    <h2 class="log-kicker">The third swing</h2>
+    <p>Two fixes in, each one reasonable, each one solving a real problem, and the screen still had a dead band at the bottom. The temptation was a third reasonable fix. But my debugger situation was genuinely bad: the app lives on my phone, and the one writing the CSS is an AI agent on my laptop that cannot hold my phone. It debugs by reading code and looking at my screenshots, and screenshots of a black bar had gotten me exactly this far. When you can't attach a debugger, ship a ruler. I put a temporary diagnostics card on the Settings screen, a dumb little box that printed the viewport height, the screen height, and the safe-area insets, and sent back a screenshot of numbers instead of symptoms.</p>
+
+    <aside class="log-pull">When you can't attach a debugger, ship a ruler.</aside>
+
+    <h2 class="log-kicker">Forty-seven points</h2>
+    <p>The numbers confessed on the first try. Screen: 956 points. Web view: 909. Top inset: 62. That's a 47-point gap between the bottom of the web view and the bottom of the glass. Forty-seven points of screen that no web pixel was allowed to paint. It turns out that when a standalone web app asks for the translucent status-bar style (the one every tutorial recommends, because edge-to-edge sounds premium), iOS hands it a viewport that is shorter than the screen, and the difference is an OS-owned band you cannot draw into. <strong>The CSS was innocent. All three symptoms were one setting.</strong></p>
+
+    <aside class="log-pull">Forty-seven points of screen that no web pixel was allowed to paint.</aside>
+
+    <p>The fix was almost insultingly small: ask for the plain opaque status bar instead. The web view becomes the screen minus the status bar, runs clean to the physical bottom, the top inset reports zero, and all the safe-area CSS quietly adjusts because none of it ever hardcoded a number. I redeployed and read the card one last time: 956 minus 62 is 894, and the viewport said 894. Exactly. I deleted the ruler the same session, and the finding now lives where it can't be unlearned, in a comment right on the meta tag that a future refactor would have to read before "upgrading" it back to translucent.</p>
+
+    <h2 class="log-kicker">What stays</h2>
+    <p>Two smaller things I'm keeping from the same fight. First, iOS bakes those meta tags in at install time, so no amount of redeploying updates an installed app's status-bar style; <strong>you delete the icon and re-add it</strong>, and I lost a real stretch of time to fixes that had worked but looked like they hadn't. Second, midway through all this my iPad stopped scrolling unless I lifted my finger, on every screen, and I nearly indicted my brand-new scroll model for it. It was the touch digitizer. A force restart fixed the iPad completely. Even the ruler can't save you from hardware having a bad day, but it did keep me from patching CSS that was telling the truth.</p>
+
+    <footer>
+      <a href="mailto:hedge@stiles.one">hedge@stiles.one</a>
+      <span>© <time datetime="2026">2026</time></span>
+    </footer>
+  </main>
+</body>
+</html>
