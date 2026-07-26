@@ -32,7 +32,7 @@
     "description": "Hedge is daily calibrated trivia: a true/false game where you bet how sure you are, scored on how well you know what you know.",
     "url": "https://stiles.one/hedge/",
     "image": "https://stiles.one/hedge/og-image.jpg",
-    "operatingSystem": "iOS",
+    "operatingSystem": "iOS, iPadOS, macOS, visionOS",
     "applicationCategory": "GameApplication",
     "genre": "Trivia",
     "installUrl": "https://apps.apple.com/app/id6768878330",
@@ -64,6 +64,15 @@
     }
     .quicklinks a { font-weight: 500; }
     .quicklinks span { margin: 0 0.5rem; color: var(--muted); }
+    /* Desktop visitors get sent to the MAC App Store by the badge above, so
+       say out loud that Mac is supported. Without this the page reads as
+       iOS-only and a Mac reader assumes the button is not for them. */
+    .platforms {
+      margin: -0.6rem 0 2rem;
+      font-size: 0.9rem;
+      line-height: 1.5;
+      color: var(--muted);
+    }
   </style>
 </head>
 <body class="hedge">
@@ -78,6 +87,8 @@
         <img src="appstore-badge.svg" alt="Download on the App Store" height="54">
       </a>
     </p>
+
+    <p class="platforms">Free on iPhone, iPad, Mac (Apple silicon), and Vision Pro.</p>
 
     <nav class="quicklinks" aria-label="Hedge pages">
       <a href="build/">How it's built</a>
@@ -120,5 +131,34 @@
       <li><a href="privacy/">Privacy policy</a></li>
     </ul>
   </main>
+
+  <!-- Channel attribution for the App Store links.
+       A ?c=<label> on this page's URL (e.g. /hedge/?c=rationalist) rewrites the
+       App Store links to Apple's campaign-link form, so App Store Connect can
+       report which channel a download came from.
+
+       This does not track the visitor: nothing is stored, read, or sent from
+       here. The label rides along on a link the reader chooses to click, and
+       Apple already sees the install. App Store Connect only surfaces a campaign
+       once at least 5 separate Apple Accounts have installed from it, so keep
+       labels COARSE (rationalist / devcommunity / social) or every bucket stays
+       below the threshold and reports nothing.
+
+       Labels are capped at Apple's 25 characters and never change once used; a
+       renamed label mints a second campaign and splits the count. With
+       JavaScript off, the plain App Store links below still work. -->
+  <script>
+    (function () {
+      var raw = new URLSearchParams(window.location.search).get('c');
+      if (!raw) return;
+      var label = raw.toLowerCase().replace(/[^a-z0-9-]/g, '').slice(0, 25);
+      if (!label) return;
+      var campaignUrl =
+        'https://apps.apple.com/app/apple-store/id6768878330' +
+        '?pt=1936680&ct=' + encodeURIComponent(label) + '&mt=8';
+      var links = document.querySelectorAll('a[href*="apps.apple.com"]');
+      for (var i = 0; i < links.length; i++) links[i].href = campaignUrl;
+    })();
+  </script>
 </body>
 </html>
