@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The badge that wouldn't forgive · Hedge Build Log</title>
+  <meta name="description" content="One badge predicate, three designs: a lifetime accuracy gate that couldn't forgive, a fixed window that made tier three merely slower, and the version where the window is the count. Plus the simulator session that became a design studio.">
+  <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&display=swap">
+  <link rel="stylesheet" href="../../../styles.css">
+  <link rel="stylesheet" href="../../hedge.css">
+</head>
+<body class="hedge">
+  <main>
+    <p class="back"><a href="../">← Build log</a></p>
+
+    <span class="chip">Build log</span>
+    <h1>The badge that wouldn't forgive</h1>
+    <p class="meta"><time datetime="2026-08-02">August 2, 2026</time></p>
+    <p class="lead">Hedge is a daily calibration trivia game I build solo; the architecture lives in the <a href="../../build/">case study</a>. This is the engineering story behind this week's badge update. The why-it-matters half has its own entry, <a href="../2026-08-02-the-second-half-of-the-promise/">The second half of the promise</a>.</p>
+
+    <p>Two weeks ago Hedge shipped twelve badges. This weekend it shipped thirty-six, and Gut Check finally earns them too. But the story worth telling is one predicate that took three tries to get honest.</p>
+
+    <h2 class="log-kicker">The unforgiving gate</h2>
+    <p>"Bold Call II" asks you to win at 99% confidence, a lot, without spraying. The anti-farming gate was obvious: require high accuracy on your 99% bets, so reckless betting locks the badge instead of earning it. The first implementation measured that accuracy over your lifetime. A reviewer ran the math on what that means for a player who sprayed early: twenty-five wild misses at 99% would take roughly four hundred seventy-five straight wins to dilute past the gate. A permanent scar for early miscalibration. An app whose whole thesis is that calibration is improvable cannot ship a badge that says otherwise.</p>
+
+    <aside class="log-pull">An app whose whole thesis is that calibration is improvable cannot ship a badge that says otherwise.</aside>
+
+    <h2 class="log-kicker">Three tries at honest</h2>
+    <p>So version two measured your most recent fifty bets instead. Recoverable now. But looking at the tiers side by side, the fixed window had quietly made tier three a patience test, not a skill test: same fifty-bet gate as tier two, just a bigger count to sit through.</p>
+
+    <p>Version three was the one that felt inevitable afterward: the window is the count. The badge collapsed into one honest sentence. "Bold Call II" is your last twenty-five bets at 99%, at least 95% of them right. Tier three is the same claim sustained over a hundred. The count condition disappears because a full window implies it, recovery scales with the tier's own seriousness, and <strong>the higher tier is genuinely harder rather than merely slower</strong>. The proof work was real too: the implementation was shown by construction and by three thousand adversarial simulations to never earn a tier out of order, and one test a reviewer requested turned out to describe a mathematically unreachable state, so the implementer wrote the true invariant instead of the impossible scenario.</p>
+
+    <aside class="log-pull">The window is the count. The badge collapsed into one honest sentence.</aside>
+
+    <h2 class="log-kicker">The simulator became a design studio</h2>
+    <p>Then the simulator pass turned into something I did not plan: a design studio. Playing the build found zero logic bugs, because the review pipeline had already eaten them, and instead produced the reveal queue cap, the badge tour that scrolls you section by section through everything new, the held count-up when one badge earned several times over, and the little unseen counter on every path into Pulse. It also caught three bugs of a species no test can see: <strong>animations that were correct but imperceptible</strong>. A glow firing while its tile was off screen. A count-up spending itself behind another animation. A scroll leaving before the flourish landed. You only find those with eyes.</p>
+
+    <h2 class="log-kicker">Already shipped</h2>
+    <p>The quiet win underneath all of it: every badge is computed from play history, never stored. Which means <strong>every future badge idea is already shipped</strong>. Write the predicate, push it over the air, and everyone who ever earned it gets it that morning, with the real date, and the tour walks them right to it.</p>
+
+    <footer>
+      <a href="mailto:hedge@stiles.one">hedge@stiles.one</a>
+      <span>© <time datetime="2026">2026</time></span>
+    </footer>
+  </main>
+</body>
+</html>

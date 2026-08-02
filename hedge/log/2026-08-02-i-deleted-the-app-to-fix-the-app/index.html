@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>I deleted the app to fix the app · Hedge Build Log</title>
+  <meta name="description" content="The question-review app was a thin HTTP client wearing an app costume. Serving it as a web app off the Mac mini deleted a whole category of native ceremony, and a months-old shared-package bet made it a one-day rewrite.">
+  <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&display=swap">
+  <link rel="stylesheet" href="../../../styles.css">
+  <link rel="stylesheet" href="../../hedge.css">
+</head>
+<body class="hedge">
+  <main>
+    <p class="back"><a href="../">← Build log</a></p>
+
+    <span class="chip">Build log</span>
+    <h1>I deleted the app to fix the app</h1>
+    <p class="meta"><time datetime="2026-08-02">August 2, 2026</time></p>
+    <p class="lead">Hedge is a daily calibration trivia game I build solo; the architecture lives in the <a href="../../build/">case study</a>. This one is the story of the day the native question-review app stopped being an app, and what deleting it bought.</p>
+
+    <p>Hedge's questions get reviewed on a phone. That was the whole design: a separate Expo app, never published, thirty-second approval bursts from the couch. It worked for a thousand questions. Then I started wanting it on the iPad, and on the Mac, and the answers were all native answers: an iPad build, ad-hoc provisioning with UDID bookkeeping, or TestFlight with its 90-day build expiry treadmill. Every option was more ceremony for an app whose only job is talking to a server in my closet.</p>
+
+    <h2 class="log-kicker">A website in an app costume</h2>
+    <p>Mid-complaint, the reframe landed. The admin app is useless without a network path to the mini. It has no local database, no offline mode, nothing native about it except the packaging. A thin HTTP client with no offline story is a website wearing an app costume. So the fix was not a better costume. The fix was to stop pretending: serve a responsive web app straight off the Mac mini that already runs the content server, and let one URL be the phone app, the iPad app, and the desktop app.</p>
+
+    <aside class="log-pull">A thin HTTP client with no offline story is a website wearing an app costume.</aside>
+
+    <h2 class="log-kicker">What deletion bought</h2>
+    <p>Deleting the native layer deleted a whole category of my life. The admin EAS project, gone. Preview-channel OTAs, runtime version management, dev-client rebuilds every SDK bump, provisioning profiles, the App Transport Security exception, all gone. <strong>Deploying the admin is now "the server builds 400KB of static files."</strong> The mini pulls, restarts, done.</p>
+
+    <h2 class="log-kicker">The bet that paid</h2>
+    <p>The part that made it a one-day rewrite instead of a one-month rewrite was a bet placed months earlier. <strong>Every piece of testable logic in this project lives in a shared TypeScript package</strong>, and the rule was enforced even when it felt like ceremony. The scheduler, the validators, the runway math, the similarity engine: all of it ran in a browser unchanged. The rewrite was only ever the render layer.</p>
+
+    <aside class="log-pull">The rewrite was only ever the render layer.</aside>
+
+    <h2 class="log-kicker">Same-day production</h2>
+    <p>It was in production use the same afternoon, which is how it found two real bugs before dinner, including a crash caused by Gothic script in a Wikipedia sidebar. The iPhone home-screen version then spent a day fighting me over 47 points of screen, but that story already got its own entry (<a href="../2026-07-24-i-deployed-a-ruler/">"I deployed a ruler"</a>). Ten days of using the web app for every review session since, on every device I own, without opening the old one once.</p>
+
+    <h2 class="log-kicker">Retired</h2>
+    <p>So this week the Expo admin app officially retires. Not because it failed. Because it was scaffolding, and the building is done.</p>
+
+    <footer>
+      <a href="mailto:hedge@stiles.one">hedge@stiles.one</a>
+      <span>© <time datetime="2026">2026</time></span>
+    </footer>
+  </main>
+</body>
+</html>
