@@ -73,6 +73,36 @@
       line-height: 1.5;
       color: var(--muted);
     }
+    .get-it {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.75rem;
+      flex-wrap: wrap;
+    }
+    /* Desktop-only escape hatch. A visitor on a mouse-driven device is either
+       on a Mac (badge works, but they may still want it on their phone) or on
+       Windows/Linux, where the badge is a dead end. Touch visitors are already
+       holding the device that installs, so they never see this. */
+    .qr { display: none; margin: 0; }
+    @media (pointer: fine) and (min-width: 700px) {
+      .qr { display: block; }
+    }
+    .qr img {
+      display: block;
+      width: 108px;
+      height: 108px;
+      padding: 9px;
+      background: #fff;
+      border-radius: 10px;
+      image-rendering: pixelated;
+    }
+    .qr figcaption {
+      margin-top: 0.55rem;
+      max-width: 126px;
+      font-size: 0.8rem;
+      line-height: 1.4;
+      color: var(--muted);
+    }
   </style>
 </head>
 <body class="hedge">
@@ -117,11 +147,18 @@
     <h2>Built honest</h2>
     <p>No accounts. No ads. No analytics, no tracking, no servers. Everything stays on your devices and in your own private iCloud. New questions arrive over the air.</p>
 
-    <p class="appstore">
-      <a href="https://apps.apple.com/app/id6768878330" aria-label="Download Hedge on the App Store">
-        <img src="appstore-badge.svg" alt="Download on the App Store" height="54">
-      </a>
-    </p>
+    <div class="get-it">
+      <p class="appstore">
+        <a href="https://apps.apple.com/app/id6768878330" aria-label="Download Hedge on the App Store">
+          <img src="appstore-badge.svg" alt="Download on the App Store" height="54">
+        </a>
+      </p>
+      <figure class="qr">
+        <img id="qr-code" src="qr/default.png" width="108" height="108"
+             alt="QR code that opens Hedge on the App Store">
+        <figcaption>On a computer? Scan to install on your phone.</figcaption>
+      </figure>
+    </div>
 
     <h2>Links</h2>
     <ul>
@@ -158,6 +195,18 @@
         '?pt=1936680&ct=' + encodeURIComponent(label) + '&mt=8';
       var links = document.querySelectorAll('a[href*="apps.apple.com"]');
       for (var i = 0; i < links.length; i++) links[i].href = campaignUrl;
+
+      // The QR carries the SAME campaign as the badge, not a separate one.
+      // Splitting QR installs into their own label would answer "does the QR
+      // get used" but at current volume it would starve BOTH buckets below
+      // Apple's 5-account reporting floor and we would learn nothing. Revisit
+      // once a single bucket clears 5 comfortably.
+      // Whitelist-only: an unknown ?c= still relabels the LINK (Apple accepts
+      // any ct) but must not point the <img> at a file that does not exist.
+      var qr = document.getElementById('qr-code');
+      if (qr && ['rationalist', 'devcommunity', 'social'].indexOf(label) !== -1) {
+        qr.src = 'qr/' + label + '.png';
+      }
     })();
   </script>
 </body>
