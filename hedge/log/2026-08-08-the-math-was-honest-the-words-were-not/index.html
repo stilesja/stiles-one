@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="canonical" href="https://stiles.one/hedge/log/2026-08-08-the-math-was-honest-the-words-were-not/">
+  <title>The math was honest. The words were not. · Hedge Build Log</title>
+  <meta name="description" content="Hedge's scoring never celebrated being right. Its copy quietly did, at every surface a new player meets first. Nobody decided that: celebrating correctness is the default gravity of games, and resisting it takes effort in every sentence.">
+  <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&display=swap">
+  <link rel="stylesheet" href="../../../styles.css">
+  <link rel="stylesheet" href="../../hedge.css">
+</head>
+<body class="hedge">
+  <main>
+    <p class="back"><a href="../">← Build log</a></p>
+
+    <span class="chip">Build log</span>
+    <h1>The math was honest. The words were not.</h1>
+    <p class="meta"><time datetime="2026-08-08">August 8, 2026</time></p>
+    <p class="lead">Hedge is a daily calibration trivia game I build solo; the architecture lives in the <a href="../../build/">case study</a>. This one is about a bug that no test could catch, because nothing was broken: the app's scoring kept its promise the whole time, and the app's sentences quietly did not. Companion to <a href="../2026-08-02-the-second-half-of-the-promise/">The second half of the promise</a>.</p>
+
+    <p>Hedge is built on one claim: it is not about being right, it is about knowing how much you know. The scoring has always kept that promise. An honest 50% earns the same fifteen points whether the answer turns out to be true or false. There is no way to farm the math by being lucky. That part has been correct since the first commit and I have never had to touch it.</p>
+
+    <h2 class="log-kicker">A scoring table that never lied</h2>
+    <p>But a player does not read the scoring table. <strong>A player reads sentences.</strong> And last week I finally read the sentences in the order a new player meets them.</p>
+
+    <p>Onboarding, slide one: "Nail a bold call for big points; get cocky and miss, and it stings." The first coachmark of the first round, at the exact instant the player picks their first bet: "Higher confidence pays more when right and hurts more when wrong." And when someone commits an answer without ever touching the confidence dial, a sheet appears asking "Forgot to set your confidence?"</p>
+
+    <h2 class="log-kicker">Read them in a row</h2>
+    <p>Every one of them described the bet in terms of being right. Two of them spent both halves of a sentence on it: bold and correct pays, bold and wrong hurts. Not one of them said the third thing, the thing the whole app exists to say, which is that betting fifty percent is a legitimate move and scores real points. The nudge went further and implied the opposite: you did not choose fifty, you <em>forgot</em>.</p>
+
+    <aside class="log-pull">Every one of them described the bet in terms of being right.</aside>
+
+    <p>None of that was a decision. Nobody sat down and decided to celebrate accuracy over self-knowledge. It accumulated, one reasonable sentence at a time, because <strong>celebrating correctness is the default gravity of games</strong> and resisting it takes deliberate effort in every single sentence you write. The math was honest. The words had quietly drifted.</p>
+
+    <h2 class="log-kicker">The gravity of games</h2>
+    <p>The same gravity shows up in the parts of the app that feel best. The top celebration tier fires for five right answers at ninety-nine percent and calls you a prophet. The rarest badge is the one for a perfect round at maximum confidence. The moments with confetti and sound and a crown are, almost without exception, moments of being right. The badge for matching your confidence to your accuracy, which is the actual skill the app teaches, is one tile in a wall of thirty-six and it does not make a sound.</p>
+
+    <p>I am not sure that is wrong, exactly. Being right at ninety-nine percent IS the hardest thing to do here, and it deserves the crown. But it means the loudest signals in my app are all pointed at the half of the promise that was never in doubt. It's a problem, and I'm reckoning with how to resolve it.</p>
+
+    <h2 class="log-kicker">Where the doubt actually happens</h2>
+    <p>Here is why it matters commercially and not just philosophically. A new player meets a genuinely hard question in their first ninety seconds. Nothing they have read gives them permission to say "no idea." So they guess, they miss, they conclude the app is too hard for them, and they leave. The calibration chart that would have explained everything does not unlock until forty answers, which is eight days away. <strong>The moment of doubt and the moment of explanation were separated by more than a week.</strong></p>
+
+    <p>So the fix had to land in the moment, not in a tutorial. Onboarding got shorter, not longer: the slide that repeated its own title lost the repetition and spent the space on permission instead. The first-bet coachmark now ends "when you don't know, fifty percent isn't giving up, it's the right answer." The nudge asks "did you mean to bet fifty percent?" and leads by saying that fifty is a real bet, not a skipped one.</p>
+
+    <p>And two new lines now appear once each, inside a round, at the only moment they could possibly be believed: the first time you hedge and miss, the app tells you that is exactly why it barely cost you. The first time you bet big and miss, it tells you what the same miss would have cost if you hedged. Both quote your own bet and score, generated from the same scoring function the round itself uses, so they can never drift from the math the way the rest of the copy did.</p>
+
+    <h2 class="log-kicker">What the fix cost</h2>
+    <p>Six surfaces, a couple hundred words changed, and one new column pair in the database. No new screens. Nothing got longer. The whole thing ships over the air.</p>
+
+    <p>The reason it took three months to notice is that nothing was broken. Every sentence was true. <strong>The tests passed the entire time, because there is no test for "this app subtly disagrees with itself."</strong> You find that by reading your own words in the order a stranger reads them, and being willing to hear that the thing you built to teach honest uncertainty had been quietly teaching people to be sure.</p>
+
+    <aside class="log-pull">There is no test for "this app subtly disagrees with itself."</aside>
+
+    <footer>
+      <a href="mailto:hedge@stiles.one">hedge@stiles.one</a>
+      <span>© <time datetime="2026">2026</time></span>
+    </footer>
+  </main>
+</body>
+</html>
