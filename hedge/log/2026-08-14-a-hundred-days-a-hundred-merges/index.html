@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="canonical" href="https://stiles.one/hedge/log/2026-08-14-a-hundred-days-a-hundred-merges/">
+  <title>A hundred days, a hundred merges · Hedge Build Log</title>
+  <meta name="description" content="One hundred days after the first commit, the hundredth merge landed on main. What a backend developer who had never shipped a React Native app got done in that window, what it actually cost, and two teases about where it goes next.">
+  <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&display=swap">
+  <link rel="stylesheet" href="../../../styles.css">
+  <link rel="stylesheet" href="../../hedge.css">
+</head>
+<body class="hedge">
+  <main>
+    <p class="back"><a href="../">← Build log</a></p>
+
+    <span class="chip">Build log</span>
+    <h1>A hundred days, a hundred merges</h1>
+    <p class="meta"><time datetime="2026-08-14">August 14, 2026</time></p>
+    <p class="lead">Hedge is a daily calibration trivia game I build solo; the architecture lives in the <a href="../../build/">case study</a>. This one is not about an incident or a campaign. It is a milestone marker, because today the calendar and the git history lined up in a way I could not have planned.</p>
+
+    <p>The first commit on Hedge says "Initial scaffold" and it landed on May 6. Today is day one hundred. Somewhere in there, without me planning it that way, the hundredth merge went into main. A hundred days, a hundred merges.</p>
+
+    <h2 class="log-kicker">What day one looked like</h2>
+    <p>I am not an iOS developer. I do backend and CX work on IVR systems, which is to say I think in schemas and contracts and state machines, and I had never shipped a React Native app in my life. Day one was a scaffold and a design doc arguing with itself about whether a trivia game should be built in a game engine. The answer turned out to be no, and that was the last easy decision for a while.</p>
+
+    <h2 class="log-kicker">The list</h2>
+    <p>A hundred days later: the app is on the App Store on iPhone, iPad, Mac, and Vision Pro. It has a daily round, longer Gut Check topic packs, a calibration chart, streaks, thirty-six badges, iCloud sync across all your devices, and <strong>not a single account, ad, or server of mine anywhere in it</strong>. There are 1,628 verified questions in the bank, written and fact-checked by a pipeline I built, with six curated packs on top. Twenty two binaries. Something like seventy thousand lines of TypeScript and fifteen hundred tests that run in about ten seconds.</p>
+
+    <p>Along the way I accidentally wrote an open-source library, because CloudKit in Expo turned out to be a path nobody had documented, and it felt wrong to walk it and not leave a map. I rewrote the question-review app twice, the second time by deleting it and serving a web app off a Mac mini in my closet. And I wrote thirteen of these entries before this one, which is its own kind of record for someone who does not think of himself as a writer.</p>
+
+    <h2 class="log-kicker">Why it went this fast</h2>
+    <p>I have never learned this much this fast, and I don't think it's because I got smarter. It's the loop. When you can want something in the morning, build it in the afternoon, and watch it land on your own phone that night, <strong>the distance between curiosity and consequence collapses</strong>. Every question I had about how iOS handles a safe area or how CloudKit resolves a conflict got answered by breaking it, on a real device, with real data I cared about. That is a much better teacher than a tutorial, and it is relentless, because the app is right there in your pocket being wrong at you.</p>
+
+    <aside class="log-pull">I have never learned this much this fast, and I don't think it's because I got smarter.</aside>
+
+    <p>A hundred merges in a hundred days is not a heroic pace. It is what happens when the loop between wanting something and having it gets short enough that you stop deciding whether an idea is worth the effort and just try it.</p>
+
+    <h2 class="log-kicker">What it actually cost</h2>
+    <p>The bank of questions cost about thirty three dollars in API spend, which still surprises me every time I say it. The App Store developer program is ninety nine a year. The Mac mini was already in the closet doing nothing. Everything else was evenings and weekends and a genuinely patient family. One of my boys recently listed my favorite things in the world as Jack, Hedge, and them, in that order. Jack is the dog. I have not been able to argue with the ranking as convincingly as I would like.</p>
+
+    <p>The things that were expensive were not the things I expected. Nothing here was hard because of the math. It was hard because of the fifty small decisions that surround the math: what a badge should mean, whether a reminder should fire, how a screen feels when you are wrong. I spent more time on a single glow animation than on the entire Brier scoring implementation, and I would do it again, because <strong>the scoring was correct in an hour and the glow is what makes anyone care</strong>.</p>
+
+    <h2 class="log-kicker">Where it goes next</h2>
+    <p>Two things I want to build, and I am going to be annoying and not describe either of them properly yet.</p>
+
+    <p>The first turns Hedge into something you play in a room full of people instead of alone on a couch. It has been the most fun thing to think about in months, it requires no servers, and it makes me want a bigger living room.</p>
+
+    <p>The second takes the scoring engine somewhere completely different. The same math that tells you whether your ninety percents mean ninety percent turns out to be a genuinely useful way to study, because it can tell the difference between knowing something and getting lucky, which is the one thing flashcards have never been able to do.</p>
+
+    <aside class="log-pull">A hundred merges in a hundred days is not a heroic pace. It is what happens when the loop between wanting something and having it gets short enough.</aside>
+
+    <p>One of them has started to move. Both are written down. On day one I could not have built either of them, and the honest reason I think I can now is the hundred days in between.</p>
+
+    <p>If you want to see whether your gut is calibrated, it takes about ninety seconds a day: <a href="https://stiles.one/hedge">stiles.one/hedge</a></p>
+
+    <footer>
+      <a href="mailto:hedge@stiles.one">hedge@stiles.one</a>
+      <span>© <time datetime="2026">2026</time></span>
+    </footer>
+  </main>
+</body>
+</html>
