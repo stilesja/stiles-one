@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="canonical" href="https://stiles.one/hedge/log/2026-09-10-i-couldnt-steal-my-own-data/">
+  <title>My own architecture wouldn't let me steal my own data · Hedge Build Log</title>
+  <meta name="description" content="I needed my real badge history on a simulator for App Store screenshots. Read-only, careful, authorized: CloudKit refused anyway, because the Dev/Prod environment split is enforced by build signing, exactly as my own README promised.">
+  <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&display=swap">
+  <link rel="stylesheet" href="../../../styles.css">
+  <link rel="stylesheet" href="../../hedge.css">
+</head>
+<body class="hedge">
+  <main>
+    <p class="back"><a href="../">← Build log</a></p>
+
+    <span class="chip">Build log</span>
+    <h1>My own architecture wouldn't let me steal my own data</h1>
+    <p class="meta"><time datetime="2026-09-10">September 10, 2026</time></p>
+    <p class="lead">Hedge is a daily calibration trivia game I build solo; the architecture lives in the <a href="../../build/">case study</a>. This one is from the August screenshot push, and it is the story of losing an argument with a decision I made in June.</p>
+
+    <p>Back in August I needed screenshots. The badges update was going to the App Store, and Apple wants pictures, and pictures of an achievements screen are only interesting if the achievements screen has achievements on it. Mine did. On my phone. A hundred days of real streaks, real badges, a real calibration curve with my actual overconfidence in it. The simulator I capture screenshots on had none of that.</p>
+
+    <h2 class="log-kicker">A perfectly reasonable heist</h2>
+    <p>Hedge syncs through CloudKit, privately, to your own iCloud account. I built that sync. I published the native module that powers it as open source. If anyone on earth was qualified to point a simulator at my own account and pull my own history onto it, it was me.</p>
+
+    <p>So I did it carefully, like a professional. I pointed the dev build at the production zone by name. I hard-disabled the push path first so the experiment could only ever read, never write (the one rule of poking production is that you do not poke production). Then I let it sync.</p>
+
+    <p>It worked great, until I looked at what arrived.</p>
+
+    <h2 class="log-kicker">Fifty-one rows from July</h2>
+    <p>Fifty-one answers, all from July. Not a hundred days of history. Fifty-one rows I recognized after a minute of squinting: they were test answers from a dev session weeks earlier. The sync was not broken. It had connected, authenticated, found a zone with exactly the right name, and faithfully delivered everything in it. It was just the wrong everything.</p>
+
+    <p>CloudKit has two parallel universes per container, Development and Production, and which one you land in is not a setting you pass. <strong>It is decided by how the binary is signed.</strong> A dev-signed build physically cannot see the production environment, no matter what zone name it asks for, no matter whose account it is signed into, no matter how good its reasons are. My zone name matched. My universe did not.</p>
+
+    <h2 class="log-kicker">The signature is the wall</h2>
+    <p>Here is the part I keep enjoying. I knew this. It is documented in the README of my own module, in a section I wrote, about why the Dev/Prod split makes it safe to develop sync features against your real Apple ID (your dev builds land in a sandbox by construction, so you cannot corrupt your live data even if you try). I wrote that paragraph as a promise to other developers. Then I spent an evening on the other side of it. I had been locked out by my own README.</p>
+
+    <aside class="log-pull">The guardrail I wrote in June does not care that I had a good reason in August.</aside>
+
+    <p>The guardrail I wrote in June does not care that I had a good reason in August. That is the whole point of a guardrail, and it is a very different thing to know it than to feel it. Every safety rail I had added was aimed at accidents. This one turned out to also stop the author, on purpose, with authorization, in read-only mode, being careful. <strong>Belt and suspenders means the suspenders hold even when the person removing the belt is you.</strong></p>
+
+    <h2 class="log-kicker">The theme that crossed anyway</h2>
+    <p>One detail made the lockout almost funny. While my answers stayed sealed on the far side of the environment wall, my purple theme showed up on the simulator immediately. Apple's key-value store (the little sync channel Hedge uses for preferences) is scoped to the account, not the environment. So the sim greeted me wearing my phone's outfit while knowing absolutely nothing about my past. It looked like me. It remembered nothing. A very specific kind of uncanny.</p>
+
+    <h2 class="log-kicker">Working exactly as designed</h2>
+    <p>The screenshots happened anyway, the boring way: I built a dev tool that seeds 88 days of demo history in one tap, with a calibration shape that is deliberately a little overconfident, because <strong>a chart with a flaw in it reads as more honest than a perfect one</strong>. That tool is now part of the repo, documented, reproducible, and better for screenshots than my real data would have been.</p>
+
+    <aside class="log-pull">I had been locked out by my own README.</aside>
+
+    <p>But the evening I remember is the failed heist. Somewhere in June I made a decision about signing and environments and wrote it down, and in August that decision looked at me, the author, the account owner, the guy with the private key and the good intentions, and said no. I have never been so pleased to lose an argument with software. Mostly because I won it in June.</p>
+
+    <p>If you want to see whether your gut is calibrated, it takes about ninety seconds a day: <a href="https://stiles.one/hedge">stiles.one/hedge</a></p>
+
+    <footer>
+      <a href="mailto:hedge@stiles.one">hedge@stiles.one</a>
+      <span>© <time datetime="2026">2026</time></span>
+    </footer>
+  </main>
+</body>
+</html>
