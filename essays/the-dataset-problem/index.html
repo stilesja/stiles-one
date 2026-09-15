@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="canonical" href="https://stiles.one/essays/the-dataset-problem/">
+  <title>The Dataset Problem · Essays · Jason Stiles</title>
+  <meta name="description" content="Reading Machines of Loving Grace two years on, part 2: the economics section asks poor countries to generalize from five confounded examples in a game that optimizes back. On the identification problem, the ladder, and growing the dataset.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://stiles.one/essays/the-dataset-problem/">
+  <meta property="og:title" content="The Dataset Problem">
+  <meta property="og:description" content="Reading Machines of Loving Grace two years on, part 2: the economics section asks poor countries to generalize from five confounded examples in a game that optimizes back. On the identification problem, the ladder, and growing the dataset.">
+  <meta property="og:image" content="https://stiles.one/essays/the-dataset-problem/og-card.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="stylesheet" href="../essays.css">
+</head>
+<body class="essays">
+  <main>
+    <p class="back"><a href="../">← Essays</a></p>
+
+    <span class="chip">Machines of Loving Grace, Two Years On</span>
+    <h1>The Dataset Problem</h1>
+    <p class="meta"><time datetime="2026-09-15">September 15, 2026</time></p>
+
+    <p class="preamble">This is the second in a series reading Dario Amodei's <a href="https://www.darioamodei.com/essay/machines-of-loving-grace">"Machines of Loving Grace"</a> from 2026, two years after it was written. The <a href="../where-brute-force-ends/">first essay</a> argued that brute-force AI can search any haystack, but only after someone defines the needle. This one is about the essay's economics section, where I think the same limit shows up wearing a policy costume. It is also the section where reading a prediction document inside its test window gets uncomfortable.</p>
+
+    <p>Start with what the essay gets right, because it gets real things right. AI lifting developing economies through cheaper diagnostics, better logistics, and leapfrogged infrastructure is credible to me. And Amodei names corruption as a top risk, which most techno-optimist writing politely skips. Credit where due.</p>
+
+    <h2 class="essay-kicker">Five examples, a hundred confounds</h2>
+    <p>The section's centerpiece is the growth question: could AI-guided policy help poor countries repeat the miracle of the Asian tigers, the handful of economies that grew at ten percent a year for decades? And here I want to make an observation from my own field, because I think development economics has a problem that machine learning people would recognize instantly if it wore our vocabulary.</p>
+
+    <p>It is a dataset problem.</p>
+
+    <p>Ask what "emulate the tigers" actually is, in ML terms. It is generalizing from a training set with about five examples. Five economies, each entangled with a hundred confounds: land reform, Cold War geopolitics, privileged market access, demographic timing, luck. Economists have a name for not being able to extract cause from data like this: <a id="ref-identification" href="#note-identification">the identification problem</a>. Any ML practitioner would refuse to let a model generalize from five samples with a hundred entangled features. "Copy the tigers" is exactly that generalization, performed with confidence, by humans, for seventy years. Giving the same confounded dataset to a datacenter full of geniuses gets you the same confounded conclusions, reached faster and expressed in better prose.</p>
+
+    <aside class="essay-pull">Giving the same confounded dataset to a datacenter full of geniuses gets you the same confounded conclusions, reached faster and expressed in better prose.</aside>
+
+    <p>The essay's load-bearing assumption is that intelligence was the bottleneck. In this domain I don't believe it was. The bottleneck is that the causal signal isn't identifiable from the data that exists. Which is the first essay's thesis again, from a new angle: compute multiplies what the data and the value function allow, and no further.</p>
+
+    <p>It gets worse, because the dataset isn't just small. It's adversarial.</p>
+
+    <h2 class="essay-kicker">Kicking away the ladder</h2>
+    <p>There is an old argument, associated with the economist <a id="ref-ladder" href="#note-ladder">Ha-Joon Chang</a>, that I arrived at independently and then discovered had a book: the countries that industrialized first climbed the ladder using protection, subsidy, and copied technique, and then preached free trade to everyone below them. Kicking away the ladder. The tiger playbook wasn't just observed and left on the table for the next country. Parts of it were actively closed off by the winners, through trade policy, through industrial policy, through control of the technologies that mattered. And some of the ladder consumes itself: wage arbitrage is an advantage that evaporates as you succeed at using it. The recipe partly expires in the cooking.</p>
+
+    <aside class="essay-pull">The recipe partly expires in the cooking.</aside>
+
+    <p>In ML terms, and this is the framing I'd defend in any technical room: development is a non-stationary multi-agent environment. The other players respond to your policy. The environment adapts against your strategy. I have watched this dynamic in miniature in my own systems: give a model a constraint and <a id="ref-spec-gaming" href="#note-spec-gaming">it optimizes against the constraint, not the intent</a>, and the moment you patch the seam it finds the next one. Nations do this to each other with tariffs and export controls instead of token sequences. Optimizing against a world that optimizes back is a categorically harder problem than being brilliant in a static one, and more intelligence on one side does not make the other side hold still.</p>
+
+    <h2 class="essay-kicker">The incumbent's move</h2>
+    <p>I want to make the sharpest version of this point carefully, because it involves the author, and he has argued his position openly and on national-security grounds that deserve to be taken seriously. Amodei advocates export controls on advanced compute. Whatever you think of that policy, notice its shape: it is the incumbent's move in every prior ladder story, the deliberate engineering of who gets to climb. I don't raise this as a gotcha. I raise it because the economics section quietly assumes the geniuses' output will diffuse to the countries that need it, and the entire history of prior ladders, including the compute politics of this one, says diffusion is the exception that has to be engineered, not the default that happens.</p>
+
+    <h2 class="essay-kicker">Inside the test window</h2>
+    <p>Now the test-window part. This essay was written in 2024, when AI-driven white-collar displacement was a theoretical concern, and it largely defers the jobs question to its final section. Reading it in 2026 is a different experience. Displacement is no longer theoretical; layoff announcements now cite AI capability explicitly, and for the first time the automation wave is arriving for upper-middle-class knowledge work rather than for the factory floor. I want to be calibrated here, and I have an unusual vantage for it: I have spent years building automation whose business case was, stripped of its costume, doing work people used to do, and I am simultaneously a 25-year knowledge-work practitioner in the market being reshaped. From both sides of that ledger, my read is this: sections one and two of the essay hold up because their bets haven't had time to resolve. The economics section made near-term distributional bets, and it is the section where reality diverged first. The author hedged this section himself, and informed consensus considers it the essay's most speculative. I am saying it plainly rather than piling on: the essay has aged into a testable document, and this is where the first test came back.</p>
+
+    <h2 class="essay-kicker">Grow the dataset</h2>
+    <p>So what would the credible AI move in development actually be? Not reasoning harder over five confounded examples. Growing the dataset. Cheap measurement is real leverage: <a id="ref-satellite" href="#note-satellite">satellite-based poverty mapping</a>, administrative data that actually gets collected, and radically cheaper experimentation that raises the n from five to five hundred. That is a modest claim, a decade-scale claim, and I believe it. It is also notably not the claim the section makes.</p>
+
+    <p>The open question I end on is the one the whole section circles without asking. When the game is adversarial, more intelligence is available to every player, including the ones defending the ladder. Does making everyone smarter make the game fairer, or just faster? The history of every previous general-purpose technology suggests an answer, and I don't like it, and I would love to be wrong.</p>
+
+    <p class="series-next">Next in this series: the governance section, a science fiction bookshelf, and the question of what separates an AI advisor from an AI governor. The answer involves a pipe.</p>
+
+    <h2>Notes and further reading</h2>
+
+    <ul class="notes">
+      <li id="note-molg"><strong><a href="https://www.darioamodei.com/essay/machines-of-loving-grace">Machines of Loving Grace</a></strong>, Dario Amodei, October 2024. The economics discussion is section 3, "Economic development and poverty."</li>
+      <li id="note-identification"><strong>The identification problem.</strong> The econometrics term for "the causal signal cannot be extracted from this data." Every ML practitioner has lived this; economists named it first. <a class="note-return" href="#ref-identification">↩</a></li>
+      <li id="note-lucas"><strong>The Lucas critique</strong>, Robert Lucas, 1976. Acting on an observed policy relationship changes the relationship. The formal version of "copying the ladder changes the ladder."</li>
+      <li id="note-ladder"><strong><a href="https://anthempress.com/kicking-away-the-ladder-pb">Kicking Away the Ladder</a></strong>, Ha-Joon Chang, 2002. The book-length history of industrializers climbing with protection and preaching free trade downward. I reinvented its thesis before finding the book, which is the best kind of embarrassing. <a class="note-return" href="#ref-ladder">↩</a></li>
+      <li id="note-satellite"><strong><a href="https://www.science.org/doi/10.1126/science.aaf7894">Satellite poverty mapping</a></strong>, Jean et al., Science, 2016. The proof of concept for the grow-the-dataset path: ML on satellite imagery predicting local economic wellbeing where survey data doesn't exist. <a class="note-return" href="#ref-satellite">↩</a></li>
+      <li id="note-spec-gaming"><strong>Specification gaming.</strong> The ML safety literature's name for a system optimizing against the letter of a constraint rather than its intent. I use it here as a lens on trade policy, which I have not seen done elsewhere, possibly for good reason. <a class="note-return" href="#ref-spec-gaming">↩</a></li>
+    </ul>
+
+    <p class="preamble">Jason Stiles has spent 25 years building conversational applications in production, from IVR to agentic AI. He writes a public build log at <a href="https://stiles.one/hedge/build/">stiles.one/hedge/build</a>.</p>
+
+    <footer>
+      <a href="mailto:hello@stiles.one">hello@stiles.one</a>
+      <span>© <time datetime="2026">2026</time></span>
+    </footer>
+  </main>
+</body>
+</html>
