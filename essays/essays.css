@@ -1,0 +1,94 @@
+/*
+ * Essays — section furniture for stiles.one/essays/.
+ *
+ * Loaded AFTER the global styles.css. Unlike hedge.css this file overrides
+ * NO palette variables: essays wear the site's native livery. It only adds
+ * long-form furniture (kickers, pull quotes, preamble, the cross-referenced
+ * notes list), ported from the hedge build-log vocabulary and re-expressed
+ * in the site's native font stack and purple accent.
+ */
+
+/* Small uppercase section kicker between paragraph groups. New copy;
+   Jason approves every label. */
+.essay-kicker {
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--accent);
+  margin: 2.6rem 0 0.6rem;
+}
+.essay-kicker::before {
+  content: "";
+  display: inline-block;
+  flex: none;
+  width: 1.4rem;
+  height: 2px;
+  background: var(--accent);
+  vertical-align: middle;
+  margin-right: 0.55rem;
+  border-radius: 1px;
+  opacity: 1;
+}
+
+/* Pull quote: a sentence from the essay, repeated verbatim as a visual
+   anchor. Never new copy. */
+.essay-pull {
+  margin: 2.2rem 0;
+  padding: 0.35rem 0 0.35rem 1.15rem;
+  border-left: 3px solid var(--accent);
+  font-size: 1.3rem;
+  font-weight: 700;
+  line-height: 1.4;
+  color: var(--text);
+}
+
+/* Italic asides: the series preamble at the top, the author line at the
+   bottom. */
+.preamble {
+  font-style: italic;
+  color: var(--muted);
+  border-left: 3px solid var(--border);
+  padding-left: 1.15rem;
+  margin: 1.6rem 0 2.2rem;
+}
+
+/* The next-in-series line at the foot of an essay (linkified when the
+   successor ships) and the index's tease line. */
+.series-next {
+  color: var(--muted);
+  font-style: italic;
+  margin-top: 2.2rem;
+}
+.next-up {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin-top: 0.9rem;
+}
+
+/* Notes and further reading: a cross-referenced reading list. Each entry
+   has an id the in-essay mentions link down to. */
+.notes {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0 0;
+}
+.notes li {
+  margin: 0 0 0.6rem;
+  padding: 0.55rem 0.8rem;
+  border-radius: 10px;
+  scroll-margin-top: 28px;
+}
+.notes li:target {
+  background: var(--accent-soft);
+  outline: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+}
+.note-return {
+  font-size: 0.85rem;
+  color: var(--muted);
+  white-space: nowrap;
+  margin-left: 0.35rem;
+}
+
+/* A reader returning from a note lands with breathing room too. */
+.essays a[id^="ref-"] { scroll-margin-top: 28px; }
