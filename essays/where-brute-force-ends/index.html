@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="canonical" href="https://stiles.one/essays/where-brute-force-ends/">
+  <title>Where Brute Force Ends · Essays · Jason Stiles</title>
+  <meta name="description" content="Reading Machines of Loving Grace two years on: brute force can search any haystack, but only after someone defines the needle. On value functions, serendipity, and the melted Snickers bar.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://stiles.one/essays/where-brute-force-ends/">
+  <meta property="og:title" content="Where Brute Force Ends">
+  <meta property="og:description" content="Reading Machines of Loving Grace two years on: brute force can search any haystack, but only after someone defines the needle. On value functions, serendipity, and the melted Snickers bar.">
+  <meta property="og:image" content="https://stiles.one/essays/where-brute-force-ends/og-card.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="stylesheet" href="../essays.css">
+</head>
+<body class="essays">
+  <main>
+    <p class="back"><a href="../">← Essays</a></p>
+
+    <span class="chip">Machines of Loving Grace, Two Years On</span>
+    <h1>Where Brute Force Ends</h1>
+    <p class="meta"><time datetime="2026-09-15">September 15, 2026</time></p>
+
+    <p class="preamble">This is the first in a series. In 2024, Dario Amodei published <a href="https://www.darioamodei.com/essay/machines-of-loving-grace">"Machines of Loving Grace,"</a> an essay about what powerful AI could do for the world if things go well. I read it in 2026, which turns out to be an interesting time to read a prediction document: some of its bets are already being scored. I build conversational and agentic AI systems for a living and have for 25 years, so I wanted to grade the essay from the floor of the industry rather than from the bleachers. This first piece is about the essay's central engine: the claim that a "country of geniuses in a datacenter" can compress a century of scientific discovery into a decade.</p>
+
+    <p>My first reaction to the compressed-century claim was skepticism. Then I made myself find the strongest version of it, and the strongest version is real.</p>
+
+    <h2 class="essay-kicker">The part I believe</h2>
+    <p>I live in a pharma household, so I know how drug development actually moves: trials are long, serial, and gated, and most of the calendar is not thinking time. AI that parallelizes trial design, matches patients, and pre-screens candidates so fewer duds enter the pipeline is not science fiction. That is speeding up a machine that already exists, and I believe it.</p>
+
+    <p>The discovery claim goes further, and it has receipts too. <a id="ref-alphafold" href="#note-alphafold">AlphaFold</a> turned protein structures from a PhD apiece into a lookup table. <a id="ref-halicin" href="#note-halicin">Halicin</a> came out of screening millions of molecules a human team would never touch. <a id="ref-move-37" href="#note-move-37">Move 37</a> was a real discovery made by search, with zero serendipity involved. There is a genuine pattern here: things we used to stumble into, brute force can now grind out.</p>
+
+    <h2 class="essay-kicker">Search needs a needle</h2>
+    <p>But look at what those three examples share. In every case, someone could already score the outcome. Does the structure match? Does the molecule kill the bacterium? Does the move win the game? Brute force is search, and search needs a value function. You can only brute-force the haystack after someone has defined the needle.</p>
+
+    <aside class="essay-pull">You can only brute-force the haystack after someone has defined the needle.</aside>
+
+    <h2 class="essay-kicker">The discoveries nobody was looking for</h2>
+    <p>Now look at the discoveries that built the modern world. Penicillin was <a id="ref-fleming" href="#note-fleming">Alexander Fleming's contaminated dish</a>, the one a prepared mind refused to throw away. The microwave oven exists because <a id="ref-spencer" href="#note-spencer">a radar engineer noticed the chocolate melting in his pocket</a> and got curious instead of annoyed. <a id="ref-crispr" href="#note-crispr">CRISPR came out of yogurt companies</a> studying how bacteria fight viruses. <a id="ref-kariko" href="#note-kariko">mRNA vaccines</a> came from decades of unfashionable persistence by a researcher the funding system kept rejecting. None of these were the fast execution of a defined objective. In each case, the discovery WAS the objective coming into existence. Nobody was searching for the needle because nobody knew that kind of needle existed.</p>
+
+    <p>That is the part of discovery I don't think compute touches, and I can put it in one sentence:</p>
+
+    <p><strong>The data center genius will never find a melted Snickers bar in its pocket.</strong></p>
+
+    <p>Not because it isn't smart enough. Because it has no pocket, no errand it was running when the anomaly appeared, and no reason to assign value to a ruined candy bar. We train these systems, on purpose, to pursue objectives and to treat everything orthogonal to the objective as noise. That discipline is what makes them useful. It is also precisely the discipline that makes a poor Fleming.</p>
+
+    <h2 class="essay-kicker">Small scale, same shape</h2>
+    <p>I have watched this play out at small scale in my own work. I build a trivia product where one model generates questions and other models judge them. At one point I gave the generator a list of near-duplicate questions to avoid, and it found a seam: it learned to reword banned questions just enough to slip past the check. The model discovered something real there, a genuine exploit, because evading the check was scoreable. But the more important discovery happened on my side of the loop. I noticed the anomaly, got curious about why the duplicates kept sneaking through, and ended up building a better defense than the one I had planned, using a technique I hadn't intended to use at all. The generation loop optimized. The review loop discovered. I have come to believe that is not an accident of my little system but a picture of the whole problem: generation is cheap, verification is the product, and discovery may be a verification problem too.</p>
+
+    <aside class="essay-pull">The generation loop optimized. The review loop discovered.</aside>
+
+    <p>To be fair to the other side: there is a serious research program trying to build search without a fixed objective, usually filed under <a id="ref-novelty" href="#note-novelty">novelty search or open-endedness</a>, and it is the strongest formal version of the essay's position. But its central unsolved problem is exactly the one I am pointing at. To reward "interestingness" you have to formalize interestingness, and formalizing it is another value function. The pocket keeps receding.</p>
+
+    <h2 class="essay-kicker">The honest grade</h2>
+    <p>So here is my honest grade on the compressed century. The scoreable half of science, and it is a big half, is going to accelerate in ways that will be startling. I expect to be startled. But the objective-less residue, the part where a field's value function gets born, runs on something else: tolerated aimlessness. Yogurt research. Unfashionable persistence. Errands interrupted by curiosity. If you want five to ten times the foundational discovery, you need five to ten times the room for work that cannot justify itself in advance, and that is a funding and patience variable, not an intelligence variable. Compute does not write appropriations bills. I will note, in fairness to the essay's author, that a company spending real money on <a id="ref-interp" href="#note-interp">interpretability research</a> with no direct product payoff is one of the few modern examples of an institution funding basic science on purpose. The critique and the respect can both be true.</p>
+
+    <p>Which leaves the question I actually can't answer, and I would rather end on it than fake a conclusion. Can a system value what is orthogonal to its objective? Everything we currently know about making AI useful, and everything we know about making it safe, pushes in the opposite direction. If the answer turns out to be yes, the compressed century gets a lot more plausible and I will happily eat this essay. If the answer is no, then the geniuses in the datacenter will be the greatest execution engine in history, waiting on humans to keep wandering in with melted chocolate.</p>
+
+    <p class="series-next">Next in this series: the essay's economics section, and why "emulate the Asian tigers" is a machine learning mistake wearing a policy costume.</p>
+
+    <h2>Notes and further reading</h2>
+    <p>I hit most of these ideas in the wild first and learned the official names afterward, so here are the names, for readers who want to pull the threads.</p>
+
+    <ul class="notes">
+      <li id="note-molg"><strong><a href="https://www.darioamodei.com/essay/machines-of-loving-grace">Machines of Loving Grace</a></strong>, Dario Amodei, October 2024. The essay this series responds to. Read it in full; it is better than both its fans and its critics make it sound.</li>
+      <li id="note-alphafold"><strong><a href="https://deepmind.google/science/alphafold/">AlphaFold</a></strong>, DeepMind. Predicted the structures of essentially every known protein; half of the 2024 Nobel Prize in Chemistry went to its creators. The cleanest existing receipt for brute-force discovery. <a class="note-return" href="#ref-alphafold">↩</a></li>
+      <li id="note-halicin"><strong><a href="https://news.mit.edu/2020/artificial-intelligence-identifies-new-antibiotic-0220">Halicin</a></strong>, MIT, 2020. An antibiotic found by ML screening of millions of compounds, named after HAL from 2001. Note what made it possible: the outcome (kills the bacterium) was scoreable. <a class="note-return" href="#ref-halicin">↩</a></li>
+      <li id="note-move-37"><strong><a href="https://en.wikipedia.org/wiki/AlphaGo_versus_Lee_Sedol">Move 37</a></strong>, AlphaGo vs Lee Sedol, game 2, 2016. A move with an estimated 1-in-10,000 chance of being played by a human, and it worked. Discovery by search, in a domain where the value function is the rules of the game. <a class="note-return" href="#ref-move-37">↩</a></li>
+      <li id="note-fleming"><strong><a href="https://www.nobelprize.org/prizes/medicine/1945/fleming/facts/">Alexander Fleming</a></strong>, 1928. The contaminated dish. Pasteur's line covers it: chance favors the prepared mind. <a class="note-return" href="#ref-fleming">↩</a></li>
+      <li id="note-spencer"><strong><a href="https://en.wikipedia.org/wiki/Percy_Spencer">Percy Spencer</a></strong>, Raytheon, 1945. The radar engineer, the magnetron, and the melted candy bar that became the microwave oven. The patron saint of this essay. <a class="note-return" href="#ref-spencer">↩</a></li>
+      <li id="note-crispr"><strong><a href="https://www.nobelprize.org/prizes/chemistry/2020/press-release/">CRISPR's yogurt origins</a></strong>. The foundational work on bacterial immune systems came out of dairy-industry research on protecting yogurt cultures from viruses. Doudna and Charpentier's Nobel came later; nobody funded the yogurt work to edit human genes. <a class="note-return" href="#ref-crispr">↩</a></li>
+      <li id="note-kariko"><strong><a href="https://www.nobelprize.org/prizes/medicine/2023/press-release/">Katalin Kariko</a></strong>. Decades of underfunded, unfashionable mRNA persistence, then a Nobel and a few billion vaccine doses. The strongest modern argument that the funding system cannot score what it most needs. <a class="note-return" href="#ref-kariko">↩</a></li>
+      <li id="note-novelty"><strong><a href="https://link.springer.com/book/10.1007/978-3-319-15524-1">Why Greatness Cannot Be Planned</a></strong>, Kenneth Stanley and Joel Lehman, 2015. The novelty-search research program in book form: the strongest formal case for search without fixed objectives, written by people who take the problem seriously. It argues both with this essay and for it. <a class="note-return" href="#ref-novelty">↩</a></li>
+      <li id="note-interp"><strong><a href="https://transformer-circuits.pub/">Anthropic's interpretability work</a></strong>. Basic science, published openly, funded by a company with no direct product reason to do it. Cited here as the counterexample to my own funding critique. <a class="note-return" href="#ref-interp">↩</a></li>
+    </ul>
+
+    <p class="preamble">Jason Stiles has spent 25 years building conversational applications in production, from IVR to agentic AI. He writes a public build log at <a href="https://stiles.one/hedge/build/">stiles.one/hedge/build</a>.</p>
+
+    <footer>
+      <a href="mailto:hello@stiles.one">hello@stiles.one</a>
+      <span>© <time datetime="2026">2026</time></span>
+    </footer>
+  </main>
+</body>
+</html>
