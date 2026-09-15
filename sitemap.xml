@@ -2,7 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://stiles.one/</loc>
-    <lastmod>2026-06-25</lastmod>
+    <lastmod>2026-09-15</lastmod>
+  </url>
+  <url>
+    <loc>https://stiles.one/essays/</loc>
+    <lastmod>2026-09-15</lastmod>
+  </url>
+  <url>
+    <loc>https://stiles.one/essays/where-brute-force-ends/</loc>
+    <lastmod>2026-09-15</lastmod>
   </url>
   <url>
     <loc>https://stiles.one/hedge/</loc>
