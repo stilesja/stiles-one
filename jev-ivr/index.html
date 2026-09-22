@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="canonical" href="https://stiles.one/jev-ivr/">
+  <title>Jev IVR: A Phone Line You Can Talk To</title>
+  <meta name="description" content="A mixed-initiative voice IVR built on TypeSafe's Jev model: callers talk naturally, the code stays deterministic, and every decision is a typed question with a probability you can test like software.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://stiles.one/jev-ivr/">
+  <meta property="og:title" content="Jev IVR: A Phone Line You Can Talk To">
+  <meta property="og:description" content="A mixed-initiative voice IVR built on TypeSafe's Jev model: callers talk naturally, the code stays deterministic, and every decision is a typed question with a probability you can test like software.">
+  <meta property="og:image" content="https://stiles.one/jev-ivr/og-card.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="stylesheet" href="../styles.css">
+  <style>
+    .stack-line { color: var(--muted); font-size: 0.95rem; margin: 0.4rem 0; }
+    .stack-line strong { color: var(--text); }
+    .video {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      margin: 1.75rem 0 0.75rem;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-md);
+      background: #000;
+    }
+    .video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+    .caption { color: var(--muted); font-size: 0.9rem; margin: 0 0 1.5rem; }
+    .transcript {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0.85rem 1rem;
+      margin: 0.9rem 0;
+      box-shadow: var(--shadow-sm);
+      font-size: 0.95rem;
+      line-height: 1.55;
+    }
+    .transcript p { margin: 0.25rem 0; }
+    .transcript .who { display: inline-block; width: 4.2rem; color: var(--muted); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; }
+    .transcript .sys { color: var(--accent); }
+    .quote {
+      margin: 1.6rem 0;
+      padding: 0.35rem 0 0.35rem 1.15rem;
+      border-left: 3px solid var(--accent);
+      font-size: 1.15rem;
+      font-weight: 650;
+      line-height: 1.45;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <p class="back"><a href="../">← stiles.one</a></p>
+
+    <span class="chip">Case study</span>
+    <h1>Jev IVR: A Phone Line You Can Talk To</h1>
+    <p class="lead">A mixed-initiative voice IVR for a fictional clinic, built on TypeSafe's Jev model. Callers talk the way they would to a receptionist. The code stays deterministic. Every decision is a typed question with a probability, which means the whole thing can be tested like software.</p>
+
+    <p class="stack-line"><strong>Stack:</strong> TypeScript · Node · Twilio ConversationRelay · TypeSafe Jev · Fish Audio (recorded prompts) · vitest</p>
+    <p class="stack-line"><strong>Status:</strong> Live on a demo number · <a href="https://github.com/stilesja/jev-ivr">Open source on GitHub</a> · Built in five days of commits, 14 pull requests</p>
+
+    <div class="video">
+      <iframe src="https://www.youtube-nocookie.com/embed/pfLs7WImX1o" title="Jev IVR demo: two calls with the live dashboard" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+    </div>
+    <p class="caption">Two calls, six minutes. The left pane is the conversation and the form filling; the right pane is every question sent to the model each turn, with the probabilities that came back.</p>
+
+    <h2>The idea</h2>
+    <p>For twenty years, phone systems made you choose. A phone tree is predictable but rigid. Anything conversational meant a speech-science team tuning grammars, and lately it means a large language model you cannot fully control. This project is the third option: the caller gets a conversation, and you keep a deterministic program you can read, test and diff.</p>
+    <p>The trick is what the model is asked to do. Jev is a System One model: it does not generate text or take actions. It answers small typed questions about a piece of state, and returns probabilities. The application sends the caller's transcript, the current call state and a batch of twenty to thirty questions in one request, and gets back one typed answer per question in about 170 milliseconds. The code decides what to do with them.</p>
+    <p>A typical call, exactly as the line handles it today:</p>
+    <div class="transcript">
+      <p><span class="who">System</span><span class="sys">Thanks for calling Stiles Family Medical Practice. How can I help you today?</span></p>
+      <p><span class="who">Caller</span>I need to reschedule my appointment, it's with Dr. Chen sometime next week.</p>
+      <p><span class="who">System</span><span class="sys">What's your first and last name?</span></p>
+      <p><span class="who">Caller</span>Jason Stiles.</p>
+      <p><span class="who">System</span><span class="sys">And your date of birth?</span></p>
+      <p><span class="who">Caller</span>March fifth.</p>
+      <p><span class="who">System</span><span class="sys">And what year?</span></p>
+      <p><span class="who">Caller</span>Nineteen eighty.</p>
+      <p><span class="who">System</span><span class="sys">next week. Which day works for you?</span></p>
+      <p><span class="who">Caller</span>Tuesday.</p>
+      <p><span class="who">System</span><span class="sys">Your appointment with Dr. Chen would move to Tuesday, September 22, for Jason Stiles, born March 5th, 1980. Shall I make that change?</span></p>
+      <p><span class="who">Caller</span>No, Thursday with Dr. Alvarez.</p>
+      <p><span class="who">System</span><span class="sys">Your appointment with Dr. Alvarez would move to Thursday, September 24, for Jason Stiles, born March 5th, 1980. Shall I make that change?</span></p>
+      <p><span class="who">Caller</span>Yes, and can I also ask about my bill?</p>
+      <p><span class="who">System</span><span class="sys">Your appointment is moved. Now, let's ask about billing. What's your member ID?</span></p>
+    </div>
+    <p>The first sentence carried three facts. The system kept all three, asked only for what it did not have, used the caller's own "next week" to narrow the day question, took a birthday without a year and asked for just the year, accepted a correction that changed two details at once, and queued a second task for after the first. Five intents, five doctors, six pieces of information. The domain is intentionally small; the interaction style is the point.</p>
+
+    <h2>What makes it interesting</h2>
+
+    <h3>Questions are the program</h3>
+    <p>Nothing in the code lists the ways a caller might phrase a request. The intent is a choice whose options are described, not enumerated:</p>
+    <table>
+      <thead><tr><th>Option</th><th>Criterion sent to the model</th></tr></thead>
+      <tbody>
+        <tr><td>schedule_new</td><td>Wants to book a new appointment that does not exist yet</td></tr>
+        <tr><td>reschedule</td><td>Wants to move an existing appointment to a different day</td></tr>
+        <tr><td>cancel</td><td>Wants to cancel an existing appointment</td></tr>
+        <tr><td>billing</td><td>Asks about a bill, charge, payment, or insurance coverage</td></tr>
+      </tbody>
+    </table>
+    <p>"I need to change my appointment," "can we do a different day," and "reschedule" all land on the same option because the model reads the criterion and the utterance and judges the match. Adding a phrasing costs nothing. Adding an intent costs one row.</p>
+    <p>The same pattern runs everything else on a turn. Gates ask whether the caller is addressing the system, whether the utterance is intelligible, whether they want a human, how frustrated they sound. Slots are choices over candidates the code computed: for the birth year, the code finds every number-like span in the transcript and asks which one is the year; for the name, every one-to-four word span and asks which is the caller's own name. The model selects; it never invents a value, so a wrong answer is always something the caller actually said. Confirmation asks whether the caller agreed, refused, or named the detail they want changed.</p>
+    <p class="quote">The code owns everything deterministic. The model owns only the judgments that need language.</p>
+
+    <h3>Mixed initiative, in practice</h3>
+    <ul>
+      <li><strong>Several slots from one utterance.</strong> Every slot's questions are asked on every turn, whatever was just prompted for, so "Make an appointment with Dr. Okafor, this is Jason Stiles, born March fifth nineteen eighty, Friday" goes straight to the summary.</li>
+      <li><strong>Partial answers narrow instead of failing.</strong> "Sometime next week" is not a date, but the next prompt becomes "next week. Which day works for you?" and "Tuesday" resolves inside that window.</li>
+      <li><strong>One-step correction of several slots.</strong> At the summary, "no, Thursday with Dr. Alvarez" refills exactly the two details it names and reads the summary again. "The birthday" alone re-asks that one question. A bare "no" asks what to change.</li>
+      <li><strong>A second task in the same breath.</strong> "Reschedule with Dr. Alvarez for next Thursday, and also I have a question about my bill" is acknowledged up front, the reschedule runs to its summary, then the call continues with billing, which asks for the one thing it still needs.</li>
+      <li><strong>Every rung has a fallback.</strong> A silent or garbled answer walks a fixed ladder: the question again, a keypad option where one makes sense, then a person. Barge-in is on.</li>
+    </ul>
+
+    <h3>When the caller gets frustrated</h3>
+    <p>Every turn also asks how frustrated the caller sounds, on three levels. The first time the answer is high, the system acknowledges it once, "I understand, let's get this sorted," and continues. The second time, it offers a transfer: "Would you like me to connect you to a person, or keep going?" The third time, or after declining, it transfers. The wording never claims a problem the system does not know about, which was the deliberate choice over any "sorry" phrasing.</p>
+    <p>This feature taught the sharpest lesson of the project. The first version of the frustration question defined the middle level as "repeats a request with irritation, or says come on or seriously." The real model followed that definition to the letter: "I already told you, cancel it" scored mild at 1.0 and high at 0, so a caller repeating themselves for the third time never escalated. The level descriptions are the program. Rewriting one sentence fixed it, and the fix showed up as a diff.</p>
+
+    <h3>Testing a conversation like software</h3>
+    <p>Because the core is pure and the model is only ever asked questions, almost all development ran against text, not audio.</p>
+    <table>
+      <thead><tr><th>Layer</th><th>What it is</th><th>Size</th></tr></thead>
+      <tbody>
+        <tr><td>Unit tests</td><td>Slots, gates, prompts, server, replay</td><td>923</td></tr>
+        <tr><td>Labeled corpus</td><td>One utterance in one call state, with the expected decision</td><td>217 entries</td></tr>
+        <tr><td>Scenarios</td><td>Scripted multi-turn calls, including silence and keypad steps</td><td>75 scripts</td></tr>
+        <tr><td>Answer cassette</td><td>The real model's answers, recorded once and committed</td><td>~500 requests</td></tr>
+      </tbody>
+    </table>
+    <p>A fixture stub answers the questions from the corpus labels, so the whole suite runs in about a second and produces a committed baseline of every decision. Any code change that alters a decision shows up as a diff. The cassette holds the real model's answers keyed by a hash of the call state and the question batch, so the suite also runs against real answers with no network and no cost. Re-recording the whole cassette after a wording change costs about ten cents.</p>
+    <p>The real model matches 209 of the 217 corpus labels and 74 of the 75 scenarios. The remaining differences are documented one by one: a hedge between two similarly named doctors, a lone surname said with no cue, an all-numeric spoken birthday. They are in the corpus, so the day a wording or model change fixes one, the diff says so.</p>
+
+    <h3>A dashboard that shows the model's answers</h3>
+    <p>The page in the video is served by the same Node process. Live, it follows the call over server-sent events; in replay, it steps through any past call from its trace, with an adjustable pause on the moment the question batch leaves so a presenter can narrate it. The point of the right pane is that every bug becomes one of two kinds: the probabilities were wrong for what was said, which is a question-wording problem, or they were right and the code did the wrong thing with them, which is a rule or threshold problem. The pane tells you which.</p>
+
+    <h3>Not new, but rarely done</h3>
+    <p>Mixed-initiative dialogue is an old idea. The research literature described it decades ago, and VoiceXML even shipped a form-filling algorithm for it. It stayed rare in production because of cost: every phrasing had to be anticipated, per intent, per slot, per prompt state, and a caller who volunteered two facts in one breath usually broke the flow. Teams responded with strict menus, and callers learned to say one word at a time.</p>
+    <p>What changed is that understanding became a fast, cheap call with a typed answer. The engineering effort moved from anticipating language to designing the dialogue policy, and the policy is ordinary code.</p>
+
+    <h2>What went wrong on the way</h2>
+    <ul>
+      <li><strong>A birthday filled the appointment date.</strong> "March fifth" at the birthday prompt also answered the appointment month and day, so the form skipped the day question and read back a March 2027 appointment. Fixed on both layers: wording on the date questions, plus a core rule that an answer resolving to the same calendar day as the prompted slot's answer is dropped.</li>
+      <li><strong>A doctor correction became the caller's name.</strong> "Not Chen, Cheng" at the summary offered "chen cheng" as a name-span candidate next to a different name in state, and the model took it. Provider names are now never candidates for the caller's name. The production-grade version is a rule that one span of the transcript fills one slot; the demo version is a blocklist, and the record says so.</li>
+      <li><strong>The year prompt looped.</strong> Repeating "March fifth" at "And what year?" counted as progress, so the retry counter never moved. An unchanged partial is no longer progress. The same bug existed for "next week" at the day prompt.</li>
+      <li><strong>Speakerphone noise cut prompts off.</strong> ConversationRelay's default interrupt sensitivity treats any sound as barge-in, and the caller then sat in silence until the no-input timer fired. Two TwiML attributes fixed it.</li>
+      <li><strong>A real person called.</strong> The demo number had been in my Twilio account for years. Someone misdialed a real clinic, heard "Thanks for calling the clinic," and followed the flow to the transfer, where she left a voicemail asking where to go for her appointment. I called her back. The greeting now names a fictional practice so a misdial hangs up on its own, and the trace files, which hold caller data, never leave the machine.</li>
+    </ul>
+
+    <h2>Architecture</h2>
+    <pre><code>Caller ──▶ Twilio number ──▶ ConversationRelay (speech to text, text to speech)
+                                    │ WebSocket: transcripts, keypad, interrupts
+                                    ▼
+                          Node server (one process, behind ngrok for the demo)
+                            adapter: sessions, no-input timer, reconnects, dashboard
+                            core:    plan → ask → resolve   (pure, no I/O)
+                                    │ one request per turn: state + 20 to 32 questions
+                                    ▼
+                                  Jev  ──▶ typed answers with probabilities</code></pre>
+    <ul>
+      <li><strong>The decision core is a pure function.</strong> Given the call state and the model's answers, it returns the next state and what to say. The same core runs in the phone server, in a text REPL, and in the regression harness.</li>
+      <li><strong>Prompts are recorded clips where the text is fixed</strong> (97 of them) and text-to-speech where it is caller-specific: a name, a birthday, a date, an ID, always at a clause boundary so the voice change is not inside a sentence. Clip URLs carry a content hash so Twilio never replays a stale cache.</li>
+      <li><strong>The dashboard reads what the trace already records.</strong> An observer hook on the turn runner, a per-call event bus, and one HTML page with a pure JavaScript reducer shared by the page and the tests.</li>
+    </ul>
+
+    <h2>Tech stack</h2>
+    <table>
+      <thead><tr><th>Area</th><th>Choice</th></tr></thead>
+      <tbody>
+        <tr><td>Language and runtime</td><td>TypeScript, strict ESM, Node</td></tr>
+        <tr><td>Telephony</td><td>Twilio ConversationRelay over a WebSocket; Deepgram for speech recognition, ElevenLabs for text-to-speech, both configured through Twilio</td></tr>
+        <tr><td>Language understanding</td><td>TypeSafe Jev, one batched request per turn, about 4,000 input tokens</td></tr>
+        <tr><td>Recorded prompts</td><td>Fish Audio, generated from a manifest with a staleness check</td></tr>
+        <tr><td>Testing</td><td>vitest; a fixture stub over labeled corpus entries; an append-only answer cassette; frame-log replay of real calls</td></tr>
+        <tr><td>Observability</td><td>Per-turn JSONL trace records, a per-call frame log, the live and replay dashboard</td></tr>
+        <tr><td>Tooling</td><td>pnpm, tsx, ngrok</td></tr>
+      </tbody>
+    </table>
+
+    <h2>How it was built</h2>
+    <p>Every feature went through the same loop: a short design conversation, a written spec, a plan with the code in it, then implementation by a fleet of Claude Code subagents with a fresh agent per task, one writer in the tree at a time and read-only reviewers in parallel. Each task got a spec review and a code quality review before the next started, and every plan ends with a record of where the implementation deviated from it and why. Fourteen pull requests in five days, each with its own review trail.</p>
+    <p>The reviews did real work. One found that the dashboard's redaction masked the caller's number on the setup frame but let it through on the webhook fields and the forwarded-from number; a scan of every real trace on disk after the fix found nothing. Another found that the confirmation group on the dashboard appeared one turn late. A third found the third frustration rung was silently dropped when an earlier gate had already decided the turn. None of those would have shown up in the demo call, and all of them would have shown up in production.</p>
+
+    <h2>Status and what's next</h2>
+    <p>The line is live on a demo number, the code is public, and the video above is the current state. Everything specific to the clinic is content: the five intents and their descriptions, six slots, the prompt texts, the corpus. The mechanisms are general: the gate ladder, the form loop with per-slot retry ladders and partial narrowing, the summary and correction logic, the task queue, the frustration rungs, the recorded-answer harness. The next step is to pull those into a framework, so the second line like this one takes days rather than weeks, and the third takes a domain description and a set of labeled utterances.</p>
+    <p class="quote">Conversational on the outside, deterministic on the inside, and testable like any other code.</p>
+
+    <footer>
+      <span class="footer-links">
+        <a href="mailto:hello@stiles.one">hello@stiles.one</a>
+        <span aria-hidden="true">·</span>
+        <a href="https://github.com/stilesja/jev-ivr">GitHub</a>
+      </span>
+      <span>© <time datetime="2026">2026</time></span>
+    </footer>
+  </main>
+</body>
+</html>
