@@ -63,8 +63,9 @@
     <h1>Jev IVR: A Phone Line You Can Talk To</h1>
     <p class="lead">A mixed-initiative voice IVR for a fictional clinic, built on TypeSafe's Jev model. Callers talk the way they would to a receptionist. The code stays deterministic. Every decision is a typed question with a probability, which means the whole thing can be tested like software.</p>
 
-    <p class="stack-line"><strong>Stack:</strong> TypeScript · Node · Twilio ConversationRelay · TypeSafe Jev · Fish Audio (recorded prompts) · vitest</p>
-    <p class="stack-line"><strong>Status:</strong> Live on a demo number · <a href="https://github.com/stilesja/jev-ivr">Open source on GitHub</a> · Built in five days of commits, 14 pull requests</p>
+    <p class="stack-line"><strong>Stack:</strong> TypeScript · Node · Twilio ConversationRelay · TypeSafe Jev · ElevenLabs voice · vitest</p>
+    <p class="stack-line"><strong>Status:</strong> Live on a demo number · <a href="https://github.com/stilesja/jev-ivr">Open source on GitHub</a> · Built in seven days of commits, 22 pull requests</p>
+    <p class="stack-line"><strong>Updated September 24, 2026:</strong> the line now reads back the booking it finds and offers an open time, negotiates earlier and later, answers "what can you do?", and speaks every prompt in one voice. The video shows the September 22 version; the transcript below is today's.</p>
 
     <div class="video">
       <iframe src="https://www.youtube-nocookie.com/embed/pfLs7WImX1o" title="Jev IVR demo: two calls with the live dashboard" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
@@ -73,26 +74,24 @@
 
     <h2>The idea</h2>
     <p>For twenty years, phone systems made you choose. A phone tree is predictable but rigid. Anything conversational meant a speech-science team tuning grammars, and lately it means a large language model you cannot fully control. This project is the third option: the caller gets a conversation, and you keep a deterministic program you can read, test and diff.</p>
-    <p>The trick is what the model is asked to do. Jev is a System One model: it does not generate text or take actions. It answers small typed questions about a piece of state, and returns probabilities. The application sends the caller's transcript, the current call state and a batch of twenty to thirty questions in one request, and gets back one typed answer per question in about 170 milliseconds. The code decides what to do with them.</p>
+    <p>The trick is what the model is asked to do. Jev is a System One model: it does not generate text or take actions. It answers small typed questions about a piece of state, and returns probabilities. The application sends the caller's transcript, the current call state and a batch of about thirty-five questions in one request, and gets back one typed answer per question in about 170 milliseconds. The code decides what to do with them.</p>
     <p>A typical call, exactly as the line handles it today:</p>
     <div class="transcript">
       <p><span class="who">System</span><span class="sys">Thanks for calling Stiles Family Medical Practice. How can I help you today?</span></p>
-      <p><span class="who">Caller</span>I need to reschedule my appointment, it's with Dr. Chen sometime next week.</p>
-      <p><span class="who">System</span><span class="sys">What's your first and last name?</span></p>
+      <p><span class="who">Caller</span>Hi, I need to reschedule my appointment with Dr. Alvarez.</p>
+      <p><span class="who">System</span><span class="sys">I'd be happy to help you reschedule your appointment. What's your first and last name?</span></p>
       <p><span class="who">Caller</span>Jason Stiles.</p>
       <p><span class="who">System</span><span class="sys">And your date of birth?</span></p>
-      <p><span class="who">Caller</span>March fifth.</p>
-      <p><span class="who">System</span><span class="sys">And what year?</span></p>
-      <p><span class="who">Caller</span>Nineteen eighty.</p>
-      <p><span class="who">System</span><span class="sys">next week. Which day works for you?</span></p>
+      <p><span class="who">Caller</span>March fifth, nineteen eighty.</p>
+      <p><span class="who">System</span><span class="sys">What day works for you?</span></p>
       <p><span class="who">Caller</span>Tuesday.</p>
-      <p><span class="who">System</span><span class="sys">Your appointment with Dr. Chen would move to Tuesday, September 22, for Jason Stiles, born March 5th, 1980. Shall I make that change?</span></p>
-      <p><span class="who">Caller</span>No, Thursday with Dr. Alvarez.</p>
-      <p><span class="who">System</span><span class="sys">Your appointment with Dr. Alvarez would move to Thursday, September 24, for Jason Stiles, born March 5th, 1980. Shall I make that change?</span></p>
-      <p><span class="who">Caller</span>Yes, and can I also ask about my bill?</p>
-      <p><span class="who">System</span><span class="sys">Your appointment is moved. Now, let's ask about billing. What's your member ID?</span></p>
+      <p><span class="who">System</span><span class="sys">Your appointment with Dr. Alvarez is on Friday, October 2 at 1:00 PM. It would move to Tuesday, September 29 at 9:15 AM, for Jason Stiles, born March 5th, 1980. Shall I make that change?</span></p>
+      <p><span class="who">Caller</span>Do you have anything later that day?</p>
+      <p><span class="who">System</span><span class="sys">Tuesday, September 29 at 1:00 PM. Does that work?</span></p>
+      <p><span class="who">Caller</span>Yes.</p>
+      <p><span class="who">System</span><span class="sys">Your appointment is moved to Tuesday, September 29 at 1:00 PM. Goodbye.</span></p>
     </div>
-    <p>The first sentence carried three facts. The system kept all three, asked only for what it did not have, used the caller's own "next week" to narrow the day question, took a birthday without a year and asked for just the year, accepted a correction that changed two details at once, and queued a second task for after the first. Five intents, five doctors, six pieces of information. The domain is intentionally small; the interaction style is the point.</p>
+    <p>The first sentence carried the task and the doctor, so the system acknowledged the task and asked only for what it did not have. It found the caller's existing booking and read it back with its time, never asked for a time itself, and offered an opening on the day the caller chose. When the caller asked for something later, it moved one opening along that day and, having read the whole summary once, said only the new day and time. Five tasks, eight doctors, five pieces of information. The domain is intentionally small; the interaction style is the point.</p>
 
     <h2>What makes it interesting</h2>
 
@@ -116,9 +115,15 @@
       <li><strong>Several slots from one utterance.</strong> Every slot's questions are asked on every turn, whatever was just prompted for, so "Make an appointment with Dr. Okafor, this is Jason Stiles, born March fifth nineteen eighty, Friday" goes straight to the summary.</li>
       <li><strong>Partial answers narrow instead of failing.</strong> "Sometime next week" is not a date, but the next prompt becomes "next week. Which day works for you?" and "Tuesday" resolves inside that window.</li>
       <li><strong>One-step correction of several slots.</strong> At the summary, "no, Thursday with Dr. Alvarez" refills exactly the two details it names and reads the summary again. "The birthday" alone re-asks that one question. A bare "no" asks what to change.</li>
+      <li><strong>Answers to the questions callers actually ask.</strong> "What can you do?" gets a short description of the line and then the question the caller was on, at no cost to their retries. The doctor question is "Do you have the name of the provider?", so a caller who doesn't know it hears the list instead of failing twice. Every task is acknowledged as it starts: "I'd be happy to help you reschedule your appointment."</li>
       <li><strong>A second task in the same breath.</strong> "Reschedule with Dr. Alvarez for next Thursday, and also I have a question about my bill" is acknowledged up front, the reschedule runs to its summary, then the call continues with billing, which asks for the one thing it still needs.</li>
       <li><strong>Every rung has a fallback.</strong> A silent or garbled answer walks a fixed ladder: the question again, a keypad option where one makes sense, then a person. Barge-in is on.</li>
     </ul>
+
+    <h3>Offering a time, not asking for one</h3>
+    <p>Doctor's offices never let you pick an exact time, but they will work with you on a window. The line behaves the same way. Confirm, cancel and reschedule read back the booking it found, with its time. Schedule and reschedule never ask for a time; they offer an opening on the day the caller chose. A part of the day the caller volunteers, anywhere in the call, picks the first opening in that window ("next Thursday afternoon"), or the nearest one with "The closest I have to the afternoon is 12:30 PM." Nobody is ever asked for a window. At the offer, "earlier", "later" or "that time doesn't work" moves one opening along the day, and the ends say so: "That's the earliest opening that day."</p>
+    <p>The whole summary plays once. After that it is a time negotiation, so a re-read that only moves the day or time says just "Tuesday, September 29 at 1:00 PM. Does that work?" A change of doctor, name or birthday brings the full summary back.</p>
+    <p>Behind it is a two-call interface: find the caller's booking, and list a doctor's openings on a day. The demo implementation invents both from a hash of the caller's details, so the same caller hears the same appointment on every call, and a real deployment plugs in its scheduling system.</p>
 
     <h3>When the caller gets frustrated</h3>
     <p>Every turn also asks how frustrated the caller sounds, on three levels. The first time the answer is high, the system acknowledges it once, "I understand, let's get this sorted," and continues. The second time, it offers a transfer: "Would you like me to connect you to a person, or keep going?" The third time, or after declining, it transfers. The wording never claims a problem the system does not know about, which was the deliberate choice over any "sorry" phrasing.</p>
@@ -129,14 +134,14 @@
     <table>
       <thead><tr><th>Layer</th><th>What it is</th><th>Size</th></tr></thead>
       <tbody>
-        <tr><td>Unit tests</td><td>Slots, gates, prompts, server, replay</td><td>923</td></tr>
-        <tr><td>Labeled corpus</td><td>One utterance in one call state, with the expected decision</td><td>217 entries</td></tr>
-        <tr><td>Scenarios</td><td>Scripted multi-turn calls, including silence and keypad steps</td><td>75 scripts</td></tr>
-        <tr><td>Answer cassette</td><td>The real model's answers, recorded once and committed</td><td>~500 requests</td></tr>
+        <tr><td>Unit tests</td><td>Slots, gates, prompts, server, replay</td><td>1,028</td></tr>
+        <tr><td>Labeled corpus</td><td>One utterance in one call state, with the expected decision</td><td>241 entries</td></tr>
+        <tr><td>Scenarios</td><td>Scripted multi-turn calls, including silence and keypad steps</td><td>89 scripts</td></tr>
+        <tr><td>Answer cassette</td><td>The real model's answers, recorded once and committed</td><td>~585 requests</td></tr>
       </tbody>
     </table>
-    <p>A fixture stub answers the questions from the corpus labels, so the whole suite runs in about a second and produces a committed baseline of every decision. Any code change that alters a decision shows up as a diff. The cassette holds the real model's answers keyed by a hash of the call state and the question batch, so the suite also runs against real answers with no network and no cost. Re-recording the whole cassette after a wording change costs about ten cents.</p>
-    <p>The real model matches 209 of the 217 corpus labels and 74 of the 75 scenarios. The remaining differences are documented one by one: a hedge between two similarly named doctors, a lone surname said with no cue, an all-numeric spoken birthday. They are in the corpus, so the day a wording or model change fixes one, the diff says so.</p>
+    <p>A fixture stub answers the questions from the corpus labels, so the whole suite runs in about a second and produces a committed baseline of every decision. Any code change that alters a decision shows up as a diff. The cassette holds the real model's answers keyed by a hash of the call state and the question batch, so the suite also runs against real answers with no network and no cost. Re-recording the whole cassette after a wording change costs about thirteen cents.</p>
+    <p>The real model matches 229 of the 241 corpus labels and 88 of the 89 scenarios. The remaining differences are documented one by one: a hedge between two similarly named doctors, a lone surname said with no cue, an all-numeric spoken birthday, and a handful of corrections the model routes through a different gate to the same result. They are in the corpus, so the day a wording or model change fixes one, the diff says so.</p>
 
     <h3>A dashboard that shows the model's answers</h3>
     <p>The page in the video is served by the same Node process. Live, it follows the call over server-sent events; in replay, it steps through any past call from its trace, with an adjustable pause on the moment the question batch leaves so a presenter can narrate it. The point of the right pane is that every bug becomes one of two kinds: the probabilities were wrong for what was said, which is a question-wording problem, or they were right and the code did the wrong thing with them, which is a rule or threshold problem. The pane tells you which.</p>
@@ -151,6 +156,8 @@
       <li><strong>A doctor correction became the caller's name.</strong> "Not Chen, Cheng" at the summary offered "chen cheng" as a name-span candidate next to a different name in state, and the model took it. Provider names are now never candidates for the caller's name. The production-grade version is a rule that one span of the transcript fills one slot; the demo version is a blocklist, and the record says so.</li>
       <li><strong>The year prompt looped.</strong> Repeating "March fifth" at "And what year?" counted as progress, so the retry counter never moved. An unchanged partial is no longer progress. The same bug existed for "next week" at the day prompt.</li>
       <li><strong>Speakerphone noise cut prompts off.</strong> ConversationRelay's default interrupt sensitivity treats any sound as barge-in, and the caller then sat in silence until the no-input timer fired. Two TwiML attributes fixed it.</li>
+      <li><strong>The phone was three times slower than the harness.</strong> Asks took 400 to 550 milliseconds on a live call and 150 in a recording run from the same laptop. The model was not slower. Node drops an idle connection after four seconds, a caller's turns are further apart than that, and every ask paid a fresh TLS handshake. A 30-second keep-alive, plus a warm-up request while the greeting plays, took about 150 milliseconds off every turn.</li>
+      <li><strong>"Do you have a later appointment that day?" reopened the day question.</strong> The model scored "later" at 1.00 and "change the date" at 0.61. Both readings were fair, so no rewording could fix it; the policy had to choose. At a booking summary, a confident same-day move that names no new day now wins, and that rule is code with a test.</li>
       <li><strong>A real person called.</strong> The demo number had been in my Twilio account for years. Someone misdialed a real clinic, heard "Thanks for calling the clinic," and followed the flow to the transfer, where she left a voicemail asking where to go for her appointment. I called her back. The greeting now names a fictional practice so a misdial hangs up on its own, and the trace files, which hold caller data, never leave the machine.</li>
     </ul>
 
@@ -161,12 +168,13 @@
                           Node server (one process, behind ngrok for the demo)
                             adapter: sessions, no-input timer, reconnects, dashboard
                             core:    plan → ask → resolve   (pure, no I/O)
-                                    │ one request per turn: state + 20 to 32 questions
+                                    │ one request per turn: state + 30 to 35 questions
                                     ▼
                                   Jev  ──▶ typed answers with probabilities</code></pre>
     <ul>
       <li><strong>The decision core is a pure function.</strong> Given the call state and the model's answers, it returns the next state and what to say. The same core runs in the phone server, in a text REPL, and in the regression harness.</li>
-      <li><strong>Prompts are recorded clips where the text is fixed</strong> (97 of them) and text-to-speech where it is caller-specific: a name, a birthday, a date, an ID, always at a clause boundary so the voice change is not inside a sentence. Clip URLs carry a content hash so Twilio never replays a stale cache.</li>
+      <li><strong>Every prompt is spoken by one voice.</strong> Text goes to ConversationRelay's ElevenLabs voice, with adjacent pieces merged so a summary is one sentence. The first version played recorded clips for the fixed wording and switched to text-to-speech for names and dates, and the switch was audible; the 109 clips are still there behind a setting.</li>
+      <li><strong>Bookings come from a directory.</strong> Two calls, find a booking and list a day's openings, with a deterministic demo behind them.</li>
       <li><strong>The dashboard reads what the trace already records.</strong> An observer hook on the turn runner, a per-call event bus, and one HTML page with a pure JavaScript reducer shared by the page and the tests.</li>
     </ul>
 
@@ -176,8 +184,8 @@
       <tbody>
         <tr><td>Language and runtime</td><td>TypeScript, strict ESM, Node</td></tr>
         <tr><td>Telephony</td><td>Twilio ConversationRelay over a WebSocket; Deepgram for speech recognition, ElevenLabs for text-to-speech, both configured through Twilio</td></tr>
-        <tr><td>Language understanding</td><td>TypeSafe Jev, one batched request per turn, about 4,000 input tokens</td></tr>
-        <tr><td>Recorded prompts</td><td>Fish Audio, generated from a manifest with a staleness check</td></tr>
+        <tr><td>Language understanding</td><td>TypeSafe Jev, one batched request per turn, about 5,000 input tokens, over a kept-alive connection</td></tr>
+        <tr><td>Voice</td><td>ElevenLabs through ConversationRelay; optional Fish Audio clips generated from a manifest with a staleness check</td></tr>
         <tr><td>Testing</td><td>vitest; a fixture stub over labeled corpus entries; an append-only answer cassette; frame-log replay of real calls</td></tr>
         <tr><td>Observability</td><td>Per-turn JSONL trace records, a per-call frame log, the live and replay dashboard</td></tr>
         <tr><td>Tooling</td><td>pnpm, tsx, ngrok</td></tr>
@@ -185,11 +193,11 @@
     </table>
 
     <h2>How it was built</h2>
-    <p>Every feature went through the same loop: a short design conversation, a written spec, a plan with the code in it, then implementation by a fleet of Claude Code subagents with a fresh agent per task, one writer in the tree at a time and read-only reviewers in parallel. Each task got a spec review and a code quality review before the next started, and every plan ends with a record of where the implementation deviated from it and why. Fourteen pull requests in five days, each with its own review trail.</p>
+    <p>Every feature went through the same loop: a short design conversation, a written spec, a plan with the code in it, then implementation by a fleet of Claude Code subagents with a fresh agent per task, one writer in the tree at a time and read-only reviewers in parallel. Each task got a spec review and a code quality review before the next started, and every plan ends with a record of where the implementation deviated from it and why. Twenty-two pull requests in seven days, each with its own review trail.</p>
     <p>The reviews did real work. One found that the dashboard's redaction masked the caller's number on the setup frame but let it through on the webhook fields and the forwarded-from number; a scan of every real trace on disk after the fix found nothing. Another found that the confirmation group on the dashboard appeared one turn late. A third found the third frustration rung was silently dropped when an earlier gate had already decided the turn. None of those would have shown up in the demo call, and all of them would have shown up in production.</p>
 
     <h2>Status and what's next</h2>
-    <p>The line is live on a demo number, the code is public, and the video above is the current state. Everything specific to the clinic is content: the five intents and their descriptions, six slots, the prompt texts, the corpus. The mechanisms are general: the gate ladder, the form loop with per-slot retry ladders and partial narrowing, the summary and correction logic, the task queue, the frustration rungs, the recorded-answer harness. The next step is to pull those into a framework, so the second line like this one takes days rather than weeks, and the third takes a domain description and a set of labeled utterances.</p>
+    <p>The line is live on a demo number and the code is public. Everything specific to the clinic is content: the five intents and their descriptions, five slots, the prompt texts, the appointment directory, the corpus. The mechanisms are general: the gate ladder, the form loop with per-slot retry ladders and partial narrowing, the summary and correction logic, the task queue, the frustration rungs, the recorded-answer harness. The next step is to pull those into a framework, so the second line like this one takes days rather than weeks, and the third takes a domain description and a set of labeled utterances.</p>
     <p class="quote">Conversational on the outside, deterministic on the inside, and testable like any other code.</p>
 
     <footer>
