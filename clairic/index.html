@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="canonical" href="https://stiles.one/clairic/">
+  <title>Clairic on a Phone Line: Two Kinds of System One</title>
+  <meta name="description" content="Cloudflare released Clairic, a System One extraction model. I put it on the problem my phone lines solve with code and a decision model: getting a date, a number or a name out of what a caller said. It lost that fight and won a different one.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://stiles.one/clairic/">
+  <meta property="og:title" content="Clairic on a Phone Line: Two Kinds of System One">
+  <meta property="og:description" content="Cloudflare released Clairic, a System One extraction model. I put it on the problem my phone lines solve with code and a decision model. It lost that fight and won a different one.">
+  <meta property="og:image" content="https://stiles.one/clairic/og-card.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="stylesheet" href="../styles.css">
+  <style>
+    .stack-line { color: var(--muted); font-size: 0.95rem; margin: 0.4rem 0; }
+    .stack-line strong { color: var(--text); }
+    .transcript {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0.85rem 1rem;
+      margin: 0.9rem 0;
+      box-shadow: var(--shadow-sm);
+      font-size: 0.95rem;
+      line-height: 1.55;
+    }
+    .transcript p { margin: 0.25rem 0; }
+    .transcript .who { display: inline-block; width: 5.6rem; color: var(--muted); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; }
+    .transcript .sys { color: var(--accent); }
+    .quote {
+      margin: 1.6rem 0;
+      padding: 0.35rem 0 0.35rem 1.15rem;
+      border-left: 3px solid var(--accent);
+      font-size: 1.15rem;
+      font-weight: 650;
+      line-height: 1.45;
+    }
+    pre { overflow-x: auto; font-size: 0.85rem; line-height: 1.5; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 0.85rem 1rem; }
+  </style>
+</head>
+<body>
+  <main>
+    <p class="back"><a href="../">← stiles.one</a></p>
+
+    <span class="chip">Case study</span>
+    <h1>Clairic on a Phone Line: Two Kinds of System One</h1>
+    <p class="lead">Cloudflare released Clairic, a System One extraction model. I put it on the problem my phone lines solve with code and a decision model: getting a date, a number or a name out of what a caller said. It lost that fight, and won a different one.</p>
+
+    <p class="stack-line"><strong>Stack:</strong> <a href="https://dialogwright.com/">DialogWright</a> · TypeSafe Jev · Cloudflare Workers AI (Clairic, in preview) · Node</p>
+    <p class="stack-line"><strong>Follows:</strong> <a href="../jev-ivr/">Jev IVR: A Phone Line You Can Talk To</a></p>
+    <p class="stack-line"><strong>Measured:</strong> October 20, 2026, on 149 labelled utterances, for well under a cent · <a href="https://github.com/DialogWright/dialogwright/blob/main/docs/designs/2026-10-20-clairic-extraction.md">The design note</a></p>
+
+    <h2>Since Jev IVR</h2>
+    <p>Jev IVR was a phone line for a fictional clinic, built to prove one idea: a caller gets a conversation, and you keep a deterministic program you can read, test and diff. The model underneath, TypeSafe's Jev, never generates text. It answers small typed questions about the call, with probabilities, and the code decides. That project has since grown into <a href="https://dialogwright.com/">DialogWright</a>, an open-source framework built from what it taught, and it now runs several lines, including a booking line for a real business and a knowledge-base demo that answers questions from a 123-page benefits booklet. That story deserves its own write-up. This one is about a new model Cloudflare just released.</p>
+
+    <h2>Two kinds of System One</h2>
+    <p>"System One" is the name for models that answer in one fast pass instead of generating a reply token by token. Until now the System One models I had built on were decision models like Jev (Cloudflare has one of its own, Clef). You give them state and typed questions, and they give back judgments with probabilities. Clairic is the first extraction model of that kind. You give it text, or up to four images, and a set of typed fields, and it gives back values.</p>
+    <table>
+      <thead><tr><th></th><th>A decision model (Jev)</th><th>An extraction model (Clairic)</th></tr></thead>
+      <tbody>
+        <tr><td>You send</td><td>The call's state and typed questions: yes or no, which of these, how much</td><td>A text or images, and typed fields: text, number, date, duration, list, estimate</td></tr>
+        <tr><td>You get back</td><td>A probability for each answer</td><td>A value for each field, its position in the text, how sure it is, and how likely the value is not there at all</td></tr>
+        <tr><td>It never</td><td>Writes text</td><td>Writes text: a text answer is always a span copied from the input</td></tr>
+      </tbody>
+    </table>
+    <p>That last row is what made Clairic interesting to me. The rule I built Jev IVR on is that the model selects and never invents, so a wrong answer is always something the caller actually said. An extraction model whose text answers are spans of the input keeps that rule by construction.</p>
+
+    <h2>How a phone line gets a value today</h2>
+    <p>Getting a value out of speech is most of the work on a phone line, and it is where Jev IVR and then DialogWright spent most of their tuning. The code finds the candidates: every number-like span in what the caller said, every one-to-four-word span that could be a name. Jev answers questions about them: which span is the year, which words are the caller's own name, whether this is a month said as a number. The code builds the value and checks it against the slot's rules: a birth date in the past, an account number of the right length, nothing taken from words said before the question was asked.</p>
+    <p>An extraction model promises to collapse that into one call. So I measured it.</p>
+
+    <h2>Round one: what callers dictate</h2>
+    <p>DialogWright's slot types each ship labelled examples: what a caller says, the slot's settings, and the value the slot must produce. I took 118 of them, every date, birth date, account number, name and free-text example that does not depend on an earlier turn, and ran each twice. Once the way a call runs today, the slot asking Jev its own questions and filling from the answers. Once through Clairic, one field of the matching type, the slot's context as its instructions and the example's "today" as Clairic's reference date.</p>
+    <table>
+      <thead><tr><th></th><th>The slot (Jev and code)</th><th>Clairic</th></tr></thead>
+      <tbody>
+        <tr><td>Right, of 118</td><td><strong>103</strong></td><td>58</td></tr>
+        <tr><td>Right, of the 62 that give a value</td><td><strong>55</strong></td><td>34</td></tr>
+        <tr><td>Request time, median and 95th percentile</td><td><strong>83 and 187 ms</strong></td><td>219 and 500 ms</td></tr>
+      </tbody>
+    </table>
+    <p>Some of that gap is the test's, not the model's. The slot's rules live in its code, and a one-shot extractor has never heard of them: it cannot know that a parcel's due date is in the past, so "December fifth" is last year's. And the examples were written alongside the slots they test, which is home-field advantage.</p>
+    <p>The part that is not the test's is dictation:</p>
+    <div class="transcript">
+      <p><span class="who">Caller said</span>eight twenty one eighty four</p>
+      <p><span class="who">Should be</span><span class="sys">August 21, 1984</span></p>
+      <p><span class="who">Clairic read</span>February 18, 1824</p>
+    </div>
+    <div class="transcript">
+      <p><span class="who">Caller said</span>Five. Five five two zero four one seven.</p>
+      <p><span class="who">Should be</span><span class="sys">55520417</span></p>
+      <p><span class="who">Clairic read</span>552041</p>
+    </div>
+    <p>A date said as digits, an account number read one digit at a time, digits in Spanish. That is what a phone line is made of, and it is exactly what the code in front of Jev was built for. Clairic beat the slot on 2 of the 118, and both were a phrase inside a sentence: "blue heron on the lake", and "twelve oak hollow road" out of "yeah my address is twelve oak hollow road".</p>
+    <p>Those two were the hint.</p>
+
+    <h2>Round two: what I have no slot for</h2>
+    <p>DialogWright has no slot type for a street address, an amount of money or a code with letters in it. Today an app works around them with a free-text slot that keeps the whole phrase. So I wrote 31 utterances for those values and an email address, each the way a chat user types it and the way a caller says it, and gave Clairic proper instructions for each.</p>
+    <table>
+      <thead><tr><th></th><th>Typed</th><th>Spoken</th></tr></thead>
+      <tbody>
+        <tr><td>A street address</td><td>4 of 4</td><td><strong>4 of 4</strong></td></tr>
+        <tr><td>An amount of money</td><td>3 of 3</td><td><strong>6 of 6</strong></td></tr>
+        <tr><td>A code with letters</td><td>4 of 5</td><td>0 of 4</td></tr>
+        <tr><td>An email address</td><td>2 of 2</td><td>0 of 3</td></tr>
+      </tbody>
+    </table>
+    <p>The amounts are the trick. "Two thousand three hundred forty dollars and fifty cents" came back as 2340.50. "Forty five ninety nine" came back as 45.99. Spoken addresses came back whole: "nine oh five pine street", without the "near the school" the caller added. All of it in 150 to 470 milliseconds.</p>
+    <p>The spoken codes and emails look like failures and mostly are not. A text answer is a span of the input, so Clairic returned exactly what was said: "f s seven k two q", "m o r g a n at example dot com". Turning that into <code>FS7K2Q</code> is the spoken-to-written step the slot code already takes for digits. Put the two together and five of those seven come right. The other two found the wrong span; the "A" of "A B four four seven one" went missing, most likely read as the word "a".</p>
+    <p>So the same model that read "eight twenty one eighty four" as 1824 read "forty five ninety nine" as 45.99. Clairic reads numbers in natural phrasing well and dictation poorly. That is not a flaw; it is a description of what it was built for.</p>
+
+    <h2>Different jobs</h2>
+    <p>Every example Cloudflare shows is a document: an email, a receipt, an invoice, a CSV. Text that was written to be read, where a date is "2026-09-02" and an amount is "$250.00". Speech recognition output is a different animal: numbers spelled out, letters spelled one at a time, a caller correcting themselves mid-sentence. Spoken input is the problem my systems have been tuned on since the first day of Jev IVR, and in this test that tuning shows.</p>
+    <p class="quote">A decision model for what the caller means, code for what they dictated, and an extraction model for what they wrote down.</p>
+
+    <h2>Where it fits</h2>
+    <p>Two places, both parked until an app needs them.</p>
+    <p><strong>A slot type for the values that have none.</strong> An amount slot and an address slot that take their value from an extraction model, turned on per slot by the app that wants it. Clairic is slower than Jev, so it would run beside Jev's request on the turn, never after it, and the slot's code would still check the value and the read-back would still confirm it, as every slot's does. A code with letters would use Clairic's span and the code's spoken-to-written step.</p>
+    <p><strong>A photo.</strong> This is the one I keep coming back to. Years ago at Apple we built a text service where you sent a photo of your device's serial number and it tried to read it. A caller who texts a picture of a bill, an insurance card or a label is handing over a document, and documents are Clairic's home ground: four images a call, typed fields back, every value with how sure it is. Jev's latest release reads images too, so the next measurement is both models on the same photos.</p>
+
+    <h2>What's next</h2>
+    <p>Clairic is in preview, priced only on what you send it, and Cloudflare says open weights are coming. The results, the method and both ideas are in <a href="https://github.com/DialogWright/dialogwright/blob/main/docs/designs/2026-10-20-clairic-extraction.md">DialogWright's design note</a>. When an app needs an amount, an address or a photo, the measurement is ready to run again.</p>
+    <p class="quote">Built for documents, tested on phone calls: it lost on dictation and won on the values I had no answer for.</p>
+
+    <footer>
+      <span class="footer-links">
+        <a href="mailto:hello@stiles.one">hello@stiles.one</a>
+        <span aria-hidden="true">·</span>
+        <a href="https://dialogwright.com/">DialogWright</a>
+      </span>
+      <span>© <time datetime="2026">2026</time></span>
+    </footer>
+  </main>
+</body>
+</html>
