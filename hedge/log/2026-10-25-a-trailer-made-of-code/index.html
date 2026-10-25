@@ -13,8 +13,8 @@
   <link rel="stylesheet" href="../../../styles.css">
   <link rel="stylesheet" href="../../hedge.css">
   <style>
-    /* The trailer, as a tap-to-play facade: nothing loads from YouTube until
-       the reader taps, so the page itself makes no third-party requests. */
+    /* The trailer, self-hosted: a poster with a play button, no player chrome
+       until it plays, and no third-party requests at all. */
     .trailer { margin: 1.8rem 0 2.2rem; }
     .trailer .frame {
       position: relative;
@@ -45,7 +45,7 @@
       background: rgba(0, 0, 0, 0.55) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='white' d='M8 5v14l11-7z'/%3E%3C/svg%3E") center / 36px no-repeat;
     }
     .trailer button:focus-visible { outline: 3px solid var(--accent); outline-offset: -3px; }
-    .trailer iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+    .trailer video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
     .trailer figcaption { margin-top: 0.6rem; font-size: 0.85rem; color: var(--muted); }
   </style>
 </head>
@@ -62,9 +62,10 @@
 
     <figure class="trailer">
       <div class="frame" id="trailer-frame">
-        <button type="button" aria-label="Play the Hedge trailer (loads YouTube)" onclick="playTrailer()"></button>
+        <video id="trailer-video" src="trailer.mp4" poster="trailer-poster.jpg" playsinline preload="none"></video>
+        <button type="button" aria-label="Play the Hedge trailer" onclick="playTrailer(this)"></button>
       </div>
-      <figcaption>The trailer. Tap to play; nothing loads from YouTube until you do. <a href="https://youtube.com/shorts/Mwa3PHIjMIs">Watch on YouTube</a></figcaption>
+      <figcaption>The trailer, 30 seconds, sound on. Also on <a href="https://youtube.com/shorts/Mwa3PHIjMIs">YouTube</a>.</figcaption>
     </figure>
 
     <h2 class="log-kicker">The brief was one moment</h2>
@@ -100,9 +101,11 @@
     </footer>
   </main>
   <script>
-    function playTrailer() {
-      var f = document.getElementById('trailer-frame');
-      f.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/Mwa3PHIjMIs?autoplay=1&playsinline=1&rel=0" title="Hedge trailer" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>';
+    function playTrailer(button) {
+      var v = document.getElementById('trailer-video');
+      button.remove();
+      v.controls = true;
+      v.play();
     }
   </script>
 </body>
