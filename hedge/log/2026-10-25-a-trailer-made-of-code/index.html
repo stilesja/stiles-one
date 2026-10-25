@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="canonical" href="https://stiles.one/hedge/log/2026-10-25-a-trailer-made-of-code/">
+  <title>A trailer made of code · Hedge Build Log</title>
+  <meta name="description" content="A 30 second trailer where every frame is drawn by a web page and every note is synthesized by a script, both reading one beat sheet. Then my ear caught what no test could, and Apple said previews have to be screen captures.">
+  <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&display=swap">
+  <link rel="stylesheet" href="../../../styles.css">
+  <link rel="stylesheet" href="../../hedge.css">
+  <style>
+    /* The trailer, as a tap-to-play facade: nothing loads from YouTube until
+       the reader taps, so the page itself makes no third-party requests. */
+    .trailer { margin: 1.8rem 0 2.2rem; }
+    .trailer .frame {
+      position: relative;
+      width: 100%;
+      max-width: 300px;
+      aspect-ratio: 9 / 16;
+      border-radius: 20px;
+      overflow: hidden;
+      background: #06222a;
+      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.3);
+    }
+    .trailer button {
+      all: unset;
+      cursor: pointer;
+      position: absolute;
+      inset: 0;
+      background: center / cover no-repeat url("trailer-poster.jpg");
+    }
+    .trailer button::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 72px;
+      height: 72px;
+      margin: -36px 0 0 -36px;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.55) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='white' d='M8 5v14l11-7z'/%3E%3C/svg%3E") center / 36px no-repeat;
+    }
+    .trailer button:focus-visible { outline: 3px solid var(--accent); outline-offset: -3px; }
+    .trailer iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+    .trailer figcaption { margin-top: 0.6rem; font-size: 0.85rem; color: var(--muted); }
+  </style>
+</head>
+<body class="hedge">
+  <main>
+    <p class="back"><a href="../">← Build log</a></p>
+
+    <span class="chip">Build log</span>
+    <h1>A trailer made of code</h1>
+    <p class="meta"><time datetime="2026-10-25">October 25, 2026</time></p>
+    <p class="lead">Hedge is a daily calibration trivia game I build solo; the architecture lives in the <a href="../../build/">case study</a>. This one is from the week Hedge 3.0 went to the App Store, and it is about a promo video with no video editor anywhere in it.</p>
+
+    <p>Hedge 3.0 is the biggest update since launch. Hedge Party, an Apple TV app, iPhone Duo support. And every one of those needs store screenshots, App Previews, and something to post so people actually find out it exists. I had the screenshots done and a perfectly fine promo video cut from real screen recordings of the game. It looked like the game. That was the problem, it looked like a demo.</p>
+
+    <figure class="trailer">
+      <div class="frame" id="trailer-frame">
+        <button type="button" aria-label="Play the Hedge trailer (loads YouTube)" onclick="playTrailer()"></button>
+      </div>
+      <figcaption>The trailer. Tap to play; nothing loads from YouTube until you do. <a href="https://youtube.com/shorts/Mwa3PHIjMIs">Watch on YouTube</a></figcaption>
+    </figure>
+
+    <h2 class="log-kicker">The brief was one moment</h2>
+    <p>A while back I had Claude build a motion graphics intro for another project, and the whole thing was code. No video editor, no After Effects. Every frame was drawn by a web page, and the music was synthesized by a script, sample by sample, scored to the same timeline so every hit landed on its frame. I had also seen some wild stuff people were making this way, whole ocean scenes, water and sky, all generated in code. So I asked for one of those for Hedge.</p>
+    <p>The question back was the right one: when you've watched someone get hooked on Hedge, what was the moment? That one was easy. It's the 99% bet. Somebody slides confidence all the way up to "Bet the house," swipes, and either it lands or it doesn't, and the whole room reacts either way. People also love the badges. And nobody knows Hedge Party exists yet, which I think is going to be the thing that brings new people in.</p>
+    <p>So that became the arc. It's trivia, no it's a bet. A question, confidence climbs to 99, TRUE, nailed it. Then a second 99 that misses, with a glitch and a screen shake. Bet what you know, hedge what you don't. Thirty-six badges. Then the tie-dye party swirl floods the screen and you're in a living room with a TV and five phones locking in.</p>
+
+    <h2 class="log-kicker">Every frame is a function of time</h2>
+    <p>The trailer is one HTML page with a <code>seek(t)</code> function. Give it a time and it draws exactly that frame, nothing carried over from the frame before. Headless Chrome walks it at 60 frames a second and takes 1,801 screenshots, ffmpeg stitches them, and out comes a 30 second vertical video. <strong>Same page in, same film out, every time.</strong></p>
+    <p>It uses the real stuff. The app's ocean palette and fonts, the actual badge artwork, the actual swirl image that the Party orb uses. One small file holds the beat sheet, 120 BPM, every moment in seconds. The page draws to it and the music script reads the same file, so if I nudge the miss half a second later, the sad trombone moves with it. The whole score synthesizes in under two seconds. Kick drum, bass, bells, a riser into the drop, and yes, a sad trombone, all made from sine waves and noise.</p>
+
+    <h2 class="log-kicker">Out of tune</h2>
+    <p>The first cut looked great. I watched it, and the party section sounded wrong. Not broken, just off. When each phone locks in there's a little chime, five of them climbing, and they were climbing in whole steps. E, F sharp, G sharp, A sharp, C. Three of those notes aren't in the song's key. And under "Everyone's locked in" there was a held note that was actually two notes a half step apart, which was supposed to be tension and just sounded sour.</p>
+    <p>The fix was to climb the key's own notes instead, and to hold an open fifth over the silence. Two lines changed. <strong>No test I could write would have caught that. My ear did in one listen.</strong></p>
+
+    <aside class="log-pull">No test I could write would have caught that. My ear did in one listen.</aside>
+
+    <h2 class="log-kicker">Apple said no, sort of</h2>
+    <p>Then I asked the obvious question: can this go in the App Store? No. App Review says previews "may only use video screen captures of the app itself." A trailer that redraws the game in its own style is exactly what that rule is there to stop. Fair enough.</p>
+    <p>So we built the hybrid. Real recordings of the real app on the simulator, cut to the trailer's arc, with text over them and the app's own sounds and party music underneath. A 99% bet that lands. A 99% bet that misses, which the app greets with "Confidently incorrect, the Olympics of being wrong." I love that I didn't have to write that line for the preview, the game already had it. Then a phone joining a party nearby, "Watch the stage...", and the TV slamming TRUE.</p>
+    <p><strong>The trailer couldn't be the preview, but it could be the frame around it.</strong></p>
+
+    <h2 class="log-kicker">Where the code went after all</h2>
+    <p>iOS 27 added a new spot on product pages, a big header at the top that accepts a looping video, and that one is brand art, not screen captures. Same engine, new shape. Ten seconds, ultra-wide, confidence climbs to 99, TRUE lands with confetti, and it settles back to 50 so cleanly the loop has no seam. Every moving thing in it runs a whole number of cycles in those ten seconds, so the last frame flows straight back into the first.</p>
+    <p>That loop also ended up on the <a href="../../">Hedge page</a>. I tried the vertical trailer there first and it was a huge tall block in the middle of the page on desktop. The wide loop just sits there like a banner and plays.</p>
+    <p>The trailer itself lives where it was always meant to live, on phones, in Reels and Stories. And the whole pipeline is in the repo now, so the next one is a timeline edit and a few minutes of rendering, not a weekend in a video editor.</p>
+
+    <p>If you want to see whether your gut is calibrated, it takes about ninety seconds a day: <a href="https://stiles.one/hedge">stiles.one/hedge</a></p>
+
+    <footer>
+      <a href="mailto:hedge@stiles.one">hedge@stiles.one</a>
+      <span>© <time datetime="2026">2026</time></span>
+    </footer>
+  </main>
+  <script>
+    function playTrailer() {
+      var f = document.getElementById('trailer-frame');
+      f.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/Mwa3PHIjMIs?autoplay=1&playsinline=1&rel=0" title="Hedge trailer" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>';
+    }
+  </script>
+</body>
+</html>
