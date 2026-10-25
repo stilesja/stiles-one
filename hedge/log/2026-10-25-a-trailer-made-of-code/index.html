@@ -47,6 +47,11 @@
     .trailer button:focus-visible { outline: 3px solid var(--accent); outline-offset: -3px; }
     .trailer video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
     .trailer figcaption { margin-top: 0.6rem; font-size: 0.85rem; color: var(--muted); }
+    /* Wide screens: float it right and let the story wrap around it. */
+    @media (min-width: 640px) {
+      .trailer { float: right; width: 240px; margin: 0.35rem 0 1.25rem 1.75rem; }
+      .trailer .frame { max-width: none; }
+    }
   </style>
 </head>
 <body class="hedge">
@@ -58,8 +63,6 @@
     <p class="meta"><time datetime="2026-10-25">October 25, 2026</time></p>
     <p class="lead">Hedge is a daily calibration trivia game I build solo; the architecture lives in the <a href="../../build/">case study</a>. This one is from the week Hedge 3.0 went to the App Store, and it is about a promo video with no video editor anywhere in it.</p>
 
-    <p>Hedge 3.0 is the biggest update since launch. Hedge Party, an Apple TV app, iPhone Duo support. And every one of those needs store screenshots, App Previews, and something to post so people actually find out it exists. I had the screenshots done and a perfectly fine promo video cut from real screen recordings of the game. It looked like the game. That was the problem, it looked like a demo.</p>
-
     <figure class="trailer">
       <div class="frame" id="trailer-frame">
         <video id="trailer-video" src="trailer.mp4" poster="trailer-poster.jpg" playsinline preload="none"></video>
@@ -67,6 +70,8 @@
       </div>
       <figcaption>The trailer, 30 seconds, sound on. Also on <a href="https://youtube.com/shorts/Mwa3PHIjMIs">YouTube</a>.</figcaption>
     </figure>
+
+    <p>Hedge 3.0 is the biggest update since launch. Hedge Party, an Apple TV app, iPhone Duo support. And every one of those needs store screenshots, App Previews, and something to post so people actually find out it exists. I had the screenshots done and a perfectly fine promo video cut from real screen recordings of the game. It looked like the game. That was the problem, it looked like a demo.</p>
 
     <h2 class="log-kicker">The brief was one moment</h2>
     <p>A while back I had Claude build a motion graphics intro for another project, and the whole thing was code. No video editor, no After Effects. Every frame was drawn by a web page, and the music was synthesized by a script, sample by sample, scored to the same timeline so every hit landed on its frame. I had also seen some wild stuff people were making this way, whole ocean scenes, water and sky, all generated in code. So I asked for one of those for Hedge.</p>
