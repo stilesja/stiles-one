@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="canonical" href="https://stiles.one/hedge/log/2026-11-11-the-tv-is-a-web-server-now/">
+  <title>The TV is a web server now · Hedge Build Log</title>
+  <meta name="description" content="Hedge Party is an Apple-only app, and living rooms have Android phones in them. So the Apple TV now serves its own web page, and anyone with a browser can play. It took three months on a shelf and one day to build.">
+  <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&display=swap">
+  <link rel="stylesheet" href="../../../styles.css">
+  <link rel="stylesheet" href="../../hedge.css">
+</head>
+<body class="hedge">
+  <main>
+    <p class="back"><a href="../">← Build log</a></p>
+
+    <span class="chip">Build log</span>
+    <h1>The TV is a web server now</h1>
+    <p class="meta"><time datetime="2026-11-11">November 11, 2026</time></p>
+    <p class="lead">Hedge is a daily calibration trivia game I build solo; the architecture lives in the <a href="../../build/">case study</a>. This one is the second in the Party series, about the day a friend with an Android phone got a way in.</p>
+
+    <p>Hedge is an iPhone app. It's also an iPad app, a Mac app, and as of this fall an Apple TV app, which is a lot of Apple and zero of anything else. For the daily game that's fine, it's a solo thing. Party is different. Party happens in a living room, and living rooms have Android phones in them.</p>
+
+    <h2 class="log-kicker">The friend on the couch</h2>
+
+    <p>My friend group is very iPhone. Not entirely though. I have one friend with an Android, and Party's whole pitch is "everyone grabs their phone and plays." Everyone except him, apparently. The best he could do was watch the TV and shout guesses at people, which honestly he'd probably enjoy, but it's not the game.</p>
+
+    <p>The obvious answer is an Android app, and someday maybe (I'd like that). But an Android app for one friend is a very expensive way to solve a living-room problem. The cheaper answer is the one Jackbox figured out years ago: if you have a browser, you can play.</p>
+
+    <h2 class="log-kicker">Parked for three months</h2>
+
+    <p>I actually decided this back in August, while Party was still being built. The plan was simple to say: the stage (the TV or Mac or iPad running the party) serves a little web page, a guest scans a QR code, and their browser becomes a controller. Then I parked it. Party had to launch first, and the Apple TV was the important piece. The web guest went on the list as the first thing after launch, with a deadline I picked on purpose: be ready for Thanksgiving.</p>
+
+    <p>It sat there for almost three months. Then on November 7th it got built in a day. The spec went in a little before three in the morning and the last of the build commits landed before lunch. That sounds like a brag but the best thing I can say about it is that there wasn't much left to build.</p>
+
+    <h2 class="log-kicker">The hard part was already built</h2>
+
+    <p>Here's why. When I designed how phones talk to the stage, I put all the toughness on the stage side. Phones are flaky. People lock their screens, take calls, walk into the kitchen, lose Wi-Fi for a second. So the stage keeps a heartbeat with every player, marks anyone who goes quiet as stepped away, auto-hedges their bet at 50% if the question ends without them, and seats them right back where they were when they reconnect. Every one of those cases got hammered on real game nights with my family.</p>
+
+    <aside class="log-pull">A page reload is just a rejoin, and Hedge already knew how to do rejoins.</aside>
+
+    <p>A browser tab turns out to be just a very flaky phone. You can close it, refresh it, switch apps and come back, and none of that is new to the stage. The page remembers who you are, says hello when it comes back, and resends your bet if it isn't sure the stage got it. <strong>A page reload is just a rejoin, and Hedge already knew how to do rejoins.</strong> I was worried about all the ways a web page could fall apart mid-game. The answer was that the stage didn't care how you fell apart, only that you came back.</p>
+
+    <h2 class="log-kicker">A web server in the living room</h2>
+
+    <p>The weird part is where the page comes from. There's no Hedge server anywhere, never has been, Party runs entirely on your own Wi-Fi. So the stage serves the page itself. The Apple TV is a web server now. It answers plain old HTTP on your local network, hands out one self-contained page, and then upgrades the connection to a WebSocket so the browser can talk to the game the same way the app does. As far as the game engine is concerned, a browser player is just another connection.</p>
+
+    <p>A couple of choices in there look wrong until you know why. The page uses plain http, not https, on purpose: a secure page isn't allowed to open an insecure connection to a local IP address, and there's no way to get a real certificate for "the TV in Jason's living room." And the page makes no requests to the internet at all (no fonts, no analytics, nothing) except one link at the very end. Everything it needs is baked into a single file that the TV hands over.</p>
+
+    <p>Browsers also can't do the local discovery the app uses to find a party, so the door is a QR code. On the stage's lobby screen, inside the little "Get Hedge" card, there's a quiet "No app? Play here" button. Tap it and a QR code pops up with the TV's own address in it. Scan, pick a name and an emoji, and you're seated.</p>
+
+    <h2 class="log-kicker">Rules for a player who can't be host</h2>
+
+    <p>Browser players are guests, not hosts. Hosting is where all the room controls live (advance the reveal, pick the pack, dismiss someone), and I wanted those in the app only. That rule created a fun problem: what happens when the room is ALL browsers? Or when the host's phone dies mid-game and only browser players are left?</p>
+
+    <aside class="log-pull">Nobody at the party has to be left holding a drink and watching.</aside>
+
+    <p>The room can't sit there waiting for a host who can't exist. So if nobody in the room has the app, the game quietly runs itself on auto pace. If the host disappears and only browser players are still connected, the stage waits a full minute (maybe they're just refilling a drink), then takes over and runs things itself until an app player comes back. <strong>Nobody at the party has to be left holding a drink and watching.</strong></p>
+
+    <p>The other thing that changes when anyone with a browser can join is the guest list. There's no cap. Twelve people can scan the code, and every screen that shows players just folds the extras into "+4 more" so the TV stays readable from the couch.</p>
+
+    <h2 class="log-kicker">The real test is Thanksgiving</h2>
+
+    <p>That night we played a full game with the Apple TV as the stage and the web page on a phone, and it worked great. I don't own an Android phone, so the real test is still ahead. My one Android friend gets to be the first person to play Hedge on a phone Apple didn't make, and I'll find out at the same moment he does whether the page holds up.</p>
+
+    <p>At the end of the game, browser players see their results and one link out: if you're on an iPhone, here's the app (with your photo, the daily round, all of it). If you're on Android, a line saying it's coming, someday. No signup, no email capture. Just the game, for everybody in the room.</p>
+
+    <p>If you want to see whether your gut is calibrated, it takes about ninety seconds a day: <a href="https://stiles.one/hedge">stiles.one/hedge</a></p>
+
+    <footer>
+      <a href="mailto:hedge@stiles.one">hedge@stiles.one</a>
+      <span>© <time datetime="2026">2026</time></span>
+    </footer>
+  </main>
+</body>
+</html>
