@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="canonical" href="https://stiles.one/hedge/build/">
   <title>Hedge: How It's Built</title>
-  <meta name="description" content="The engineering behind Hedge: a no-backend calibration game for iPhone, iPad, and Mac, synced through the player's own iCloud and backed by a self-hosted LLM content pipeline.">
+  <meta name="description" content="The engineering behind Hedge: a no-backend calibration game for iPhone, iPad, Mac, and Apple TV, synced through the player's own iCloud, with same-room multiplayer over the local network and a self-hosted LLM content pipeline.">
   <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -40,10 +40,10 @@
 
     <span class="chip">Case study</span>
     <h1><span class="brand-caps">Hedge</span>: <span class="title-rest">How It's Built</span></h1>
-    <p class="lead">A no-backend calibration game for iPhone, iPad, and Mac, synced through the player's own iCloud and backed by a self-hosted LLM content pipeline.</p>
+    <p class="lead">A no-backend calibration game for iPhone, iPad, Mac, and Apple TV, synced through the player's own iCloud, with same-room multiplayer over the local network and a self-hosted LLM content pipeline.</p>
 
-    <p class="stack-line"><strong>Stack:</strong> Expo SDK 55 · React Native 0.83 · React 19 · TypeScript · expo-sqlite · CloudKit · Node + Hono · SQLite · Gemini + Anthropic APIs</p>
-    <p class="stack-line"><strong>Platform:</strong> iPhone · iPad · Mac (Apple silicon) · <strong>Backend for the game:</strong> none of ours; on-device SQLite plus the player's own private iCloud · <strong>Status:</strong> <a href="https://apps.apple.com/app/id6768878330">Live on the App Store</a> (v2.4.0)</p>
+    <p class="stack-line"><strong>Stack:</strong> Expo SDK 58 · React Native 0.88 (react-native-tvos) · React 19 · TypeScript · expo-sqlite · CloudKit · Network.framework · Node + Hono · SQLite · Gemini + Anthropic APIs</p>
+    <p class="stack-line"><strong>Platform:</strong> iPhone · iPad · Mac (Apple silicon) · Apple TV · <strong>Backend for the game:</strong> none of ours; on-device SQLite plus the player's own private iCloud · <strong>Status:</strong> <a href="https://apps.apple.com/app/id6768878330">Live on the App Store</a> (v3.1.0)</p>
 
     <div class="shots">
       <img src="shots/1-home.jpg" alt="Home screen: a 14-day streak, today's score orb, and the Gut Check pack orb peeking alongside it">
@@ -55,6 +55,7 @@
     <p>Most trivia rewards luck and process-of-elimination. Hedge rewards self-knowledge. Every day you get five true/false questions, and for each one you set a confidence level (50, 60, 70, 80, 90, or 99 percent) before locking in.</p>
     <p>Scoring is <strong>Brier-based</strong>: a wrong answer at 99 percent is brutal, a hedge at 50 percent is neutral, and being right is only worth the most if you were also confident. Over many rounds, a per-confidence calibration chart reveals whether you are systematically over- or under-confident, and in which categories. The trivia is the surface. The real product is a personal calibration instrument.</p>
     <p>Two modes feed it. The daily round is five questions, about 90 seconds, played once and locked. <strong>Gut Check</strong> is the deep dive: a curated pack of 40 to 50 questions on one topic, played in a single sitting, that ends with a focused read on how your gut performs there and that you can replay to chase mastery.</p>
+    <p>A third mode takes the same bet off the couch and into the room. <strong>Hedge Party</strong> turns a TV into a game-show stage and every player's phone into a private controller: everyone bets on the same statement, the stage reveals where the whole room landed, and then everyone argues about the explanation. Party is deliberately walled off from the calibration data; a party bet never touches your answers, streaks, or chart.</p>
 
     <h2>What makes it interesting</h2>
     <p>This is a small app with a deliberately large amount of system behind it. The parts I am most happy with:</p>
@@ -113,6 +114,19 @@
     <p>The migration stayed small: a generation-only seam that routes by model id and keeps Anthropic prompt-caching intact, with the critic, deduplication, and source verification left on Anthropic. That makes the pipeline cross-vendor by construction, one model writing and a different vendor judging, which removes a shared-blind-spot failure mode for free.</p>
     <p>The honest part came at sign-off. The pre-build check tested source reliability on one category, history, and concluded Gemini cited real URLs. The live run generated a sports batch, and the verifier dropped 16 of 20 questions. The facts were true, but Gemini had invented plausible deep links on official sites (nba.com, masters.com) that 404. History leans on Wikipedia, which it cites accurately; sports leans on official-site links, which it guesses. Two things held: the verifier did exactly its job and the bank was never polluted, and a one-paragraph prompt nudge to prefer Wikipedia took the drop from 16 of 20 back to 5 of 20, on a free model. A single-category check was one data point dressed up as a conclusion.</p>
 
+    <h3>Hedge Party: same-room multiplayer with no server</h3>
+    <p>Party had to work in a living room with no account, no backend, and whatever Wi-Fi the host has. So the stage is the server, and the network is a LAN.</p>
+    <ul>
+      <li><strong>Discovery and transport are a hand-written Expo module</strong> over Apple's Network.framework: the stage advertises over Bonjour, phones connect over TCP, and messages are newline-delimited JSON. Picked over Multipeer after a spike on real hardware (12 to 45 ms round trips, survives a phone call).</li>
+      <li><strong>The stage is the single authority.</strong> The party engine is a pure, event-sourced reducer in <code>@hedge/shared</code>; its state is plain JSON and is both the wire format and the crash snapshot. Broadcasts are redacted, so no phone ever receives another player's bet, even after the reveal.</li>
+      <li><strong>Built to survive a real party.</strong> Heartbeats and watchdogs on both sides, a once-a-second atomic snapshot that lets a crashed stage resume the party, phones that resend their own bet until the stage confirms it, and a host role that returns to the original host when they reconnect. A seeded chaos fuzzer drives the coordination code through thousands of random joins, drops, bets, and host actions with invariants checked at every step.</li>
+      <li><strong>Content travels to phones that need it.</strong> Question packs and player photos move over the same connection to any phone that lacks them, content-addressed and cached, so a repeat party moves zero bytes.</li>
+      <li><strong>One bundle, one more platform.</strong> The Apple TV stage is the same JavaScript bundle as the phone app, choosing a TV root at runtime on the tvOS fork of React Native; a test fails the suite if the TV's import graph ever reaches a phone-only module.</li>
+      <li><strong>Guests without the app.</strong> A browser-only player scans a QR code and plays from a page the stage serves itself: a small HTTP and WebSocket server in Swift on one port, feeding the same engine as a native phone. The page is a single generated file inside the JavaScript bundle, so it ships over the air. Browser guests can never host, so a room with no app players paces itself.</li>
+      <li><strong>Sized for the couch.</strong> Every stage screen searches for the largest scale that fits its canvas, so one layout reads on a phone, a Mac, and a 4K TV.</li>
+    </ul>
+    <p>The story of building it is a series in the <a href="../log/">build log</a>.</p>
+
     <h3>Ship content without App Store review</h3>
     <p>The game delivers new questions through <strong>Expo over-the-air updates</strong>: a push to <code>main</code> reaches players in about 30 seconds with no re-review. Native builds (new modules, icons) are a separate, deliberate manual step. Getting this right meant learning some sharp edges the hard way, including pinning <code>runtimeVersion</code> after a fingerprint policy silently orphaned older builds from the update stream, and adding path filters so documentation and tooling changes never burn a build minute.</p>
 
@@ -122,8 +136,10 @@
     <h2>Architecture</h2>
     <pre><code>hedge/
   apps/
-    game/             # Player app, ships to the App Store. Fully on-device.
-    admin/            # Question-authoring app. Thin HTTP client, never published.
+    game/             # Player app (iPhone, iPad, Mac, Apple TV). Fully on-device.
+                      #   modules/ = hand-written native modules (CloudKit, party link)
+    party-web/        # Browser guest page for Party, served by the stage itself
+    admin-web/        # Question-authoring web app. Thin HTTP client, never published.
   packages/
     shared/           # Canonical types, scoring, DB schema, validators, scheduler
   services/
@@ -139,11 +155,12 @@
         <tr><th>Area</th><th>Choice</th></tr>
       </thead>
       <tbody>
-        <tr><td>App framework</td><td>Expo SDK 55, React Native 0.83, React 19, TypeScript</td></tr>
+        <tr><td>App framework</td><td>Expo SDK 58, React Native 0.88 (the react-native-tvos fork, for Apple TV), React 19, TypeScript</td></tr>
         <tr><td>Navigation</td><td>expo-router (typed routes)</td></tr>
         <tr><td>Animation</td><td>Reanimated + Gesture Handler; calibration chart hand-drawn with Animated primitives (no Skia dependency by choice)</td></tr>
         <tr><td>Persistence</td><td>expo-sqlite on device; append-only migration ledger in shared</td></tr>
         <tr><td>Sync</td><td>CloudKit private database through a hand-written stateless Swift bridge (open-sourced as expo-cloudkit-bridge); NSUbiquitousKeyValueStore for settings</td></tr>
+        <tr><td>Party multiplayer</td><td>Bonjour + TCP through a hand-written Network.framework module; a Swift HTTP + WebSocket server for browser guests; Preact for the guest page</td></tr>
         <tr><td>Authoring server</td><td>Node + Hono + better-sqlite3, self-hosted, reached over Tailscale</td></tr>
         <tr><td>Generation</td><td>Multiple providers (Gemini + Anthropic) behind one seam, Zod validation, prompt-caching; an Anthropic critic for dedup, plus fetch-and-judge source verification</td></tr>
         <tr><td>Tooling</td><td>pnpm workspaces, vitest, EAS Build + Expo OTA</td></tr>
@@ -157,11 +174,13 @@
       <li><strong>Trunk-based with cost discipline:</strong> feature branches, path-filtered CI so only player-facing changes trigger builds, and OTA for everything that does not touch native code.</li>
       <li><strong>Documentation as a first-class artifact:</strong> design, scoring, pipeline, admin, and release docs are checked into the repo and kept current with the code.</li>
       <li><strong>A bias toward reading the output.</strong> Automated metrics rank generation candidates; a human reading twenty actual questions is what decides which model ships. The bake-off that picked the generator came down to voice, not counters.</li>
+      <li><strong>Fuzzing the coordination code.</strong> Party's networking is covered by a seeded chaos fuzzer with invariants at every step, and every invariant is proven non-vacuous by deliberately sabotaging the code it guards.</li>
+      <li><strong>A live walk for anything you can feel.</strong> Animation, gesture, and stage choreography changes are not done until they have been played on a real device; the walks have caught bugs no test or type check could see.</li>
       <li><strong>Tests as messages to the future.</strong> A dormant seasonal-pack mechanism (year-wrap date windows) ships fully tested, with a registry pin that fails loudly the day the first seasonal pack is added, so whoever lands it re-reads the rules before it ships.</li>
     </ul>
 
     <h2>Status</h2>
-    <p>Live on the App Store as v2.4.0: v2.0.0 added Gut Check on top of the daily round, v2.3.0 brought the game to iPad and Mac, and v2.4.0 added iCloud sync across all of them; between binaries, features, fixes, and content ship over the air. Roughly 980 verified daily questions are scheduled out several months at exactly five per day, alongside six curated Gut Check packs of about 300 more, all generated and vetted through the pipeline above. For scale: OpenTDB, the long-running community trivia database, lists 5,298 verified questions; Hedge's solo, pipeline-generated and source-checked bank is already around 1,560 and climbing. Single-developer project, end to end: product, data model, scoring design, sync architecture, content tooling, and release engineering.</p>
+    <p>Live on the App Store as v3.1.0: v2.0.0 added Gut Check on top of the daily round, v2.3.0 brought the game to iPad and Mac, v2.4.0 added iCloud sync across all of them, v3.0.0 added Hedge Party and the Apple TV stage, and v3.1.0 let guests without the app play from a browser; between binaries, features, fixes, and content ship over the air. More than 1,300 daily questions are scheduled out months ahead at exactly five per day, alongside six Gut Check packs of about 300 more and thirteen 30-question Party packs (390 more, including four holiday packs), all generated and vetted through the pipeline above. For scale: OpenTDB, the long-running community trivia database, lists 5,298 verified questions; Hedge's solo, pipeline-generated and source-checked app already ships over 2,000. Single-developer project, end to end: product, data model, scoring design, sync and multiplayer architecture, content tooling, and release engineering.</p>
     <p>The calibration and scoring primitives are factored so one core powers both the daily round and Gut Check, and could power a planned sibling app (an active-recall study tool) without touching any of the trivia-specific code.</p>
     <p>This page is the evergreen picture. Engineering events (campaigns, incidents, bake-offs) are documented as they happen in the <a href="../log/">build log</a>.</p>
 
