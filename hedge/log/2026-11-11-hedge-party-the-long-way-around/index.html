@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="canonical" href="https://stiles.one/hedge/log/2026-11-11-hedge-party-the-long-way-around/">
+  <title>Hedge Party, the long way around · Hedge Build Log</title>
+  <meta name="description" content="The log went quiet this fall while Hedge grew a party mode: your TV as the stage, everyone's phone as a controller, no server. Where it came from, why it went quiet, and the series of stories coming next.">
+  <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&display=swap">
+  <link rel="stylesheet" href="../../../styles.css">
+  <link rel="stylesheet" href="../../hedge.css">
+</head>
+<body class="hedge">
+  <main>
+    <p class="back"><a href="../">← Build log</a></p>
+
+    <span class="chip">Build log</span>
+    <h1>Hedge Party, the long way around</h1>
+    <p class="meta"><time datetime="2026-11-11">November 11, 2026</time></p>
+    <p class="lead">Hedge is a daily calibration trivia game I build solo; the architecture lives in the <a href="../../build/">case study</a>. This one opens a series about Hedge Party, the same-room mode that took most of my fall.</p>
+
+    <p>If you've followed this log, you might have noticed it went quiet for a while in September and October, and then a trailer showed up out of nowhere for something called Hedge Party. This is the entry that fills in the gap, and it's the first in a series. I have a lot of these saved up.</p>
+
+    <h2 class="log-kicker">What Party is</h2>
+    <p>Hedge is a daily trivia game where you don't just answer true or false, you bet how sure you are, and the scoring rewards you for knowing what you know. <strong>The daily game is something you do alone. Party is the same game with people yelling at the TV.</strong></p>
+
+    <p>Here's how it works. One device is the stage: an Apple TV, a Mac, an iPad, even a phone in a pinch. Everyone else uses their own phone as a controller. A statement goes up on the big screen, everybody picks true or false and how confident they are, privately, on their phone. When the last person locks in, the TV reveals the answer and the whole room sees where everyone landed: who was sure, who hedged, who bet the house and lost it. Then everyone argues about the explanation. A game is three rounds of ten questions, and every pack is free.</p>
+
+    <p>There's no account and no server. The whole party runs on your own Wi-Fi, which turned out to be about half the story.</p>
+
+    <h2 class="log-kicker">Parked for six days</h2>
+    <p>Party started as a someday idea. On August 2nd I wrote down "same-room group mode" in my notes and parked it. Six days later I was writing the design for it. <mark style="background:#ffd54a;color:#000;padding:0 .2em">[JASON: what changed your mind in those six days?]</mark></p>
+
+    <p>The idea that made it click was the split Jackbox figured out years ago: phones for the private stuff (your answer, your bet), the TV for the shared payoff (the reveal). Hedge's whole mechanic is a private bet that gets publicly judged. It was already a party game. It just didn't have a room.</p>
+
+    <aside class="log-pull">The daily game is something you do alone. Party is the same game with people yelling at the TV.</aside>
+
+    <h2 class="log-kicker">August</h2>
+    <p>August was a sprint. Of the roughly 460 commits in Hedge's history that mention Party, about 300 landed in August. The first thing I tested was whether phones could even talk to each other reliably over a home network with no server in the middle, on real hardware. Two days later three devices played a full game. Within the week Party had a first real 30-question pack, a rebuilt home screen, stand-in music, and a TV that roasted whoever took longest to answer.</p>
+
+    <p>Then real people started playing it. In August, Ben played a game against me and gave me a pile of honest notes, the biggest being that nobody could read the TV from the couch. In September the family sat down for a five-player game on a sports pack (American football and soccer), with phones that had never seen the pack before, and it worked. The verdict was "it was fun," plus a list of fixes I worked through that weekend.</p>
+
+    <h2 class="log-kicker">Then it went quiet</h2>
+    <p>From the middle of September to late October, almost nothing landed. Some of that was waiting on purpose. I'd decided Party would launch with the Apple TV, because a party game that needs you to own a Mac or an iPad to host it isn't much of a party game, and that meant lining up with Apple's fall schedule. Some of it was just life and other priorities. <mark style="background:#ffd54a;color:#000;padding:0 .2em">[JASON: a sentence on what those were, or cut this line.]</mark></p>
+
+    <p>The log went quiet too. Not because nothing was happening, but because Party was unreleased and I didn't want to write about a feature nobody could try. <strong>Most of the interesting things that happened to Hedge this fall happened inside Party, and I didn't write about any of them.</strong></p>
+
+    <h2 class="log-kicker">Everything at once</h2>
+    <p>Then in late October it all converged in about a week: a big framework upgrade, the Apple TV app, a pass for the new folding iPhone, and the release. The TV app was approved on October 28th, the iPhone and iPad version on the 30th. A week later I built the piece I'd promised myself for Thanksgiving: a way for a friend with an Android phone to play from a web browser, no app required.</p>
+
+    <aside class="log-pull">Most of the interesting things that happened to Hedge this fall happened inside Party, and I didn't write about any of them.</aside>
+
+    <p>Counting design documents, Party took eight of them, in about three months, part-time. It's the biggest thing I've built for Hedge by a wide margin.</p>
+
+    <h2 class="log-kicker">What's coming</h2>
+    <p>So here's the plan. I'm going to post these one or two a day for a while, each one a single story from building Party. Some are about engineering, some about design, a couple are about game theory, and a few are just about the dumb, specific ways things broke. A sample:</p>
+
+    <ul>
+      <li>The permission you can only ask once</li>
+      <li>The $1 bid</li>
+      <li>The stage taught the room backwards</li>
+      <li>Seven tracks, one night</li>
+      <li>The walk that crash-tested resume thirty times by accident</li>
+      <li>The TV is a web server now</li>
+    </ul>
+
+    <p>If you've played a Hedge Party, I'd love to hear how it went. If you haven't, grab a few people and a TV.</p>
+
+    <p>If you want to see whether your gut is calibrated, it takes about ninety seconds a day: <a href="https://stiles.one/hedge">stiles.one/hedge</a></p>
+
+    <footer>
+      <a href="mailto:hedge@stiles.one">hedge@stiles.one</a>
+      <span>© <time datetime="2026">2026</time></span>
+    </footer>
+  </main>
+</body>
+</html>
