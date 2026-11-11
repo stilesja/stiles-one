@@ -12,9 +12,24 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&display=swap">
   <link rel="stylesheet" href="../../../styles.css">
   <link rel="stylesheet" href="../../hedge.css">
+  <!-- hedge:head -->
+  <meta name="apple-itunes-app" content="app-id=6768878330">
+  <!-- /hedge:head -->
 </head>
 <body class="hedge">
   <main>
+    <!-- hedge:bar -->
+    <header class="hedge-bar">
+      <a class="hedge-bar-mark" href="/hedge/" aria-label="Hedge home">Hedge</a>
+      <nav aria-label="Hedge pages">
+        <a href="/hedge/build/">How it's built</a>
+        <a href="/hedge/log/" aria-current="page">Build log</a>
+        <a href="/hedge/support/">Support</a>
+        <a href="/hedge/party/">Host a party</a>
+      </nav>
+    </header>
+    <!-- /hedge:bar -->
+
     <p class="back"><a href="../">← Build log</a></p>
 
     <span class="chip">Build log</span>
@@ -37,6 +52,14 @@
 
     <h2 class="log-kicker">Breaking my own pipeline</h2>
     <p>And because it was a day about quality, I broke my own publish pipeline on the way out. The server deploy's <code>pnpm install</code> armed the repo's pre-push git hook on the content server for the first time, and the next content publish died inside a git worktree that deliberately has no dependencies installed. One pasted log, a one-line fix, republished within the hour, and the runbook now carries the lesson: <strong>anything that runs an install on the server changes git hook state.</strong></p>
+
+    <!-- hedge:get -->
+    <aside class="hedge-get" aria-label="Get Hedge">
+      <p class="hedge-get-title"><span class="brand-caps">Hedge</span> is daily calibrated trivia: bet how sure you are.</p>
+      <p class="hedge-get-platforms">Free on iPhone, iPad, Mac (Apple silicon), Apple TV, and Vision Pro.</p>
+      <a href="https://apps.apple.com/app/id6768878330" aria-label="Download Hedge on the App Store"><img src="/hedge/appstore-badge.svg" alt="Download on the App Store" height="48"></a>
+    </aside>
+    <!-- /hedge:get -->
 
     <footer>
       <a href="mailto:hedge@stiles.one">hedge@stiles.one</a>

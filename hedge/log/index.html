@@ -60,10 +60,23 @@
     .archive .date { color: var(--muted); font-size: 0.85rem; min-width: 6.6rem; flex-shrink: 0; }
     .archive a { font-weight: 600; }
   </style>
+  <!-- hedge:head -->
+  <meta name="apple-itunes-app" content="app-id=6768878330">
+  <!-- /hedge:head -->
 </head>
 <body class="hedge">
   <main>
-    <p class="back"><a href="../">← Hedge</a></p>
+    <!-- hedge:bar -->
+    <header class="hedge-bar">
+      <a class="hedge-bar-mark" href="/hedge/" aria-label="Hedge home">Hedge</a>
+      <nav aria-label="Hedge pages">
+        <a href="/hedge/build/">How it's built</a>
+        <a href="/hedge/log/" aria-current="page">Build log</a>
+        <a href="/hedge/support/">Support</a>
+        <a href="/hedge/party/">Host a party</a>
+      </nav>
+    </header>
+    <!-- /hedge:bar -->
 
     <span class="chip">Build log</span>
     <h1><span class="brand-caps">Hedge</span>: <span class="title-rest">Build Log</span></h1>
@@ -153,6 +166,14 @@
         <a href="2026-07-12-agent-fleet/">Six plans, one day, and an agent fleet</a>
       </li>
     </ul>
+
+    <!-- hedge:get -->
+    <aside class="hedge-get" aria-label="Get Hedge">
+      <p class="hedge-get-title"><span class="brand-caps">Hedge</span> is daily calibrated trivia: bet how sure you are.</p>
+      <p class="hedge-get-platforms">Free on iPhone, iPad, Mac (Apple silicon), Apple TV, and Vision Pro.</p>
+      <a href="https://apps.apple.com/app/id6768878330" aria-label="Download Hedge on the App Store"><img src="/hedge/appstore-badge.svg" alt="Download on the App Store" height="48"></a>
+    </aside>
+    <!-- /hedge:get -->
 
     <footer>
       <a href="mailto:hedge@stiles.one">hedge@stiles.one</a>

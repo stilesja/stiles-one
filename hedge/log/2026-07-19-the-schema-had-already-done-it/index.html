@@ -12,9 +12,24 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&display=swap">
   <link rel="stylesheet" href="../../../styles.css">
   <link rel="stylesheet" href="../../hedge.css">
+  <!-- hedge:head -->
+  <meta name="apple-itunes-app" content="app-id=6768878330">
+  <!-- /hedge:head -->
 </head>
 <body class="hedge">
   <main>
+    <!-- hedge:bar -->
+    <header class="hedge-bar">
+      <a class="hedge-bar-mark" href="/hedge/" aria-label="Hedge home">Hedge</a>
+      <nav aria-label="Hedge pages">
+        <a href="/hedge/build/">How it's built</a>
+        <a href="/hedge/log/" aria-current="page">Build log</a>
+        <a href="/hedge/support/">Support</a>
+        <a href="/hedge/party/">Host a party</a>
+      </nav>
+    </header>
+    <!-- /hedge:bar -->
+
     <p class="back"><a href="../">← Build log</a></p>
 
     <span class="chip">Build log</span>
@@ -50,6 +65,14 @@
     <p>The finale happened when I finally stepped away from the simulators. My real iPhone with its extensive streak and play history, my real iPad with a fresh install and no history at all, and my real Apple ID. The phone pushed its entire history to the cloud on first launch, 410 answers and every pack run, 460 records in one shot. The iPad adopted all of it, skipped the tutorial (a device joining an account with three months of history is a homecoming, not a first run), matched the chip balance to the penny, and drew my full calibration chart. Then the test that sold me: I answered three of today's five on the phone, put it down, picked up the iPad, and the button said RESUME. I finished the round there, picked the phone back up, and it said SCORE. The full round played across two devices but the celebration was more than just the digital confetti you see after a perfect round. It was me knowing that adding in multiple device support actually meant something now. For an app that asks everyone the same five questions each day, having it on your tablet AND your phone didn't truly make sense until the two devices were able to synchronize your daily play.</p>
 
     <p>The best part of this project is what it didn't require. No backend, no accounts, no rewrite. The constraints I chose in April, immutable answers, derive-don't-store, deterministic shuffles, turned out to be the sync design, waiting. The architecture disappeared into the product.</p>
+
+    <!-- hedge:get -->
+    <aside class="hedge-get" aria-label="Get Hedge">
+      <p class="hedge-get-title"><span class="brand-caps">Hedge</span> is daily calibrated trivia: bet how sure you are.</p>
+      <p class="hedge-get-platforms">Free on iPhone, iPad, Mac (Apple silicon), Apple TV, and Vision Pro.</p>
+      <a href="https://apps.apple.com/app/id6768878330" aria-label="Download Hedge on the App Store"><img src="/hedge/appstore-badge.svg" alt="Download on the App Store" height="48"></a>
+    </aside>
+    <!-- /hedge:get -->
 
     <footer>
       <a href="mailto:hedge@stiles.one">hedge@stiles.one</a>

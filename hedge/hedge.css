@@ -163,3 +163,60 @@ h1.wordmark {
   line-height: 1.4;
   color: var(--text);
 }
+
+/*
+ * Site chrome for every Hedge subpage (2026-11): a top bar back to the
+ * landing page and its sibling pages, and a closing download card, so a
+ * direct-linked page (build log entries especially) still says what Hedge
+ * is and how to get it. Stamped into each page between hedge:* marker
+ * comments by tools/hedge_chrome.py; edit there, not in the pages.
+ */
+.hedge-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.4rem 1.25rem;
+  padding-bottom: 0.9rem;
+  margin: 0 0 1.75rem;
+  border-bottom: 1px solid var(--border);
+}
+.hedge-bar-mark {
+  font-family: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 1.15rem;
+  letter-spacing: 0.18em;
+  color: var(--accent);
+}
+.hedge-bar-mark:hover { text-decoration: none; opacity: 0.8; }
+.hedge-bar nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.1rem;
+  font-size: 0.875rem;
+}
+.hedge-bar nav a { color: var(--muted); font-weight: 500; }
+.hedge-bar nav a:hover { color: var(--accent); text-decoration: none; }
+.hedge-bar nav a[aria-current] { color: var(--accent); }
+
+.hedge-get {
+  margin: 2.75rem 0 1.5rem;
+  padding: 1.25rem 1.35rem 1.35rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  box-shadow: var(--shadow-sm);
+}
+.hedge-get p { margin: 0 0 0.35rem; }
+.hedge-get-title {
+  font-weight: 600;
+  color: var(--text);
+}
+.hedge-get-title .brand-caps { color: var(--accent); }
+.hedge-get-platforms {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+.hedge-get a { display: inline-block; margin-top: 0.6rem; }
+.hedge-get img { display: block; }
