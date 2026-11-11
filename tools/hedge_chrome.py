@@ -15,10 +15,11 @@ What it stamps (styles live in hedge/hedge.css, "Site chrome"):
 
 It also removes chrome the bar replaces: a "← Hedge" back pill (the
 wordmark does that job now) and the old one-line closing CTA on log
-entries (the card replaces it). The landing page (hedge/index.html) is
-never touched.
+entries (the card replaces it). Every page's hedge.css link gets a
+?v=<content hash> so a style change always reaches returning visitors. The
+landing page (hedge/index.html) gets only that version tag.
 """
-import pathlib, re, sys
+import hashlib, pathlib, re, sys
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 HEDGE = ROOT / "hedge"
@@ -81,6 +82,14 @@ BACK_TO_HEDGE = re.compile(r'[ \t]*<p class="back"><a href="\.\./">← Hedge</a>
 def strip(page: str, name: str) -> str:
     return re.sub(rf"[ \t]*<!-- hedge:{name} -->.*?<!-- /hedge:{name} -->\n*", "", page, flags=re.S)
 
+CSS_VERSION = hashlib.sha256((HEDGE / "hedge.css").read_bytes()).hexdigest()[:10]
+CSS_HREF = re.compile(r'(href="[./]*hedge\.css)(\?v=[0-9a-f]+)?"')
+
+def version_css(page: str) -> str:
+    """Pin the stylesheet link to the CSS content hash, so a style change
+    can never be masked by a browser's cached copy of hedge.css."""
+    return CSS_HREF.sub(lambda m: f'{m.group(1)}?v={CSS_VERSION}"', page)
+
 def stamp(path: pathlib.Path) -> bool:
     rel = path.relative_to(HEDGE).as_posix()
     page = original = path.read_text()
@@ -91,6 +100,7 @@ def stamp(path: pathlib.Path) -> bool:
     if head:
         page = page.replace("</head>", head + "</head>", 1)
 
+    page = version_css(page)
     page = strip(page, "bar")
     page = BACK_TO_HEDGE.sub("", page)
     assert page.count("<main>") == 1, rel
@@ -112,6 +122,11 @@ def stamp(path: pathlib.Path) -> bool:
 def main() -> int:
     pages = sorted(p for p in HEDGE.rglob("index.html") if p.parent != HEDGE)
     changed = [p for p in pages if stamp(p)]
+    landing = HEDGE / "index.html"  # only the stylesheet version, nothing else
+    text = landing.read_text()
+    if version_css(text) != text:
+        landing.write_text(version_css(text))
+        changed.append(landing)
     print(f"{len(pages)} subpages, {len(changed)} changed")
     for p in changed:
         print("  ", p.relative_to(ROOT))
