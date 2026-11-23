@@ -1,0 +1,392 @@
+[
+ {
+  "rep": 0,
+  "shape": "alone",
+  "text": "where's my package",
+  "probabilities": {
+   "billing": 0.00016536464398697771,
+   "none": 0.000233666802201129,
+   "orders": 0.00014834589281529796,
+   "returns": 0.00015437187598408455,
+   "shipping": 0.9990694947825636,
+   "tech_support": 0.00022875600244899401
+  }
+ },
+ {
+  "rep": 0,
+  "shape": "alone",
+  "text": "I was charged twice",
+  "probabilities": {
+   "billing": 0.998401712717488,
+   "none": 0.0005566396271712789,
+   "orders": 0.0003164597244177314,
+   "returns": 0.00020196444587321786,
+   "shipping": 0.00021840729162551125,
+   "tech_support": 0.0003048161934242019
+  }
+ },
+ {
+  "rep": 0,
+  "shape": "alone",
+  "text": "my router keeps dropping the connection",
+  "probabilities": {
+   "billing": 0.0004686234856336756,
+   "none": 0.001142970606368591,
+   "orders": 0.0003551010822861064,
+   "returns": 0.0003574236616214037,
+   "shipping": 0.0003392666369436557,
+   "tech_support": 0.9973366145271465
+  }
+ },
+ {
+  "rep": 0,
+  "shape": "alone",
+  "text": "I want my money back",
+  "probabilities": {
+   "billing": 0.9643823089707952,
+   "none": 0.0044210150434472115,
+   "orders": 0.0012568736273901844,
+   "returns": 0.029319845622816122,
+   "shipping": 0.00020328581695628996,
+   "tech_support": 0.0004166709185948967
+  }
+ },
+ {
+  "rep": 0,
+  "shape": "alone",
+  "text": "cancel it",
+  "probabilities": {
+   "billing": 0.0020030751501777656,
+   "none": 0.08071842913943943,
+   "orders": 0.91447693441867,
+   "returns": 0.0015054480205198859,
+   "shipping": 0.0005567762807718413,
+   "tech_support": 0.0007393369904211677
+  }
+ },
+ {
+  "rep": 0,
+  "shape": "alone",
+  "text": "it's broken",
+  "probabilities": {
+   "billing": 0.0016297731528245683,
+   "none": 0.043774027326516037,
+   "orders": 0.0020480649589899526,
+   "returns": 0.07432931178378326,
+   "shipping": 0.000915383694480259,
+   "tech_support": 0.877303439083406
+  }
+ },
+ {
+  "rep": 0,
+  "shape": "alone",
+  "text": "wrong size",
+  "probabilities": {
+   "billing": 0.0006516670736264141,
+   "none": 0.079142905823866,
+   "orders": 0.013526848368202733,
+   "returns": 0.9051001667830181,
+   "shipping": 0.00045412114115143785,
+   "tech_support": 0.0011242908101353661
+  }
+ },
+ {
+  "rep": 0,
+  "shape": "alone",
+  "text": "change the delivery address",
+  "probabilities": {
+   "billing": 0.0003003706733516037,
+   "none": 0.000836581998037468,
+   "orders": 0.007812380023147704,
+   "returns": 0.0006247284619700684,
+   "shipping": 0.9898564559926375,
+   "tech_support": 0.0005694828508555534
+  }
+ },
+ {
+  "rep": 0,
+  "shape": "alone",
+  "text": "the thing I ordered",
+  "probabilities": {
+   "billing": 0.002056321189072468,
+   "none": 0.6200900961080871,
+   "orders": 0.26425932168034594,
+   "returns": 0.0026208157339128084,
+   "shipping": 0.10989566938004496,
+   "tech_support": 0.0010777759085366613
+  }
+ },
+ {
+  "rep": 0,
+  "shape": "alone",
+  "text": "help",
+  "probabilities": {
+   "billing": 0.00031451162212954586,
+   "none": 0.9989018070670102,
+   "orders": 0.0002700107436138769,
+   "returns": 9.675170627116771e-05,
+   "shipping": 0.00010026257541641582,
+   "tech_support": 0.000316656285558861
+  }
+ },
+ {
+  "rep": 0,
+  "shape": "+english",
+  "text": "where's my package",
+  "probabilities": {
+   "billing": 0.0003688048938106376,
+   "none": 0.0004829252856771613,
+   "orders": 0.0003574000120748063,
+   "returns": 0.00037417783753365534,
+   "shipping": 0.9979708582973186,
+   "tech_support": 0.0004458336735852841
+  }
+ },
+ {
+  "rep": 0,
+  "shape": "+english",
+  "text": "I was charged twice",
+  "probabilities": {
+   "billing": 0.9985611468103617,
+   "none": 0.000766066282898922,
+   "orders": 0.00017491062626455475,
+   "returns": 0.00015924214277140958,
+   "shipping": 0.00012791707758162585,
+   "tech_support": 0.00021071706012173454
+  }
+ },
+ {
+  "rep": 0,
+  "shape": "+english",
+  "text": "my router keeps dropping the connection",
+  "probabilities": {
+   "billing": 0.00045854620226024723,
+   "none": 0.0020732901711541236,
+   "orders": 0.000364866003002985,
+   "returns": 0.00028736220940974436,
+   "shipping": 0.0002955947414886281,
+   "tech_support": 0.9965203406726844
+  }
+ },
+ {
+  "rep": 0,
+  "shape": "+english",
+  "text": "I want my money back",
+  "probabilities": {
+   "billing": 0.976236342217527,
+   "none": 0.004851167462815905,
+   "orders": 0.0011810527518475258,
+   "returns": 0.016675038775840804,
+   "shipping": 0.0002670175958996453,
+   "tech_support": 0.0007893811960692349
+  }
+ },
+ {
+  "rep": 0,
+  "shape": "+english",
+  "text": "cancel it",
+  "probabilities": {
+   "billing": 0.007962802397675198,
+   "none": 0.1820703165081076,
+   "orders": 0.8017934904663188,
+   "returns": 0.0031028230386364914,
+   "shipping": 0.0019043191912875583,
+   "tech_support": 0.003166248397974321
+  }
+ },
+ {
+  "rep": 0,
+  "shape": "+english",
+  "text": "it's broken",
+  "probabilities": {
+   "billing": 0.0023301548527056696,
+   "none": 0.05009170425121434,
+   "orders": 0.0034687500021141193,
+   "returns": 0.022719793708673282,
+   "shipping": 0.0018015178877016035,
+   "tech_support": 0.919588079297591
+  }
+ },
+ {
+  "rep": 0,
+  "shape": "+english",
+  "text": "wrong size",
+  "probabilities": {
+   "billing": 0.005312529436909379,
+   "none": 0.11700156282877244,
+   "orders": 0.026234312658093634,
+   "returns": 0.8371814543753311,
+   "shipping": 0.0029414889070831785,
+   "tech_support": 0.011328651793810214
+  }
+ },
+ {
+  "rep": 0,
+  "shape": "+english",
+  "text": "change the delivery address",
+  "probabilities": {
+   "billing": 0.0006646433878682416,
+   "none": 0.0009366468932889934,
+   "orders": 0.0018400461394112984,
+   "returns": 0.0005053476738330728,
+   "shipping": 0.9955253288302144,
+   "tech_support": 0.0005279870753840067
+  }
+ },
+ {
+  "rep": 0,
+  "shape": "+english",
+  "text": "the thing I ordered",
+  "probabilities": {
+   "billing": 0.013830861016182442,
+   "none": 0.3388115462742942,
+   "orders": 0.4933319065859742,
+   "returns": 0.024698113112415453,
+   "shipping": 0.11937425720454967,
+   "tech_support": 0.009953315806584135
+  }
+ },
+ {
+  "rep": 0,
+  "shape": "+english",
+  "text": "help",
+  "probabilities": {
+   "billing": 0.004797191009346686,
+   "none": 0.982032868241687,
+   "orders": 0.004412708486067957,
+   "returns": 0.0025277973724487763,
+   "shipping": 0.0024536916369946905,
+   "tech_support": 0.0037757432534548455
+  }
+ },
+ {
+  "rep": 0,
+  "shape": "+person",
+  "text": "where's my package",
+  "probabilities": {
+   "billing": 0.0003688048938106376,
+   "none": 0.0004829252856771613,
+   "orders": 0.0003574000120748063,
+   "returns": 0.00037417783753365534,
+   "shipping": 0.9979708582973186,
+   "tech_support": 0.0004458336735852841
+  }
+ },
+ {
+  "rep": 0,
+  "shape": "+person",
+  "text": "I was charged twice",
+  "probabilities": {
+   "billing": 0.9985611468103617,
+   "none": 0.000766066282898922,
+   "orders": 0.00017491062626455475,
+   "returns": 0.00015924214277140958,
+   "shipping": 0.00012791707758162585,
+   "tech_support": 0.00021071706012173454
+  }
+ },
+ {
+  "rep": 0,
+  "shape": "+person",
+  "text": "my router keeps dropping the connection",
+  "probabilities": {
+   "billing": 0.00045854620226024723,
+   "none": 0.0020732901711541236,
+   "orders": 0.000364866003002985,
+   "returns": 0.00028736220940974436,
+   "shipping": 0.0002955947414886281,
+   "tech_support": 0.9965203406726844
+  }
+ },
+ {
+  "rep": 0,
+  "shape": "+person",
+  "text": "I want my money back",
+  "probabilities": {
+   "billing": 0.976236342217527,
+   "none": 0.004851167462815905,
+   "orders": 0.0011810527518475258,
+   "returns": 0.016675038775840804,
+   "shipping": 0.0002670175958996453,
+   "tech_support": 0.0007893811960692349
+  }
+ },
+ {
+  "rep": 0,
+  "shape": "+person",
+  "text": "cancel it",
+  "probabilities": {
+   "billing": 0.007962802397675198,
+   "none": 0.1820703165081076,
+   "orders": 0.8017934904663188,
+   "returns": 0.0031028230386364914,
+   "shipping": 0.0019043191912875583,
+   "tech_support": 0.003166248397974321
+  }
+ },
+ {
+  "rep": 0,
+  "shape": "+person",
+  "text": "it's broken",
+  "probabilities": {
+   "billing": 0.0023301548527056696,
+   "none": 0.05009170425121434,
+   "orders": 0.0034687500021141193,
+   "returns": 0.022719793708673282,
+   "shipping": 0.0018015178877016035,
+   "tech_support": 0.919588079297591
+  }
+ },
+ {
+  "rep": 0,
+  "shape": "+person",
+  "text": "wrong size",
+  "probabilities": {
+   "billing": 0.005312529436909379,
+   "none": 0.11700156282877244,
+   "orders": 0.026234312658093634,
+   "returns": 0.8371814543753311,
+   "shipping": 0.0029414889070831785,
+   "tech_support": 0.011328651793810214
+  }
+ },
+ {
+  "rep": 0,
+  "shape": "+person",
+  "text": "change the delivery address",
+  "probabilities": {
+   "billing": 0.0006646433878682416,
+   "none": 0.0009366468932889934,
+   "orders": 0.0018400461394112984,
+   "returns": 0.0005053476738330728,
+   "shipping": 0.9955253288302144,
+   "tech_support": 0.0005279870753840067
+  }
+ },
+ {
+  "rep": 0,
+  "shape": "+person",
+  "text": "the thing I ordered",
+  "probabilities": {
+   "billing": 0.013830861016182442,
+   "none": 0.3388115462742942,
+   "orders": 0.4933319065859742,
+   "returns": 0.024698113112415453,
+   "shipping": 0.11937425720454967,
+   "tech_support": 0.009953315806584135
+  }
+ },
+ {
+  "rep": 0,
+  "shape": "+person",
+  "text": "help",
+  "probabilities": {
+   "billing": 0.004797191009346686,
+   "none": 0.982032868241687,
+   "orders": 0.004412708486067957,
+   "returns": 0.0025277973724487763,
+   "shipping": 0.0024536916369946905,
+   "tech_support": 0.0037757432534548455
+  }
+ }
+]

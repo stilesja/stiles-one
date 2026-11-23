@@ -1,0 +1,1282 @@
+[
+ {
+  "shape": "alone",
+  "text": "where's my package",
+  "model_answered": "jev-1.14.0",
+  "choice": "shipping",
+  "confidence": 1.0,
+  "probabilities": {
+   "billing": 0.0,
+   "orders": 0.0,
+   "shipping": 1.0,
+   "returns": 0.0,
+   "tech_support": 0.0,
+   "none": 0.0
+  },
+  "others": {},
+  "request": {
+   "model": "jev-1.14.0",
+   "state": "where's my package",
+   "questions": {
+    "department": {
+     "type": "choice",
+     "instructions": "Which department is the customer asking for?",
+     "criteria": {
+      "billing": "charges, refunds, invoices or payment methods",
+      "orders": "placing, changing or cancelling an order",
+      "shipping": "where a package is, delivery dates, tracking or the delivery address",
+      "returns": "sending an item back or exchanging it",
+      "tech_support": "a product that isn't working or won't connect",
+      "none": "none of these fits, or it is unclear what the customer wants"
+     }
+    }
+   }
+  }
+ },
+ {
+  "shape": "alone",
+  "text": "I was charged twice",
+  "model_answered": "jev-1.14.0",
+  "choice": "billing",
+  "confidence": 1.0,
+  "probabilities": {
+   "billing": 1.0,
+   "orders": 0.0,
+   "shipping": 0.0,
+   "returns": 0.0,
+   "tech_support": 0.0,
+   "none": 0.0
+  },
+  "others": {},
+  "request": {
+   "model": "jev-1.14.0",
+   "state": "I was charged twice",
+   "questions": {
+    "department": {
+     "type": "choice",
+     "instructions": "Which department is the customer asking for?",
+     "criteria": {
+      "billing": "charges, refunds, invoices or payment methods",
+      "orders": "placing, changing or cancelling an order",
+      "shipping": "where a package is, delivery dates, tracking or the delivery address",
+      "returns": "sending an item back or exchanging it",
+      "tech_support": "a product that isn't working or won't connect",
+      "none": "none of these fits, or it is unclear what the customer wants"
+     }
+    }
+   }
+  }
+ },
+ {
+  "shape": "alone",
+  "text": "my router keeps dropping the connection",
+  "model_answered": "jev-1.14.0",
+  "choice": "tech_support",
+  "confidence": 1.0,
+  "probabilities": {
+   "billing": 0.0,
+   "orders": 0.0,
+   "shipping": 0.0,
+   "returns": 0.0,
+   "tech_support": 1.0,
+   "none": 0.0
+  },
+  "others": {},
+  "request": {
+   "model": "jev-1.14.0",
+   "state": "my router keeps dropping the connection",
+   "questions": {
+    "department": {
+     "type": "choice",
+     "instructions": "Which department is the customer asking for?",
+     "criteria": {
+      "billing": "charges, refunds, invoices or payment methods",
+      "orders": "placing, changing or cancelling an order",
+      "shipping": "where a package is, delivery dates, tracking or the delivery address",
+      "returns": "sending an item back or exchanging it",
+      "tech_support": "a product that isn't working or won't connect",
+      "none": "none of these fits, or it is unclear what the customer wants"
+     }
+    }
+   }
+  }
+ },
+ {
+  "shape": "alone",
+  "text": "I want my money back",
+  "model_answered": "jev-1.14.0",
+  "choice": "billing",
+  "confidence": 0.99,
+  "probabilities": {
+   "billing": 0.99,
+   "orders": 0.0,
+   "shipping": 0.0,
+   "returns": 0.01,
+   "tech_support": 0.0,
+   "none": 0.0
+  },
+  "others": {},
+  "request": {
+   "model": "jev-1.14.0",
+   "state": "I want my money back",
+   "questions": {
+    "department": {
+     "type": "choice",
+     "instructions": "Which department is the customer asking for?",
+     "criteria": {
+      "billing": "charges, refunds, invoices or payment methods",
+      "orders": "placing, changing or cancelling an order",
+      "shipping": "where a package is, delivery dates, tracking or the delivery address",
+      "returns": "sending an item back or exchanging it",
+      "tech_support": "a product that isn't working or won't connect",
+      "none": "none of these fits, or it is unclear what the customer wants"
+     }
+    }
+   }
+  }
+ },
+ {
+  "shape": "alone",
+  "text": "cancel it",
+  "model_answered": "jev-1.14.0",
+  "choice": "orders",
+  "confidence": 0.64,
+  "probabilities": {
+   "billing": 0.0,
+   "orders": 0.7,
+   "shipping": 0.0,
+   "returns": 0.0,
+   "tech_support": 0.0,
+   "none": 0.3
+  },
+  "others": {},
+  "request": {
+   "model": "jev-1.14.0",
+   "state": "cancel it",
+   "questions": {
+    "department": {
+     "type": "choice",
+     "instructions": "Which department is the customer asking for?",
+     "criteria": {
+      "billing": "charges, refunds, invoices or payment methods",
+      "orders": "placing, changing or cancelling an order",
+      "shipping": "where a package is, delivery dates, tracking or the delivery address",
+      "returns": "sending an item back or exchanging it",
+      "tech_support": "a product that isn't working or won't connect",
+      "none": "none of these fits, or it is unclear what the customer wants"
+     }
+    }
+   }
+  }
+ },
+ {
+  "shape": "alone",
+  "text": "it's broken",
+  "model_answered": "jev-1.14.0",
+  "choice": "tech_support",
+  "confidence": 0.93,
+  "probabilities": {
+   "billing": 0.0,
+   "orders": 0.0,
+   "shipping": 0.0,
+   "returns": 0.0,
+   "tech_support": 0.94,
+   "none": 0.06
+  },
+  "others": {},
+  "request": {
+   "model": "jev-1.14.0",
+   "state": "it's broken",
+   "questions": {
+    "department": {
+     "type": "choice",
+     "instructions": "Which department is the customer asking for?",
+     "criteria": {
+      "billing": "charges, refunds, invoices or payment methods",
+      "orders": "placing, changing or cancelling an order",
+      "shipping": "where a package is, delivery dates, tracking or the delivery address",
+      "returns": "sending an item back or exchanging it",
+      "tech_support": "a product that isn't working or won't connect",
+      "none": "none of these fits, or it is unclear what the customer wants"
+     }
+    }
+   }
+  }
+ },
+ {
+  "shape": "alone",
+  "text": "wrong size",
+  "model_answered": "jev-1.14.0",
+  "choice": "returns",
+  "confidence": 0.8,
+  "probabilities": {
+   "billing": 0.0,
+   "orders": 0.02,
+   "shipping": 0.0,
+   "returns": 0.83,
+   "tech_support": 0.0,
+   "none": 0.15
+  },
+  "others": {},
+  "request": {
+   "model": "jev-1.14.0",
+   "state": "wrong size",
+   "questions": {
+    "department": {
+     "type": "choice",
+     "instructions": "Which department is the customer asking for?",
+     "criteria": {
+      "billing": "charges, refunds, invoices or payment methods",
+      "orders": "placing, changing or cancelling an order",
+      "shipping": "where a package is, delivery dates, tracking or the delivery address",
+      "returns": "sending an item back or exchanging it",
+      "tech_support": "a product that isn't working or won't connect",
+      "none": "none of these fits, or it is unclear what the customer wants"
+     }
+    }
+   }
+  }
+ },
+ {
+  "shape": "alone",
+  "text": "change the delivery address",
+  "model_answered": "jev-1.14.0",
+  "choice": "shipping",
+  "confidence": 1.0,
+  "probabilities": {
+   "billing": 0.0,
+   "orders": 0.0,
+   "shipping": 1.0,
+   "returns": 0.0,
+   "tech_support": 0.0,
+   "none": 0.0
+  },
+  "others": {},
+  "request": {
+   "model": "jev-1.14.0",
+   "state": "change the delivery address",
+   "questions": {
+    "department": {
+     "type": "choice",
+     "instructions": "Which department is the customer asking for?",
+     "criteria": {
+      "billing": "charges, refunds, invoices or payment methods",
+      "orders": "placing, changing or cancelling an order",
+      "shipping": "where a package is, delivery dates, tracking or the delivery address",
+      "returns": "sending an item back or exchanging it",
+      "tech_support": "a product that isn't working or won't connect",
+      "none": "none of these fits, or it is unclear what the customer wants"
+     }
+    }
+   }
+  }
+ },
+ {
+  "shape": "alone",
+  "text": "the thing I ordered",
+  "model_answered": "jev-1.14.0",
+  "choice": "none",
+  "confidence": 0.66,
+  "probabilities": {
+   "billing": 0.0,
+   "orders": 0.15,
+   "shipping": 0.12,
+   "returns": 0.01,
+   "tech_support": 0.0,
+   "none": 0.72
+  },
+  "others": {},
+  "request": {
+   "model": "jev-1.14.0",
+   "state": "the thing I ordered",
+   "questions": {
+    "department": {
+     "type": "choice",
+     "instructions": "Which department is the customer asking for?",
+     "criteria": {
+      "billing": "charges, refunds, invoices or payment methods",
+      "orders": "placing, changing or cancelling an order",
+      "shipping": "where a package is, delivery dates, tracking or the delivery address",
+      "returns": "sending an item back or exchanging it",
+      "tech_support": "a product that isn't working or won't connect",
+      "none": "none of these fits, or it is unclear what the customer wants"
+     }
+    }
+   }
+  }
+ },
+ {
+  "shape": "alone",
+  "text": "help",
+  "model_answered": "jev-1.14.0",
+  "choice": "none",
+  "confidence": 1.0,
+  "probabilities": {
+   "billing": 0.0,
+   "orders": 0.0,
+   "shipping": 0.0,
+   "returns": 0.0,
+   "tech_support": 0.0,
+   "none": 1.0
+  },
+  "others": {},
+  "request": {
+   "model": "jev-1.14.0",
+   "state": "help",
+   "questions": {
+    "department": {
+     "type": "choice",
+     "instructions": "Which department is the customer asking for?",
+     "criteria": {
+      "billing": "charges, refunds, invoices or payment methods",
+      "orders": "placing, changing or cancelling an order",
+      "shipping": "where a package is, delivery dates, tracking or the delivery address",
+      "returns": "sending an item back or exchanging it",
+      "tech_support": "a product that isn't working or won't connect",
+      "none": "none of these fits, or it is unclear what the customer wants"
+     }
+    }
+   }
+  }
+ },
+ {
+  "shape": "+english",
+  "text": "where's my package",
+  "model_answered": "jev-1.14.0",
+  "choice": "shipping",
+  "confidence": 1.0,
+  "probabilities": {
+   "billing": 0.0,
+   "orders": 0.0,
+   "shipping": 1.0,
+   "returns": 0.0,
+   "tech_support": 0.0,
+   "none": 0.0
+  },
+  "others": {
+   "english": {
+    "yes": 1.0,
+    "no": 0.0
+   }
+  },
+  "request": {
+   "model": "jev-1.14.0",
+   "state": "where's my package",
+   "questions": {
+    "department": {
+     "type": "choice",
+     "instructions": "Which department is the customer asking for?",
+     "criteria": {
+      "billing": "charges, refunds, invoices or payment methods",
+      "orders": "placing, changing or cancelling an order",
+      "shipping": "where a package is, delivery dates, tracking or the delivery address",
+      "returns": "sending an item back or exchanging it",
+      "tech_support": "a product that isn't working or won't connect",
+      "none": "none of these fits, or it is unclear what the customer wants"
+     }
+    },
+    "english": {
+     "type": "choice",
+     "instructions": "Is the text written in English?",
+     "criteria": {
+      "yes": "the text is in English",
+      "no": "the text is not in English"
+     }
+    }
+   }
+  }
+ },
+ {
+  "shape": "+english",
+  "text": "I was charged twice",
+  "model_answered": "jev-1.14.0",
+  "choice": "billing",
+  "confidence": 1.0,
+  "probabilities": {
+   "billing": 1.0,
+   "orders": 0.0,
+   "shipping": 0.0,
+   "returns": 0.0,
+   "tech_support": 0.0,
+   "none": 0.0
+  },
+  "others": {
+   "english": {
+    "yes": 1.0,
+    "no": 0.0
+   }
+  },
+  "request": {
+   "model": "jev-1.14.0",
+   "state": "I was charged twice",
+   "questions": {
+    "department": {
+     "type": "choice",
+     "instructions": "Which department is the customer asking for?",
+     "criteria": {
+      "billing": "charges, refunds, invoices or payment methods",
+      "orders": "placing, changing or cancelling an order",
+      "shipping": "where a package is, delivery dates, tracking or the delivery address",
+      "returns": "sending an item back or exchanging it",
+      "tech_support": "a product that isn't working or won't connect",
+      "none": "none of these fits, or it is unclear what the customer wants"
+     }
+    },
+    "english": {
+     "type": "choice",
+     "instructions": "Is the text written in English?",
+     "criteria": {
+      "yes": "the text is in English",
+      "no": "the text is not in English"
+     }
+    }
+   }
+  }
+ },
+ {
+  "shape": "+english",
+  "text": "my router keeps dropping the connection",
+  "model_answered": "jev-1.14.0",
+  "choice": "tech_support",
+  "confidence": 1.0,
+  "probabilities": {
+   "billing": 0.0,
+   "orders": 0.0,
+   "shipping": 0.0,
+   "returns": 0.0,
+   "tech_support": 1.0,
+   "none": 0.0
+  },
+  "others": {
+   "english": {
+    "yes": 1.0,
+    "no": 0.0
+   }
+  },
+  "request": {
+   "model": "jev-1.14.0",
+   "state": "my router keeps dropping the connection",
+   "questions": {
+    "department": {
+     "type": "choice",
+     "instructions": "Which department is the customer asking for?",
+     "criteria": {
+      "billing": "charges, refunds, invoices or payment methods",
+      "orders": "placing, changing or cancelling an order",
+      "shipping": "where a package is, delivery dates, tracking or the delivery address",
+      "returns": "sending an item back or exchanging it",
+      "tech_support": "a product that isn't working or won't connect",
+      "none": "none of these fits, or it is unclear what the customer wants"
+     }
+    },
+    "english": {
+     "type": "choice",
+     "instructions": "Is the text written in English?",
+     "criteria": {
+      "yes": "the text is in English",
+      "no": "the text is not in English"
+     }
+    }
+   }
+  }
+ },
+ {
+  "shape": "+english",
+  "text": "I want my money back",
+  "model_answered": "jev-1.14.0",
+  "choice": "billing",
+  "confidence": 0.99,
+  "probabilities": {
+   "billing": 0.99,
+   "orders": 0.0,
+   "shipping": 0.0,
+   "returns": 0.01,
+   "tech_support": 0.0,
+   "none": 0.0
+  },
+  "others": {
+   "english": {
+    "yes": 1.0,
+    "no": 0.0
+   }
+  },
+  "request": {
+   "model": "jev-1.14.0",
+   "state": "I want my money back",
+   "questions": {
+    "department": {
+     "type": "choice",
+     "instructions": "Which department is the customer asking for?",
+     "criteria": {
+      "billing": "charges, refunds, invoices or payment methods",
+      "orders": "placing, changing or cancelling an order",
+      "shipping": "where a package is, delivery dates, tracking or the delivery address",
+      "returns": "sending an item back or exchanging it",
+      "tech_support": "a product that isn't working or won't connect",
+      "none": "none of these fits, or it is unclear what the customer wants"
+     }
+    },
+    "english": {
+     "type": "choice",
+     "instructions": "Is the text written in English?",
+     "criteria": {
+      "yes": "the text is in English",
+      "no": "the text is not in English"
+     }
+    }
+   }
+  }
+ },
+ {
+  "shape": "+english",
+  "text": "cancel it",
+  "model_answered": "jev-1.14.0",
+  "choice": "orders",
+  "confidence": 0.72,
+  "probabilities": {
+   "billing": 0.0,
+   "orders": 0.77,
+   "shipping": 0.0,
+   "returns": 0.0,
+   "tech_support": 0.0,
+   "none": 0.23
+  },
+  "others": {
+   "english": {
+    "yes": 1.0,
+    "no": 0.0
+   }
+  },
+  "request": {
+   "model": "jev-1.14.0",
+   "state": "cancel it",
+   "questions": {
+    "department": {
+     "type": "choice",
+     "instructions": "Which department is the customer asking for?",
+     "criteria": {
+      "billing": "charges, refunds, invoices or payment methods",
+      "orders": "placing, changing or cancelling an order",
+      "shipping": "where a package is, delivery dates, tracking or the delivery address",
+      "returns": "sending an item back or exchanging it",
+      "tech_support": "a product that isn't working or won't connect",
+      "none": "none of these fits, or it is unclear what the customer wants"
+     }
+    },
+    "english": {
+     "type": "choice",
+     "instructions": "Is the text written in English?",
+     "criteria": {
+      "yes": "the text is in English",
+      "no": "the text is not in English"
+     }
+    }
+   }
+  }
+ },
+ {
+  "shape": "+english",
+  "text": "it's broken",
+  "model_answered": "jev-1.14.0",
+  "choice": "tech_support",
+  "confidence": 0.9,
+  "probabilities": {
+   "billing": 0.0,
+   "orders": 0.0,
+   "shipping": 0.0,
+   "returns": 0.0,
+   "tech_support": 0.92,
+   "none": 0.08
+  },
+  "others": {
+   "english": {
+    "yes": 1.0,
+    "no": 0.0
+   }
+  },
+  "request": {
+   "model": "jev-1.14.0",
+   "state": "it's broken",
+   "questions": {
+    "department": {
+     "type": "choice",
+     "instructions": "Which department is the customer asking for?",
+     "criteria": {
+      "billing": "charges, refunds, invoices or payment methods",
+      "orders": "placing, changing or cancelling an order",
+      "shipping": "where a package is, delivery dates, tracking or the delivery address",
+      "returns": "sending an item back or exchanging it",
+      "tech_support": "a product that isn't working or won't connect",
+      "none": "none of these fits, or it is unclear what the customer wants"
+     }
+    },
+    "english": {
+     "type": "choice",
+     "instructions": "Is the text written in English?",
+     "criteria": {
+      "yes": "the text is in English",
+      "no": "the text is not in English"
+     }
+    }
+   }
+  }
+ },
+ {
+  "shape": "+english",
+  "text": "wrong size",
+  "model_answered": "jev-1.14.0",
+  "choice": "returns",
+  "confidence": 0.81,
+  "probabilities": {
+   "billing": 0.0,
+   "orders": 0.02,
+   "shipping": 0.0,
+   "returns": 0.84,
+   "tech_support": 0.0,
+   "none": 0.14
+  },
+  "others": {
+   "english": {
+    "yes": 1.0,
+    "no": 0.0
+   }
+  },
+  "request": {
+   "model": "jev-1.14.0",
+   "state": "wrong size",
+   "questions": {
+    "department": {
+     "type": "choice",
+     "instructions": "Which department is the customer asking for?",
+     "criteria": {
+      "billing": "charges, refunds, invoices or payment methods",
+      "orders": "placing, changing or cancelling an order",
+      "shipping": "where a package is, delivery dates, tracking or the delivery address",
+      "returns": "sending an item back or exchanging it",
+      "tech_support": "a product that isn't working or won't connect",
+      "none": "none of these fits, or it is unclear what the customer wants"
+     }
+    },
+    "english": {
+     "type": "choice",
+     "instructions": "Is the text written in English?",
+     "criteria": {
+      "yes": "the text is in English",
+      "no": "the text is not in English"
+     }
+    }
+   }
+  }
+ },
+ {
+  "shape": "+english",
+  "text": "change the delivery address",
+  "model_answered": "jev-1.14.0",
+  "choice": "shipping",
+  "confidence": 1.0,
+  "probabilities": {
+   "billing": 0.0,
+   "orders": 0.0,
+   "shipping": 1.0,
+   "returns": 0.0,
+   "tech_support": 0.0,
+   "none": 0.0
+  },
+  "others": {
+   "english": {
+    "yes": 1.0,
+    "no": 0.0
+   }
+  },
+  "request": {
+   "model": "jev-1.14.0",
+   "state": "change the delivery address",
+   "questions": {
+    "department": {
+     "type": "choice",
+     "instructions": "Which department is the customer asking for?",
+     "criteria": {
+      "billing": "charges, refunds, invoices or payment methods",
+      "orders": "placing, changing or cancelling an order",
+      "shipping": "where a package is, delivery dates, tracking or the delivery address",
+      "returns": "sending an item back or exchanging it",
+      "tech_support": "a product that isn't working or won't connect",
+      "none": "none of these fits, or it is unclear what the customer wants"
+     }
+    },
+    "english": {
+     "type": "choice",
+     "instructions": "Is the text written in English?",
+     "criteria": {
+      "yes": "the text is in English",
+      "no": "the text is not in English"
+     }
+    }
+   }
+  }
+ },
+ {
+  "shape": "+english",
+  "text": "the thing I ordered",
+  "model_answered": "jev-1.14.0",
+  "choice": "none",
+  "confidence": 0.65,
+  "probabilities": {
+   "billing": 0.0,
+   "orders": 0.14,
+   "shipping": 0.14,
+   "returns": 0.01,
+   "tech_support": 0.0,
+   "none": 0.71
+  },
+  "others": {
+   "english": {
+    "yes": 1.0,
+    "no": 0.0
+   }
+  },
+  "request": {
+   "model": "jev-1.14.0",
+   "state": "the thing I ordered",
+   "questions": {
+    "department": {
+     "type": "choice",
+     "instructions": "Which department is the customer asking for?",
+     "criteria": {
+      "billing": "charges, refunds, invoices or payment methods",
+      "orders": "placing, changing or cancelling an order",
+      "shipping": "where a package is, delivery dates, tracking or the delivery address",
+      "returns": "sending an item back or exchanging it",
+      "tech_support": "a product that isn't working or won't connect",
+      "none": "none of these fits, or it is unclear what the customer wants"
+     }
+    },
+    "english": {
+     "type": "choice",
+     "instructions": "Is the text written in English?",
+     "criteria": {
+      "yes": "the text is in English",
+      "no": "the text is not in English"
+     }
+    }
+   }
+  }
+ },
+ {
+  "shape": "+english",
+  "text": "help",
+  "model_answered": "jev-1.14.0",
+  "choice": "none",
+  "confidence": 1.0,
+  "probabilities": {
+   "billing": 0.0,
+   "orders": 0.0,
+   "shipping": 0.0,
+   "returns": 0.0,
+   "tech_support": 0.0,
+   "none": 1.0
+  },
+  "others": {
+   "english": {
+    "yes": 1.0,
+    "no": 0.0
+   }
+  },
+  "request": {
+   "model": "jev-1.14.0",
+   "state": "help",
+   "questions": {
+    "department": {
+     "type": "choice",
+     "instructions": "Which department is the customer asking for?",
+     "criteria": {
+      "billing": "charges, refunds, invoices or payment methods",
+      "orders": "placing, changing or cancelling an order",
+      "shipping": "where a package is, delivery dates, tracking or the delivery address",
+      "returns": "sending an item back or exchanging it",
+      "tech_support": "a product that isn't working or won't connect",
+      "none": "none of these fits, or it is unclear what the customer wants"
+     }
+    },
+    "english": {
+     "type": "choice",
+     "instructions": "Is the text written in English?",
+     "criteria": {
+      "yes": "the text is in English",
+      "no": "the text is not in English"
+     }
+    }
+   }
+  }
+ },
+ {
+  "shape": "+person",
+  "text": "where's my package",
+  "model_answered": "jev-1.14.0",
+  "choice": "shipping",
+  "confidence": 1.0,
+  "probabilities": {
+   "billing": 0.0,
+   "orders": 0.0,
+   "shipping": 1.0,
+   "returns": 0.0,
+   "tech_support": 0.0,
+   "none": 0.0
+  },
+  "others": {
+   "person": {
+    "yes": 0.0,
+    "no": 1.0
+   }
+  },
+  "request": {
+   "model": "jev-1.14.0",
+   "state": "where's my package",
+   "questions": {
+    "department": {
+     "type": "choice",
+     "instructions": "Which department is the customer asking for?",
+     "criteria": {
+      "billing": "charges, refunds, invoices or payment methods",
+      "orders": "placing, changing or cancelling an order",
+      "shipping": "where a package is, delivery dates, tracking or the delivery address",
+      "returns": "sending an item back or exchanging it",
+      "tech_support": "a product that isn't working or won't connect",
+      "none": "none of these fits, or it is unclear what the customer wants"
+     }
+    },
+    "person": {
+     "type": "choice",
+     "instructions": "Does the customer ask to speak to a person?",
+     "criteria": {
+      "yes": "the customer asks for a person, an agent or a representative",
+      "no": "the customer doesn't ask for a person"
+     }
+    }
+   }
+  }
+ },
+ {
+  "shape": "+person",
+  "text": "I was charged twice",
+  "model_answered": "jev-1.14.0",
+  "choice": "billing",
+  "confidence": 1.0,
+  "probabilities": {
+   "billing": 1.0,
+   "orders": 0.0,
+   "shipping": 0.0,
+   "returns": 0.0,
+   "tech_support": 0.0,
+   "none": 0.0
+  },
+  "others": {
+   "person": {
+    "yes": 0.0,
+    "no": 1.0
+   }
+  },
+  "request": {
+   "model": "jev-1.14.0",
+   "state": "I was charged twice",
+   "questions": {
+    "department": {
+     "type": "choice",
+     "instructions": "Which department is the customer asking for?",
+     "criteria": {
+      "billing": "charges, refunds, invoices or payment methods",
+      "orders": "placing, changing or cancelling an order",
+      "shipping": "where a package is, delivery dates, tracking or the delivery address",
+      "returns": "sending an item back or exchanging it",
+      "tech_support": "a product that isn't working or won't connect",
+      "none": "none of these fits, or it is unclear what the customer wants"
+     }
+    },
+    "person": {
+     "type": "choice",
+     "instructions": "Does the customer ask to speak to a person?",
+     "criteria": {
+      "yes": "the customer asks for a person, an agent or a representative",
+      "no": "the customer doesn't ask for a person"
+     }
+    }
+   }
+  }
+ },
+ {
+  "shape": "+person",
+  "text": "my router keeps dropping the connection",
+  "model_answered": "jev-1.14.0",
+  "choice": "tech_support",
+  "confidence": 1.0,
+  "probabilities": {
+   "billing": 0.0,
+   "orders": 0.0,
+   "shipping": 0.0,
+   "returns": 0.0,
+   "tech_support": 1.0,
+   "none": 0.0
+  },
+  "others": {
+   "person": {
+    "yes": 0.0,
+    "no": 1.0
+   }
+  },
+  "request": {
+   "model": "jev-1.14.0",
+   "state": "my router keeps dropping the connection",
+   "questions": {
+    "department": {
+     "type": "choice",
+     "instructions": "Which department is the customer asking for?",
+     "criteria": {
+      "billing": "charges, refunds, invoices or payment methods",
+      "orders": "placing, changing or cancelling an order",
+      "shipping": "where a package is, delivery dates, tracking or the delivery address",
+      "returns": "sending an item back or exchanging it",
+      "tech_support": "a product that isn't working or won't connect",
+      "none": "none of these fits, or it is unclear what the customer wants"
+     }
+    },
+    "person": {
+     "type": "choice",
+     "instructions": "Does the customer ask to speak to a person?",
+     "criteria": {
+      "yes": "the customer asks for a person, an agent or a representative",
+      "no": "the customer doesn't ask for a person"
+     }
+    }
+   }
+  }
+ },
+ {
+  "shape": "+person",
+  "text": "I want my money back",
+  "model_answered": "jev-1.14.0",
+  "choice": "billing",
+  "confidence": 0.99,
+  "probabilities": {
+   "billing": 0.99,
+   "orders": 0.0,
+   "shipping": 0.0,
+   "returns": 0.01,
+   "tech_support": 0.0,
+   "none": 0.0
+  },
+  "others": {
+   "person": {
+    "yes": 0.0,
+    "no": 1.0
+   }
+  },
+  "request": {
+   "model": "jev-1.14.0",
+   "state": "I want my money back",
+   "questions": {
+    "department": {
+     "type": "choice",
+     "instructions": "Which department is the customer asking for?",
+     "criteria": {
+      "billing": "charges, refunds, invoices or payment methods",
+      "orders": "placing, changing or cancelling an order",
+      "shipping": "where a package is, delivery dates, tracking or the delivery address",
+      "returns": "sending an item back or exchanging it",
+      "tech_support": "a product that isn't working or won't connect",
+      "none": "none of these fits, or it is unclear what the customer wants"
+     }
+    },
+    "person": {
+     "type": "choice",
+     "instructions": "Does the customer ask to speak to a person?",
+     "criteria": {
+      "yes": "the customer asks for a person, an agent or a representative",
+      "no": "the customer doesn't ask for a person"
+     }
+    }
+   }
+  }
+ },
+ {
+  "shape": "+person",
+  "text": "cancel it",
+  "model_answered": "jev-1.14.0",
+  "choice": "orders",
+  "confidence": 0.7,
+  "probabilities": {
+   "billing": 0.0,
+   "orders": 0.75,
+   "shipping": 0.0,
+   "returns": 0.0,
+   "tech_support": 0.0,
+   "none": 0.25
+  },
+  "others": {
+   "person": {
+    "yes": 0.0,
+    "no": 1.0
+   }
+  },
+  "request": {
+   "model": "jev-1.14.0",
+   "state": "cancel it",
+   "questions": {
+    "department": {
+     "type": "choice",
+     "instructions": "Which department is the customer asking for?",
+     "criteria": {
+      "billing": "charges, refunds, invoices or payment methods",
+      "orders": "placing, changing or cancelling an order",
+      "shipping": "where a package is, delivery dates, tracking or the delivery address",
+      "returns": "sending an item back or exchanging it",
+      "tech_support": "a product that isn't working or won't connect",
+      "none": "none of these fits, or it is unclear what the customer wants"
+     }
+    },
+    "person": {
+     "type": "choice",
+     "instructions": "Does the customer ask to speak to a person?",
+     "criteria": {
+      "yes": "the customer asks for a person, an agent or a representative",
+      "no": "the customer doesn't ask for a person"
+     }
+    }
+   }
+  }
+ },
+ {
+  "shape": "+person",
+  "text": "it's broken",
+  "model_answered": "jev-1.14.0",
+  "choice": "tech_support",
+  "confidence": 0.93,
+  "probabilities": {
+   "billing": 0.0,
+   "orders": 0.0,
+   "shipping": 0.0,
+   "returns": 0.0,
+   "tech_support": 0.94,
+   "none": 0.06
+  },
+  "others": {
+   "person": {
+    "yes": 0.0,
+    "no": 1.0
+   }
+  },
+  "request": {
+   "model": "jev-1.14.0",
+   "state": "it's broken",
+   "questions": {
+    "department": {
+     "type": "choice",
+     "instructions": "Which department is the customer asking for?",
+     "criteria": {
+      "billing": "charges, refunds, invoices or payment methods",
+      "orders": "placing, changing or cancelling an order",
+      "shipping": "where a package is, delivery dates, tracking or the delivery address",
+      "returns": "sending an item back or exchanging it",
+      "tech_support": "a product that isn't working or won't connect",
+      "none": "none of these fits, or it is unclear what the customer wants"
+     }
+    },
+    "person": {
+     "type": "choice",
+     "instructions": "Does the customer ask to speak to a person?",
+     "criteria": {
+      "yes": "the customer asks for a person, an agent or a representative",
+      "no": "the customer doesn't ask for a person"
+     }
+    }
+   }
+  }
+ },
+ {
+  "shape": "+person",
+  "text": "wrong size",
+  "model_answered": "jev-1.14.0",
+  "choice": "returns",
+  "confidence": 0.78,
+  "probabilities": {
+   "billing": 0.0,
+   "orders": 0.02,
+   "shipping": 0.0,
+   "returns": 0.82,
+   "tech_support": 0.0,
+   "none": 0.16
+  },
+  "others": {
+   "person": {
+    "yes": 0.0,
+    "no": 1.0
+   }
+  },
+  "request": {
+   "model": "jev-1.14.0",
+   "state": "wrong size",
+   "questions": {
+    "department": {
+     "type": "choice",
+     "instructions": "Which department is the customer asking for?",
+     "criteria": {
+      "billing": "charges, refunds, invoices or payment methods",
+      "orders": "placing, changing or cancelling an order",
+      "shipping": "where a package is, delivery dates, tracking or the delivery address",
+      "returns": "sending an item back or exchanging it",
+      "tech_support": "a product that isn't working or won't connect",
+      "none": "none of these fits, or it is unclear what the customer wants"
+     }
+    },
+    "person": {
+     "type": "choice",
+     "instructions": "Does the customer ask to speak to a person?",
+     "criteria": {
+      "yes": "the customer asks for a person, an agent or a representative",
+      "no": "the customer doesn't ask for a person"
+     }
+    }
+   }
+  }
+ },
+ {
+  "shape": "+person",
+  "text": "change the delivery address",
+  "model_answered": "jev-1.14.0",
+  "choice": "shipping",
+  "confidence": 1.0,
+  "probabilities": {
+   "billing": 0.0,
+   "orders": 0.0,
+   "shipping": 1.0,
+   "returns": 0.0,
+   "tech_support": 0.0,
+   "none": 0.0
+  },
+  "others": {
+   "person": {
+    "yes": 0.0,
+    "no": 1.0
+   }
+  },
+  "request": {
+   "model": "jev-1.14.0",
+   "state": "change the delivery address",
+   "questions": {
+    "department": {
+     "type": "choice",
+     "instructions": "Which department is the customer asking for?",
+     "criteria": {
+      "billing": "charges, refunds, invoices or payment methods",
+      "orders": "placing, changing or cancelling an order",
+      "shipping": "where a package is, delivery dates, tracking or the delivery address",
+      "returns": "sending an item back or exchanging it",
+      "tech_support": "a product that isn't working or won't connect",
+      "none": "none of these fits, or it is unclear what the customer wants"
+     }
+    },
+    "person": {
+     "type": "choice",
+     "instructions": "Does the customer ask to speak to a person?",
+     "criteria": {
+      "yes": "the customer asks for a person, an agent or a representative",
+      "no": "the customer doesn't ask for a person"
+     }
+    }
+   }
+  }
+ },
+ {
+  "shape": "+person",
+  "text": "the thing I ordered",
+  "model_answered": "jev-1.14.0",
+  "choice": "none",
+  "confidence": 0.69,
+  "probabilities": {
+   "billing": 0.0,
+   "orders": 0.15,
+   "shipping": 0.11,
+   "returns": 0.0,
+   "tech_support": 0.0,
+   "none": 0.74
+  },
+  "others": {
+   "person": {
+    "yes": 0.0,
+    "no": 1.0
+   }
+  },
+  "request": {
+   "model": "jev-1.14.0",
+   "state": "the thing I ordered",
+   "questions": {
+    "department": {
+     "type": "choice",
+     "instructions": "Which department is the customer asking for?",
+     "criteria": {
+      "billing": "charges, refunds, invoices or payment methods",
+      "orders": "placing, changing or cancelling an order",
+      "shipping": "where a package is, delivery dates, tracking or the delivery address",
+      "returns": "sending an item back or exchanging it",
+      "tech_support": "a product that isn't working or won't connect",
+      "none": "none of these fits, or it is unclear what the customer wants"
+     }
+    },
+    "person": {
+     "type": "choice",
+     "instructions": "Does the customer ask to speak to a person?",
+     "criteria": {
+      "yes": "the customer asks for a person, an agent or a representative",
+      "no": "the customer doesn't ask for a person"
+     }
+    }
+   }
+  }
+ },
+ {
+  "shape": "+person",
+  "text": "help",
+  "model_answered": "jev-1.14.0",
+  "choice": "none",
+  "confidence": 1.0,
+  "probabilities": {
+   "billing": 0.0,
+   "orders": 0.0,
+   "shipping": 0.0,
+   "returns": 0.0,
+   "tech_support": 0.0,
+   "none": 1.0
+  },
+  "others": {
+   "person": {
+    "yes": 0.0,
+    "no": 1.0
+   }
+  },
+  "request": {
+   "model": "jev-1.14.0",
+   "state": "help",
+   "questions": {
+    "department": {
+     "type": "choice",
+     "instructions": "Which department is the customer asking for?",
+     "criteria": {
+      "billing": "charges, refunds, invoices or payment methods",
+      "orders": "placing, changing or cancelling an order",
+      "shipping": "where a package is, delivery dates, tracking or the delivery address",
+      "returns": "sending an item back or exchanging it",
+      "tech_support": "a product that isn't working or won't connect",
+      "none": "none of these fits, or it is unclear what the customer wants"
+     }
+    },
+    "person": {
+     "type": "choice",
+     "instructions": "Does the customer ask to speak to a person?",
+     "criteria": {
+      "yes": "the customer asks for a person, an agent or a representative",
+      "no": "the customer doesn't ask for a person"
+     }
+    }
+   }
+  }
+ }
+]

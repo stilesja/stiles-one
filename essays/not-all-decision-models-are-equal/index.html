@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="canonical" href="https://stiles.one/essays/not-all-decision-models-are-equal/">
+  <title>Not All Decision Models Are Created Equal · Essays · Jason Stiles</title>
+  <meta name="description" content="Decision models promise many small, independent questions in one request. On Microsoft's Decision-1.1, adding any second question changes the answer to the first. On TypeSafe's Jev, it doesn't.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://stiles.one/essays/not-all-decision-models-are-equal/">
+  <meta property="og:title" content="Not All Decision Models Are Created Equal">
+  <meta property="og:description" content="Add an unrelated second question to a Decision-1.1 request and the answer to the first one changes. Jev's doesn't. A small, reproducible test.">
+  <meta property="og:image" content="https://stiles.one/essays/not-all-decision-models-are-equal/og-card.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="stylesheet" href="../essays.css">
+</head>
+<body class="essays">
+  <main>
+    <p class="back"><a href="../">← Essays</a></p>
+
+    <span class="chip">Field Notes</span>
+    <h1>Not All Decision Models Are Created Equal</h1>
+    <p class="meta"><time datetime="2026-11-23">November 23, 2026</time></p>
+
+    <p class="preamble">Decision models answer small, typed questions about text, with a probability for every answer. Their best feature is that you can ask several questions about the same text in one request and combine the answers in code. That only works if the questions don't affect each other. On one of the two decision models I tested, they do.</p>
+
+    <p>I build phone menus for a living. The menu says "tell me what you're calling about", the caller says something, and the system has to decide where they go. Decision models are a very good fit for that: the menu becomes a choice question ("which of these is the caller asking about?"), and the model returns a probability for every option, plus "none of these". Code takes the top answer if it clears a threshold. Otherwise it asks again.</p>
+
+    <p>The design I wanted for one menu was two questions about the same words, asked together: "which topic?" and a separate yes or no, "does the caller want a person?". Code combines them: a named topic wins, and the person route is for callers who give us nothing else. Each question is small and atomic, and the code makes the decision. That's the way these models are meant to be used.</p>
+
+    <p>It didn't work on Microsoft's Decision-1.1. The topic answers got worse whenever the person question was in the request. So I took the menu out of the picture and built the smallest test I could.</p>
+
+    <h2 class="essay-kicker">The test</h2>
+    <p>One choice question, "Which department is the customer asking for?", with six answers: billing, orders, shipping, returns, tech support and none. Ten short customer messages, from clear ("where's my package") to vague ("the thing I ordered"). Each message is sent three ways:</p>
+    <ul>
+      <li><strong>alone:</strong> just the department question;</li>
+      <li><strong>+ English:</strong> the department question plus an unrelated yes/no question, "Is the text written in English?";</li>
+      <li><strong>+ person:</strong> the department question plus "Does the customer ask to speak to a person?".</li>
+    </ul>
+    <p>I ran it on Microsoft-Decision-1.1 on Azure and on TypeSafe's Jev 1.14. Both take the same request format: a <code>state</code> (the text) and a set of named <code>questions</code>. Every shape ran at least twice on Decision-1 and three times on Jev, so the run-to-run variation could be measured. The script and every raw response are <a href="#data">linked below</a>.</p>
+
+    <p>If the questions are independent, the department answer should come out the same in all three shapes. A yes/no about the language of the text has nothing to do with which department someone wants.</p>
+
+    <h2 class="essay-kicker">What happened</h2>
+    <p>The top answer and its probability in each shape. For Jev, the range covers every run of all three shapes:</p>
+
+    <table>
+      <thead>
+        <tr><th>Message</th><th>Decision-1.1 alone</th><th>Decision-1.1 + any second question</th><th>Jev, all three shapes</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>"the thing I ordered"</td><td>none 0.62</td><td><strong>orders 0.49</strong>, none 0.34</td><td>none 0.71–0.76</td></tr>
+        <tr><td>"cancel it"</td><td>orders 0.91</td><td><strong>orders 0.80</strong></td><td>orders 0.68–0.77</td></tr>
+        <tr><td>"wrong size"</td><td>returns 0.91</td><td><strong>returns 0.84</strong></td><td>returns 0.80–0.86</td></tr>
+        <tr><td>"it's broken"</td><td>tech support 0.88</td><td><strong>tech support 0.92</strong></td><td>tech support 0.92–0.94</td></tr>
+        <tr><td>"where's my package"</td><td>shipping 1.00</td><td>shipping 1.00</td><td>shipping 1.00</td></tr>
+      </tbody>
+    </table>
+
+    <p>Three things stand out about Decision-1.1.</p>
+    <p><strong>The answer depends on what else is in the request.</strong> "The thing I ordered" is "none" when asked alone and "orders" when anything else rides along. The same question about the same words gets a different top answer.</p>
+    <p><strong>It doesn't matter what the second question is.</strong> The unrelated English question and the related person question shift the department answer by exactly the same amount, to two decimal places, on every message. So it isn't the meaning of the other question. Its presence is enough.</p>
+    <p><strong>It's perfectly repeatable.</strong> Decision-1.1 gave identical numbers on every repeat. This isn't noise; it's the model.</p>
+
+    <aside class="essay-pull">The same question about the same words should get the same answer, whatever else you ask in the request.</aside>
+
+    <p>Jev behaves differently. Its answers vary slightly from run to run, by up to 0.08 on the vaguest message, because TypeSafe aims for consistency, not determinism: the same input gives similar answers, not identical ones. But adding a second question doesn't move them. Across the three shapes the average shift was 0.02 at most, well inside that run-to-run range, and it never changed which answer came out on top.</p>
+
+    <h2 class="essay-kicker">Why it matters</h2>
+    <p>With six departments the Decision-1.1 shifts are noticeable. On my real menu, about 40 options, they decided the outcome: one phrase fell from 0.75 alone to 0.38 with a second question attached, from a confident match to "ask the caller again". In a broader set of 26 menu phrases, the average confidence in the right answer fell from 0.96 to 0.89, and three phrases dropped below the 0.7 threshold.</p>
+
+    <p>Asking several small questions in one request is the whole reason to use a decision model. You get atomic judgments, each with its own threshold, and code that composes them. If a question's answer depends on its neighbours, you can't tune a threshold once and trust it: adding a question to a request quietly changes the others. The workaround is to send each question as its own request, which multiplies the calls against your rate limits and gives up the main reason for using a decision model.</p>
+
+    <p>My team is reporting it to Microsoft with the full reproduction. In the meantime, the menu ships with a single choice question and no side questions. That works well enough. The two-question design, which tested best for routing callers who want a person, waits until a second question stops changing the first.</p>
+
+    <h2 class="essay-kicker">The takeaway</h2>
+    <p>"Decision model" describes an interface: questions in, a probability for every answer out. It doesn't promise behaviour. Two models can take the same request format and still disagree on something as basic as whether your questions are independent. If your design depends on that, and with decision models it usually does, test it: the same question alone and with a second question attached, a few times each. It costs a few dozen requests, and it would have saved me a day.</p>
+
+    <h2 class="essay-kicker" id="data">Data and reproduction</h2>
+    <ul class="notes">
+      <li><strong><a href="data/repro.py">repro.py</a></strong>. The test. It sends the same department question in the three shapes to either model, and prints the request count without sending until you add <code>--send</code>. Jev reads <code>TYPESAFE_API_KEY</code>. Decision-1 uses an Azure CLI login, plus <code>D1_ENDPOINT</code> and <code>D1_DEPLOYMENT</code> for your own deployment.</li>
+      <li><strong><a href="data/results-d1.json">results-d1.json</a></strong>, <strong><a href="data/repeat-d1.json">repeat-d1.json</a></strong>. Microsoft-Decision-1.1 (version 1, DataZoneStandard), every request and its department probabilities, first run and repeat.</li>
+      <li><strong><a href="data/results-jev.json">results-jev.json</a></strong>, <strong><a href="data/repeat-jev.json">repeat-jev.json</a></strong>. Jev 1.14.0 (<code>jev-1.14.0</code>), first run and two repeats.</li>
+      <li><strong>Method notes.</strong> Each model was tested on 2026-11-23 in one session. "Shift" is the change in the probability of the answer the model chose for the message alone, averaged over repeats. Requests that hit a rate limit were retried, never scored as answers.</li>
+    </ul>
+
+    <p class="preamble">Jason Stiles has spent 25 years building conversational applications in production, from IVR to agentic AI. He writes a public build log at <a href="https://stiles.one/hedge/build/">stiles.one/hedge/build</a>.</p>
+
+    <footer>
+      <a href="mailto:hello@stiles.one">hello@stiles.one</a>
+      <span>© <time datetime="2026">2026</time></span>
+    </footer>
+  </main>
+</body>
+</html>

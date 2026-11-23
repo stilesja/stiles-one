@@ -1,0 +1,782 @@
+[
+ {
+  "rep": 0,
+  "shape": "alone",
+  "text": "where's my package",
+  "probabilities": {
+   "billing": 0.0,
+   "orders": 0.0,
+   "shipping": 1.0,
+   "returns": 0.0,
+   "tech_support": 0.0,
+   "none": 0.0
+  }
+ },
+ {
+  "rep": 0,
+  "shape": "alone",
+  "text": "I was charged twice",
+  "probabilities": {
+   "billing": 1.0,
+   "orders": 0.0,
+   "shipping": 0.0,
+   "returns": 0.0,
+   "tech_support": 0.0,
+   "none": 0.0
+  }
+ },
+ {
+  "rep": 0,
+  "shape": "alone",
+  "text": "my router keeps dropping the connection",
+  "probabilities": {
+   "billing": 0.0,
+   "orders": 0.0,
+   "shipping": 0.0,
+   "returns": 0.0,
+   "tech_support": 1.0,
+   "none": 0.0
+  }
+ },
+ {
+  "rep": 0,
+  "shape": "alone",
+  "text": "I want my money back",
+  "probabilities": {
+   "billing": 0.99,
+   "orders": 0.0,
+   "shipping": 0.0,
+   "returns": 0.01,
+   "tech_support": 0.0,
+   "none": 0.0
+  }
+ },
+ {
+  "rep": 0,
+  "shape": "alone",
+  "text": "cancel it",
+  "probabilities": {
+   "billing": 0.0,
+   "orders": 0.68,
+   "shipping": 0.0,
+   "returns": 0.0,
+   "tech_support": 0.0,
+   "none": 0.32
+  }
+ },
+ {
+  "rep": 0,
+  "shape": "alone",
+  "text": "it's broken",
+  "probabilities": {
+   "billing": 0.0,
+   "orders": 0.0,
+   "shipping": 0.0,
+   "returns": 0.0,
+   "tech_support": 0.94,
+   "none": 0.06
+  }
+ },
+ {
+  "rep": 0,
+  "shape": "alone",
+  "text": "wrong size",
+  "probabilities": {
+   "billing": 0.0,
+   "orders": 0.02,
+   "shipping": 0.0,
+   "returns": 0.85,
+   "tech_support": 0.0,
+   "none": 0.13
+  }
+ },
+ {
+  "rep": 0,
+  "shape": "alone",
+  "text": "change the delivery address",
+  "probabilities": {
+   "billing": 0.0,
+   "orders": 0.01,
+   "shipping": 0.99,
+   "returns": 0.0,
+   "tech_support": 0.0,
+   "none": 0.0
+  }
+ },
+ {
+  "rep": 0,
+  "shape": "alone",
+  "text": "the thing I ordered",
+  "probabilities": {
+   "billing": 0.0,
+   "orders": 0.15,
+   "shipping": 0.12,
+   "returns": 0.01,
+   "tech_support": 0.0,
+   "none": 0.72
+  }
+ },
+ {
+  "rep": 0,
+  "shape": "alone",
+  "text": "help",
+  "probabilities": {
+   "billing": 0.0,
+   "orders": 0.0,
+   "shipping": 0.0,
+   "returns": 0.0,
+   "tech_support": 0.0,
+   "none": 1.0
+  }
+ },
+ {
+  "rep": 0,
+  "shape": "+english",
+  "text": "where's my package",
+  "probabilities": {
+   "billing": 0.0,
+   "orders": 0.0,
+   "shipping": 1.0,
+   "returns": 0.0,
+   "tech_support": 0.0,
+   "none": 0.0
+  }
+ },
+ {
+  "rep": 0,
+  "shape": "+english",
+  "text": "I was charged twice",
+  "probabilities": {
+   "billing": 1.0,
+   "orders": 0.0,
+   "shipping": 0.0,
+   "returns": 0.0,
+   "tech_support": 0.0,
+   "none": 0.0
+  }
+ },
+ {
+  "rep": 0,
+  "shape": "+english",
+  "text": "my router keeps dropping the connection",
+  "probabilities": {
+   "billing": 0.0,
+   "orders": 0.0,
+   "shipping": 0.0,
+   "returns": 0.0,
+   "tech_support": 1.0,
+   "none": 0.0
+  }
+ },
+ {
+  "rep": 0,
+  "shape": "+english",
+  "text": "I want my money back",
+  "probabilities": {
+   "billing": 0.99,
+   "orders": 0.0,
+   "shipping": 0.0,
+   "returns": 0.01,
+   "tech_support": 0.0,
+   "none": 0.0
+  }
+ },
+ {
+  "rep": 0,
+  "shape": "+english",
+  "text": "cancel it",
+  "probabilities": {
+   "billing": 0.0,
+   "orders": 0.72,
+   "shipping": 0.0,
+   "returns": 0.0,
+   "tech_support": 0.0,
+   "none": 0.28
+  }
+ },
+ {
+  "rep": 0,
+  "shape": "+english",
+  "text": "it's broken",
+  "probabilities": {
+   "billing": 0.0,
+   "orders": 0.0,
+   "shipping": 0.0,
+   "returns": 0.0,
+   "tech_support": 0.94,
+   "none": 0.06
+  }
+ },
+ {
+  "rep": 0,
+  "shape": "+english",
+  "text": "wrong size",
+  "probabilities": {
+   "billing": 0.0,
+   "orders": 0.02,
+   "shipping": 0.0,
+   "returns": 0.8,
+   "tech_support": 0.0,
+   "none": 0.18
+  }
+ },
+ {
+  "rep": 0,
+  "shape": "+english",
+  "text": "change the delivery address",
+  "probabilities": {
+   "billing": 0.0,
+   "orders": 0.01,
+   "shipping": 0.99,
+   "returns": 0.0,
+   "tech_support": 0.0,
+   "none": 0.0
+  }
+ },
+ {
+  "rep": 0,
+  "shape": "+english",
+  "text": "the thing I ordered",
+  "probabilities": {
+   "billing": 0.0,
+   "orders": 0.14,
+   "shipping": 0.11,
+   "returns": 0.0,
+   "tech_support": 0.0,
+   "none": 0.75
+  }
+ },
+ {
+  "rep": 0,
+  "shape": "+english",
+  "text": "help",
+  "probabilities": {
+   "billing": 0.0,
+   "orders": 0.0,
+   "shipping": 0.0,
+   "returns": 0.0,
+   "tech_support": 0.0,
+   "none": 1.0
+  }
+ },
+ {
+  "rep": 0,
+  "shape": "+person",
+  "text": "where's my package",
+  "probabilities": {
+   "billing": 0.0,
+   "orders": 0.0,
+   "shipping": 1.0,
+   "returns": 0.0,
+   "tech_support": 0.0,
+   "none": 0.0
+  }
+ },
+ {
+  "rep": 0,
+  "shape": "+person",
+  "text": "I was charged twice",
+  "probabilities": {
+   "billing": 1.0,
+   "orders": 0.0,
+   "shipping": 0.0,
+   "returns": 0.0,
+   "tech_support": 0.0,
+   "none": 0.0
+  }
+ },
+ {
+  "rep": 0,
+  "shape": "+person",
+  "text": "my router keeps dropping the connection",
+  "probabilities": {
+   "billing": 0.0,
+   "orders": 0.0,
+   "shipping": 0.0,
+   "returns": 0.0,
+   "tech_support": 1.0,
+   "none": 0.0
+  }
+ },
+ {
+  "rep": 0,
+  "shape": "+person",
+  "text": "I want my money back",
+  "probabilities": {
+   "billing": 0.99,
+   "orders": 0.0,
+   "shipping": 0.0,
+   "returns": 0.01,
+   "tech_support": 0.0,
+   "none": 0.0
+  }
+ },
+ {
+  "rep": 0,
+  "shape": "+person",
+  "text": "cancel it",
+  "probabilities": {
+   "billing": 0.0,
+   "orders": 0.75,
+   "shipping": 0.0,
+   "returns": 0.0,
+   "tech_support": 0.0,
+   "none": 0.25
+  }
+ },
+ {
+  "rep": 0,
+  "shape": "+person",
+  "text": "it's broken",
+  "probabilities": {
+   "billing": 0.0,
+   "orders": 0.0,
+   "shipping": 0.0,
+   "returns": 0.0,
+   "tech_support": 0.93,
+   "none": 0.07
+  }
+ },
+ {
+  "rep": 0,
+  "shape": "+person",
+  "text": "wrong size",
+  "probabilities": {
+   "billing": 0.0,
+   "orders": 0.02,
+   "shipping": 0.0,
+   "returns": 0.82,
+   "tech_support": 0.0,
+   "none": 0.16
+  }
+ },
+ {
+  "rep": 0,
+  "shape": "+person",
+  "text": "change the delivery address",
+  "probabilities": {
+   "billing": 0.0,
+   "orders": 0.01,
+   "shipping": 0.99,
+   "returns": 0.0,
+   "tech_support": 0.0,
+   "none": 0.0
+  }
+ },
+ {
+  "rep": 0,
+  "shape": "+person",
+  "text": "the thing I ordered",
+  "probabilities": {
+   "billing": 0.0,
+   "orders": 0.14,
+   "shipping": 0.13,
+   "returns": 0.01,
+   "tech_support": 0.0,
+   "none": 0.72
+  }
+ },
+ {
+  "rep": 0,
+  "shape": "+person",
+  "text": "help",
+  "probabilities": {
+   "billing": 0.0,
+   "orders": 0.0,
+   "shipping": 0.0,
+   "returns": 0.0,
+   "tech_support": 0.0,
+   "none": 1.0
+  }
+ },
+ {
+  "rep": 1,
+  "shape": "alone",
+  "text": "where's my package",
+  "probabilities": {
+   "billing": 0.0,
+   "orders": 0.0,
+   "shipping": 1.0,
+   "returns": 0.0,
+   "tech_support": 0.0,
+   "none": 0.0
+  }
+ },
+ {
+  "rep": 1,
+  "shape": "alone",
+  "text": "I was charged twice",
+  "probabilities": {
+   "billing": 1.0,
+   "orders": 0.0,
+   "shipping": 0.0,
+   "returns": 0.0,
+   "tech_support": 0.0,
+   "none": 0.0
+  }
+ },
+ {
+  "rep": 1,
+  "shape": "alone",
+  "text": "my router keeps dropping the connection",
+  "probabilities": {
+   "billing": 0.0,
+   "orders": 0.0,
+   "shipping": 0.0,
+   "returns": 0.0,
+   "tech_support": 1.0,
+   "none": 0.0
+  }
+ },
+ {
+  "rep": 1,
+  "shape": "alone",
+  "text": "I want my money back",
+  "probabilities": {
+   "billing": 0.99,
+   "orders": 0.0,
+   "shipping": 0.0,
+   "returns": 0.01,
+   "tech_support": 0.0,
+   "none": 0.0
+  }
+ },
+ {
+  "rep": 1,
+  "shape": "alone",
+  "text": "cancel it",
+  "probabilities": {
+   "billing": 0.0,
+   "orders": 0.76,
+   "shipping": 0.0,
+   "returns": 0.0,
+   "tech_support": 0.0,
+   "none": 0.24
+  }
+ },
+ {
+  "rep": 1,
+  "shape": "alone",
+  "text": "it's broken",
+  "probabilities": {
+   "billing": 0.0,
+   "orders": 0.0,
+   "shipping": 0.0,
+   "returns": 0.0,
+   "tech_support": 0.94,
+   "none": 0.06
+  }
+ },
+ {
+  "rep": 1,
+  "shape": "alone",
+  "text": "wrong size",
+  "probabilities": {
+   "billing": 0.0,
+   "orders": 0.02,
+   "shipping": 0.0,
+   "returns": 0.86,
+   "tech_support": 0.0,
+   "none": 0.12
+  }
+ },
+ {
+  "rep": 1,
+  "shape": "alone",
+  "text": "change the delivery address",
+  "probabilities": {
+   "billing": 0.0,
+   "orders": 0.01,
+   "shipping": 0.99,
+   "returns": 0.0,
+   "tech_support": 0.0,
+   "none": 0.0
+  }
+ },
+ {
+  "rep": 1,
+  "shape": "alone",
+  "text": "the thing I ordered",
+  "probabilities": {
+   "billing": 0.0,
+   "orders": 0.14,
+   "shipping": 0.09,
+   "returns": 0.01,
+   "tech_support": 0.0,
+   "none": 0.76
+  }
+ },
+ {
+  "rep": 1,
+  "shape": "alone",
+  "text": "help",
+  "probabilities": {
+   "billing": 0.0,
+   "orders": 0.0,
+   "shipping": 0.0,
+   "returns": 0.0,
+   "tech_support": 0.0,
+   "none": 1.0
+  }
+ },
+ {
+  "rep": 1,
+  "shape": "+english",
+  "text": "where's my package",
+  "probabilities": {
+   "billing": 0.0,
+   "orders": 0.0,
+   "shipping": 1.0,
+   "returns": 0.0,
+   "tech_support": 0.0,
+   "none": 0.0
+  }
+ },
+ {
+  "rep": 1,
+  "shape": "+english",
+  "text": "I was charged twice",
+  "probabilities": {
+   "billing": 1.0,
+   "orders": 0.0,
+   "shipping": 0.0,
+   "returns": 0.0,
+   "tech_support": 0.0,
+   "none": 0.0
+  }
+ },
+ {
+  "rep": 1,
+  "shape": "+english",
+  "text": "my router keeps dropping the connection",
+  "probabilities": {
+   "billing": 0.0,
+   "orders": 0.0,
+   "shipping": 0.0,
+   "returns": 0.0,
+   "tech_support": 1.0,
+   "none": 0.0
+  }
+ },
+ {
+  "rep": 1,
+  "shape": "+english",
+  "text": "I want my money back",
+  "probabilities": {
+   "billing": 0.99,
+   "orders": 0.0,
+   "shipping": 0.0,
+   "returns": 0.01,
+   "tech_support": 0.0,
+   "none": 0.0
+  }
+ },
+ {
+  "rep": 1,
+  "shape": "+english",
+  "text": "cancel it",
+  "probabilities": {
+   "billing": 0.0,
+   "orders": 0.71,
+   "shipping": 0.0,
+   "returns": 0.0,
+   "tech_support": 0.0,
+   "none": 0.29
+  }
+ },
+ {
+  "rep": 1,
+  "shape": "+english",
+  "text": "it's broken",
+  "probabilities": {
+   "billing": 0.0,
+   "orders": 0.0,
+   "shipping": 0.0,
+   "returns": 0.0,
+   "tech_support": 0.92,
+   "none": 0.08
+  }
+ },
+ {
+  "rep": 1,
+  "shape": "+english",
+  "text": "wrong size",
+  "probabilities": {
+   "billing": 0.0,
+   "orders": 0.02,
+   "shipping": 0.0,
+   "returns": 0.84,
+   "tech_support": 0.0,
+   "none": 0.14
+  }
+ },
+ {
+  "rep": 1,
+  "shape": "+english",
+  "text": "change the delivery address",
+  "probabilities": {
+   "billing": 0.0,
+   "orders": 0.0,
+   "shipping": 1.0,
+   "returns": 0.0,
+   "tech_support": 0.0,
+   "none": 0.0
+  }
+ },
+ {
+  "rep": 1,
+  "shape": "+english",
+  "text": "the thing I ordered",
+  "probabilities": {
+   "billing": 0.0,
+   "orders": 0.13,
+   "shipping": 0.1,
+   "returns": 0.01,
+   "tech_support": 0.0,
+   "none": 0.76
+  }
+ },
+ {
+  "rep": 1,
+  "shape": "+english",
+  "text": "help",
+  "probabilities": {
+   "billing": 0.0,
+   "orders": 0.0,
+   "shipping": 0.0,
+   "returns": 0.0,
+   "tech_support": 0.0,
+   "none": 1.0
+  }
+ },
+ {
+  "rep": 1,
+  "shape": "+person",
+  "text": "where's my package",
+  "probabilities": {
+   "billing": 0.0,
+   "orders": 0.0,
+   "shipping": 1.0,
+   "returns": 0.0,
+   "tech_support": 0.0,
+   "none": 0.0
+  }
+ },
+ {
+  "rep": 1,
+  "shape": "+person",
+  "text": "I was charged twice",
+  "probabilities": {
+   "billing": 1.0,
+   "orders": 0.0,
+   "shipping": 0.0,
+   "returns": 0.0,
+   "tech_support": 0.0,
+   "none": 0.0
+  }
+ },
+ {
+  "rep": 1,
+  "shape": "+person",
+  "text": "my router keeps dropping the connection",
+  "probabilities": {
+   "billing": 0.0,
+   "orders": 0.0,
+   "shipping": 0.0,
+   "returns": 0.0,
+   "tech_support": 1.0,
+   "none": 0.0
+  }
+ },
+ {
+  "rep": 1,
+  "shape": "+person",
+  "text": "I want my money back",
+  "probabilities": {
+   "billing": 0.99,
+   "orders": 0.0,
+   "shipping": 0.0,
+   "returns": 0.01,
+   "tech_support": 0.0,
+   "none": 0.0
+  }
+ },
+ {
+  "rep": 1,
+  "shape": "+person",
+  "text": "cancel it",
+  "probabilities": {
+   "billing": 0.0,
+   "orders": 0.71,
+   "shipping": 0.0,
+   "returns": 0.0,
+   "tech_support": 0.0,
+   "none": 0.29
+  }
+ },
+ {
+  "rep": 1,
+  "shape": "+person",
+  "text": "it's broken",
+  "probabilities": {
+   "billing": 0.0,
+   "orders": 0.0,
+   "shipping": 0.0,
+   "returns": 0.0,
+   "tech_support": 0.93,
+   "none": 0.07
+  }
+ },
+ {
+  "rep": 1,
+  "shape": "+person",
+  "text": "wrong size",
+  "probabilities": {
+   "billing": 0.0,
+   "orders": 0.02,
+   "shipping": 0.0,
+   "returns": 0.84,
+   "tech_support": 0.0,
+   "none": 0.14
+  }
+ },
+ {
+  "rep": 1,
+  "shape": "+person",
+  "text": "change the delivery address",
+  "probabilities": {
+   "billing": 0.0,
+   "orders": 0.0,
+   "shipping": 1.0,
+   "returns": 0.0,
+   "tech_support": 0.0,
+   "none": 0.0
+  }
+ },
+ {
+  "rep": 1,
+  "shape": "+person",
+  "text": "the thing I ordered",
+  "probabilities": {
+   "billing": 0.0,
+   "orders": 0.14,
+   "shipping": 0.1,
+   "returns": 0.01,
+   "tech_support": 0.0,
+   "none": 0.75
+  }
+ },
+ {
+  "rep": 1,
+  "shape": "+person",
+  "text": "help",
+  "probabilities": {
+   "billing": 0.0,
+   "orders": 0.0,
+   "shipping": 0.0,
+   "returns": 0.0,
+   "tech_support": 0.0,
+   "none": 1.0
+  }
+ }
+]
