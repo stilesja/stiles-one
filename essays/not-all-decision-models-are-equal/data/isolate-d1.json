@@ -1,0 +1,5285 @@
+{
+ "rows": [
+  {
+   "shape": "alone",
+   "text": "where's my package",
+   "status": 200,
+   "model_answered": "microsoft-decision-1.1",
+   "headers": {
+    "x-request-id": "205080dc-b8e1-453d-b65a-66a9ccf6ca74",
+    "x-ms-client-request-id": "8b8adae4-5e5b-4750-9a94-9c47b267ae24",
+    "x-ms-inference-retry-history": "{\"v\":1,\"entries\":[{\"service_id\":\"mir.frontdoor\",\"layer\":\"regional\",\"role\":\"direct\",\"retries\":0}]}",
+    "x-ms-is-spilled-over": "false",
+    "apim-request-id": "8b8adae4-5e5b-4750-9a94-9c47b267ae24",
+    "x-ms-region": "Central US"
+   },
+   "probabilities": {
+    "billing": 0.00016536464398697771,
+    "none": 0.000233666802201129,
+    "orders": 0.00014834589281529796,
+    "returns": 0.00015437187598408455,
+    "shipping": 0.9990694947825636,
+    "tech_support": 0.00022875600244899401
+   },
+   "others": {},
+   "request": {
+    "model": "decision-1",
+    "state": "where's my package",
+    "questions": {
+     "department": {
+      "type": "choice",
+      "instructions": "Which department is the customer asking for?",
+      "criteria": {
+       "billing": "charges, refunds, invoices or payment methods",
+       "orders": "placing, changing or cancelling an order",
+       "shipping": "where a package is, delivery dates, tracking or the delivery address",
+       "returns": "sending an item back or exchanging it",
+       "tech_support": "a product that isn't working or won't connect",
+       "none": "none of these fits, or it is unclear what the customer wants"
+      }
+     }
+    }
+   }
+  },
+  {
+   "shape": "alone",
+   "text": "I was charged twice",
+   "status": 200,
+   "model_answered": "microsoft-decision-1.1",
+   "headers": {
+    "x-request-id": "9a0c75c6-b1fc-42ca-8d3e-95de5eed3808",
+    "x-ms-client-request-id": "297193ab-be70-4743-b2e6-698dfab02bc8",
+    "x-ms-inference-retry-history": "{\"v\":1,\"entries\":[{\"service_id\":\"mir.frontdoor\",\"layer\":\"regional\",\"role\":\"direct\",\"retries\":0}]}",
+    "x-ms-is-spilled-over": "false",
+    "apim-request-id": "297193ab-be70-4743-b2e6-698dfab02bc8",
+    "x-ms-region": "Central US"
+   },
+   "probabilities": {
+    "billing": 0.998401712717488,
+    "none": 0.0005566396271712789,
+    "orders": 0.0003164597244177314,
+    "returns": 0.00020196444587321786,
+    "shipping": 0.00021840729162551125,
+    "tech_support": 0.0003048161934242019
+   },
+   "others": {},
+   "request": {
+    "model": "decision-1",
+    "state": "I was charged twice",
+    "questions": {
+     "department": {
+      "type": "choice",
+      "instructions": "Which department is the customer asking for?",
+      "criteria": {
+       "billing": "charges, refunds, invoices or payment methods",
+       "orders": "placing, changing or cancelling an order",
+       "shipping": "where a package is, delivery dates, tracking or the delivery address",
+       "returns": "sending an item back or exchanging it",
+       "tech_support": "a product that isn't working or won't connect",
+       "none": "none of these fits, or it is unclear what the customer wants"
+      }
+     }
+    }
+   }
+  },
+  {
+   "shape": "alone",
+   "text": "my router keeps dropping the connection",
+   "status": 200,
+   "model_answered": "microsoft-decision-1.1",
+   "headers": {
+    "x-request-id": "b2105a37-aa4d-4230-9580-93d86c208775",
+    "x-ms-client-request-id": "83f04720-0910-4303-bbf9-c5852e5424f5",
+    "x-ms-inference-retry-history": "{\"v\":1,\"entries\":[{\"service_id\":\"mir.frontdoor\",\"layer\":\"regional\",\"role\":\"direct\",\"retries\":0}]}",
+    "x-ms-is-spilled-over": "false",
+    "apim-request-id": "83f04720-0910-4303-bbf9-c5852e5424f5",
+    "x-ms-region": "Central US"
+   },
+   "probabilities": {
+    "billing": 0.0004686234856336756,
+    "none": 0.001142970606368591,
+    "orders": 0.0003551010822861064,
+    "returns": 0.0003574236616214037,
+    "shipping": 0.0003392666369436557,
+    "tech_support": 0.9973366145271465
+   },
+   "others": {},
+   "request": {
+    "model": "decision-1",
+    "state": "my router keeps dropping the connection",
+    "questions": {
+     "department": {
+      "type": "choice",
+      "instructions": "Which department is the customer asking for?",
+      "criteria": {
+       "billing": "charges, refunds, invoices or payment methods",
+       "orders": "placing, changing or cancelling an order",
+       "shipping": "where a package is, delivery dates, tracking or the delivery address",
+       "returns": "sending an item back or exchanging it",
+       "tech_support": "a product that isn't working or won't connect",
+       "none": "none of these fits, or it is unclear what the customer wants"
+      }
+     }
+    }
+   }
+  },
+  {
+   "shape": "alone",
+   "text": "I want my money back",
+   "status": 200,
+   "model_answered": "microsoft-decision-1.1",
+   "headers": {
+    "x-request-id": "64e337f4-2e16-473c-8d10-521920d87f13",
+    "x-ms-client-request-id": "5af65ed1-45b9-417c-b885-b5b9ccec2875",
+    "x-ms-inference-retry-history": "{\"v\":1,\"entries\":[{\"service_id\":\"mir.frontdoor\",\"layer\":\"regional\",\"role\":\"direct\",\"retries\":0}]}",
+    "x-ms-is-spilled-over": "false",
+    "apim-request-id": "5af65ed1-45b9-417c-b885-b5b9ccec2875",
+    "x-ms-region": "Central US"
+   },
+   "probabilities": {
+    "billing": 0.9643823089707952,
+    "none": 0.0044210150434472115,
+    "orders": 0.0012568736273901844,
+    "returns": 0.029319845622816122,
+    "shipping": 0.00020328581695628996,
+    "tech_support": 0.0004166709185948967
+   },
+   "others": {},
+   "request": {
+    "model": "decision-1",
+    "state": "I want my money back",
+    "questions": {
+     "department": {
+      "type": "choice",
+      "instructions": "Which department is the customer asking for?",
+      "criteria": {
+       "billing": "charges, refunds, invoices or payment methods",
+       "orders": "placing, changing or cancelling an order",
+       "shipping": "where a package is, delivery dates, tracking or the delivery address",
+       "returns": "sending an item back or exchanging it",
+       "tech_support": "a product that isn't working or won't connect",
+       "none": "none of these fits, or it is unclear what the customer wants"
+      }
+     }
+    }
+   }
+  },
+  {
+   "shape": "alone",
+   "text": "cancel it",
+   "status": 200,
+   "model_answered": "microsoft-decision-1.1",
+   "headers": {
+    "x-request-id": "1b94754c-6bef-4742-a8a7-9ffb5bfe9778",
+    "x-ms-client-request-id": "ec7ec5f2-2785-4220-83ed-12c1dabcef5b",
+    "x-ms-inference-retry-history": "{\"v\":1,\"entries\":[{\"service_id\":\"mir.frontdoor\",\"layer\":\"regional\",\"role\":\"direct\",\"retries\":0}]}",
+    "x-ms-is-spilled-over": "false",
+    "apim-request-id": "ec7ec5f2-2785-4220-83ed-12c1dabcef5b",
+    "x-ms-region": "Central US"
+   },
+   "probabilities": {
+    "billing": 0.0020030751501777656,
+    "none": 0.08071842913943943,
+    "orders": 0.91447693441867,
+    "returns": 0.0015054480205198859,
+    "shipping": 0.0005567762807718413,
+    "tech_support": 0.0007393369904211677
+   },
+   "others": {},
+   "request": {
+    "model": "decision-1",
+    "state": "cancel it",
+    "questions": {
+     "department": {
+      "type": "choice",
+      "instructions": "Which department is the customer asking for?",
+      "criteria": {
+       "billing": "charges, refunds, invoices or payment methods",
+       "orders": "placing, changing or cancelling an order",
+       "shipping": "where a package is, delivery dates, tracking or the delivery address",
+       "returns": "sending an item back or exchanging it",
+       "tech_support": "a product that isn't working or won't connect",
+       "none": "none of these fits, or it is unclear what the customer wants"
+      }
+     }
+    }
+   }
+  },
+  {
+   "shape": "alone",
+   "text": "it's broken",
+   "status": 200,
+   "model_answered": "microsoft-decision-1.1",
+   "headers": {
+    "x-request-id": "30af58df-e138-4da0-83d4-d88a4695594d",
+    "x-ms-client-request-id": "a81a935e-a854-4096-bec9-ac8a97eaf30e",
+    "x-ms-inference-retry-history": "{\"v\":1,\"entries\":[{\"service_id\":\"mir.frontdoor\",\"layer\":\"regional\",\"role\":\"direct\",\"retries\":0}]}",
+    "x-ms-is-spilled-over": "false",
+    "apim-request-id": "a81a935e-a854-4096-bec9-ac8a97eaf30e",
+    "x-ms-region": "Central US"
+   },
+   "probabilities": {
+    "billing": 0.0016297731528245683,
+    "none": 0.043774027326516037,
+    "orders": 0.0020480649589899526,
+    "returns": 0.07432931178378326,
+    "shipping": 0.000915383694480259,
+    "tech_support": 0.877303439083406
+   },
+   "others": {},
+   "request": {
+    "model": "decision-1",
+    "state": "it's broken",
+    "questions": {
+     "department": {
+      "type": "choice",
+      "instructions": "Which department is the customer asking for?",
+      "criteria": {
+       "billing": "charges, refunds, invoices or payment methods",
+       "orders": "placing, changing or cancelling an order",
+       "shipping": "where a package is, delivery dates, tracking or the delivery address",
+       "returns": "sending an item back or exchanging it",
+       "tech_support": "a product that isn't working or won't connect",
+       "none": "none of these fits, or it is unclear what the customer wants"
+      }
+     }
+    }
+   }
+  },
+  {
+   "shape": "alone",
+   "text": "wrong size",
+   "status": 200,
+   "model_answered": "microsoft-decision-1.1",
+   "headers": {
+    "x-request-id": "a8e8dc7a-33e8-46f2-958c-695e3c5d4da8",
+    "x-ms-client-request-id": "aaea8ee6-13f5-4226-bdb6-e9ab0e370607",
+    "x-ms-inference-retry-history": "{\"v\":1,\"entries\":[{\"service_id\":\"mir.frontdoor\",\"layer\":\"regional\",\"role\":\"direct\",\"retries\":0}]}",
+    "x-ms-is-spilled-over": "false",
+    "apim-request-id": "aaea8ee6-13f5-4226-bdb6-e9ab0e370607",
+    "x-ms-region": "Central US"
+   },
+   "probabilities": {
+    "billing": 0.0006516670736264141,
+    "none": 0.079142905823866,
+    "orders": 0.013526848368202733,
+    "returns": 0.9051001667830181,
+    "shipping": 0.00045412114115143785,
+    "tech_support": 0.0011242908101353661
+   },
+   "others": {},
+   "request": {
+    "model": "decision-1",
+    "state": "wrong size",
+    "questions": {
+     "department": {
+      "type": "choice",
+      "instructions": "Which department is the customer asking for?",
+      "criteria": {
+       "billing": "charges, refunds, invoices or payment methods",
+       "orders": "placing, changing or cancelling an order",
+       "shipping": "where a package is, delivery dates, tracking or the delivery address",
+       "returns": "sending an item back or exchanging it",
+       "tech_support": "a product that isn't working or won't connect",
+       "none": "none of these fits, or it is unclear what the customer wants"
+      }
+     }
+    }
+   }
+  },
+  {
+   "shape": "alone",
+   "text": "change the delivery address",
+   "status": 200,
+   "model_answered": "microsoft-decision-1.1",
+   "headers": {
+    "x-request-id": "acc98c6e-036c-43aa-a069-aaac3400828c",
+    "x-ms-client-request-id": "f71b1b0c-1ddf-4910-9ff9-962ffdd8d4af",
+    "x-ms-inference-retry-history": "{\"v\":1,\"entries\":[{\"service_id\":\"mir.frontdoor\",\"layer\":\"regional\",\"role\":\"direct\",\"retries\":0}]}",
+    "x-ms-is-spilled-over": "false",
+    "apim-request-id": "f71b1b0c-1ddf-4910-9ff9-962ffdd8d4af",
+    "x-ms-region": "Central US"
+   },
+   "probabilities": {
+    "billing": 0.0003003706733516037,
+    "none": 0.000836581998037468,
+    "orders": 0.007812380023147704,
+    "returns": 0.0006247284619700684,
+    "shipping": 0.9898564559926375,
+    "tech_support": 0.0005694828508555534
+   },
+   "others": {},
+   "request": {
+    "model": "decision-1",
+    "state": "change the delivery address",
+    "questions": {
+     "department": {
+      "type": "choice",
+      "instructions": "Which department is the customer asking for?",
+      "criteria": {
+       "billing": "charges, refunds, invoices or payment methods",
+       "orders": "placing, changing or cancelling an order",
+       "shipping": "where a package is, delivery dates, tracking or the delivery address",
+       "returns": "sending an item back or exchanging it",
+       "tech_support": "a product that isn't working or won't connect",
+       "none": "none of these fits, or it is unclear what the customer wants"
+      }
+     }
+    }
+   }
+  },
+  {
+   "shape": "alone",
+   "text": "the thing I ordered",
+   "status": 200,
+   "model_answered": "microsoft-decision-1.1",
+   "headers": {
+    "x-request-id": "fe8d5286-6d83-4979-9de2-f067abed3d30",
+    "x-ms-client-request-id": "1066cf03-7e33-4f31-ba52-dffe0e41d599",
+    "x-ms-inference-retry-history": "{\"v\":1,\"entries\":[{\"service_id\":\"mir.frontdoor\",\"layer\":\"regional\",\"role\":\"direct\",\"retries\":0}]}",
+    "x-ms-is-spilled-over": "false",
+    "apim-request-id": "1066cf03-7e33-4f31-ba52-dffe0e41d599",
+    "x-ms-region": "Central US"
+   },
+   "probabilities": {
+    "billing": 0.002056321189072468,
+    "none": 0.6200900961080871,
+    "orders": 0.26425932168034594,
+    "returns": 0.0026208157339128084,
+    "shipping": 0.10989566938004496,
+    "tech_support": 0.0010777759085366613
+   },
+   "others": {},
+   "request": {
+    "model": "decision-1",
+    "state": "the thing I ordered",
+    "questions": {
+     "department": {
+      "type": "choice",
+      "instructions": "Which department is the customer asking for?",
+      "criteria": {
+       "billing": "charges, refunds, invoices or payment methods",
+       "orders": "placing, changing or cancelling an order",
+       "shipping": "where a package is, delivery dates, tracking or the delivery address",
+       "returns": "sending an item back or exchanging it",
+       "tech_support": "a product that isn't working or won't connect",
+       "none": "none of these fits, or it is unclear what the customer wants"
+      }
+     }
+    }
+   }
+  },
+  {
+   "shape": "alone",
+   "text": "help",
+   "status": 200,
+   "model_answered": "microsoft-decision-1.1",
+   "headers": {
+    "x-request-id": "2daea3de-7cd1-418f-a110-d35ac6778464",
+    "x-ms-client-request-id": "e80a5b32-4873-4aeb-9760-0fb0b5c99d79",
+    "x-ms-inference-retry-history": "{\"v\":1,\"entries\":[{\"service_id\":\"mir.frontdoor\",\"layer\":\"regional\",\"role\":\"direct\",\"retries\":0}]}",
+    "x-ms-is-spilled-over": "false",
+    "apim-request-id": "e80a5b32-4873-4aeb-9760-0fb0b5c99d79",
+    "x-ms-region": "Central US"
+   },
+   "probabilities": {
+    "billing": 0.00031451162212954586,
+    "none": 0.9989018070670102,
+    "orders": 0.0002700107436138769,
+    "returns": 9.675170627116771e-05,
+    "shipping": 0.00010026257541641582,
+    "tech_support": 0.000316656285558861
+   },
+   "others": {},
+   "request": {
+    "model": "decision-1",
+    "state": "help",
+    "questions": {
+     "department": {
+      "type": "choice",
+      "instructions": "Which department is the customer asking for?",
+      "criteria": {
+       "billing": "charges, refunds, invoices or payment methods",
+       "orders": "placing, changing or cancelling an order",
+       "shipping": "where a package is, delivery dates, tracking or the delivery address",
+       "returns": "sending an item back or exchanging it",
+       "tech_support": "a product that isn't working or won't connect",
+       "none": "none of these fits, or it is unclear what the customer wants"
+      }
+     }
+    }
+   }
+  },
+  {
+   "shape": "+english",
+   "text": "where's my package",
+   "status": 200,
+   "model_answered": "microsoft-decision-1.1",
+   "headers": {
+    "x-request-id": "4083c500-f655-4577-9ab8-3b211608f111",
+    "x-ms-client-request-id": "382b17de-3ff6-4eeb-8dc0-fad9bc3cd15d",
+    "x-ms-inference-retry-history": "{\"v\":1,\"entries\":[{\"service_id\":\"mir.frontdoor\",\"layer\":\"regional\",\"role\":\"direct\",\"retries\":0}]}",
+    "x-ms-is-spilled-over": "false",
+    "apim-request-id": "382b17de-3ff6-4eeb-8dc0-fad9bc3cd15d",
+    "x-ms-region": "Central US"
+   },
+   "probabilities": {
+    "billing": 0.0003688048938106376,
+    "none": 0.0004829252856771613,
+    "orders": 0.0003574000120748063,
+    "returns": 0.00037417783753365534,
+    "shipping": 0.9979708582973186,
+    "tech_support": 0.0004458336735852841
+   },
+   "others": {
+    "english": {
+     "type": "choice",
+     "choice": "yes",
+     "confidence": 0.9976595174095719,
+     "probabilities": {
+      "no": 0.0011702412952139234,
+      "yes": 0.998829758704786
+     }
+    }
+   },
+   "request": {
+    "model": "decision-1",
+    "state": "where's my package",
+    "questions": {
+     "department": {
+      "type": "choice",
+      "instructions": "Which department is the customer asking for?",
+      "criteria": {
+       "billing": "charges, refunds, invoices or payment methods",
+       "orders": "placing, changing or cancelling an order",
+       "shipping": "where a package is, delivery dates, tracking or the delivery address",
+       "returns": "sending an item back or exchanging it",
+       "tech_support": "a product that isn't working or won't connect",
+       "none": "none of these fits, or it is unclear what the customer wants"
+      }
+     },
+     "english": {
+      "type": "choice",
+      "instructions": "Is the text written in English?",
+      "criteria": {
+       "yes": "the text is in English",
+       "no": "the text is not in English"
+      }
+     }
+    }
+   }
+  },
+  {
+   "shape": "+english",
+   "text": "I was charged twice",
+   "status": 200,
+   "model_answered": "microsoft-decision-1.1",
+   "headers": {
+    "x-request-id": "5c915d2c-450d-4aea-8f4b-a80b377a4581",
+    "x-ms-client-request-id": "799f1495-7829-4740-a43f-f55e5faeead3",
+    "x-ms-inference-retry-history": "{\"v\":1,\"entries\":[{\"service_id\":\"mir.frontdoor\",\"layer\":\"regional\",\"role\":\"direct\",\"retries\":0}]}",
+    "x-ms-is-spilled-over": "false",
+    "apim-request-id": "799f1495-7829-4740-a43f-f55e5faeead3",
+    "x-ms-region": "Central US"
+   },
+   "probabilities": {
+    "billing": 0.9985611468103617,
+    "none": 0.000766066282898922,
+    "orders": 0.00017491062626455475,
+    "returns": 0.00015924214277140958,
+    "shipping": 0.00012791707758162585,
+    "tech_support": 0.00021071706012173454
+   },
+   "others": {
+    "english": {
+     "type": "choice",
+     "choice": "yes",
+     "confidence": 0.9982159804378334,
+     "probabilities": {
+      "no": 0.0008920097810832557,
+      "yes": 0.9991079902189167
+     }
+    }
+   },
+   "request": {
+    "model": "decision-1",
+    "state": "I was charged twice",
+    "questions": {
+     "department": {
+      "type": "choice",
+      "instructions": "Which department is the customer asking for?",
+      "criteria": {
+       "billing": "charges, refunds, invoices or payment methods",
+       "orders": "placing, changing or cancelling an order",
+       "shipping": "where a package is, delivery dates, tracking or the delivery address",
+       "returns": "sending an item back or exchanging it",
+       "tech_support": "a product that isn't working or won't connect",
+       "none": "none of these fits, or it is unclear what the customer wants"
+      }
+     },
+     "english": {
+      "type": "choice",
+      "instructions": "Is the text written in English?",
+      "criteria": {
+       "yes": "the text is in English",
+       "no": "the text is not in English"
+      }
+     }
+    }
+   }
+  },
+  {
+   "shape": "+english",
+   "text": "my router keeps dropping the connection",
+   "status": 200,
+   "model_answered": "microsoft-decision-1.1",
+   "headers": {
+    "x-request-id": "34156ed4-4639-4592-8571-ee0d965ff479",
+    "x-ms-client-request-id": "a493186b-5f25-427b-80e8-631b6dff1a50",
+    "x-ms-inference-retry-history": "{\"v\":1,\"entries\":[{\"service_id\":\"mir.frontdoor\",\"layer\":\"regional\",\"role\":\"direct\",\"retries\":0}]}",
+    "x-ms-is-spilled-over": "false",
+    "apim-request-id": "a493186b-5f25-427b-80e8-631b6dff1a50",
+    "x-ms-region": "Central US"
+   },
+   "probabilities": {
+    "billing": 0.00045854620226024723,
+    "none": 0.0020732901711541236,
+    "orders": 0.000364866003002985,
+    "returns": 0.00028736220940974436,
+    "shipping": 0.0002955947414886281,
+    "tech_support": 0.9965203406726844
+   },
+   "others": {
+    "english": {
+     "type": "choice",
+     "choice": "yes",
+     "confidence": 0.9969186809329185,
+     "probabilities": {
+      "no": 0.001540659533540772,
+      "yes": 0.9984593404664592
+     }
+    }
+   },
+   "request": {
+    "model": "decision-1",
+    "state": "my router keeps dropping the connection",
+    "questions": {
+     "department": {
+      "type": "choice",
+      "instructions": "Which department is the customer asking for?",
+      "criteria": {
+       "billing": "charges, refunds, invoices or payment methods",
+       "orders": "placing, changing or cancelling an order",
+       "shipping": "where a package is, delivery dates, tracking or the delivery address",
+       "returns": "sending an item back or exchanging it",
+       "tech_support": "a product that isn't working or won't connect",
+       "none": "none of these fits, or it is unclear what the customer wants"
+      }
+     },
+     "english": {
+      "type": "choice",
+      "instructions": "Is the text written in English?",
+      "criteria": {
+       "yes": "the text is in English",
+       "no": "the text is not in English"
+      }
+     }
+    }
+   }
+  },
+  {
+   "shape": "+english",
+   "text": "I want my money back",
+   "status": 200,
+   "model_answered": "microsoft-decision-1.1",
+   "headers": {
+    "x-request-id": "187cce6f-7790-4dfd-a9d3-2c783bd5c5de",
+    "x-ms-client-request-id": "80bc8f6a-9c02-4f66-965f-69f9e6d3161e",
+    "x-ms-inference-retry-history": "{\"v\":1,\"entries\":[{\"service_id\":\"mir.frontdoor\",\"layer\":\"regional\",\"role\":\"direct\",\"retries\":0}]}",
+    "x-ms-is-spilled-over": "false",
+    "apim-request-id": "80bc8f6a-9c02-4f66-965f-69f9e6d3161e",
+    "x-ms-region": "Central US"
+   },
+   "probabilities": {
+    "billing": 0.976236342217527,
+    "none": 0.004851167462815905,
+    "orders": 0.0011810527518475258,
+    "returns": 0.016675038775840804,
+    "shipping": 0.0002670175958996453,
+    "tech_support": 0.0007893811960692349
+   },
+   "others": {
+    "english": {
+     "type": "choice",
+     "choice": "yes",
+     "confidence": 0.9978919569502431,
+     "probabilities": {
+      "no": 0.0010540215248784242,
+      "yes": 0.9989459784751216
+     }
+    }
+   },
+   "request": {
+    "model": "decision-1",
+    "state": "I want my money back",
+    "questions": {
+     "department": {
+      "type": "choice",
+      "instructions": "Which department is the customer asking for?",
+      "criteria": {
+       "billing": "charges, refunds, invoices or payment methods",
+       "orders": "placing, changing or cancelling an order",
+       "shipping": "where a package is, delivery dates, tracking or the delivery address",
+       "returns": "sending an item back or exchanging it",
+       "tech_support": "a product that isn't working or won't connect",
+       "none": "none of these fits, or it is unclear what the customer wants"
+      }
+     },
+     "english": {
+      "type": "choice",
+      "instructions": "Is the text written in English?",
+      "criteria": {
+       "yes": "the text is in English",
+       "no": "the text is not in English"
+      }
+     }
+    }
+   }
+  },
+  {
+   "shape": "+english",
+   "text": "cancel it",
+   "status": 200,
+   "model_answered": "microsoft-decision-1.1",
+   "headers": {
+    "x-request-id": "b413212d-92d1-46f3-bb75-32947d5e7641",
+    "x-ms-client-request-id": "b4f059b0-2126-4697-b0e2-2cd1cadd81c2",
+    "x-ms-inference-retry-history": "{\"v\":1,\"entries\":[{\"service_id\":\"mir.frontdoor\",\"layer\":\"regional\",\"role\":\"direct\",\"retries\":0}]}",
+    "x-ms-is-spilled-over": "false",
+    "apim-request-id": "b4f059b0-2126-4697-b0e2-2cd1cadd81c2",
+    "x-ms-region": "Central US"
+   },
+   "probabilities": {
+    "billing": 0.007962802397675198,
+    "none": 0.1820703165081076,
+    "orders": 0.8017934904663188,
+    "returns": 0.0031028230386364914,
+    "shipping": 0.0019043191912875583,
+    "tech_support": 0.003166248397974321
+   },
+   "others": {
+    "english": {
+     "type": "choice",
+     "choice": "yes",
+     "confidence": 0.9918818069875381,
+     "probabilities": {
+      "no": 0.004059096506231002,
+      "yes": 0.9959409034937691
+     }
+    }
+   },
+   "request": {
+    "model": "decision-1",
+    "state": "cancel it",
+    "questions": {
+     "department": {
+      "type": "choice",
+      "instructions": "Which department is the customer asking for?",
+      "criteria": {
+       "billing": "charges, refunds, invoices or payment methods",
+       "orders": "placing, changing or cancelling an order",
+       "shipping": "where a package is, delivery dates, tracking or the delivery address",
+       "returns": "sending an item back or exchanging it",
+       "tech_support": "a product that isn't working or won't connect",
+       "none": "none of these fits, or it is unclear what the customer wants"
+      }
+     },
+     "english": {
+      "type": "choice",
+      "instructions": "Is the text written in English?",
+      "criteria": {
+       "yes": "the text is in English",
+       "no": "the text is not in English"
+      }
+     }
+    }
+   }
+  },
+  {
+   "shape": "+english",
+   "text": "it's broken",
+   "status": 200,
+   "model_answered": "microsoft-decision-1.1",
+   "headers": {
+    "x-request-id": "3bf2c943-aee7-491c-891e-85f08256e17d",
+    "x-ms-client-request-id": "3a0c7730-6923-404b-a63b-be6c8e43b9c1",
+    "x-ms-inference-retry-history": "{\"v\":1,\"entries\":[{\"service_id\":\"mir.frontdoor\",\"layer\":\"regional\",\"role\":\"direct\",\"retries\":0}]}",
+    "x-ms-is-spilled-over": "false",
+    "apim-request-id": "3a0c7730-6923-404b-a63b-be6c8e43b9c1",
+    "x-ms-region": "Central US"
+   },
+   "probabilities": {
+    "billing": 0.0023301548527056696,
+    "none": 0.05009170425121434,
+    "orders": 0.0034687500021141193,
+    "returns": 0.022719793708673282,
+    "shipping": 0.0018015178877016035,
+    "tech_support": 0.919588079297591
+   },
+   "others": {
+    "english": {
+     "type": "choice",
+     "choice": "yes",
+     "confidence": 0.9972622487720699,
+     "probabilities": {
+      "no": 0.0013688756139649753,
+      "yes": 0.998631124386035
+     }
+    }
+   },
+   "request": {
+    "model": "decision-1",
+    "state": "it's broken",
+    "questions": {
+     "department": {
+      "type": "choice",
+      "instructions": "Which department is the customer asking for?",
+      "criteria": {
+       "billing": "charges, refunds, invoices or payment methods",
+       "orders": "placing, changing or cancelling an order",
+       "shipping": "where a package is, delivery dates, tracking or the delivery address",
+       "returns": "sending an item back or exchanging it",
+       "tech_support": "a product that isn't working or won't connect",
+       "none": "none of these fits, or it is unclear what the customer wants"
+      }
+     },
+     "english": {
+      "type": "choice",
+      "instructions": "Is the text written in English?",
+      "criteria": {
+       "yes": "the text is in English",
+       "no": "the text is not in English"
+      }
+     }
+    }
+   }
+  },
+  {
+   "shape": "+english",
+   "text": "wrong size",
+   "status": 200,
+   "model_answered": "microsoft-decision-1.1",
+   "headers": {
+    "x-request-id": "ba76e837-cf3e-40e2-9fb4-d20c5855d5b8",
+    "x-ms-client-request-id": "8088d946-ee99-41d5-a44f-7273df061011",
+    "x-ms-inference-retry-history": "{\"v\":1,\"entries\":[{\"service_id\":\"mir.frontdoor\",\"layer\":\"regional\",\"role\":\"direct\",\"retries\":0}]}",
+    "x-ms-is-spilled-over": "false",
+    "apim-request-id": "8088d946-ee99-41d5-a44f-7273df061011",
+    "x-ms-region": "Central US"
+   },
+   "probabilities": {
+    "billing": 0.005312529436909379,
+    "none": 0.11700156282877244,
+    "orders": 0.026234312658093634,
+    "returns": 0.8371814543753311,
+    "shipping": 0.0029414889070831785,
+    "tech_support": 0.011328651793810214
+   },
+   "others": {
+    "english": {
+     "type": "choice",
+     "choice": "yes",
+     "confidence": 0.9936521485580303,
+     "probabilities": {
+      "no": 0.0031739257209848996,
+      "yes": 0.9968260742790152
+     }
+    }
+   },
+   "request": {
+    "model": "decision-1",
+    "state": "wrong size",
+    "questions": {
+     "department": {
+      "type": "choice",
+      "instructions": "Which department is the customer asking for?",
+      "criteria": {
+       "billing": "charges, refunds, invoices or payment methods",
+       "orders": "placing, changing or cancelling an order",
+       "shipping": "where a package is, delivery dates, tracking or the delivery address",
+       "returns": "sending an item back or exchanging it",
+       "tech_support": "a product that isn't working or won't connect",
+       "none": "none of these fits, or it is unclear what the customer wants"
+      }
+     },
+     "english": {
+      "type": "choice",
+      "instructions": "Is the text written in English?",
+      "criteria": {
+       "yes": "the text is in English",
+       "no": "the text is not in English"
+      }
+     }
+    }
+   }
+  },
+  {
+   "shape": "+english",
+   "text": "change the delivery address",
+   "status": 200,
+   "model_answered": "microsoft-decision-1.1",
+   "headers": {
+    "x-request-id": "a06ee109-6687-4464-82dc-ce9fd9a57469",
+    "x-ms-client-request-id": "46184068-9981-4273-a5e5-a7ad2fbf31d1",
+    "x-ms-inference-retry-history": "{\"v\":1,\"entries\":[{\"service_id\":\"mir.frontdoor\",\"layer\":\"regional\",\"role\":\"direct\",\"retries\":0}]}",
+    "x-ms-is-spilled-over": "false",
+    "apim-request-id": "46184068-9981-4273-a5e5-a7ad2fbf31d1",
+    "x-ms-region": "Central US"
+   },
+   "probabilities": {
+    "billing": 0.0006646433878682416,
+    "none": 0.0009366468932889934,
+    "orders": 0.0018400461394112984,
+    "returns": 0.0005053476738330728,
+    "shipping": 0.9955253288302144,
+    "tech_support": 0.0005279870753840067
+   },
+   "others": {
+    "english": {
+     "type": "choice",
+     "choice": "yes",
+     "confidence": 0.9953751721011315,
+     "probabilities": {
+      "no": 0.0023124139494343473,
+      "yes": 0.9976875860505657
+     }
+    }
+   },
+   "request": {
+    "model": "decision-1",
+    "state": "change the delivery address",
+    "questions": {
+     "department": {
+      "type": "choice",
+      "instructions": "Which department is the customer asking for?",
+      "criteria": {
+       "billing": "charges, refunds, invoices or payment methods",
+       "orders": "placing, changing or cancelling an order",
+       "shipping": "where a package is, delivery dates, tracking or the delivery address",
+       "returns": "sending an item back or exchanging it",
+       "tech_support": "a product that isn't working or won't connect",
+       "none": "none of these fits, or it is unclear what the customer wants"
+      }
+     },
+     "english": {
+      "type": "choice",
+      "instructions": "Is the text written in English?",
+      "criteria": {
+       "yes": "the text is in English",
+       "no": "the text is not in English"
+      }
+     }
+    }
+   }
+  },
+  {
+   "shape": "+english",
+   "text": "the thing I ordered",
+   "status": 200,
+   "model_answered": "microsoft-decision-1.1",
+   "headers": {
+    "x-request-id": "9796fb1b-c9b1-42f0-bd22-c9b09d4476d5",
+    "x-ms-client-request-id": "956c19b6-fc0a-494c-a35c-7833171948b0",
+    "x-ms-inference-retry-history": "{\"v\":1,\"entries\":[{\"service_id\":\"mir.frontdoor\",\"layer\":\"regional\",\"role\":\"direct\",\"retries\":0}]}",
+    "x-ms-is-spilled-over": "false",
+    "apim-request-id": "956c19b6-fc0a-494c-a35c-7833171948b0",
+    "x-ms-region": "Central US"
+   },
+   "probabilities": {
+    "billing": 0.013830861016182442,
+    "none": 0.3388115462742942,
+    "orders": 0.4933319065859742,
+    "returns": 0.024698113112415453,
+    "shipping": 0.11937425720454967,
+    "tech_support": 0.009953315806584135
+   },
+   "others": {
+    "english": {
+     "type": "choice",
+     "choice": "yes",
+     "confidence": 0.9969801852965781,
+     "probabilities": {
+      "no": 0.0015099073517109243,
+      "yes": 0.998490092648289
+     }
+    }
+   },
+   "request": {
+    "model": "decision-1",
+    "state": "the thing I ordered",
+    "questions": {
+     "department": {
+      "type": "choice",
+      "instructions": "Which department is the customer asking for?",
+      "criteria": {
+       "billing": "charges, refunds, invoices or payment methods",
+       "orders": "placing, changing or cancelling an order",
+       "shipping": "where a package is, delivery dates, tracking or the delivery address",
+       "returns": "sending an item back or exchanging it",
+       "tech_support": "a product that isn't working or won't connect",
+       "none": "none of these fits, or it is unclear what the customer wants"
+      }
+     },
+     "english": {
+      "type": "choice",
+      "instructions": "Is the text written in English?",
+      "criteria": {
+       "yes": "the text is in English",
+       "no": "the text is not in English"
+      }
+     }
+    }
+   }
+  },
+  {
+   "shape": "+english",
+   "text": "help",
+   "status": 200,
+   "model_answered": "microsoft-decision-1.1",
+   "headers": {
+    "x-request-id": "63d00300-a7c9-4b8b-a19b-0275d2c3defb",
+    "x-ms-client-request-id": "ea8af20a-5310-4140-83eb-068579818cec",
+    "x-ms-inference-retry-history": "{\"v\":1,\"entries\":[{\"service_id\":\"mir.frontdoor\",\"layer\":\"regional\",\"role\":\"direct\",\"retries\":0}]}",
+    "x-ms-is-spilled-over": "false",
+    "apim-request-id": "ea8af20a-5310-4140-83eb-068579818cec",
+    "x-ms-region": "Central US"
+   },
+   "probabilities": {
+    "billing": 0.004797191009346686,
+    "none": 0.982032868241687,
+    "orders": 0.004412708486067957,
+    "returns": 0.0025277973724487763,
+    "shipping": 0.0024536916369946905,
+    "tech_support": 0.0037757432534548455
+   },
+   "others": {
+    "english": {
+     "type": "choice",
+     "choice": "yes",
+     "confidence": 0.9883784525227328,
+     "probabilities": {
+      "no": 0.0058107737386335415,
+      "yes": 0.9941892262613664
+     }
+    }
+   },
+   "request": {
+    "model": "decision-1",
+    "state": "help",
+    "questions": {
+     "department": {
+      "type": "choice",
+      "instructions": "Which department is the customer asking for?",
+      "criteria": {
+       "billing": "charges, refunds, invoices or payment methods",
+       "orders": "placing, changing or cancelling an order",
+       "shipping": "where a package is, delivery dates, tracking or the delivery address",
+       "returns": "sending an item back or exchanging it",
+       "tech_support": "a product that isn't working or won't connect",
+       "none": "none of these fits, or it is unclear what the customer wants"
+      }
+     },
+     "english": {
+      "type": "choice",
+      "instructions": "Is the text written in English?",
+      "criteria": {
+       "yes": "the text is in English",
+       "no": "the text is not in English"
+      }
+     }
+    }
+   }
+  },
+  {
+   "shape": "n3",
+   "text": "where's my package",
+   "status": 200,
+   "model_answered": "microsoft-decision-1.1",
+   "headers": {
+    "x-request-id": "bc355c75-af22-4465-94b2-0bc7a137aa97",
+    "x-ms-client-request-id": "69fec4b9-d975-4e64-b9ef-0024f9031156",
+    "x-ms-inference-retry-history": "{\"v\":1,\"entries\":[{\"service_id\":\"mir.frontdoor\",\"layer\":\"regional\",\"role\":\"direct\",\"retries\":0}]}",
+    "x-ms-is-spilled-over": "false",
+    "apim-request-id": "69fec4b9-d975-4e64-b9ef-0024f9031156",
+    "x-ms-region": "Central US"
+   },
+   "probabilities": {
+    "billing": 0.00029046252255189684,
+    "none": 0.0005066350558967627,
+    "orders": 0.00038105788907796806,
+    "returns": 0.0002855298471590043,
+    "shipping": 0.9980766763929007,
+    "tech_support": 0.0004596382924138146
+   },
+   "others": {
+    "english": {
+     "type": "choice",
+     "choice": "yes",
+     "confidence": 0.9977635572779397,
+     "probabilities": {
+      "no": 0.001118221361030148,
+      "yes": 0.9988817786389699
+     }
+    },
+    "person": {
+     "type": "choice",
+     "choice": "no",
+     "confidence": 0.9990635558731191,
+     "probabilities": {
+      "no": 0.9995317779365596,
+      "yes": 0.000468222063440496
+     }
+    }
+   },
+   "request": {
+    "model": "decision-1",
+    "state": "where's my package",
+    "questions": {
+     "department": {
+      "type": "choice",
+      "instructions": "Which department is the customer asking for?",
+      "criteria": {
+       "billing": "charges, refunds, invoices or payment methods",
+       "orders": "placing, changing or cancelling an order",
+       "shipping": "where a package is, delivery dates, tracking or the delivery address",
+       "returns": "sending an item back or exchanging it",
+       "tech_support": "a product that isn't working or won't connect",
+       "none": "none of these fits, or it is unclear what the customer wants"
+      }
+     },
+     "english": {
+      "type": "choice",
+      "instructions": "Is the text written in English?",
+      "criteria": {
+       "yes": "the text is in English",
+       "no": "the text is not in English"
+      }
+     },
+     "person": {
+      "type": "choice",
+      "instructions": "Does the customer ask to speak to a person?",
+      "criteria": {
+       "yes": "the customer asks for a person, an agent or a representative",
+       "no": "the customer doesn't ask for a person"
+      }
+     }
+    }
+   }
+  },
+  {
+   "shape": "n3",
+   "text": "I was charged twice",
+   "status": 200,
+   "model_answered": "microsoft-decision-1.1",
+   "headers": {
+    "x-request-id": "bd676eec-7ce9-4151-9d15-e0ce44573c4e",
+    "x-ms-client-request-id": "bef36a94-a0dd-4cff-8da1-66a0626bd6ba",
+    "x-ms-inference-retry-history": "{\"v\":1,\"entries\":[{\"service_id\":\"mir.frontdoor\",\"layer\":\"regional\",\"role\":\"direct\",\"retries\":0}]}",
+    "x-ms-is-spilled-over": "false",
+    "apim-request-id": "bef36a94-a0dd-4cff-8da1-66a0626bd6ba",
+    "x-ms-region": "Central US"
+   },
+   "probabilities": {
+    "billing": 0.9986431824845338,
+    "none": 0.0007687698997484934,
+    "orders": 0.00016458498037536564,
+    "returns": 0.000138832831177032,
+    "shipping": 0.00011064813334676754,
+    "tech_support": 0.0001739816708186646
+   },
+   "others": {
+    "english": {
+     "type": "choice",
+     "choice": "yes",
+     "confidence": 0.9982179613703008,
+     "probabilities": {
+      "no": 0.0008910193148495534,
+      "yes": 0.9991089806851504
+     }
+    },
+    "person": {
+     "type": "choice",
+     "choice": "no",
+     "confidence": 0.999423405330053,
+     "probabilities": {
+      "no": 0.9997117026650265,
+      "yes": 0.00028829733497358795
+     }
+    }
+   },
+   "request": {
+    "model": "decision-1",
+    "state": "I was charged twice",
+    "questions": {
+     "department": {
+      "type": "choice",
+      "instructions": "Which department is the customer asking for?",
+      "criteria": {
+       "billing": "charges, refunds, invoices or payment methods",
+       "orders": "placing, changing or cancelling an order",
+       "shipping": "where a package is, delivery dates, tracking or the delivery address",
+       "returns": "sending an item back or exchanging it",
+       "tech_support": "a product that isn't working or won't connect",
+       "none": "none of these fits, or it is unclear what the customer wants"
+      }
+     },
+     "english": {
+      "type": "choice",
+      "instructions": "Is the text written in English?",
+      "criteria": {
+       "yes": "the text is in English",
+       "no": "the text is not in English"
+      }
+     },
+     "person": {
+      "type": "choice",
+      "instructions": "Does the customer ask to speak to a person?",
+      "criteria": {
+       "yes": "the customer asks for a person, an agent or a representative",
+       "no": "the customer doesn't ask for a person"
+      }
+     }
+    }
+   }
+  },
+  {
+   "shape": "n3",
+   "text": "my router keeps dropping the connection",
+   "status": 200,
+   "model_answered": "microsoft-decision-1.1",
+   "headers": {
+    "x-request-id": "2ae003ae-d38e-49ec-b958-00efec63aa26",
+    "x-ms-client-request-id": "24725265-693b-4c66-a9e6-5b41ef68c881",
+    "x-ms-inference-retry-history": "{\"v\":1,\"entries\":[{\"service_id\":\"mir.frontdoor\",\"layer\":\"regional\",\"role\":\"direct\",\"retries\":0}]}",
+    "x-ms-is-spilled-over": "false",
+    "apim-request-id": "24725265-693b-4c66-a9e6-5b41ef68c881",
+    "x-ms-region": "Central US"
+   },
+   "probabilities": {
+    "billing": 0.0005108141068700494,
+    "none": 0.0027634108107166067,
+    "orders": 0.0005476536379411506,
+    "returns": 0.0004632706052842501,
+    "shipping": 0.00047267187961233813,
+    "tech_support": 0.9952421789595756
+   },
+   "others": {
+    "english": {
+     "type": "choice",
+     "choice": "yes",
+     "confidence": 0.9962642351211357,
+     "probabilities": {
+      "no": 0.001867882439432119,
+      "yes": 0.9981321175605679
+     }
+    },
+    "person": {
+     "type": "choice",
+     "choice": "no",
+     "confidence": 0.9996225926142079,
+     "probabilities": {
+      "no": 0.999811296307104,
+      "yes": 0.00018870369289598513
+     }
+    }
+   },
+   "request": {
+    "model": "decision-1",
+    "state": "my router keeps dropping the connection",
+    "questions": {
+     "department": {
+      "type": "choice",
+      "instructions": "Which department is the customer asking for?",
+      "criteria": {
+       "billing": "charges, refunds, invoices or payment methods",
+       "orders": "placing, changing or cancelling an order",
+       "shipping": "where a package is, delivery dates, tracking or the delivery address",
+       "returns": "sending an item back or exchanging it",
+       "tech_support": "a product that isn't working or won't connect",
+       "none": "none of these fits, or it is unclear what the customer wants"
+      }
+     },
+     "english": {
+      "type": "choice",
+      "instructions": "Is the text written in English?",
+      "criteria": {
+       "yes": "the text is in English",
+       "no": "the text is not in English"
+      }
+     },
+     "person": {
+      "type": "choice",
+      "instructions": "Does the customer ask to speak to a person?",
+      "criteria": {
+       "yes": "the customer asks for a person, an agent or a representative",
+       "no": "the customer doesn't ask for a person"
+      }
+     }
+    }
+   }
+  },
+  {
+   "shape": "n3",
+   "text": "I want my money back",
+   "status": 200,
+   "model_answered": "microsoft-decision-1.1",
+   "headers": {
+    "x-request-id": "268579a6-be32-4498-a188-6a150c9650aa",
+    "x-ms-client-request-id": "a4092041-7d94-4c28-b4d0-1386676dc16c",
+    "x-ms-inference-retry-history": "{\"v\":1,\"entries\":[{\"service_id\":\"mir.frontdoor\",\"layer\":\"regional\",\"role\":\"direct\",\"retries\":0}]}",
+    "x-ms-is-spilled-over": "false",
+    "apim-request-id": "a4092041-7d94-4c28-b4d0-1386676dc16c",
+    "x-ms-region": "Central US"
+   },
+   "probabilities": {
+    "billing": 0.9773809176049998,
+    "none": 0.00364428320541702,
+    "orders": 0.0012993447560535145,
+    "returns": 0.01640898226711758,
+    "shipping": 0.00029431343055890736,
+    "tech_support": 0.0009721587358532509
+   },
+   "others": {
+    "english": {
+     "type": "choice",
+     "choice": "yes",
+     "confidence": 0.998635823293029,
+     "probabilities": {
+      "no": 0.0006820883534856054,
+      "yes": 0.9993179116465145
+     }
+    },
+    "person": {
+     "type": "choice",
+     "choice": "no",
+     "confidence": 0.9994613478578129,
+     "probabilities": {
+      "no": 0.9997306739289065,
+      "yes": 0.0002693260710934849
+     }
+    }
+   },
+   "request": {
+    "model": "decision-1",
+    "state": "I want my money back",
+    "questions": {
+     "department": {
+      "type": "choice",
+      "instructions": "Which department is the customer asking for?",
+      "criteria": {
+       "billing": "charges, refunds, invoices or payment methods",
+       "orders": "placing, changing or cancelling an order",
+       "shipping": "where a package is, delivery dates, tracking or the delivery address",
+       "returns": "sending an item back or exchanging it",
+       "tech_support": "a product that isn't working or won't connect",
+       "none": "none of these fits, or it is unclear what the customer wants"
+      }
+     },
+     "english": {
+      "type": "choice",
+      "instructions": "Is the text written in English?",
+      "criteria": {
+       "yes": "the text is in English",
+       "no": "the text is not in English"
+      }
+     },
+     "person": {
+      "type": "choice",
+      "instructions": "Does the customer ask to speak to a person?",
+      "criteria": {
+       "yes": "the customer asks for a person, an agent or a representative",
+       "no": "the customer doesn't ask for a person"
+      }
+     }
+    }
+   }
+  },
+  {
+   "shape": "n3",
+   "text": "cancel it",
+   "status": 200,
+   "model_answered": "microsoft-decision-1.1",
+   "headers": {
+    "x-request-id": "47dabeee-add9-444a-9564-ed258d8f2b0a",
+    "x-ms-client-request-id": "7175cc15-ce28-41ef-b4ba-bc7bf360a2a3",
+    "x-ms-inference-retry-history": "{\"v\":1,\"entries\":[{\"service_id\":\"mir.frontdoor\",\"layer\":\"regional\",\"role\":\"direct\",\"retries\":0}]}",
+    "x-ms-is-spilled-over": "false",
+    "apim-request-id": "7175cc15-ce28-41ef-b4ba-bc7bf360a2a3",
+    "x-ms-region": "Central US"
+   },
+   "probabilities": {
+    "billing": 0.012031485723889573,
+    "none": 0.2421996622304804,
+    "orders": 0.7346183110074319,
+    "returns": 0.004442137713339177,
+    "shipping": 0.002378485145407762,
+    "tech_support": 0.004329918179451165
+   },
+   "others": {
+    "english": {
+     "type": "choice",
+     "choice": "yes",
+     "confidence": 0.9921796295620651,
+     "probabilities": {
+      "no": 0.0039101852189674935,
+      "yes": 0.9960898147810325
+     }
+    },
+    "person": {
+     "type": "choice",
+     "choice": "no",
+     "confidence": 0.9986541834267963,
+     "probabilities": {
+      "no": 0.9993270917133982,
+      "yes": 0.0006729082866016843
+     }
+    }
+   },
+   "request": {
+    "model": "decision-1",
+    "state": "cancel it",
+    "questions": {
+     "department": {
+      "type": "choice",
+      "instructions": "Which department is the customer asking for?",
+      "criteria": {
+       "billing": "charges, refunds, invoices or payment methods",
+       "orders": "placing, changing or cancelling an order",
+       "shipping": "where a package is, delivery dates, tracking or the delivery address",
+       "returns": "sending an item back or exchanging it",
+       "tech_support": "a product that isn't working or won't connect",
+       "none": "none of these fits, or it is unclear what the customer wants"
+      }
+     },
+     "english": {
+      "type": "choice",
+      "instructions": "Is the text written in English?",
+      "criteria": {
+       "yes": "the text is in English",
+       "no": "the text is not in English"
+      }
+     },
+     "person": {
+      "type": "choice",
+      "instructions": "Does the customer ask to speak to a person?",
+      "criteria": {
+       "yes": "the customer asks for a person, an agent or a representative",
+       "no": "the customer doesn't ask for a person"
+      }
+     }
+    }
+   }
+  },
+  {
+   "shape": "n3",
+   "text": "it's broken",
+   "status": 200,
+   "model_answered": "microsoft-decision-1.1",
+   "headers": {
+    "x-request-id": "3bdd0ff3-9c3b-4184-9b72-cf0339ac1133",
+    "x-ms-client-request-id": "0de18316-3321-4c19-9676-41bc9b7919a6",
+    "x-ms-inference-retry-history": "{\"v\":1,\"entries\":[{\"service_id\":\"mir.frontdoor\",\"layer\":\"regional\",\"role\":\"direct\",\"retries\":0}]}",
+    "x-ms-is-spilled-over": "false",
+    "apim-request-id": "0de18316-3321-4c19-9676-41bc9b7919a6",
+    "x-ms-region": "Central US"
+   },
+   "probabilities": {
+    "billing": 0.00203946123530342,
+    "none": 0.039606842580811076,
+    "orders": 0.0027411306659439584,
+    "returns": 0.0178869677922074,
+    "shipping": 0.0013458794999536429,
+    "tech_support": 0.9363797182257804
+   },
+   "others": {
+    "english": {
+     "type": "choice",
+     "choice": "yes",
+     "confidence": 0.9972836545360351,
+     "probabilities": {
+      "no": 0.0013581727319825392,
+      "yes": 0.9986418272680175
+     }
+    },
+    "person": {
+     "type": "choice",
+     "choice": "no",
+     "confidence": 0.9994123737233633,
+     "probabilities": {
+      "no": 0.9997061868616817,
+      "yes": 0.0002938131383183985
+     }
+    }
+   },
+   "request": {
+    "model": "decision-1",
+    "state": "it's broken",
+    "questions": {
+     "department": {
+      "type": "choice",
+      "instructions": "Which department is the customer asking for?",
+      "criteria": {
+       "billing": "charges, refunds, invoices or payment methods",
+       "orders": "placing, changing or cancelling an order",
+       "shipping": "where a package is, delivery dates, tracking or the delivery address",
+       "returns": "sending an item back or exchanging it",
+       "tech_support": "a product that isn't working or won't connect",
+       "none": "none of these fits, or it is unclear what the customer wants"
+      }
+     },
+     "english": {
+      "type": "choice",
+      "instructions": "Is the text written in English?",
+      "criteria": {
+       "yes": "the text is in English",
+       "no": "the text is not in English"
+      }
+     },
+     "person": {
+      "type": "choice",
+      "instructions": "Does the customer ask to speak to a person?",
+      "criteria": {
+       "yes": "the customer asks for a person, an agent or a representative",
+       "no": "the customer doesn't ask for a person"
+      }
+     }
+    }
+   }
+  },
+  {
+   "shape": "n3",
+   "text": "wrong size",
+   "status": 200,
+   "model_answered": "microsoft-decision-1.1",
+   "headers": {
+    "x-request-id": "72a3cf5c-9a2d-4b2d-9d67-f0c91133c7ed",
+    "x-ms-client-request-id": "d8bb9a92-783e-4917-b716-6ad0c933571a",
+    "x-ms-inference-retry-history": "{\"v\":1,\"entries\":[{\"service_id\":\"mir.frontdoor\",\"layer\":\"regional\",\"role\":\"direct\",\"retries\":0}]}",
+    "x-ms-is-spilled-over": "false",
+    "apim-request-id": "d8bb9a92-783e-4917-b716-6ad0c933571a",
+    "x-ms-region": "Central US"
+   },
+   "probabilities": {
+    "billing": 0.005208424516911986,
+    "none": 0.12349722083463219,
+    "orders": 0.025389560433766327,
+    "returns": 0.8309405881018038,
+    "shipping": 0.0032084011031461093,
+    "tech_support": 0.011755805009739604
+   },
+   "others": {
+    "english": {
+     "type": "choice",
+     "choice": "yes",
+     "confidence": 0.9941770943047856,
+     "probabilities": {
+      "no": 0.0029114528476072094,
+      "yes": 0.9970885471523928
+     }
+    },
+    "person": {
+     "type": "choice",
+     "choice": "no",
+     "confidence": 0.9990339216624728,
+     "probabilities": {
+      "no": 0.9995169608312364,
+      "yes": 0.0004830391687636054
+     }
+    }
+   },
+   "request": {
+    "model": "decision-1",
+    "state": "wrong size",
+    "questions": {
+     "department": {
+      "type": "choice",
+      "instructions": "Which department is the customer asking for?",
+      "criteria": {
+       "billing": "charges, refunds, invoices or payment methods",
+       "orders": "placing, changing or cancelling an order",
+       "shipping": "where a package is, delivery dates, tracking or the delivery address",
+       "returns": "sending an item back or exchanging it",
+       "tech_support": "a product that isn't working or won't connect",
+       "none": "none of these fits, or it is unclear what the customer wants"
+      }
+     },
+     "english": {
+      "type": "choice",
+      "instructions": "Is the text written in English?",
+      "criteria": {
+       "yes": "the text is in English",
+       "no": "the text is not in English"
+      }
+     },
+     "person": {
+      "type": "choice",
+      "instructions": "Does the customer ask to speak to a person?",
+      "criteria": {
+       "yes": "the customer asks for a person, an agent or a representative",
+       "no": "the customer doesn't ask for a person"
+      }
+     }
+    }
+   }
+  },
+  {
+   "shape": "n3",
+   "text": "change the delivery address",
+   "status": 200,
+   "model_answered": "microsoft-decision-1.1",
+   "headers": {
+    "x-request-id": "fe86cb5a-521a-49b8-b684-9b072f02f4f7",
+    "x-ms-client-request-id": "7c593541-3da8-4125-8068-6c927ba24b5c",
+    "x-ms-inference-retry-history": "{\"v\":1,\"entries\":[{\"service_id\":\"mir.frontdoor\",\"layer\":\"regional\",\"role\":\"direct\",\"retries\":0}]}",
+    "x-ms-is-spilled-over": "false",
+    "apim-request-id": "7c593541-3da8-4125-8068-6c927ba24b5c",
+    "x-ms-region": "Central US"
+   },
+   "probabilities": {
+    "billing": 0.0007997446977263071,
+    "none": 0.0011281843965442212,
+    "orders": 0.0020758285174521923,
+    "returns": 0.0005814777365610911,
+    "shipping": 0.9946432525338221,
+    "tech_support": 0.000771512117893895
+   },
+   "others": {
+    "english": {
+     "type": "choice",
+     "choice": "yes",
+     "confidence": 0.9957802067981429,
+     "probabilities": {
+      "no": 0.002109896600928474,
+      "yes": 0.9978901033990715
+     }
+    },
+    "person": {
+     "type": "choice",
+     "choice": "no",
+     "confidence": 0.9989477546834378,
+     "probabilities": {
+      "no": 0.9994738773417189,
+      "yes": 0.0005261226582810563
+     }
+    }
+   },
+   "request": {
+    "model": "decision-1",
+    "state": "change the delivery address",
+    "questions": {
+     "department": {
+      "type": "choice",
+      "instructions": "Which department is the customer asking for?",
+      "criteria": {
+       "billing": "charges, refunds, invoices or payment methods",
+       "orders": "placing, changing or cancelling an order",
+       "shipping": "where a package is, delivery dates, tracking or the delivery address",
+       "returns": "sending an item back or exchanging it",
+       "tech_support": "a product that isn't working or won't connect",
+       "none": "none of these fits, or it is unclear what the customer wants"
+      }
+     },
+     "english": {
+      "type": "choice",
+      "instructions": "Is the text written in English?",
+      "criteria": {
+       "yes": "the text is in English",
+       "no": "the text is not in English"
+      }
+     },
+     "person": {
+      "type": "choice",
+      "instructions": "Does the customer ask to speak to a person?",
+      "criteria": {
+       "yes": "the customer asks for a person, an agent or a representative",
+       "no": "the customer doesn't ask for a person"
+      }
+     }
+    }
+   }
+  },
+  {
+   "shape": "n3",
+   "text": "the thing I ordered",
+   "status": 200,
+   "model_answered": "microsoft-decision-1.1",
+   "headers": {
+    "x-request-id": "28b72bae-1718-48bd-b59f-5f7b64a5d3e5",
+    "x-ms-client-request-id": "218c832a-196c-412a-a946-1f0debbcd677",
+    "x-ms-inference-retry-history": "{\"v\":1,\"entries\":[{\"service_id\":\"mir.frontdoor\",\"layer\":\"regional\",\"role\":\"direct\",\"retries\":0}]}",
+    "x-ms-is-spilled-over": "false",
+    "apim-request-id": "218c832a-196c-412a-a946-1f0debbcd677",
+    "x-ms-region": "Central US"
+   },
+   "probabilities": {
+    "billing": 0.012974867790128724,
+    "none": 0.32646403733608953,
+    "orders": 0.4909272487077123,
+    "returns": 0.02931565240025627,
+    "shipping": 0.1299917452327685,
+    "tech_support": 0.01032644853304459
+   },
+   "others": {
+    "english": {
+     "type": "choice",
+     "choice": "yes",
+     "confidence": 0.9971255365838279,
+     "probabilities": {
+      "no": 0.00143723170808619,
+      "yes": 0.9985627682919139
+     }
+    },
+    "person": {
+     "type": "choice",
+     "choice": "no",
+     "confidence": 0.9972880437009004,
+     "probabilities": {
+      "no": 0.9986440218504502,
+      "yes": 0.0013559781495498648
+     }
+    }
+   },
+   "request": {
+    "model": "decision-1",
+    "state": "the thing I ordered",
+    "questions": {
+     "department": {
+      "type": "choice",
+      "instructions": "Which department is the customer asking for?",
+      "criteria": {
+       "billing": "charges, refunds, invoices or payment methods",
+       "orders": "placing, changing or cancelling an order",
+       "shipping": "where a package is, delivery dates, tracking or the delivery address",
+       "returns": "sending an item back or exchanging it",
+       "tech_support": "a product that isn't working or won't connect",
+       "none": "none of these fits, or it is unclear what the customer wants"
+      }
+     },
+     "english": {
+      "type": "choice",
+      "instructions": "Is the text written in English?",
+      "criteria": {
+       "yes": "the text is in English",
+       "no": "the text is not in English"
+      }
+     },
+     "person": {
+      "type": "choice",
+      "instructions": "Does the customer ask to speak to a person?",
+      "criteria": {
+       "yes": "the customer asks for a person, an agent or a representative",
+       "no": "the customer doesn't ask for a person"
+      }
+     }
+    }
+   }
+  },
+  {
+   "shape": "n3",
+   "text": "help",
+   "status": 200,
+   "model_answered": "microsoft-decision-1.1",
+   "headers": {
+    "x-request-id": "28fbc2a4-36d0-4ab5-9197-b6a44dedbb25",
+    "x-ms-client-request-id": "767fb73a-2b4a-4513-b638-d8805414ae54",
+    "x-ms-inference-retry-history": "{\"v\":1,\"entries\":[{\"service_id\":\"mir.frontdoor\",\"layer\":\"regional\",\"role\":\"direct\",\"retries\":0}]}",
+    "x-ms-is-spilled-over": "false",
+    "apim-request-id": "767fb73a-2b4a-4513-b638-d8805414ae54",
+    "x-ms-region": "Central US"
+   },
+   "probabilities": {
+    "billing": 0.00348284725117472,
+    "none": 0.9874539613472332,
+    "orders": 0.0030960368410635,
+    "returns": 0.0014658405610244295,
+    "shipping": 0.0016666288599080528,
+    "tech_support": 0.0028346851395960734
+   },
+   "others": {
+    "english": {
+     "type": "choice",
+     "choice": "yes",
+     "confidence": 0.9879867971083154,
+     "probabilities": {
+      "no": 0.006006601445842304,
+      "yes": 0.9939933985541577
+     }
+    },
+    "person": {
+     "type": "choice",
+     "choice": "no",
+     "confidence": 0.9838842819996483,
+     "probabilities": {
+      "no": 0.9919421409998241,
+      "yes": 0.008057859000175947
+     }
+    }
+   },
+   "request": {
+    "model": "decision-1",
+    "state": "help",
+    "questions": {
+     "department": {
+      "type": "choice",
+      "instructions": "Which department is the customer asking for?",
+      "criteria": {
+       "billing": "charges, refunds, invoices or payment methods",
+       "orders": "placing, changing or cancelling an order",
+       "shipping": "where a package is, delivery dates, tracking or the delivery address",
+       "returns": "sending an item back or exchanging it",
+       "tech_support": "a product that isn't working or won't connect",
+       "none": "none of these fits, or it is unclear what the customer wants"
+      }
+     },
+     "english": {
+      "type": "choice",
+      "instructions": "Is the text written in English?",
+      "criteria": {
+       "yes": "the text is in English",
+       "no": "the text is not in English"
+      }
+     },
+     "person": {
+      "type": "choice",
+      "instructions": "Does the customer ask to speak to a person?",
+      "criteria": {
+       "yes": "the customer asks for a person, an agent or a representative",
+       "no": "the customer doesn't ask for a person"
+      }
+     }
+    }
+   }
+  },
+  {
+   "shape": "n5",
+   "text": "where's my package",
+   "status": 200,
+   "model_answered": "microsoft-decision-1.1",
+   "headers": {
+    "x-request-id": "32bb7f03-13a2-421a-813b-06228a1d97e9",
+    "x-ms-client-request-id": "38f4f086-71f1-4f0f-8b42-18e24b7a20dc",
+    "x-ms-inference-retry-history": "{\"v\":1,\"entries\":[{\"service_id\":\"mir.frontdoor\",\"layer\":\"regional\",\"role\":\"direct\",\"retries\":0}]}",
+    "x-ms-is-spilled-over": "false",
+    "apim-request-id": "38f4f086-71f1-4f0f-8b42-18e24b7a20dc",
+    "x-ms-region": "Central US"
+   },
+   "probabilities": {
+    "billing": 0.00029046252255189684,
+    "none": 0.0005066350558967627,
+    "orders": 0.00038105788907796806,
+    "returns": 0.0002855298471590043,
+    "shipping": 0.9980766763929007,
+    "tech_support": 0.0004596382924138146
+   },
+   "others": {
+    "english": {
+     "type": "choice",
+     "choice": "yes",
+     "confidence": 0.9977635572779397,
+     "probabilities": {
+      "no": 0.001118221361030148,
+      "yes": 0.9988817786389699
+     }
+    },
+    "person": {
+     "type": "choice",
+     "choice": "no",
+     "confidence": 0.9990635558731191,
+     "probabilities": {
+      "no": 0.9995317779365596,
+      "yes": 0.000468222063440496
+     }
+    },
+    "polite": {
+     "type": "choice",
+     "choice": "no",
+     "confidence": 0.7215841143415809,
+     "probabilities": {
+      "no": 0.8607920571707904,
+      "yes": 0.13920794282920965
+     }
+    },
+    "question": {
+     "type": "choice",
+     "choice": "yes",
+     "confidence": 0.9871785330790526,
+     "probabilities": {
+      "no": 0.006410733460473678,
+      "yes": 0.9935892665395263
+     }
+    }
+   },
+   "request": {
+    "model": "decision-1",
+    "state": "where's my package",
+    "questions": {
+     "department": {
+      "type": "choice",
+      "instructions": "Which department is the customer asking for?",
+      "criteria": {
+       "billing": "charges, refunds, invoices or payment methods",
+       "orders": "placing, changing or cancelling an order",
+       "shipping": "where a package is, delivery dates, tracking or the delivery address",
+       "returns": "sending an item back or exchanging it",
+       "tech_support": "a product that isn't working or won't connect",
+       "none": "none of these fits, or it is unclear what the customer wants"
+      }
+     },
+     "english": {
+      "type": "choice",
+      "instructions": "Is the text written in English?",
+      "criteria": {
+       "yes": "the text is in English",
+       "no": "the text is not in English"
+      }
+     },
+     "person": {
+      "type": "choice",
+      "instructions": "Does the customer ask to speak to a person?",
+      "criteria": {
+       "yes": "the customer asks for a person, an agent or a representative",
+       "no": "the customer doesn't ask for a person"
+      }
+     },
+     "polite": {
+      "type": "choice",
+      "instructions": "Is the customer being polite?",
+      "criteria": {
+       "yes": "the customer is polite",
+       "no": "the customer is not polite"
+      }
+     },
+     "question": {
+      "type": "choice",
+      "instructions": "Is the message phrased as a question?",
+      "criteria": {
+       "yes": "the message is a question",
+       "no": "the message is not a question"
+      }
+     }
+    }
+   }
+  },
+  {
+   "shape": "n5",
+   "text": "I was charged twice",
+   "status": 200,
+   "model_answered": "microsoft-decision-1.1",
+   "headers": {
+    "x-request-id": "0c454f3a-9aa0-464b-b7ed-a8b2856ef430",
+    "x-ms-client-request-id": "df5a5e8f-dc6d-41e6-b967-c4376ef43e24",
+    "x-ms-inference-retry-history": "{\"v\":1,\"entries\":[{\"service_id\":\"mir.frontdoor\",\"layer\":\"regional\",\"role\":\"direct\",\"retries\":0}]}",
+    "x-ms-is-spilled-over": "false",
+    "apim-request-id": "df5a5e8f-dc6d-41e6-b967-c4376ef43e24",
+    "x-ms-region": "Central US"
+   },
+   "probabilities": {
+    "billing": 0.9986431824845338,
+    "none": 0.0007687698997484934,
+    "orders": 0.00016458498037536564,
+    "returns": 0.000138832831177032,
+    "shipping": 0.00011064813334676754,
+    "tech_support": 0.0001739816708186646
+   },
+   "others": {
+    "english": {
+     "type": "choice",
+     "choice": "yes",
+     "confidence": 0.9982179613703008,
+     "probabilities": {
+      "no": 0.0008910193148495534,
+      "yes": 0.9991089806851504
+     }
+    },
+    "person": {
+     "type": "choice",
+     "choice": "no",
+     "confidence": 0.999423405330053,
+     "probabilities": {
+      "no": 0.9997117026650265,
+      "yes": 0.00028829733497358795
+     }
+    },
+    "polite": {
+     "type": "choice",
+     "choice": "no",
+     "confidence": 0.04393608209546307,
+     "probabilities": {
+      "no": 0.5219680410477315,
+      "yes": 0.4780319589522684
+     }
+    },
+    "question": {
+     "type": "choice",
+     "choice": "no",
+     "confidence": 0.9997186735674248,
+     "probabilities": {
+      "no": 0.9998593367837124,
+      "yes": 0.0001406632162876129
+     }
+    }
+   },
+   "request": {
+    "model": "decision-1",
+    "state": "I was charged twice",
+    "questions": {
+     "department": {
+      "type": "choice",
+      "instructions": "Which department is the customer asking for?",
+      "criteria": {
+       "billing": "charges, refunds, invoices or payment methods",
+       "orders": "placing, changing or cancelling an order",
+       "shipping": "where a package is, delivery dates, tracking or the delivery address",
+       "returns": "sending an item back or exchanging it",
+       "tech_support": "a product that isn't working or won't connect",
+       "none": "none of these fits, or it is unclear what the customer wants"
+      }
+     },
+     "english": {
+      "type": "choice",
+      "instructions": "Is the text written in English?",
+      "criteria": {
+       "yes": "the text is in English",
+       "no": "the text is not in English"
+      }
+     },
+     "person": {
+      "type": "choice",
+      "instructions": "Does the customer ask to speak to a person?",
+      "criteria": {
+       "yes": "the customer asks for a person, an agent or a representative",
+       "no": "the customer doesn't ask for a person"
+      }
+     },
+     "polite": {
+      "type": "choice",
+      "instructions": "Is the customer being polite?",
+      "criteria": {
+       "yes": "the customer is polite",
+       "no": "the customer is not polite"
+      }
+     },
+     "question": {
+      "type": "choice",
+      "instructions": "Is the message phrased as a question?",
+      "criteria": {
+       "yes": "the message is a question",
+       "no": "the message is not a question"
+      }
+     }
+    }
+   }
+  },
+  {
+   "shape": "n5",
+   "text": "my router keeps dropping the connection",
+   "status": 200,
+   "model_answered": "microsoft-decision-1.1",
+   "headers": {
+    "x-request-id": "068958e9-1f43-4479-b6f2-9039e30de46a",
+    "x-ms-client-request-id": "075b9fa9-a40a-4ae9-bb1d-7a7940df653d",
+    "x-ms-inference-retry-history": "{\"v\":1,\"entries\":[{\"service_id\":\"mir.frontdoor\",\"layer\":\"regional\",\"role\":\"direct\",\"retries\":0}]}",
+    "x-ms-is-spilled-over": "false",
+    "apim-request-id": "075b9fa9-a40a-4ae9-bb1d-7a7940df653d",
+    "x-ms-region": "Central US"
+   },
+   "probabilities": {
+    "billing": 0.0005108141068700494,
+    "none": 0.0027634108107166067,
+    "orders": 0.0005476536379411506,
+    "returns": 0.0004632706052842501,
+    "shipping": 0.00047267187961233813,
+    "tech_support": 0.9952421789595756
+   },
+   "others": {
+    "english": {
+     "type": "choice",
+     "choice": "yes",
+     "confidence": 0.9962642351211357,
+     "probabilities": {
+      "no": 0.001867882439432119,
+      "yes": 0.9981321175605679
+     }
+    },
+    "person": {
+     "type": "choice",
+     "choice": "no",
+     "confidence": 0.9996225926142079,
+     "probabilities": {
+      "no": 0.999811296307104,
+      "yes": 0.00018870369289598513
+     }
+    },
+    "polite": {
+     "type": "choice",
+     "choice": "yes",
+     "confidence": 0.6590352528063017,
+     "probabilities": {
+      "no": 0.17048237359684906,
+      "yes": 0.8295176264031509
+     }
+    },
+    "question": {
+     "type": "choice",
+     "choice": "no",
+     "confidence": 0.9995925816065989,
+     "probabilities": {
+      "no": 0.9997962908032995,
+      "yes": 0.00020370919670062326
+     }
+    }
+   },
+   "request": {
+    "model": "decision-1",
+    "state": "my router keeps dropping the connection",
+    "questions": {
+     "department": {
+      "type": "choice",
+      "instructions": "Which department is the customer asking for?",
+      "criteria": {
+       "billing": "charges, refunds, invoices or payment methods",
+       "orders": "placing, changing or cancelling an order",
+       "shipping": "where a package is, delivery dates, tracking or the delivery address",
+       "returns": "sending an item back or exchanging it",
+       "tech_support": "a product that isn't working or won't connect",
+       "none": "none of these fits, or it is unclear what the customer wants"
+      }
+     },
+     "english": {
+      "type": "choice",
+      "instructions": "Is the text written in English?",
+      "criteria": {
+       "yes": "the text is in English",
+       "no": "the text is not in English"
+      }
+     },
+     "person": {
+      "type": "choice",
+      "instructions": "Does the customer ask to speak to a person?",
+      "criteria": {
+       "yes": "the customer asks for a person, an agent or a representative",
+       "no": "the customer doesn't ask for a person"
+      }
+     },
+     "polite": {
+      "type": "choice",
+      "instructions": "Is the customer being polite?",
+      "criteria": {
+       "yes": "the customer is polite",
+       "no": "the customer is not polite"
+      }
+     },
+     "question": {
+      "type": "choice",
+      "instructions": "Is the message phrased as a question?",
+      "criteria": {
+       "yes": "the message is a question",
+       "no": "the message is not a question"
+      }
+     }
+    }
+   }
+  },
+  {
+   "shape": "n5",
+   "text": "I want my money back",
+   "status": 200,
+   "model_answered": "microsoft-decision-1.1",
+   "headers": {
+    "x-request-id": "c14b44f8-6eb3-44c5-a8ea-e7eac87dbb8c",
+    "x-ms-client-request-id": "8468b225-de95-4f8c-81bf-500320788c27",
+    "x-ms-inference-retry-history": "{\"v\":1,\"entries\":[{\"service_id\":\"mir.frontdoor\",\"layer\":\"regional\",\"role\":\"direct\",\"retries\":0}]}",
+    "x-ms-is-spilled-over": "false",
+    "apim-request-id": "8468b225-de95-4f8c-81bf-500320788c27",
+    "x-ms-region": "Central US"
+   },
+   "probabilities": {
+    "billing": 0.9773809176049998,
+    "none": 0.00364428320541702,
+    "orders": 0.0012993447560535145,
+    "returns": 0.01640898226711758,
+    "shipping": 0.00029431343055890736,
+    "tech_support": 0.0009721587358532509
+   },
+   "others": {
+    "english": {
+     "type": "choice",
+     "choice": "yes",
+     "confidence": 0.998635823293029,
+     "probabilities": {
+      "no": 0.0006820883534856054,
+      "yes": 0.9993179116465145
+     }
+    },
+    "person": {
+     "type": "choice",
+     "choice": "no",
+     "confidence": 0.9994613478578129,
+     "probabilities": {
+      "no": 0.9997306739289065,
+      "yes": 0.0002693260710934849
+     }
+    },
+    "polite": {
+     "type": "choice",
+     "choice": "no",
+     "confidence": 0.9183849028121327,
+     "probabilities": {
+      "no": 0.9591924514060663,
+      "yes": 0.04080754859393359
+     }
+    },
+    "question": {
+     "type": "choice",
+     "choice": "no",
+     "confidence": 0.9996565672277655,
+     "probabilities": {
+      "no": 0.9998282836138828,
+      "yes": 0.000171716386117211
+     }
+    }
+   },
+   "request": {
+    "model": "decision-1",
+    "state": "I want my money back",
+    "questions": {
+     "department": {
+      "type": "choice",
+      "instructions": "Which department is the customer asking for?",
+      "criteria": {
+       "billing": "charges, refunds, invoices or payment methods",
+       "orders": "placing, changing or cancelling an order",
+       "shipping": "where a package is, delivery dates, tracking or the delivery address",
+       "returns": "sending an item back or exchanging it",
+       "tech_support": "a product that isn't working or won't connect",
+       "none": "none of these fits, or it is unclear what the customer wants"
+      }
+     },
+     "english": {
+      "type": "choice",
+      "instructions": "Is the text written in English?",
+      "criteria": {
+       "yes": "the text is in English",
+       "no": "the text is not in English"
+      }
+     },
+     "person": {
+      "type": "choice",
+      "instructions": "Does the customer ask to speak to a person?",
+      "criteria": {
+       "yes": "the customer asks for a person, an agent or a representative",
+       "no": "the customer doesn't ask for a person"
+      }
+     },
+     "polite": {
+      "type": "choice",
+      "instructions": "Is the customer being polite?",
+      "criteria": {
+       "yes": "the customer is polite",
+       "no": "the customer is not polite"
+      }
+     },
+     "question": {
+      "type": "choice",
+      "instructions": "Is the message phrased as a question?",
+      "criteria": {
+       "yes": "the message is a question",
+       "no": "the message is not a question"
+      }
+     }
+    }
+   }
+  },
+  {
+   "shape": "n5",
+   "text": "cancel it",
+   "status": 200,
+   "model_answered": "microsoft-decision-1.1",
+   "headers": {
+    "x-request-id": "3d2571d9-5a50-4dcf-b820-c7919592bf88",
+    "x-ms-client-request-id": "59c99f0d-a233-48c9-8c1b-e726043c783c",
+    "x-ms-inference-retry-history": "{\"v\":1,\"entries\":[{\"service_id\":\"mir.frontdoor\",\"layer\":\"regional\",\"role\":\"direct\",\"retries\":0}]}",
+    "x-ms-is-spilled-over": "false",
+    "apim-request-id": "59c99f0d-a233-48c9-8c1b-e726043c783c",
+    "x-ms-region": "Central US"
+   },
+   "probabilities": {
+    "billing": 0.012031485723889573,
+    "none": 0.2421996622304804,
+    "orders": 0.7346183110074319,
+    "returns": 0.004442137713339177,
+    "shipping": 0.002378485145407762,
+    "tech_support": 0.004329918179451165
+   },
+   "others": {
+    "english": {
+     "type": "choice",
+     "choice": "yes",
+     "confidence": 0.9921796295620651,
+     "probabilities": {
+      "no": 0.0039101852189674935,
+      "yes": 0.9960898147810325
+     }
+    },
+    "person": {
+     "type": "choice",
+     "choice": "no",
+     "confidence": 0.9986541834267963,
+     "probabilities": {
+      "no": 0.9993270917133982,
+      "yes": 0.0006729082866016843
+     }
+    },
+    "polite": {
+     "type": "choice",
+     "choice": "no",
+     "confidence": 0.9697022543483349,
+     "probabilities": {
+      "no": 0.9848511271741675,
+      "yes": 0.01514887282583254
+     }
+    },
+    "question": {
+     "type": "choice",
+     "choice": "no",
+     "confidence": 0.999740943201662,
+     "probabilities": {
+      "no": 0.999870471600831,
+      "yes": 0.00012952839916894988
+     }
+    }
+   },
+   "request": {
+    "model": "decision-1",
+    "state": "cancel it",
+    "questions": {
+     "department": {
+      "type": "choice",
+      "instructions": "Which department is the customer asking for?",
+      "criteria": {
+       "billing": "charges, refunds, invoices or payment methods",
+       "orders": "placing, changing or cancelling an order",
+       "shipping": "where a package is, delivery dates, tracking or the delivery address",
+       "returns": "sending an item back or exchanging it",
+       "tech_support": "a product that isn't working or won't connect",
+       "none": "none of these fits, or it is unclear what the customer wants"
+      }
+     },
+     "english": {
+      "type": "choice",
+      "instructions": "Is the text written in English?",
+      "criteria": {
+       "yes": "the text is in English",
+       "no": "the text is not in English"
+      }
+     },
+     "person": {
+      "type": "choice",
+      "instructions": "Does the customer ask to speak to a person?",
+      "criteria": {
+       "yes": "the customer asks for a person, an agent or a representative",
+       "no": "the customer doesn't ask for a person"
+      }
+     },
+     "polite": {
+      "type": "choice",
+      "instructions": "Is the customer being polite?",
+      "criteria": {
+       "yes": "the customer is polite",
+       "no": "the customer is not polite"
+      }
+     },
+     "question": {
+      "type": "choice",
+      "instructions": "Is the message phrased as a question?",
+      "criteria": {
+       "yes": "the message is a question",
+       "no": "the message is not a question"
+      }
+     }
+    }
+   }
+  },
+  {
+   "shape": "n5",
+   "text": "it's broken",
+   "status": 200,
+   "model_answered": "microsoft-decision-1.1",
+   "headers": {
+    "x-request-id": "ef47bf11-8bf4-4a63-be7a-ff759ddc00a7",
+    "x-ms-client-request-id": "9461b44b-3faa-4098-b428-70d3959843c5",
+    "x-ms-inference-retry-history": "{\"v\":1,\"entries\":[{\"service_id\":\"mir.frontdoor\",\"layer\":\"regional\",\"role\":\"direct\",\"retries\":0}]}",
+    "x-ms-is-spilled-over": "false",
+    "apim-request-id": "9461b44b-3faa-4098-b428-70d3959843c5",
+    "x-ms-region": "Central US"
+   },
+   "probabilities": {
+    "billing": 0.00203946123530342,
+    "none": 0.039606842580811076,
+    "orders": 0.0027411306659439584,
+    "returns": 0.0178869677922074,
+    "shipping": 0.0013458794999536429,
+    "tech_support": 0.9363797182257804
+   },
+   "others": {
+    "english": {
+     "type": "choice",
+     "choice": "yes",
+     "confidence": 0.9972836545360351,
+     "probabilities": {
+      "no": 0.0013581727319825392,
+      "yes": 0.9986418272680175
+     }
+    },
+    "person": {
+     "type": "choice",
+     "choice": "no",
+     "confidence": 0.9994123737233633,
+     "probabilities": {
+      "no": 0.9997061868616817,
+      "yes": 0.0002938131383183985
+     }
+    },
+    "polite": {
+     "type": "choice",
+     "choice": "no",
+     "confidence": 0.6962398065115081,
+     "probabilities": {
+      "no": 0.848119903255754,
+      "yes": 0.151880096744246
+     }
+    },
+    "question": {
+     "type": "choice",
+     "choice": "no",
+     "confidence": 0.9997573638690491,
+     "probabilities": {
+      "no": 0.9998786819345246,
+      "yes": 0.00012131806547543721
+     }
+    }
+   },
+   "request": {
+    "model": "decision-1",
+    "state": "it's broken",
+    "questions": {
+     "department": {
+      "type": "choice",
+      "instructions": "Which department is the customer asking for?",
+      "criteria": {
+       "billing": "charges, refunds, invoices or payment methods",
+       "orders": "placing, changing or cancelling an order",
+       "shipping": "where a package is, delivery dates, tracking or the delivery address",
+       "returns": "sending an item back or exchanging it",
+       "tech_support": "a product that isn't working or won't connect",
+       "none": "none of these fits, or it is unclear what the customer wants"
+      }
+     },
+     "english": {
+      "type": "choice",
+      "instructions": "Is the text written in English?",
+      "criteria": {
+       "yes": "the text is in English",
+       "no": "the text is not in English"
+      }
+     },
+     "person": {
+      "type": "choice",
+      "instructions": "Does the customer ask to speak to a person?",
+      "criteria": {
+       "yes": "the customer asks for a person, an agent or a representative",
+       "no": "the customer doesn't ask for a person"
+      }
+     },
+     "polite": {
+      "type": "choice",
+      "instructions": "Is the customer being polite?",
+      "criteria": {
+       "yes": "the customer is polite",
+       "no": "the customer is not polite"
+      }
+     },
+     "question": {
+      "type": "choice",
+      "instructions": "Is the message phrased as a question?",
+      "criteria": {
+       "yes": "the message is a question",
+       "no": "the message is not a question"
+      }
+     }
+    }
+   }
+  },
+  {
+   "shape": "n5",
+   "text": "wrong size",
+   "status": 200,
+   "model_answered": "microsoft-decision-1.1",
+   "headers": {
+    "x-request-id": "62def99e-1bbd-412b-b00c-c69486e119f3",
+    "x-ms-client-request-id": "fedb41e4-77a4-48a9-8fdc-1017680c6c73",
+    "x-ms-inference-retry-history": "{\"v\":1,\"entries\":[{\"service_id\":\"mir.frontdoor\",\"layer\":\"regional\",\"role\":\"direct\",\"retries\":0}]}",
+    "x-ms-is-spilled-over": "false",
+    "apim-request-id": "fedb41e4-77a4-48a9-8fdc-1017680c6c73",
+    "x-ms-region": "Central US"
+   },
+   "probabilities": {
+    "billing": 0.005208424516911986,
+    "none": 0.12349722083463219,
+    "orders": 0.025389560433766327,
+    "returns": 0.8309405881018038,
+    "shipping": 0.0032084011031461093,
+    "tech_support": 0.011755805009739604
+   },
+   "others": {
+    "english": {
+     "type": "choice",
+     "choice": "yes",
+     "confidence": 0.9941770943047856,
+     "probabilities": {
+      "no": 0.0029114528476072094,
+      "yes": 0.9970885471523928
+     }
+    },
+    "person": {
+     "type": "choice",
+     "choice": "no",
+     "confidence": 0.9990339216624728,
+     "probabilities": {
+      "no": 0.9995169608312364,
+      "yes": 0.0004830391687636054
+     }
+    },
+    "polite": {
+     "type": "choice",
+     "choice": "no",
+     "confidence": 0.7626219682991726,
+     "probabilities": {
+      "no": 0.8813109841495863,
+      "yes": 0.11868901585041366
+     }
+    },
+    "question": {
+     "type": "choice",
+     "choice": "no",
+     "confidence": 0.9997146823088301,
+     "probabilities": {
+      "no": 0.999857341154415,
+      "yes": 0.0001426588455849336
+     }
+    }
+   },
+   "request": {
+    "model": "decision-1",
+    "state": "wrong size",
+    "questions": {
+     "department": {
+      "type": "choice",
+      "instructions": "Which department is the customer asking for?",
+      "criteria": {
+       "billing": "charges, refunds, invoices or payment methods",
+       "orders": "placing, changing or cancelling an order",
+       "shipping": "where a package is, delivery dates, tracking or the delivery address",
+       "returns": "sending an item back or exchanging it",
+       "tech_support": "a product that isn't working or won't connect",
+       "none": "none of these fits, or it is unclear what the customer wants"
+      }
+     },
+     "english": {
+      "type": "choice",
+      "instructions": "Is the text written in English?",
+      "criteria": {
+       "yes": "the text is in English",
+       "no": "the text is not in English"
+      }
+     },
+     "person": {
+      "type": "choice",
+      "instructions": "Does the customer ask to speak to a person?",
+      "criteria": {
+       "yes": "the customer asks for a person, an agent or a representative",
+       "no": "the customer doesn't ask for a person"
+      }
+     },
+     "polite": {
+      "type": "choice",
+      "instructions": "Is the customer being polite?",
+      "criteria": {
+       "yes": "the customer is polite",
+       "no": "the customer is not polite"
+      }
+     },
+     "question": {
+      "type": "choice",
+      "instructions": "Is the message phrased as a question?",
+      "criteria": {
+       "yes": "the message is a question",
+       "no": "the message is not a question"
+      }
+     }
+    }
+   }
+  },
+  {
+   "shape": "n5",
+   "text": "change the delivery address",
+   "status": 200,
+   "model_answered": "microsoft-decision-1.1",
+   "headers": {
+    "x-request-id": "7e47f46c-23e3-407a-bd63-4b6e1f62bd97",
+    "x-ms-client-request-id": "47ead235-e2a4-4ab2-a236-1b7582617544",
+    "x-ms-inference-retry-history": "{\"v\":1,\"entries\":[{\"service_id\":\"mir.frontdoor\",\"layer\":\"regional\",\"role\":\"direct\",\"retries\":0}]}",
+    "x-ms-is-spilled-over": "false",
+    "apim-request-id": "47ead235-e2a4-4ab2-a236-1b7582617544",
+    "x-ms-region": "Central US"
+   },
+   "probabilities": {
+    "billing": 0.0007997446977263071,
+    "none": 0.0011281843965442212,
+    "orders": 0.0020758285174521923,
+    "returns": 0.0005814777365610911,
+    "shipping": 0.9946432525338221,
+    "tech_support": 0.000771512117893895
+   },
+   "others": {
+    "english": {
+     "type": "choice",
+     "choice": "yes",
+     "confidence": 0.9957802067981429,
+     "probabilities": {
+      "no": 0.002109896600928474,
+      "yes": 0.9978901033990715
+     }
+    },
+    "person": {
+     "type": "choice",
+     "choice": "no",
+     "confidence": 0.9989477546834378,
+     "probabilities": {
+      "no": 0.9994738773417189,
+      "yes": 0.0005261226582810563
+     }
+    },
+    "polite": {
+     "type": "choice",
+     "choice": "no",
+     "confidence": 0.846468098134771,
+     "probabilities": {
+      "no": 0.9232340490673855,
+      "yes": 0.0767659509326145
+     }
+    },
+    "question": {
+     "type": "choice",
+     "choice": "no",
+     "confidence": 0.9975957181630379,
+     "probabilities": {
+      "no": 0.998797859081519,
+      "yes": 0.0012021409184809785
+     }
+    }
+   },
+   "request": {
+    "model": "decision-1",
+    "state": "change the delivery address",
+    "questions": {
+     "department": {
+      "type": "choice",
+      "instructions": "Which department is the customer asking for?",
+      "criteria": {
+       "billing": "charges, refunds, invoices or payment methods",
+       "orders": "placing, changing or cancelling an order",
+       "shipping": "where a package is, delivery dates, tracking or the delivery address",
+       "returns": "sending an item back or exchanging it",
+       "tech_support": "a product that isn't working or won't connect",
+       "none": "none of these fits, or it is unclear what the customer wants"
+      }
+     },
+     "english": {
+      "type": "choice",
+      "instructions": "Is the text written in English?",
+      "criteria": {
+       "yes": "the text is in English",
+       "no": "the text is not in English"
+      }
+     },
+     "person": {
+      "type": "choice",
+      "instructions": "Does the customer ask to speak to a person?",
+      "criteria": {
+       "yes": "the customer asks for a person, an agent or a representative",
+       "no": "the customer doesn't ask for a person"
+      }
+     },
+     "polite": {
+      "type": "choice",
+      "instructions": "Is the customer being polite?",
+      "criteria": {
+       "yes": "the customer is polite",
+       "no": "the customer is not polite"
+      }
+     },
+     "question": {
+      "type": "choice",
+      "instructions": "Is the message phrased as a question?",
+      "criteria": {
+       "yes": "the message is a question",
+       "no": "the message is not a question"
+      }
+     }
+    }
+   }
+  },
+  {
+   "shape": "n5",
+   "text": "the thing I ordered",
+   "status": 200,
+   "model_answered": "microsoft-decision-1.1",
+   "headers": {
+    "x-request-id": "c63ce4e2-3469-4d3f-93c6-14f6ce825edd",
+    "x-ms-client-request-id": "cd9aa833-55e3-4cc5-86f0-6dde4d40fc7a",
+    "x-ms-inference-retry-history": "{\"v\":1,\"entries\":[{\"service_id\":\"mir.frontdoor\",\"layer\":\"regional\",\"role\":\"direct\",\"retries\":0}]}",
+    "x-ms-is-spilled-over": "false",
+    "apim-request-id": "cd9aa833-55e3-4cc5-86f0-6dde4d40fc7a",
+    "x-ms-region": "Central US"
+   },
+   "probabilities": {
+    "billing": 0.012974867790128724,
+    "none": 0.32646403733608953,
+    "orders": 0.4909272487077123,
+    "returns": 0.02931565240025627,
+    "shipping": 0.1299917452327685,
+    "tech_support": 0.01032644853304459
+   },
+   "others": {
+    "english": {
+     "type": "choice",
+     "choice": "yes",
+     "confidence": 0.9971255365838279,
+     "probabilities": {
+      "no": 0.00143723170808619,
+      "yes": 0.9985627682919139
+     }
+    },
+    "person": {
+     "type": "choice",
+     "choice": "no",
+     "confidence": 0.9972880437009004,
+     "probabilities": {
+      "no": 0.9986440218504502,
+      "yes": 0.0013559781495498648
+     }
+    },
+    "polite": {
+     "type": "choice",
+     "choice": "no",
+     "confidence": 0.11042583870697475,
+     "probabilities": {
+      "no": 0.5552129193534874,
+      "yes": 0.4447870806465126
+     }
+    },
+    "question": {
+     "type": "choice",
+     "choice": "no",
+     "confidence": 0.9987463451431422,
+     "probabilities": {
+      "no": 0.9993731725715711,
+      "yes": 0.0006268274284289177
+     }
+    }
+   },
+   "request": {
+    "model": "decision-1",
+    "state": "the thing I ordered",
+    "questions": {
+     "department": {
+      "type": "choice",
+      "instructions": "Which department is the customer asking for?",
+      "criteria": {
+       "billing": "charges, refunds, invoices or payment methods",
+       "orders": "placing, changing or cancelling an order",
+       "shipping": "where a package is, delivery dates, tracking or the delivery address",
+       "returns": "sending an item back or exchanging it",
+       "tech_support": "a product that isn't working or won't connect",
+       "none": "none of these fits, or it is unclear what the customer wants"
+      }
+     },
+     "english": {
+      "type": "choice",
+      "instructions": "Is the text written in English?",
+      "criteria": {
+       "yes": "the text is in English",
+       "no": "the text is not in English"
+      }
+     },
+     "person": {
+      "type": "choice",
+      "instructions": "Does the customer ask to speak to a person?",
+      "criteria": {
+       "yes": "the customer asks for a person, an agent or a representative",
+       "no": "the customer doesn't ask for a person"
+      }
+     },
+     "polite": {
+      "type": "choice",
+      "instructions": "Is the customer being polite?",
+      "criteria": {
+       "yes": "the customer is polite",
+       "no": "the customer is not polite"
+      }
+     },
+     "question": {
+      "type": "choice",
+      "instructions": "Is the message phrased as a question?",
+      "criteria": {
+       "yes": "the message is a question",
+       "no": "the message is not a question"
+      }
+     }
+    }
+   }
+  },
+  {
+   "shape": "n5",
+   "text": "help",
+   "status": 200,
+   "model_answered": "microsoft-decision-1.1",
+   "headers": {
+    "x-request-id": "2d07a32c-c643-452d-8ded-d37c891fa15c",
+    "x-ms-client-request-id": "1aa8ca84-ad46-44ed-b54d-c4c677a2f6e7",
+    "x-ms-inference-retry-history": "{\"v\":1,\"entries\":[{\"service_id\":\"mir.frontdoor\",\"layer\":\"regional\",\"role\":\"direct\",\"retries\":0}]}",
+    "x-ms-is-spilled-over": "false",
+    "apim-request-id": "1aa8ca84-ad46-44ed-b54d-c4c677a2f6e7",
+    "x-ms-region": "Central US"
+   },
+   "probabilities": {
+    "billing": 0.00348284725117472,
+    "none": 0.9874539613472332,
+    "orders": 0.0030960368410635,
+    "returns": 0.0014658405610244295,
+    "shipping": 0.0016666288599080528,
+    "tech_support": 0.0028346851395960734
+   },
+   "others": {
+    "english": {
+     "type": "choice",
+     "choice": "yes",
+     "confidence": 0.9879867971083154,
+     "probabilities": {
+      "no": 0.006006601445842304,
+      "yes": 0.9939933985541577
+     }
+    },
+    "person": {
+     "type": "choice",
+     "choice": "no",
+     "confidence": 0.9838842819996483,
+     "probabilities": {
+      "no": 0.9919421409998241,
+      "yes": 0.008057859000175947
+     }
+    },
+    "polite": {
+     "type": "choice",
+     "choice": "no",
+     "confidence": 0.4493753037970134,
+     "probabilities": {
+      "no": 0.7246876518985067,
+      "yes": 0.27531234810149335
+     }
+    },
+    "question": {
+     "type": "choice",
+     "choice": "no",
+     "confidence": 0.9950512428923206,
+     "probabilities": {
+      "no": 0.9975256214461603,
+      "yes": 0.0024743785538397078
+     }
+    }
+   },
+   "request": {
+    "model": "decision-1",
+    "state": "help",
+    "questions": {
+     "department": {
+      "type": "choice",
+      "instructions": "Which department is the customer asking for?",
+      "criteria": {
+       "billing": "charges, refunds, invoices or payment methods",
+       "orders": "placing, changing or cancelling an order",
+       "shipping": "where a package is, delivery dates, tracking or the delivery address",
+       "returns": "sending an item back or exchanging it",
+       "tech_support": "a product that isn't working or won't connect",
+       "none": "none of these fits, or it is unclear what the customer wants"
+      }
+     },
+     "english": {
+      "type": "choice",
+      "instructions": "Is the text written in English?",
+      "criteria": {
+       "yes": "the text is in English",
+       "no": "the text is not in English"
+      }
+     },
+     "person": {
+      "type": "choice",
+      "instructions": "Does the customer ask to speak to a person?",
+      "criteria": {
+       "yes": "the customer asks for a person, an agent or a representative",
+       "no": "the customer doesn't ask for a person"
+      }
+     },
+     "polite": {
+      "type": "choice",
+      "instructions": "Is the customer being polite?",
+      "criteria": {
+       "yes": "the customer is polite",
+       "no": "the customer is not polite"
+      }
+     },
+     "question": {
+      "type": "choice",
+      "instructions": "Is the message phrased as a question?",
+      "criteria": {
+       "yes": "the message is a question",
+       "no": "the message is not a question"
+      }
+     }
+    }
+   }
+  },
+  {
+   "shape": "english-first",
+   "text": "where's my package",
+   "status": 200,
+   "model_answered": "microsoft-decision-1.1",
+   "headers": {
+    "x-request-id": "ffc83fd5-3624-4fe6-be31-a7b02237d37e",
+    "x-ms-client-request-id": "d5e9a1e7-8f25-4390-8fec-a089a75a126b",
+    "x-ms-inference-retry-history": "{\"v\":1,\"entries\":[{\"service_id\":\"mir.frontdoor\",\"layer\":\"regional\",\"role\":\"direct\",\"retries\":0}]}",
+    "x-ms-is-spilled-over": "false",
+    "apim-request-id": "d5e9a1e7-8f25-4390-8fec-a089a75a126b",
+    "x-ms-region": "Central US"
+   },
+   "probabilities": {
+    "billing": 0.0003688048938106376,
+    "none": 0.0004829252856771613,
+    "orders": 0.0003574000120748063,
+    "returns": 0.00037417783753365534,
+    "shipping": 0.9979708582973186,
+    "tech_support": 0.0004458336735852841
+   },
+   "others": {
+    "english": {
+     "type": "choice",
+     "choice": "yes",
+     "confidence": 0.9976595174095719,
+     "probabilities": {
+      "no": 0.0011702412952139234,
+      "yes": 0.998829758704786
+     }
+    }
+   },
+   "request": {
+    "model": "decision-1",
+    "state": "where's my package",
+    "questions": {
+     "english": {
+      "type": "choice",
+      "instructions": "Is the text written in English?",
+      "criteria": {
+       "yes": "the text is in English",
+       "no": "the text is not in English"
+      }
+     },
+     "department": {
+      "type": "choice",
+      "instructions": "Which department is the customer asking for?",
+      "criteria": {
+       "billing": "charges, refunds, invoices or payment methods",
+       "orders": "placing, changing or cancelling an order",
+       "shipping": "where a package is, delivery dates, tracking or the delivery address",
+       "returns": "sending an item back or exchanging it",
+       "tech_support": "a product that isn't working or won't connect",
+       "none": "none of these fits, or it is unclear what the customer wants"
+      }
+     }
+    }
+   }
+  },
+  {
+   "shape": "english-first",
+   "text": "I was charged twice",
+   "status": 200,
+   "model_answered": "microsoft-decision-1.1",
+   "headers": {
+    "x-request-id": "93a7b9d9-e8d8-4a6c-a9ed-c4fb2a9cace5",
+    "x-ms-client-request-id": "a7a8310c-2988-4621-8765-153a12ea9230",
+    "x-ms-inference-retry-history": "{\"v\":1,\"entries\":[{\"service_id\":\"mir.frontdoor\",\"layer\":\"regional\",\"role\":\"direct\",\"retries\":0}]}",
+    "x-ms-is-spilled-over": "false",
+    "apim-request-id": "a7a8310c-2988-4621-8765-153a12ea9230",
+    "x-ms-region": "Central US"
+   },
+   "probabilities": {
+    "billing": 0.9985611468103617,
+    "none": 0.000766066282898922,
+    "orders": 0.00017491062626455475,
+    "returns": 0.00015924214277140958,
+    "shipping": 0.00012791707758162585,
+    "tech_support": 0.00021071706012173454
+   },
+   "others": {
+    "english": {
+     "type": "choice",
+     "choice": "yes",
+     "confidence": 0.9982159804378334,
+     "probabilities": {
+      "no": 0.0008920097810832557,
+      "yes": 0.9991079902189167
+     }
+    }
+   },
+   "request": {
+    "model": "decision-1",
+    "state": "I was charged twice",
+    "questions": {
+     "english": {
+      "type": "choice",
+      "instructions": "Is the text written in English?",
+      "criteria": {
+       "yes": "the text is in English",
+       "no": "the text is not in English"
+      }
+     },
+     "department": {
+      "type": "choice",
+      "instructions": "Which department is the customer asking for?",
+      "criteria": {
+       "billing": "charges, refunds, invoices or payment methods",
+       "orders": "placing, changing or cancelling an order",
+       "shipping": "where a package is, delivery dates, tracking or the delivery address",
+       "returns": "sending an item back or exchanging it",
+       "tech_support": "a product that isn't working or won't connect",
+       "none": "none of these fits, or it is unclear what the customer wants"
+      }
+     }
+    }
+   }
+  },
+  {
+   "shape": "english-first",
+   "text": "my router keeps dropping the connection",
+   "status": 200,
+   "model_answered": "microsoft-decision-1.1",
+   "headers": {
+    "x-request-id": "3aba3938-1ac7-42b6-ae17-0bc10e44b9e4",
+    "x-ms-client-request-id": "2f755730-7ab8-401b-ace3-da850b968da2",
+    "x-ms-inference-retry-history": "{\"v\":1,\"entries\":[{\"service_id\":\"mir.frontdoor\",\"layer\":\"regional\",\"role\":\"direct\",\"retries\":0}]}",
+    "x-ms-is-spilled-over": "false",
+    "apim-request-id": "2f755730-7ab8-401b-ace3-da850b968da2",
+    "x-ms-region": "Central US"
+   },
+   "probabilities": {
+    "billing": 0.00045854620226024723,
+    "none": 0.0020732901711541236,
+    "orders": 0.000364866003002985,
+    "returns": 0.00028736220940974436,
+    "shipping": 0.0002955947414886281,
+    "tech_support": 0.9965203406726844
+   },
+   "others": {
+    "english": {
+     "type": "choice",
+     "choice": "yes",
+     "confidence": 0.9969186809329185,
+     "probabilities": {
+      "no": 0.001540659533540772,
+      "yes": 0.9984593404664592
+     }
+    }
+   },
+   "request": {
+    "model": "decision-1",
+    "state": "my router keeps dropping the connection",
+    "questions": {
+     "english": {
+      "type": "choice",
+      "instructions": "Is the text written in English?",
+      "criteria": {
+       "yes": "the text is in English",
+       "no": "the text is not in English"
+      }
+     },
+     "department": {
+      "type": "choice",
+      "instructions": "Which department is the customer asking for?",
+      "criteria": {
+       "billing": "charges, refunds, invoices or payment methods",
+       "orders": "placing, changing or cancelling an order",
+       "shipping": "where a package is, delivery dates, tracking or the delivery address",
+       "returns": "sending an item back or exchanging it",
+       "tech_support": "a product that isn't working or won't connect",
+       "none": "none of these fits, or it is unclear what the customer wants"
+      }
+     }
+    }
+   }
+  },
+  {
+   "shape": "english-first",
+   "text": "I want my money back",
+   "status": 200,
+   "model_answered": "microsoft-decision-1.1",
+   "headers": {
+    "x-request-id": "06092801-1deb-43a0-863c-80790bde76a5",
+    "x-ms-client-request-id": "41fd2313-46c5-4b19-bbe1-0965303495f0",
+    "x-ms-inference-retry-history": "{\"v\":1,\"entries\":[{\"service_id\":\"mir.frontdoor\",\"layer\":\"regional\",\"role\":\"direct\",\"retries\":0}]}",
+    "x-ms-is-spilled-over": "false",
+    "apim-request-id": "41fd2313-46c5-4b19-bbe1-0965303495f0",
+    "x-ms-region": "Central US"
+   },
+   "probabilities": {
+    "billing": 0.976236342217527,
+    "none": 0.004851167462815905,
+    "orders": 0.0011810527518475258,
+    "returns": 0.016675038775840804,
+    "shipping": 0.0002670175958996453,
+    "tech_support": 0.0007893811960692349
+   },
+   "others": {
+    "english": {
+     "type": "choice",
+     "choice": "yes",
+     "confidence": 0.9978919569502431,
+     "probabilities": {
+      "no": 0.0010540215248784242,
+      "yes": 0.9989459784751216
+     }
+    }
+   },
+   "request": {
+    "model": "decision-1",
+    "state": "I want my money back",
+    "questions": {
+     "english": {
+      "type": "choice",
+      "instructions": "Is the text written in English?",
+      "criteria": {
+       "yes": "the text is in English",
+       "no": "the text is not in English"
+      }
+     },
+     "department": {
+      "type": "choice",
+      "instructions": "Which department is the customer asking for?",
+      "criteria": {
+       "billing": "charges, refunds, invoices or payment methods",
+       "orders": "placing, changing or cancelling an order",
+       "shipping": "where a package is, delivery dates, tracking or the delivery address",
+       "returns": "sending an item back or exchanging it",
+       "tech_support": "a product that isn't working or won't connect",
+       "none": "none of these fits, or it is unclear what the customer wants"
+      }
+     }
+    }
+   }
+  },
+  {
+   "shape": "english-first",
+   "text": "cancel it",
+   "status": 200,
+   "model_answered": "microsoft-decision-1.1",
+   "headers": {
+    "x-request-id": "8dccf607-6260-47bd-906b-e7cbd79ed1e3",
+    "x-ms-client-request-id": "1796681f-f210-4242-9912-dfa8d696ff8b",
+    "x-ms-inference-retry-history": "{\"v\":1,\"entries\":[{\"service_id\":\"mir.frontdoor\",\"layer\":\"regional\",\"role\":\"direct\",\"retries\":0}]}",
+    "x-ms-is-spilled-over": "false",
+    "apim-request-id": "1796681f-f210-4242-9912-dfa8d696ff8b",
+    "x-ms-region": "Central US"
+   },
+   "probabilities": {
+    "billing": 0.007962802397675198,
+    "none": 0.1820703165081076,
+    "orders": 0.8017934904663188,
+    "returns": 0.0031028230386364914,
+    "shipping": 0.0019043191912875583,
+    "tech_support": 0.003166248397974321
+   },
+   "others": {
+    "english": {
+     "type": "choice",
+     "choice": "yes",
+     "confidence": 0.9918818069875381,
+     "probabilities": {
+      "no": 0.004059096506231002,
+      "yes": 0.9959409034937691
+     }
+    }
+   },
+   "request": {
+    "model": "decision-1",
+    "state": "cancel it",
+    "questions": {
+     "english": {
+      "type": "choice",
+      "instructions": "Is the text written in English?",
+      "criteria": {
+       "yes": "the text is in English",
+       "no": "the text is not in English"
+      }
+     },
+     "department": {
+      "type": "choice",
+      "instructions": "Which department is the customer asking for?",
+      "criteria": {
+       "billing": "charges, refunds, invoices or payment methods",
+       "orders": "placing, changing or cancelling an order",
+       "shipping": "where a package is, delivery dates, tracking or the delivery address",
+       "returns": "sending an item back or exchanging it",
+       "tech_support": "a product that isn't working or won't connect",
+       "none": "none of these fits, or it is unclear what the customer wants"
+      }
+     }
+    }
+   }
+  },
+  {
+   "shape": "english-first",
+   "text": "it's broken",
+   "status": 200,
+   "model_answered": "microsoft-decision-1.1",
+   "headers": {
+    "x-request-id": "50d651d3-c158-49b2-beb1-7f6f8bc5d976",
+    "x-ms-client-request-id": "797d137d-39f3-4620-92e6-79578ccf9735",
+    "x-ms-inference-retry-history": "{\"v\":1,\"entries\":[{\"service_id\":\"mir.frontdoor\",\"layer\":\"regional\",\"role\":\"direct\",\"retries\":0}]}",
+    "x-ms-is-spilled-over": "false",
+    "apim-request-id": "797d137d-39f3-4620-92e6-79578ccf9735",
+    "x-ms-region": "Central US"
+   },
+   "probabilities": {
+    "billing": 0.0023301548527056696,
+    "none": 0.05009170425121434,
+    "orders": 0.0034687500021141193,
+    "returns": 0.022719793708673282,
+    "shipping": 0.0018015178877016035,
+    "tech_support": 0.919588079297591
+   },
+   "others": {
+    "english": {
+     "type": "choice",
+     "choice": "yes",
+     "confidence": 0.9972622487720699,
+     "probabilities": {
+      "no": 0.0013688756139649753,
+      "yes": 0.998631124386035
+     }
+    }
+   },
+   "request": {
+    "model": "decision-1",
+    "state": "it's broken",
+    "questions": {
+     "english": {
+      "type": "choice",
+      "instructions": "Is the text written in English?",
+      "criteria": {
+       "yes": "the text is in English",
+       "no": "the text is not in English"
+      }
+     },
+     "department": {
+      "type": "choice",
+      "instructions": "Which department is the customer asking for?",
+      "criteria": {
+       "billing": "charges, refunds, invoices or payment methods",
+       "orders": "placing, changing or cancelling an order",
+       "shipping": "where a package is, delivery dates, tracking or the delivery address",
+       "returns": "sending an item back or exchanging it",
+       "tech_support": "a product that isn't working or won't connect",
+       "none": "none of these fits, or it is unclear what the customer wants"
+      }
+     }
+    }
+   }
+  },
+  {
+   "shape": "english-first",
+   "text": "wrong size",
+   "status": 200,
+   "model_answered": "microsoft-decision-1.1",
+   "headers": {
+    "x-request-id": "6048ea94-fc9c-4aeb-9ce5-72faa7cafa6a",
+    "x-ms-client-request-id": "857ee310-9c35-4e43-9240-93ebfad49821",
+    "x-ms-inference-retry-history": "{\"v\":1,\"entries\":[{\"service_id\":\"mir.frontdoor\",\"layer\":\"regional\",\"role\":\"direct\",\"retries\":0}]}",
+    "x-ms-is-spilled-over": "false",
+    "apim-request-id": "857ee310-9c35-4e43-9240-93ebfad49821",
+    "x-ms-region": "Central US"
+   },
+   "probabilities": {
+    "billing": 0.005312529436909379,
+    "none": 0.11700156282877244,
+    "orders": 0.026234312658093634,
+    "returns": 0.8371814543753311,
+    "shipping": 0.0029414889070831785,
+    "tech_support": 0.011328651793810214
+   },
+   "others": {
+    "english": {
+     "type": "choice",
+     "choice": "yes",
+     "confidence": 0.9936521485580303,
+     "probabilities": {
+      "no": 0.0031739257209848996,
+      "yes": 0.9968260742790152
+     }
+    }
+   },
+   "request": {
+    "model": "decision-1",
+    "state": "wrong size",
+    "questions": {
+     "english": {
+      "type": "choice",
+      "instructions": "Is the text written in English?",
+      "criteria": {
+       "yes": "the text is in English",
+       "no": "the text is not in English"
+      }
+     },
+     "department": {
+      "type": "choice",
+      "instructions": "Which department is the customer asking for?",
+      "criteria": {
+       "billing": "charges, refunds, invoices or payment methods",
+       "orders": "placing, changing or cancelling an order",
+       "shipping": "where a package is, delivery dates, tracking or the delivery address",
+       "returns": "sending an item back or exchanging it",
+       "tech_support": "a product that isn't working or won't connect",
+       "none": "none of these fits, or it is unclear what the customer wants"
+      }
+     }
+    }
+   }
+  },
+  {
+   "shape": "english-first",
+   "text": "change the delivery address",
+   "status": 200,
+   "model_answered": "microsoft-decision-1.1",
+   "headers": {
+    "x-request-id": "1a54b215-b91b-4643-9247-5a89594e3eba",
+    "x-ms-client-request-id": "06c17492-2ef4-4bf2-ab51-36a5fead14f6",
+    "x-ms-inference-retry-history": "{\"v\":1,\"entries\":[{\"service_id\":\"mir.frontdoor\",\"layer\":\"regional\",\"role\":\"direct\",\"retries\":0}]}",
+    "x-ms-is-spilled-over": "false",
+    "apim-request-id": "06c17492-2ef4-4bf2-ab51-36a5fead14f6",
+    "x-ms-region": "Central US"
+   },
+   "probabilities": {
+    "billing": 0.0006646433878682416,
+    "none": 0.0009366468932889934,
+    "orders": 0.0018400461394112984,
+    "returns": 0.0005053476738330728,
+    "shipping": 0.9955253288302144,
+    "tech_support": 0.0005279870753840067
+   },
+   "others": {
+    "english": {
+     "type": "choice",
+     "choice": "yes",
+     "confidence": 0.9953751721011315,
+     "probabilities": {
+      "no": 0.0023124139494343473,
+      "yes": 0.9976875860505657
+     }
+    }
+   },
+   "request": {
+    "model": "decision-1",
+    "state": "change the delivery address",
+    "questions": {
+     "english": {
+      "type": "choice",
+      "instructions": "Is the text written in English?",
+      "criteria": {
+       "yes": "the text is in English",
+       "no": "the text is not in English"
+      }
+     },
+     "department": {
+      "type": "choice",
+      "instructions": "Which department is the customer asking for?",
+      "criteria": {
+       "billing": "charges, refunds, invoices or payment methods",
+       "orders": "placing, changing or cancelling an order",
+       "shipping": "where a package is, delivery dates, tracking or the delivery address",
+       "returns": "sending an item back or exchanging it",
+       "tech_support": "a product that isn't working or won't connect",
+       "none": "none of these fits, or it is unclear what the customer wants"
+      }
+     }
+    }
+   }
+  },
+  {
+   "shape": "english-first",
+   "text": "the thing I ordered",
+   "status": 200,
+   "model_answered": "microsoft-decision-1.1",
+   "headers": {
+    "x-request-id": "8ce917f2-6522-40f6-adbd-a73f2f18038b",
+    "x-ms-client-request-id": "cf9b5b5e-955e-49e6-b1fc-ebee9b8a8ed2",
+    "x-ms-inference-retry-history": "{\"v\":1,\"entries\":[{\"service_id\":\"mir.frontdoor\",\"layer\":\"regional\",\"role\":\"direct\",\"retries\":0}]}",
+    "x-ms-is-spilled-over": "false",
+    "apim-request-id": "cf9b5b5e-955e-49e6-b1fc-ebee9b8a8ed2",
+    "x-ms-region": "Central US"
+   },
+   "probabilities": {
+    "billing": 0.013830861016182442,
+    "none": 0.3388115462742942,
+    "orders": 0.4933319065859742,
+    "returns": 0.024698113112415453,
+    "shipping": 0.11937425720454967,
+    "tech_support": 0.009953315806584135
+   },
+   "others": {
+    "english": {
+     "type": "choice",
+     "choice": "yes",
+     "confidence": 0.9969801852965781,
+     "probabilities": {
+      "no": 0.0015099073517109243,
+      "yes": 0.998490092648289
+     }
+    }
+   },
+   "request": {
+    "model": "decision-1",
+    "state": "the thing I ordered",
+    "questions": {
+     "english": {
+      "type": "choice",
+      "instructions": "Is the text written in English?",
+      "criteria": {
+       "yes": "the text is in English",
+       "no": "the text is not in English"
+      }
+     },
+     "department": {
+      "type": "choice",
+      "instructions": "Which department is the customer asking for?",
+      "criteria": {
+       "billing": "charges, refunds, invoices or payment methods",
+       "orders": "placing, changing or cancelling an order",
+       "shipping": "where a package is, delivery dates, tracking or the delivery address",
+       "returns": "sending an item back or exchanging it",
+       "tech_support": "a product that isn't working or won't connect",
+       "none": "none of these fits, or it is unclear what the customer wants"
+      }
+     }
+    }
+   }
+  },
+  {
+   "shape": "english-first",
+   "text": "help",
+   "status": 200,
+   "model_answered": "microsoft-decision-1.1",
+   "headers": {
+    "x-request-id": "6c90ce9f-8faf-4b49-b43a-26156f1a644c",
+    "x-ms-client-request-id": "85a4f169-bc8c-4435-a6a9-1bc5e09362ae",
+    "x-ms-inference-retry-history": "{\"v\":1,\"entries\":[{\"service_id\":\"mir.frontdoor\",\"layer\":\"regional\",\"role\":\"direct\",\"retries\":0}]}",
+    "x-ms-is-spilled-over": "false",
+    "apim-request-id": "85a4f169-bc8c-4435-a6a9-1bc5e09362ae",
+    "x-ms-region": "Central US"
+   },
+   "probabilities": {
+    "billing": 0.004797191009346686,
+    "none": 0.982032868241687,
+    "orders": 0.004412708486067957,
+    "returns": 0.0025277973724487763,
+    "shipping": 0.0024536916369946905,
+    "tech_support": 0.0037757432534548455
+   },
+   "others": {
+    "english": {
+     "type": "choice",
+     "choice": "yes",
+     "confidence": 0.9883784525227328,
+     "probabilities": {
+      "no": 0.0058107737386335415,
+      "yes": 0.9941892262613664
+     }
+    }
+   },
+   "request": {
+    "model": "decision-1",
+    "state": "help",
+    "questions": {
+     "english": {
+      "type": "choice",
+      "instructions": "Is the text written in English?",
+      "criteria": {
+       "yes": "the text is in English",
+       "no": "the text is not in English"
+      }
+     },
+     "department": {
+      "type": "choice",
+      "instructions": "Which department is the customer asking for?",
+      "criteria": {
+       "billing": "charges, refunds, invoices or payment methods",
+       "orders": "placing, changing or cancelling an order",
+       "shipping": "where a package is, delivery dates, tracking or the delivery address",
+       "returns": "sending an item back or exchanging it",
+       "tech_support": "a product that isn't working or won't connect",
+       "none": "none of these fits, or it is unclear what the customer wants"
+      }
+     }
+    }
+   }
+  },
+  {
+   "shape": "dept-twice",
+   "text": "where's my package",
+   "status": 200,
+   "model_answered": "microsoft-decision-1.1",
+   "headers": {
+    "x-request-id": "008fa06f-6b8c-4ab5-b065-13cad67dd2ce",
+    "x-ms-client-request-id": "cd390c67-c0a5-490c-afbc-cf8b02f619d4",
+    "x-ms-inference-retry-history": "{\"v\":1,\"entries\":[{\"service_id\":\"mir.frontdoor\",\"layer\":\"regional\",\"role\":\"direct\",\"retries\":0}]}",
+    "x-ms-is-spilled-over": "false",
+    "apim-request-id": "cd390c67-c0a5-490c-afbc-cf8b02f619d4",
+    "x-ms-region": "Central US"
+   },
+   "probabilities": {
+    "billing": 0.00029046252255189684,
+    "none": 0.0005066350558967627,
+    "orders": 0.00038105788907796806,
+    "returns": 0.0002855298471590043,
+    "shipping": 0.9980766763929007,
+    "tech_support": 0.0004596382924138146
+   },
+   "others": {
+    "department_2": {
+     "type": "choice",
+     "choice": "shipping",
+     "confidence": 0.9976920116714808,
+     "probabilities": {
+      "billing": 0.00029046252255189684,
+      "none": 0.0005066350558967627,
+      "orders": 0.00038105788907796806,
+      "returns": 0.0002855298471590043,
+      "shipping": 0.9980766763929007,
+      "tech_support": 0.0004596382924138146
+     }
+    }
+   },
+   "request": {
+    "model": "decision-1",
+    "state": "where's my package",
+    "questions": {
+     "department": {
+      "type": "choice",
+      "instructions": "Which department is the customer asking for?",
+      "criteria": {
+       "billing": "charges, refunds, invoices or payment methods",
+       "orders": "placing, changing or cancelling an order",
+       "shipping": "where a package is, delivery dates, tracking or the delivery address",
+       "returns": "sending an item back or exchanging it",
+       "tech_support": "a product that isn't working or won't connect",
+       "none": "none of these fits, or it is unclear what the customer wants"
+      }
+     },
+     "department_2": {
+      "type": "choice",
+      "instructions": "Which department is the customer asking for?",
+      "criteria": {
+       "billing": "charges, refunds, invoices or payment methods",
+       "orders": "placing, changing or cancelling an order",
+       "shipping": "where a package is, delivery dates, tracking or the delivery address",
+       "returns": "sending an item back or exchanging it",
+       "tech_support": "a product that isn't working or won't connect",
+       "none": "none of these fits, or it is unclear what the customer wants"
+      }
+     }
+    }
+   }
+  },
+  {
+   "shape": "dept-twice",
+   "text": "I was charged twice",
+   "status": 200,
+   "model_answered": "microsoft-decision-1.1",
+   "headers": {
+    "x-request-id": "01a2c8eb-8bdd-46f3-92dd-e5fe9b63feee",
+    "x-ms-client-request-id": "994261a6-e249-4984-ba42-7b00c3de2c85",
+    "x-ms-inference-retry-history": "{\"v\":1,\"entries\":[{\"service_id\":\"mir.frontdoor\",\"layer\":\"regional\",\"role\":\"direct\",\"retries\":0}]}",
+    "x-ms-is-spilled-over": "false",
+    "apim-request-id": "994261a6-e249-4984-ba42-7b00c3de2c85",
+    "x-ms-region": "Central US"
+   },
+   "probabilities": {
+    "billing": 0.9986431824845338,
+    "none": 0.0007687698997484934,
+    "orders": 0.00016458498037536564,
+    "returns": 0.000138832831177032,
+    "shipping": 0.00011064813334676754,
+    "tech_support": 0.0001739816708186646
+   },
+   "others": {
+    "department_2": {
+     "type": "choice",
+     "choice": "billing",
+     "confidence": 0.9983718189814406,
+     "probabilities": {
+      "billing": 0.9986431824845338,
+      "none": 0.0007687698997484934,
+      "orders": 0.00016458498037536564,
+      "returns": 0.000138832831177032,
+      "shipping": 0.00011064813334676754,
+      "tech_support": 0.0001739816708186646
+     }
+    }
+   },
+   "request": {
+    "model": "decision-1",
+    "state": "I was charged twice",
+    "questions": {
+     "department": {
+      "type": "choice",
+      "instructions": "Which department is the customer asking for?",
+      "criteria": {
+       "billing": "charges, refunds, invoices or payment methods",
+       "orders": "placing, changing or cancelling an order",
+       "shipping": "where a package is, delivery dates, tracking or the delivery address",
+       "returns": "sending an item back or exchanging it",
+       "tech_support": "a product that isn't working or won't connect",
+       "none": "none of these fits, or it is unclear what the customer wants"
+      }
+     },
+     "department_2": {
+      "type": "choice",
+      "instructions": "Which department is the customer asking for?",
+      "criteria": {
+       "billing": "charges, refunds, invoices or payment methods",
+       "orders": "placing, changing or cancelling an order",
+       "shipping": "where a package is, delivery dates, tracking or the delivery address",
+       "returns": "sending an item back or exchanging it",
+       "tech_support": "a product that isn't working or won't connect",
+       "none": "none of these fits, or it is unclear what the customer wants"
+      }
+     }
+    }
+   }
+  },
+  {
+   "shape": "dept-twice",
+   "text": "my router keeps dropping the connection",
+   "status": 200,
+   "model_answered": "microsoft-decision-1.1",
+   "headers": {
+    "x-request-id": "1d29a0ec-97b9-4112-b5ce-b7f2ad927d1a",
+    "x-ms-client-request-id": "590d04ee-1710-4f41-b401-cc8e8e3bdb2e",
+    "x-ms-inference-retry-history": "{\"v\":1,\"entries\":[{\"service_id\":\"mir.frontdoor\",\"layer\":\"regional\",\"role\":\"direct\",\"retries\":0}]}",
+    "x-ms-is-spilled-over": "false",
+    "apim-request-id": "590d04ee-1710-4f41-b401-cc8e8e3bdb2e",
+    "x-ms-region": "Central US"
+   },
+   "probabilities": {
+    "billing": 0.0005108141068700494,
+    "none": 0.0027634108107166067,
+    "orders": 0.0005476536379411506,
+    "returns": 0.0004632706052842501,
+    "shipping": 0.00047267187961233813,
+    "tech_support": 0.9952421789595756
+   },
+   "others": {
+    "department_2": {
+     "type": "choice",
+     "choice": "tech_support",
+     "confidence": 0.9942906147514907,
+     "probabilities": {
+      "billing": 0.0005108141068700494,
+      "none": 0.0027634108107166067,
+      "orders": 0.0005476536379411506,
+      "returns": 0.0004632706052842501,
+      "shipping": 0.00047267187961233813,
+      "tech_support": 0.9952421789595756
+     }
+    }
+   },
+   "request": {
+    "model": "decision-1",
+    "state": "my router keeps dropping the connection",
+    "questions": {
+     "department": {
+      "type": "choice",
+      "instructions": "Which department is the customer asking for?",
+      "criteria": {
+       "billing": "charges, refunds, invoices or payment methods",
+       "orders": "placing, changing or cancelling an order",
+       "shipping": "where a package is, delivery dates, tracking or the delivery address",
+       "returns": "sending an item back or exchanging it",
+       "tech_support": "a product that isn't working or won't connect",
+       "none": "none of these fits, or it is unclear what the customer wants"
+      }
+     },
+     "department_2": {
+      "type": "choice",
+      "instructions": "Which department is the customer asking for?",
+      "criteria": {
+       "billing": "charges, refunds, invoices or payment methods",
+       "orders": "placing, changing or cancelling an order",
+       "shipping": "where a package is, delivery dates, tracking or the delivery address",
+       "returns": "sending an item back or exchanging it",
+       "tech_support": "a product that isn't working or won't connect",
+       "none": "none of these fits, or it is unclear what the customer wants"
+      }
+     }
+    }
+   }
+  },
+  {
+   "shape": "dept-twice",
+   "text": "I want my money back",
+   "status": 200,
+   "model_answered": "microsoft-decision-1.1",
+   "headers": {
+    "x-request-id": "c549b669-f8c2-4f40-b100-1b0ad444588a",
+    "x-ms-client-request-id": "5c0688a4-6fa6-49d1-b51c-1131e90211ff",
+    "x-ms-inference-retry-history": "{\"v\":1,\"entries\":[{\"service_id\":\"mir.frontdoor\",\"layer\":\"regional\",\"role\":\"direct\",\"retries\":0}]}",
+    "x-ms-is-spilled-over": "false",
+    "apim-request-id": "5c0688a4-6fa6-49d1-b51c-1131e90211ff",
+    "x-ms-region": "Central US"
+   },
+   "probabilities": {
+    "billing": 0.9773809176049998,
+    "none": 0.00364428320541702,
+    "orders": 0.0012993447560535145,
+    "returns": 0.01640898226711758,
+    "shipping": 0.00029431343055890736,
+    "tech_support": 0.0009721587358532509
+   },
+   "others": {
+    "department_2": {
+     "type": "choice",
+     "choice": "billing",
+     "confidence": 0.9728571011259998,
+     "probabilities": {
+      "billing": 0.9773809176049998,
+      "none": 0.00364428320541702,
+      "orders": 0.0012993447560535145,
+      "returns": 0.01640898226711758,
+      "shipping": 0.00029431343055890736,
+      "tech_support": 0.0009721587358532509
+     }
+    }
+   },
+   "request": {
+    "model": "decision-1",
+    "state": "I want my money back",
+    "questions": {
+     "department": {
+      "type": "choice",
+      "instructions": "Which department is the customer asking for?",
+      "criteria": {
+       "billing": "charges, refunds, invoices or payment methods",
+       "orders": "placing, changing or cancelling an order",
+       "shipping": "where a package is, delivery dates, tracking or the delivery address",
+       "returns": "sending an item back or exchanging it",
+       "tech_support": "a product that isn't working or won't connect",
+       "none": "none of these fits, or it is unclear what the customer wants"
+      }
+     },
+     "department_2": {
+      "type": "choice",
+      "instructions": "Which department is the customer asking for?",
+      "criteria": {
+       "billing": "charges, refunds, invoices or payment methods",
+       "orders": "placing, changing or cancelling an order",
+       "shipping": "where a package is, delivery dates, tracking or the delivery address",
+       "returns": "sending an item back or exchanging it",
+       "tech_support": "a product that isn't working or won't connect",
+       "none": "none of these fits, or it is unclear what the customer wants"
+      }
+     }
+    }
+   }
+  },
+  {
+   "shape": "dept-twice",
+   "text": "cancel it",
+   "status": 200,
+   "model_answered": "microsoft-decision-1.1",
+   "headers": {
+    "x-request-id": "5b80330a-ed3e-4377-b8ac-5c90ab6f20e0",
+    "x-ms-client-request-id": "0f90b5ad-2ec6-43eb-9a75-7db20711dcfa",
+    "x-ms-inference-retry-history": "{\"v\":1,\"entries\":[{\"service_id\":\"mir.frontdoor\",\"layer\":\"regional\",\"role\":\"direct\",\"retries\":0}]}",
+    "x-ms-is-spilled-over": "false",
+    "apim-request-id": "0f90b5ad-2ec6-43eb-9a75-7db20711dcfa",
+    "x-ms-region": "Central US"
+   },
+   "probabilities": {
+    "billing": 0.012031485723889573,
+    "none": 0.2421996622304804,
+    "orders": 0.7346183110074319,
+    "returns": 0.004442137713339177,
+    "shipping": 0.002378485145407762,
+    "tech_support": 0.004329918179451165
+   },
+   "others": {
+    "department_2": {
+     "type": "choice",
+     "choice": "orders",
+     "confidence": 0.6815419732089183,
+     "probabilities": {
+      "billing": 0.012031485723889573,
+      "none": 0.2421996622304804,
+      "orders": 0.7346183110074319,
+      "returns": 0.004442137713339177,
+      "shipping": 0.002378485145407762,
+      "tech_support": 0.004329918179451165
+     }
+    }
+   },
+   "request": {
+    "model": "decision-1",
+    "state": "cancel it",
+    "questions": {
+     "department": {
+      "type": "choice",
+      "instructions": "Which department is the customer asking for?",
+      "criteria": {
+       "billing": "charges, refunds, invoices or payment methods",
+       "orders": "placing, changing or cancelling an order",
+       "shipping": "where a package is, delivery dates, tracking or the delivery address",
+       "returns": "sending an item back or exchanging it",
+       "tech_support": "a product that isn't working or won't connect",
+       "none": "none of these fits, or it is unclear what the customer wants"
+      }
+     },
+     "department_2": {
+      "type": "choice",
+      "instructions": "Which department is the customer asking for?",
+      "criteria": {
+       "billing": "charges, refunds, invoices or payment methods",
+       "orders": "placing, changing or cancelling an order",
+       "shipping": "where a package is, delivery dates, tracking or the delivery address",
+       "returns": "sending an item back or exchanging it",
+       "tech_support": "a product that isn't working or won't connect",
+       "none": "none of these fits, or it is unclear what the customer wants"
+      }
+     }
+    }
+   }
+  },
+  {
+   "shape": "dept-twice",
+   "text": "it's broken",
+   "status": 200,
+   "model_answered": "microsoft-decision-1.1",
+   "headers": {
+    "x-request-id": "9f54ead9-78e1-4e6c-8c45-110268f14aa5",
+    "x-ms-client-request-id": "5bc77e81-79e7-4474-9d75-c54d835cfd5a",
+    "x-ms-inference-retry-history": "{\"v\":1,\"entries\":[{\"service_id\":\"mir.frontdoor\",\"layer\":\"regional\",\"role\":\"direct\",\"retries\":0}]}",
+    "x-ms-is-spilled-over": "false",
+    "apim-request-id": "5bc77e81-79e7-4474-9d75-c54d835cfd5a",
+    "x-ms-region": "Central US"
+   },
+   "probabilities": {
+    "billing": 0.00203946123530342,
+    "none": 0.039606842580811076,
+    "orders": 0.0027411306659439584,
+    "returns": 0.0178869677922074,
+    "shipping": 0.0013458794999536429,
+    "tech_support": 0.9363797182257804
+   },
+   "others": {
+    "department_2": {
+     "type": "choice",
+     "choice": "tech_support",
+     "confidence": 0.9236556618709365,
+     "probabilities": {
+      "billing": 0.00203946123530342,
+      "none": 0.039606842580811076,
+      "orders": 0.0027411306659439584,
+      "returns": 0.0178869677922074,
+      "shipping": 0.0013458794999536429,
+      "tech_support": 0.9363797182257804
+     }
+    }
+   },
+   "request": {
+    "model": "decision-1",
+    "state": "it's broken",
+    "questions": {
+     "department": {
+      "type": "choice",
+      "instructions": "Which department is the customer asking for?",
+      "criteria": {
+       "billing": "charges, refunds, invoices or payment methods",
+       "orders": "placing, changing or cancelling an order",
+       "shipping": "where a package is, delivery dates, tracking or the delivery address",
+       "returns": "sending an item back or exchanging it",
+       "tech_support": "a product that isn't working or won't connect",
+       "none": "none of these fits, or it is unclear what the customer wants"
+      }
+     },
+     "department_2": {
+      "type": "choice",
+      "instructions": "Which department is the customer asking for?",
+      "criteria": {
+       "billing": "charges, refunds, invoices or payment methods",
+       "orders": "placing, changing or cancelling an order",
+       "shipping": "where a package is, delivery dates, tracking or the delivery address",
+       "returns": "sending an item back or exchanging it",
+       "tech_support": "a product that isn't working or won't connect",
+       "none": "none of these fits, or it is unclear what the customer wants"
+      }
+     }
+    }
+   }
+  },
+  {
+   "shape": "dept-twice",
+   "text": "wrong size",
+   "status": 200,
+   "model_answered": "microsoft-decision-1.1",
+   "headers": {
+    "x-request-id": "847a0d9b-4c99-4e96-922c-8b445c1f0d5b",
+    "x-ms-client-request-id": "945531a1-383f-4dfd-8b0e-fe7d18b55a4d",
+    "x-ms-inference-retry-history": "{\"v\":1,\"entries\":[{\"service_id\":\"mir.frontdoor\",\"layer\":\"regional\",\"role\":\"direct\",\"retries\":0}]}",
+    "x-ms-is-spilled-over": "false",
+    "apim-request-id": "945531a1-383f-4dfd-8b0e-fe7d18b55a4d",
+    "x-ms-region": "Central US"
+   },
+   "probabilities": {
+    "billing": 0.005208424516911986,
+    "none": 0.12349722083463219,
+    "orders": 0.025389560433766327,
+    "returns": 0.8309405881018038,
+    "shipping": 0.0032084011031461093,
+    "tech_support": 0.011755805009739604
+   },
+   "others": {
+    "department_2": {
+     "type": "choice",
+     "choice": "returns",
+     "confidence": 0.7971287057221647,
+     "probabilities": {
+      "billing": 0.005208424516911986,
+      "none": 0.12349722083463219,
+      "orders": 0.025389560433766327,
+      "returns": 0.8309405881018038,
+      "shipping": 0.0032084011031461093,
+      "tech_support": 0.011755805009739604
+     }
+    }
+   },
+   "request": {
+    "model": "decision-1",
+    "state": "wrong size",
+    "questions": {
+     "department": {
+      "type": "choice",
+      "instructions": "Which department is the customer asking for?",
+      "criteria": {
+       "billing": "charges, refunds, invoices or payment methods",
+       "orders": "placing, changing or cancelling an order",
+       "shipping": "where a package is, delivery dates, tracking or the delivery address",
+       "returns": "sending an item back or exchanging it",
+       "tech_support": "a product that isn't working or won't connect",
+       "none": "none of these fits, or it is unclear what the customer wants"
+      }
+     },
+     "department_2": {
+      "type": "choice",
+      "instructions": "Which department is the customer asking for?",
+      "criteria": {
+       "billing": "charges, refunds, invoices or payment methods",
+       "orders": "placing, changing or cancelling an order",
+       "shipping": "where a package is, delivery dates, tracking or the delivery address",
+       "returns": "sending an item back or exchanging it",
+       "tech_support": "a product that isn't working or won't connect",
+       "none": "none of these fits, or it is unclear what the customer wants"
+      }
+     }
+    }
+   }
+  },
+  {
+   "shape": "dept-twice",
+   "text": "change the delivery address",
+   "status": 200,
+   "model_answered": "microsoft-decision-1.1",
+   "headers": {
+    "x-request-id": "ef165cb5-358c-4e1e-b460-3e7c1fafa6eb",
+    "x-ms-client-request-id": "a1482472-4882-4ce2-82a0-1e029292b3e7",
+    "x-ms-inference-retry-history": "{\"v\":1,\"entries\":[{\"service_id\":\"mir.frontdoor\",\"layer\":\"regional\",\"role\":\"direct\",\"retries\":0}]}",
+    "x-ms-is-spilled-over": "false",
+    "apim-request-id": "a1482472-4882-4ce2-82a0-1e029292b3e7",
+    "x-ms-region": "Central US"
+   },
+   "probabilities": {
+    "billing": 0.0007997446977263071,
+    "none": 0.0011281843965442212,
+    "orders": 0.0020758285174521923,
+    "returns": 0.0005814777365610911,
+    "shipping": 0.9946432525338221,
+    "tech_support": 0.000771512117893895
+   },
+   "others": {
+    "department_2": {
+     "type": "choice",
+     "choice": "shipping",
+     "confidence": 0.9935719030405865,
+     "probabilities": {
+      "billing": 0.0007997446977263071,
+      "none": 0.0011281843965442212,
+      "orders": 0.0020758285174521923,
+      "returns": 0.0005814777365610911,
+      "shipping": 0.9946432525338221,
+      "tech_support": 0.000771512117893895
+     }
+    }
+   },
+   "request": {
+    "model": "decision-1",
+    "state": "change the delivery address",
+    "questions": {
+     "department": {
+      "type": "choice",
+      "instructions": "Which department is the customer asking for?",
+      "criteria": {
+       "billing": "charges, refunds, invoices or payment methods",
+       "orders": "placing, changing or cancelling an order",
+       "shipping": "where a package is, delivery dates, tracking or the delivery address",
+       "returns": "sending an item back or exchanging it",
+       "tech_support": "a product that isn't working or won't connect",
+       "none": "none of these fits, or it is unclear what the customer wants"
+      }
+     },
+     "department_2": {
+      "type": "choice",
+      "instructions": "Which department is the customer asking for?",
+      "criteria": {
+       "billing": "charges, refunds, invoices or payment methods",
+       "orders": "placing, changing or cancelling an order",
+       "shipping": "where a package is, delivery dates, tracking or the delivery address",
+       "returns": "sending an item back or exchanging it",
+       "tech_support": "a product that isn't working or won't connect",
+       "none": "none of these fits, or it is unclear what the customer wants"
+      }
+     }
+    }
+   }
+  },
+  {
+   "shape": "dept-twice",
+   "text": "the thing I ordered",
+   "status": 200,
+   "model_answered": "microsoft-decision-1.1",
+   "headers": {
+    "x-request-id": "65d23e37-d6df-45ad-8210-fa08b8aea5bf",
+    "x-ms-client-request-id": "71c2a3d4-694c-429a-8273-c822f80064de",
+    "x-ms-inference-retry-history": "{\"v\":1,\"entries\":[{\"service_id\":\"mir.frontdoor\",\"layer\":\"regional\",\"role\":\"direct\",\"retries\":0}]}",
+    "x-ms-is-spilled-over": "false",
+    "apim-request-id": "71c2a3d4-694c-429a-8273-c822f80064de",
+    "x-ms-region": "Central US"
+   },
+   "probabilities": {
+    "billing": 0.012974867790128724,
+    "none": 0.32646403733608953,
+    "orders": 0.4909272487077123,
+    "returns": 0.02931565240025627,
+    "shipping": 0.1299917452327685,
+    "tech_support": 0.01032644853304459
+   },
+   "others": {
+    "department_2": {
+     "type": "choice",
+     "choice": "orders",
+     "confidence": 0.3891126984492548,
+     "probabilities": {
+      "billing": 0.012974867790128724,
+      "none": 0.32646403733608953,
+      "orders": 0.4909272487077123,
+      "returns": 0.02931565240025627,
+      "shipping": 0.1299917452327685,
+      "tech_support": 0.01032644853304459
+     }
+    }
+   },
+   "request": {
+    "model": "decision-1",
+    "state": "the thing I ordered",
+    "questions": {
+     "department": {
+      "type": "choice",
+      "instructions": "Which department is the customer asking for?",
+      "criteria": {
+       "billing": "charges, refunds, invoices or payment methods",
+       "orders": "placing, changing or cancelling an order",
+       "shipping": "where a package is, delivery dates, tracking or the delivery address",
+       "returns": "sending an item back or exchanging it",
+       "tech_support": "a product that isn't working or won't connect",
+       "none": "none of these fits, or it is unclear what the customer wants"
+      }
+     },
+     "department_2": {
+      "type": "choice",
+      "instructions": "Which department is the customer asking for?",
+      "criteria": {
+       "billing": "charges, refunds, invoices or payment methods",
+       "orders": "placing, changing or cancelling an order",
+       "shipping": "where a package is, delivery dates, tracking or the delivery address",
+       "returns": "sending an item back or exchanging it",
+       "tech_support": "a product that isn't working or won't connect",
+       "none": "none of these fits, or it is unclear what the customer wants"
+      }
+     }
+    }
+   }
+  },
+  {
+   "shape": "dept-twice",
+   "text": "help",
+   "status": 200,
+   "model_answered": "microsoft-decision-1.1",
+   "headers": {
+    "x-request-id": "ccb9ec4e-d52e-4c4b-9d31-9659db1354db",
+    "x-ms-client-request-id": "c8a95ba4-02f1-4d20-a6f6-9a668be94954",
+    "x-ms-inference-retry-history": "{\"v\":1,\"entries\":[{\"service_id\":\"mir.frontdoor\",\"layer\":\"regional\",\"role\":\"direct\",\"retries\":0}]}",
+    "x-ms-is-spilled-over": "false",
+    "apim-request-id": "c8a95ba4-02f1-4d20-a6f6-9a668be94954",
+    "x-ms-region": "Central US"
+   },
+   "probabilities": {
+    "billing": 0.00348284725117472,
+    "none": 0.9874539613472332,
+    "orders": 0.0030960368410635,
+    "returns": 0.0014658405610244295,
+    "shipping": 0.0016666288599080528,
+    "tech_support": 0.0028346851395960734
+   },
+   "others": {
+    "department_2": {
+     "type": "choice",
+     "choice": "none",
+     "confidence": 0.9849447536166798,
+     "probabilities": {
+      "billing": 0.00348284725117472,
+      "none": 0.9874539613472332,
+      "orders": 0.0030960368410635,
+      "returns": 0.0014658405610244295,
+      "shipping": 0.0016666288599080528,
+      "tech_support": 0.0028346851395960734
+     }
+    }
+   },
+   "request": {
+    "model": "decision-1",
+    "state": "help",
+    "questions": {
+     "department": {
+      "type": "choice",
+      "instructions": "Which department is the customer asking for?",
+      "criteria": {
+       "billing": "charges, refunds, invoices or payment methods",
+       "orders": "placing, changing or cancelling an order",
+       "shipping": "where a package is, delivery dates, tracking or the delivery address",
+       "returns": "sending an item back or exchanging it",
+       "tech_support": "a product that isn't working or won't connect",
+       "none": "none of these fits, or it is unclear what the customer wants"
+      }
+     },
+     "department_2": {
+      "type": "choice",
+      "instructions": "Which department is the customer asking for?",
+      "criteria": {
+       "billing": "charges, refunds, invoices or payment methods",
+       "orders": "placing, changing or cancelling an order",
+       "shipping": "where a package is, delivery dates, tracking or the delivery address",
+       "returns": "sending an item back or exchanging it",
+       "tech_support": "a product that isn't working or won't connect",
+       "none": "none of these fits, or it is unclear what the customer wants"
+      }
+     }
+    }
+   }
+  },
+  {
+   "shape": "+noul",
+   "text": "where's my package",
+   "status": 200,
+   "model_answered": "microsoft-decision-1.1",
+   "headers": {
+    "x-request-id": "0addc55e-0a7b-47bf-bf43-d7a91271b4a8",
+    "x-ms-client-request-id": "888dc994-fe96-487b-a28d-6b8957e3df64",
+    "x-ms-inference-retry-history": "{\"v\":1,\"entries\":[{\"service_id\":\"mir.frontdoor\",\"layer\":\"regional\",\"role\":\"direct\",\"retries\":0}]}",
+    "x-ms-is-spilled-over": "false",
+    "apim-request-id": "888dc994-fe96-487b-a28d-6b8957e3df64",
+    "x-ms-region": "Central US"
+   },
+   "probabilities": {
+    "billing": 0.0003688048938106376,
+    "none": 0.0004829252856771613,
+    "orders": 0.0003574000120748063,
+    "returns": 0.00037417783753365534,
+    "shipping": 0.9979708582973186,
+    "tech_support": 0.0004458336735852841
+   },
+   "others": {
+    "english": {
+     "type": "noul",
+     "noul": 0.9990510488426728
+    }
+   },
+   "request": {
+    "model": "decision-1",
+    "state": "where's my package",
+    "questions": {
+     "department": {
+      "type": "choice",
+      "instructions": "Which department is the customer asking for?",
+      "criteria": {
+       "billing": "charges, refunds, invoices or payment methods",
+       "orders": "placing, changing or cancelling an order",
+       "shipping": "where a package is, delivery dates, tracking or the delivery address",
+       "returns": "sending an item back or exchanging it",
+       "tech_support": "a product that isn't working or won't connect",
+       "none": "none of these fits, or it is unclear what the customer wants"
+      }
+     },
+     "english": {
+      "type": "noul",
+      "instructions": "Is the text written in English?"
+     }
+    }
+   }
+  },
+  {
+   "shape": "+noul",
+   "text": "I was charged twice",
+   "status": 200,
+   "model_answered": "microsoft-decision-1.1",
+   "headers": {
+    "x-request-id": "f9159e19-6199-4a6d-bab1-e602de2989bd",
+    "x-ms-client-request-id": "d0c5c886-4022-4617-9460-db7a2fe232c8",
+    "x-ms-inference-retry-history": "{\"v\":1,\"entries\":[{\"service_id\":\"mir.frontdoor\",\"layer\":\"regional\",\"role\":\"direct\",\"retries\":0}]}",
+    "x-ms-is-spilled-over": "false",
+    "apim-request-id": "d0c5c886-4022-4617-9460-db7a2fe232c8",
+    "x-ms-region": "Central US"
+   },
+   "probabilities": {
+    "billing": 0.9985611468103617,
+    "none": 0.000766066282898922,
+    "orders": 0.00017491062626455475,
+    "returns": 0.00015924214277140958,
+    "shipping": 0.00012791707758162585,
+    "tech_support": 0.00021071706012173454
+   },
+   "others": {
+    "english": {
+     "type": "noul",
+     "noul": 0.9988262534292223
+    }
+   },
+   "request": {
+    "model": "decision-1",
+    "state": "I was charged twice",
+    "questions": {
+     "department": {
+      "type": "choice",
+      "instructions": "Which department is the customer asking for?",
+      "criteria": {
+       "billing": "charges, refunds, invoices or payment methods",
+       "orders": "placing, changing or cancelling an order",
+       "shipping": "where a package is, delivery dates, tracking or the delivery address",
+       "returns": "sending an item back or exchanging it",
+       "tech_support": "a product that isn't working or won't connect",
+       "none": "none of these fits, or it is unclear what the customer wants"
+      }
+     },
+     "english": {
+      "type": "noul",
+      "instructions": "Is the text written in English?"
+     }
+    }
+   }
+  },
+  {
+   "shape": "+noul",
+   "text": "my router keeps dropping the connection",
+   "status": 200,
+   "model_answered": "microsoft-decision-1.1",
+   "headers": {
+    "x-request-id": "0d71b67e-dc2d-41e2-954a-76dc30214f85",
+    "x-ms-client-request-id": "47e8213b-f8e6-4f25-9730-83b4e74315c2",
+    "x-ms-inference-retry-history": "{\"v\":1,\"entries\":[{\"service_id\":\"mir.frontdoor\",\"layer\":\"regional\",\"role\":\"direct\",\"retries\":0}]}",
+    "x-ms-is-spilled-over": "false",
+    "apim-request-id": "47e8213b-f8e6-4f25-9730-83b4e74315c2",
+    "x-ms-region": "Central US"
+   },
+   "probabilities": {
+    "billing": 0.00045854620226024723,
+    "none": 0.0020732901711541236,
+    "orders": 0.000364866003002985,
+    "returns": 0.00028736220940974436,
+    "shipping": 0.0002955947414886281,
+    "tech_support": 0.9965203406726844
+   },
+   "others": {
+    "english": {
+     "type": "noul",
+     "noul": 0.998435382988033
+    }
+   },
+   "request": {
+    "model": "decision-1",
+    "state": "my router keeps dropping the connection",
+    "questions": {
+     "department": {
+      "type": "choice",
+      "instructions": "Which department is the customer asking for?",
+      "criteria": {
+       "billing": "charges, refunds, invoices or payment methods",
+       "orders": "placing, changing or cancelling an order",
+       "shipping": "where a package is, delivery dates, tracking or the delivery address",
+       "returns": "sending an item back or exchanging it",
+       "tech_support": "a product that isn't working or won't connect",
+       "none": "none of these fits, or it is unclear what the customer wants"
+      }
+     },
+     "english": {
+      "type": "noul",
+      "instructions": "Is the text written in English?"
+     }
+    }
+   }
+  },
+  {
+   "shape": "+noul",
+   "text": "I want my money back",
+   "status": 200,
+   "model_answered": "microsoft-decision-1.1",
+   "headers": {
+    "x-request-id": "102a95c0-f09b-4e6f-8512-727e5971f395",
+    "x-ms-client-request-id": "ed3a0ee0-9f96-4bad-b740-c4b26ba5ad0d",
+    "x-ms-inference-retry-history": "{\"v\":1,\"entries\":[{\"service_id\":\"mir.frontdoor\",\"layer\":\"regional\",\"role\":\"direct\",\"retries\":0}]}",
+    "x-ms-is-spilled-over": "false",
+    "apim-request-id": "ed3a0ee0-9f96-4bad-b740-c4b26ba5ad0d",
+    "x-ms-region": "Central US"
+   },
+   "probabilities": {
+    "billing": 0.976236342217527,
+    "none": 0.004851167462815905,
+    "orders": 0.0011810527518475258,
+    "returns": 0.016675038775840804,
+    "shipping": 0.0002670175958996453,
+    "tech_support": 0.0007893811960692349
+   },
+   "others": {
+    "english": {
+     "type": "noul",
+     "noul": 0.9986940747053658
+    }
+   },
+   "request": {
+    "model": "decision-1",
+    "state": "I want my money back",
+    "questions": {
+     "department": {
+      "type": "choice",
+      "instructions": "Which department is the customer asking for?",
+      "criteria": {
+       "billing": "charges, refunds, invoices or payment methods",
+       "orders": "placing, changing or cancelling an order",
+       "shipping": "where a package is, delivery dates, tracking or the delivery address",
+       "returns": "sending an item back or exchanging it",
+       "tech_support": "a product that isn't working or won't connect",
+       "none": "none of these fits, or it is unclear what the customer wants"
+      }
+     },
+     "english": {
+      "type": "noul",
+      "instructions": "Is the text written in English?"
+     }
+    }
+   }
+  },
+  {
+   "shape": "+noul",
+   "text": "cancel it",
+   "status": 200,
+   "model_answered": "microsoft-decision-1.1",
+   "headers": {
+    "x-request-id": "e41e06c1-5286-4948-8bf6-4473ed4dceba",
+    "x-ms-client-request-id": "bebc4f38-9b01-4dea-bc61-290cf97e8a71",
+    "x-ms-inference-retry-history": "{\"v\":1,\"entries\":[{\"service_id\":\"mir.frontdoor\",\"layer\":\"regional\",\"role\":\"direct\",\"retries\":0}]}",
+    "x-ms-is-spilled-over": "false",
+    "apim-request-id": "bebc4f38-9b01-4dea-bc61-290cf97e8a71",
+    "x-ms-region": "Central US"
+   },
+   "probabilities": {
+    "billing": 0.007962802397675198,
+    "none": 0.1820703165081076,
+    "orders": 0.8017934904663188,
+    "returns": 0.0031028230386364914,
+    "shipping": 0.0019043191912875583,
+    "tech_support": 0.003166248397974321
+   },
+   "others": {
+    "english": {
+     "type": "noul",
+     "noul": 0.9948788127567482
+    }
+   },
+   "request": {
+    "model": "decision-1",
+    "state": "cancel it",
+    "questions": {
+     "department": {
+      "type": "choice",
+      "instructions": "Which department is the customer asking for?",
+      "criteria": {
+       "billing": "charges, refunds, invoices or payment methods",
+       "orders": "placing, changing or cancelling an order",
+       "shipping": "where a package is, delivery dates, tracking or the delivery address",
+       "returns": "sending an item back or exchanging it",
+       "tech_support": "a product that isn't working or won't connect",
+       "none": "none of these fits, or it is unclear what the customer wants"
+      }
+     },
+     "english": {
+      "type": "noul",
+      "instructions": "Is the text written in English?"
+     }
+    }
+   }
+  },
+  {
+   "shape": "+noul",
+   "text": "it's broken",
+   "status": 200,
+   "model_answered": "microsoft-decision-1.1",
+   "headers": {
+    "x-request-id": "fe70a92f-d274-46cf-958e-b707b532d584",
+    "x-ms-client-request-id": "d9f8267b-b29c-44aa-87f5-877bf209807c",
+    "x-ms-inference-retry-history": "{\"v\":1,\"entries\":[{\"service_id\":\"mir.frontdoor\",\"layer\":\"regional\",\"role\":\"direct\",\"retries\":0}]}",
+    "x-ms-is-spilled-over": "false",
+    "apim-request-id": "d9f8267b-b29c-44aa-87f5-877bf209807c",
+    "x-ms-region": "Central US"
+   },
+   "probabilities": {
+    "billing": 0.0023301548527056696,
+    "none": 0.05009170425121434,
+    "orders": 0.0034687500021141193,
+    "returns": 0.022719793708673282,
+    "shipping": 0.0018015178877016035,
+    "tech_support": 0.919588079297591
+   },
+   "others": {
+    "english": {
+     "type": "noul",
+     "noul": 0.9988796754919002
+    }
+   },
+   "request": {
+    "model": "decision-1",
+    "state": "it's broken",
+    "questions": {
+     "department": {
+      "type": "choice",
+      "instructions": "Which department is the customer asking for?",
+      "criteria": {
+       "billing": "charges, refunds, invoices or payment methods",
+       "orders": "placing, changing or cancelling an order",
+       "shipping": "where a package is, delivery dates, tracking or the delivery address",
+       "returns": "sending an item back or exchanging it",
+       "tech_support": "a product that isn't working or won't connect",
+       "none": "none of these fits, or it is unclear what the customer wants"
+      }
+     },
+     "english": {
+      "type": "noul",
+      "instructions": "Is the text written in English?"
+     }
+    }
+   }
+  },
+  {
+   "shape": "+noul",
+   "text": "wrong size",
+   "status": 200,
+   "model_answered": "microsoft-decision-1.1",
+   "headers": {
+    "x-request-id": "0439032a-32b9-4a5c-8cad-c1865882b65f",
+    "x-ms-client-request-id": "88182e1e-f932-4844-b63f-d161764ee3c2",
+    "x-ms-inference-retry-history": "{\"v\":1,\"entries\":[{\"service_id\":\"mir.frontdoor\",\"layer\":\"regional\",\"role\":\"direct\",\"retries\":0}]}",
+    "x-ms-is-spilled-over": "false",
+    "apim-request-id": "88182e1e-f932-4844-b63f-d161764ee3c2",
+    "x-ms-region": "Central US"
+   },
+   "probabilities": {
+    "billing": 0.005312529436909379,
+    "none": 0.11700156282877244,
+    "orders": 0.026234312658093634,
+    "returns": 0.8371814543753311,
+    "shipping": 0.0029414889070831785,
+    "tech_support": 0.011328651793810214
+   },
+   "others": {
+    "english": {
+     "type": "noul",
+     "noul": 0.9985047446405925
+    }
+   },
+   "request": {
+    "model": "decision-1",
+    "state": "wrong size",
+    "questions": {
+     "department": {
+      "type": "choice",
+      "instructions": "Which department is the customer asking for?",
+      "criteria": {
+       "billing": "charges, refunds, invoices or payment methods",
+       "orders": "placing, changing or cancelling an order",
+       "shipping": "where a package is, delivery dates, tracking or the delivery address",
+       "returns": "sending an item back or exchanging it",
+       "tech_support": "a product that isn't working or won't connect",
+       "none": "none of these fits, or it is unclear what the customer wants"
+      }
+     },
+     "english": {
+      "type": "noul",
+      "instructions": "Is the text written in English?"
+     }
+    }
+   }
+  },
+  {
+   "shape": "+noul",
+   "text": "change the delivery address",
+   "status": 200,
+   "model_answered": "microsoft-decision-1.1",
+   "headers": {
+    "x-request-id": "4c0c06b0-dc4a-43c9-a8b9-3d902fa146ad",
+    "x-ms-client-request-id": "363480d2-84c7-4c56-a9ca-549ff452d154",
+    "x-ms-inference-retry-history": "{\"v\":1,\"entries\":[{\"service_id\":\"mir.frontdoor\",\"layer\":\"regional\",\"role\":\"direct\",\"retries\":0}]}",
+    "x-ms-is-spilled-over": "false",
+    "apim-request-id": "363480d2-84c7-4c56-a9ca-549ff452d154",
+    "x-ms-region": "Central US"
+   },
+   "probabilities": {
+    "billing": 0.0006646433878682416,
+    "none": 0.0009366468932889934,
+    "orders": 0.0018400461394112984,
+    "returns": 0.0005053476738330728,
+    "shipping": 0.9955253288302144,
+    "tech_support": 0.0005279870753840067
+   },
+   "others": {
+    "english": {
+     "type": "noul",
+     "noul": 0.998687970493314
+    }
+   },
+   "request": {
+    "model": "decision-1",
+    "state": "change the delivery address",
+    "questions": {
+     "department": {
+      "type": "choice",
+      "instructions": "Which department is the customer asking for?",
+      "criteria": {
+       "billing": "charges, refunds, invoices or payment methods",
+       "orders": "placing, changing or cancelling an order",
+       "shipping": "where a package is, delivery dates, tracking or the delivery address",
+       "returns": "sending an item back or exchanging it",
+       "tech_support": "a product that isn't working or won't connect",
+       "none": "none of these fits, or it is unclear what the customer wants"
+      }
+     },
+     "english": {
+      "type": "noul",
+      "instructions": "Is the text written in English?"
+     }
+    }
+   }
+  },
+  {
+   "shape": "+noul",
+   "text": "the thing I ordered",
+   "status": 200,
+   "model_answered": "microsoft-decision-1.1",
+   "headers": {
+    "x-request-id": "ac67d84a-6b8e-4d95-8256-7bc8f5c100ef",
+    "x-ms-client-request-id": "3536a6a2-5710-4353-a4eb-3f4a24989433",
+    "x-ms-inference-retry-history": "{\"v\":1,\"entries\":[{\"service_id\":\"mir.frontdoor\",\"layer\":\"regional\",\"role\":\"direct\",\"retries\":0}]}",
+    "x-ms-is-spilled-over": "false",
+    "apim-request-id": "3536a6a2-5710-4353-a4eb-3f4a24989433",
+    "x-ms-region": "Central US"
+   },
+   "probabilities": {
+    "billing": 0.013830861016182442,
+    "none": 0.3388115462742942,
+    "orders": 0.4933319065859742,
+    "returns": 0.024698113112415453,
+    "shipping": 0.11937425720454967,
+    "tech_support": 0.009953315806584135
+   },
+   "others": {
+    "english": {
+     "type": "noul",
+     "noul": 0.9978875319282348
+    }
+   },
+   "request": {
+    "model": "decision-1",
+    "state": "the thing I ordered",
+    "questions": {
+     "department": {
+      "type": "choice",
+      "instructions": "Which department is the customer asking for?",
+      "criteria": {
+       "billing": "charges, refunds, invoices or payment methods",
+       "orders": "placing, changing or cancelling an order",
+       "shipping": "where a package is, delivery dates, tracking or the delivery address",
+       "returns": "sending an item back or exchanging it",
+       "tech_support": "a product that isn't working or won't connect",
+       "none": "none of these fits, or it is unclear what the customer wants"
+      }
+     },
+     "english": {
+      "type": "noul",
+      "instructions": "Is the text written in English?"
+     }
+    }
+   }
+  },
+  {
+   "shape": "+noul",
+   "text": "help",
+   "status": 200,
+   "model_answered": "microsoft-decision-1.1",
+   "headers": {
+    "x-request-id": "da4e39ae-3182-442c-99f5-8bfc8d064d5b",
+    "x-ms-client-request-id": "19d6561c-536b-49f0-bc57-d1043b5a6350",
+    "x-ms-inference-retry-history": "{\"v\":1,\"entries\":[{\"service_id\":\"mir.frontdoor\",\"layer\":\"regional\",\"role\":\"direct\",\"retries\":0}]}",
+    "x-ms-is-spilled-over": "false",
+    "apim-request-id": "19d6561c-536b-49f0-bc57-d1043b5a6350",
+    "x-ms-region": "Central US"
+   },
+   "probabilities": {
+    "billing": 0.004797191009346686,
+    "none": 0.982032868241687,
+    "orders": 0.004412708486067957,
+    "returns": 0.0025277973724487763,
+    "shipping": 0.0024536916369946905,
+    "tech_support": 0.0037757432534548455
+   },
+   "others": {
+    "english": {
+     "type": "noul",
+     "noul": 0.994665669906754
+    }
+   },
+   "request": {
+    "model": "decision-1",
+    "state": "help",
+    "questions": {
+     "department": {
+      "type": "choice",
+      "instructions": "Which department is the customer asking for?",
+      "criteria": {
+       "billing": "charges, refunds, invoices or payment methods",
+       "orders": "placing, changing or cancelling an order",
+       "shipping": "where a package is, delivery dates, tracking or the delivery address",
+       "returns": "sending an item back or exchanging it",
+       "tech_support": "a product that isn't working or won't connect",
+       "none": "none of these fits, or it is unclear what the customer wants"
+      }
+     },
+     "english": {
+      "type": "noul",
+      "instructions": "Is the text written in English?"
+     }
+    }
+   }
+  },
+  {
+   "shape": "+score",
+   "text": "where's my package",
+   "status": 200,
+   "model_answered": "microsoft-decision-1.1",
+   "headers": {
+    "x-request-id": "dfdb4f27-5acb-433a-8c66-a7d158398c04",
+    "x-ms-client-request-id": "80cbbe98-cf55-47db-a8b4-dd6ae2597be6",
+    "x-ms-inference-retry-history": "{\"v\":1,\"entries\":[{\"service_id\":\"mir.frontdoor\",\"layer\":\"regional\",\"role\":\"direct\",\"retries\":0}]}",
+    "x-ms-is-spilled-over": "false",
+    "apim-request-id": "80cbbe98-cf55-47db-a8b4-dd6ae2597be6",
+    "x-ms-region": "Central US"
+   },
+   "probabilities": {
+    "billing": 0.0003688048938106376,
+    "none": 0.0004829252856771613,
+    "orders": 0.0003574000120748063,
+    "returns": 0.00037417783753365534,
+    "shipping": 0.9979708582973186,
+    "tech_support": 0.0004458336735852841
+   },
+   "others": {
+    "urgency": {
+     "type": "score",
+     "score": 0.5340137738778149,
+     "confidence": 0.24469246673358358,
+     "legend": {
+      "0": "not urgent",
+      "1": "somewhat urgent",
+      "2": "very urgent"
+     },
+     "probabilities": {
+      "0": 0.4847622908165648,
+      "1": 0.4964616444890557,
+      "2": 0.018776064694379587
+     }
+    }
+   },
+   "request": {
+    "model": "decision-1",
+    "state": "where's my package",
+    "questions": {
+     "department": {
+      "type": "choice",
+      "instructions": "Which department is the customer asking for?",
+      "criteria": {
+       "billing": "charges, refunds, invoices or payment methods",
+       "orders": "placing, changing or cancelling an order",
+       "shipping": "where a package is, delivery dates, tracking or the delivery address",
+       "returns": "sending an item back or exchanging it",
+       "tech_support": "a product that isn't working or won't connect",
+       "none": "none of these fits, or it is unclear what the customer wants"
+      }
+     },
+     "urgency": {
+      "type": "score",
+      "instructions": "How urgent is the customer's request?",
+      "criteria": [
+       "not urgent",
+       "somewhat urgent",
+       "very urgent"
+      ]
+     }
+    }
+   }
+  },
+  {
+   "shape": "+score",
+   "text": "I was charged twice",
+   "status": 200,
+   "model_answered": "microsoft-decision-1.1",
+   "headers": {
+    "x-request-id": "706755d4-dcfa-4d06-ae54-735f7907440c",
+    "x-ms-client-request-id": "dd7fa207-05d7-4810-847a-599d30a9e8de",
+    "x-ms-inference-retry-history": "{\"v\":1,\"entries\":[{\"service_id\":\"mir.frontdoor\",\"layer\":\"regional\",\"role\":\"direct\",\"retries\":0}]}",
+    "x-ms-is-spilled-over": "false",
+    "apim-request-id": "dd7fa207-05d7-4810-847a-599d30a9e8de",
+    "x-ms-region": "Central US"
+   },
+   "probabilities": {
+    "billing": 0.9985611468103617,
+    "none": 0.000766066282898922,
+    "orders": 0.00017491062626455475,
+    "returns": 0.00015924214277140958,
+    "shipping": 0.00012791707758162585,
+    "tech_support": 0.00021071706012173454
+   },
+   "others": {
+    "urgency": {
+     "type": "score",
+     "score": 1.4506123655587642,
+     "confidence": 0.23221963106850263,
+     "legend": {
+      "0": "not urgent",
+      "1": "somewhat urgent",
+      "2": "very urgent"
+     },
+     "probabilities": {
+      "0": 0.03753405515357084,
+      "1": 0.47431952413409406,
+      "2": 0.4881464207123351
+     }
+    }
+   },
+   "request": {
+    "model": "decision-1",
+    "state": "I was charged twice",
+    "questions": {
+     "department": {
+      "type": "choice",
+      "instructions": "Which department is the customer asking for?",
+      "criteria": {
+       "billing": "charges, refunds, invoices or payment methods",
+       "orders": "placing, changing or cancelling an order",
+       "shipping": "where a package is, delivery dates, tracking or the delivery address",
+       "returns": "sending an item back or exchanging it",
+       "tech_support": "a product that isn't working or won't connect",
+       "none": "none of these fits, or it is unclear what the customer wants"
+      }
+     },
+     "urgency": {
+      "type": "score",
+      "instructions": "How urgent is the customer's request?",
+      "criteria": [
+       "not urgent",
+       "somewhat urgent",
+       "very urgent"
+      ]
+     }
+    }
+   }
+  },
+  {
+   "shape": "+score",
+   "text": "my router keeps dropping the connection",
+   "status": 200,
+   "model_answered": "microsoft-decision-1.1",
+   "headers": {
+    "x-request-id": "894e8de8-0b9d-4e66-b65e-80c6d628c47d",
+    "x-ms-client-request-id": "7e52bd9b-22dd-495a-930a-036b82bac9cb",
+    "x-ms-inference-retry-history": "{\"v\":1,\"entries\":[{\"service_id\":\"mir.frontdoor\",\"layer\":\"regional\",\"role\":\"direct\",\"retries\":0}]}",
+    "x-ms-is-spilled-over": "false",
+    "apim-request-id": "7e52bd9b-22dd-495a-930a-036b82bac9cb",
+    "x-ms-region": "Central US"
+   },
+   "probabilities": {
+    "billing": 0.00045854620226024723,
+    "none": 0.0020732901711541236,
+    "orders": 0.000364866003002985,
+    "returns": 0.00028736220940974436,
+    "shipping": 0.0002955947414886281,
+    "tech_support": 0.9965203406726844
+   },
+   "others": {
+    "urgency": {
+     "type": "score",
+     "score": 1.105957588567736,
+     "confidence": 0.6268137044500497,
+     "legend": {
+      "0": "not urgent",
+      "1": "somewhat urgent",
+      "2": "very urgent"
+     },
+     "probabilities": {
+      "0": 0.07141663756611547,
+      "1": 0.751209136300033,
+      "2": 0.17737422613385145
+     }
+    }
+   },
+   "request": {
+    "model": "decision-1",
+    "state": "my router keeps dropping the connection",
+    "questions": {
+     "department": {
+      "type": "choice",
+      "instructions": "Which department is the customer asking for?",
+      "criteria": {
+       "billing": "charges, refunds, invoices or payment methods",
+       "orders": "placing, changing or cancelling an order",
+       "shipping": "where a package is, delivery dates, tracking or the delivery address",
+       "returns": "sending an item back or exchanging it",
+       "tech_support": "a product that isn't working or won't connect",
+       "none": "none of these fits, or it is unclear what the customer wants"
+      }
+     },
+     "urgency": {
+      "type": "score",
+      "instructions": "How urgent is the customer's request?",
+      "criteria": [
+       "not urgent",
+       "somewhat urgent",
+       "very urgent"
+      ]
+     }
+    }
+   }
+  },
+  {
+   "shape": "+score",
+   "text": "I want my money back",
+   "status": 200,
+   "model_answered": "microsoft-decision-1.1",
+   "headers": {
+    "x-request-id": "a5f64189-7721-45d9-9467-7262a8c12e93",
+    "x-ms-client-request-id": "3479a30a-df19-4a82-8c51-bf4fee797120",
+    "x-ms-inference-retry-history": "{\"v\":1,\"entries\":[{\"service_id\":\"mir.frontdoor\",\"layer\":\"regional\",\"role\":\"direct\",\"retries\":0}]}",
+    "x-ms-is-spilled-over": "false",
+    "apim-request-id": "3479a30a-df19-4a82-8c51-bf4fee797120",
+    "x-ms-region": "Central US"
+   },
+   "probabilities": {
+    "billing": 0.976236342217527,
+    "none": 0.004851167462815905,
+    "orders": 0.0011810527518475258,
+    "returns": 0.016675038775840804,
+    "shipping": 0.0002670175958996453,
+    "tech_support": 0.0007893811960692349
+   },
+   "others": {
+    "urgency": {
+     "type": "score",
+     "score": 1.0379027593044952,
+     "confidence": 0.32518523387799225,
+     "legend": {
+      "0": "not urgent",
+      "1": "somewhat urgent",
+      "2": "very urgent"
+     },
+     "probabilities": {
+      "0": 0.20598687572175495,
+      "1": 0.5501234892519948,
+      "2": 0.24388963502625022
+     }
+    }
+   },
+   "request": {
+    "model": "decision-1",
+    "state": "I want my money back",
+    "questions": {
+     "department": {
+      "type": "choice",
+      "instructions": "Which department is the customer asking for?",
+      "criteria": {
+       "billing": "charges, refunds, invoices or payment methods",
+       "orders": "placing, changing or cancelling an order",
+       "shipping": "where a package is, delivery dates, tracking or the delivery address",
+       "returns": "sending an item back or exchanging it",
+       "tech_support": "a product that isn't working or won't connect",
+       "none": "none of these fits, or it is unclear what the customer wants"
+      }
+     },
+     "urgency": {
+      "type": "score",
+      "instructions": "How urgent is the customer's request?",
+      "criteria": [
+       "not urgent",
+       "somewhat urgent",
+       "very urgent"
+      ]
+     }
+    }
+   }
+  },
+  {
+   "shape": "+score",
+   "text": "cancel it",
+   "status": 200,
+   "model_answered": "microsoft-decision-1.1",
+   "headers": {
+    "x-request-id": "3b1ff54d-5c6b-4ea1-8379-8789f4c803f3",
+    "x-ms-client-request-id": "3b0030ba-a125-4ec6-b5c7-9f25b667f3a8",
+    "x-ms-inference-retry-history": "{\"v\":1,\"entries\":[{\"service_id\":\"mir.frontdoor\",\"layer\":\"regional\",\"role\":\"direct\",\"retries\":0}]}",
+    "x-ms-is-spilled-over": "false",
+    "apim-request-id": "3b0030ba-a125-4ec6-b5c7-9f25b667f3a8",
+    "x-ms-region": "Central US"
+   },
+   "probabilities": {
+    "billing": 0.007962802397675198,
+    "none": 0.1820703165081076,
+    "orders": 0.8017934904663188,
+    "returns": 0.0031028230386364914,
+    "shipping": 0.0019043191912875583,
+    "tech_support": 0.003166248397974321
+   },
+   "others": {
+    "urgency": {
+     "type": "score",
+     "score": 1.2658757134105043,
+     "confidence": 0.16705974058662276,
+     "legend": {
+      "0": "not urgent",
+      "1": "somewhat urgent",
+      "2": "very urgent"
+     },
+     "probabilities": {
+      "0": 0.1788307803139108,
+      "1": 0.37646272596167407,
+      "2": 0.4447064937244152
+     }
+    }
+   },
+   "request": {
+    "model": "decision-1",
+    "state": "cancel it",
+    "questions": {
+     "department": {
+      "type": "choice",
+      "instructions": "Which department is the customer asking for?",
+      "criteria": {
+       "billing": "charges, refunds, invoices or payment methods",
+       "orders": "placing, changing or cancelling an order",
+       "shipping": "where a package is, delivery dates, tracking or the delivery address",
+       "returns": "sending an item back or exchanging it",
+       "tech_support": "a product that isn't working or won't connect",
+       "none": "none of these fits, or it is unclear what the customer wants"
+      }
+     },
+     "urgency": {
+      "type": "score",
+      "instructions": "How urgent is the customer's request?",
+      "criteria": [
+       "not urgent",
+       "somewhat urgent",
+       "very urgent"
+      ]
+     }
+    }
+   }
+  },
+  {
+   "shape": "+score",
+   "text": "it's broken",
+   "status": 200,
+   "model_answered": "microsoft-decision-1.1",
+   "headers": {
+    "x-request-id": "67b964e9-9ebf-41d1-a8fb-44bfcd02754e",
+    "x-ms-client-request-id": "c958668a-0475-4571-9764-2ae62e21c8cd",
+    "x-ms-inference-retry-history": "{\"v\":1,\"entries\":[{\"service_id\":\"mir.frontdoor\",\"layer\":\"regional\",\"role\":\"direct\",\"retries\":0}]}",
+    "x-ms-is-spilled-over": "false",
+    "apim-request-id": "c958668a-0475-4571-9764-2ae62e21c8cd",
+    "x-ms-region": "Central US"
+   },
+   "probabilities": {
+    "billing": 0.0023301548527056696,
+    "none": 0.05009170425121434,
+    "orders": 0.0034687500021141193,
+    "returns": 0.022719793708673282,
+    "shipping": 0.0018015178877016035,
+    "tech_support": 0.919588079297591
+   },
+   "others": {
+    "urgency": {
+     "type": "score",
+     "score": 1.3439338000005485,
+     "confidence": 0.19010815131949343,
+     "legend": {
+      "0": "not urgent",
+      "1": "somewhat urgent",
+      "2": "very urgent"
+     },
+     "probabilities": {
+      "0": 0.09799704955989463,
+      "1": 0.46007210087966227,
+      "2": 0.4419308495604431
+     }
+    }
+   },
+   "request": {
+    "model": "decision-1",
+    "state": "it's broken",
+    "questions": {
+     "department": {
+      "type": "choice",
+      "instructions": "Which department is the customer asking for?",
+      "criteria": {
+       "billing": "charges, refunds, invoices or payment methods",
+       "orders": "placing, changing or cancelling an order",
+       "shipping": "where a package is, delivery dates, tracking or the delivery address",
+       "returns": "sending an item back or exchanging it",
+       "tech_support": "a product that isn't working or won't connect",
+       "none": "none of these fits, or it is unclear what the customer wants"
+      }
+     },
+     "urgency": {
+      "type": "score",
+      "instructions": "How urgent is the customer's request?",
+      "criteria": [
+       "not urgent",
+       "somewhat urgent",
+       "very urgent"
+      ]
+     }
+    }
+   }
+  },
+  {
+   "shape": "+score",
+   "text": "wrong size",
+   "status": 200,
+   "model_answered": "microsoft-decision-1.1",
+   "headers": {
+    "x-request-id": "7afc1a8e-57de-49f5-b492-5756b59cd54b",
+    "x-ms-client-request-id": "8964575b-b260-4fce-9e2d-2aa02b01bb9a",
+    "x-ms-inference-retry-history": "{\"v\":1,\"entries\":[{\"service_id\":\"mir.frontdoor\",\"layer\":\"regional\",\"role\":\"direct\",\"retries\":0}]}",
+    "x-ms-is-spilled-over": "false",
+    "apim-request-id": "8964575b-b260-4fce-9e2d-2aa02b01bb9a",
+    "x-ms-region": "Central US"
+   },
+   "probabilities": {
+    "billing": 0.005312529436909379,
+    "none": 0.11700156282877244,
+    "orders": 0.026234312658093634,
+    "returns": 0.8371814543753311,
+    "shipping": 0.0029414889070831785,
+    "tech_support": 0.011328651793810214
+   },
+   "others": {
+    "urgency": {
+     "type": "score",
+     "score": 0.4001699046633573,
+     "confidence": 0.4165015447979248,
+     "legend": {
+      "0": "not urgent",
+      "1": "somewhat urgent",
+      "2": "very urgent"
+     },
+     "probabilities": {
+      "0": 0.6110010298652832,
+      "1": 0.37782803560607653,
+      "2": 0.011170934528640368
+     }
+    }
+   },
+   "request": {
+    "model": "decision-1",
+    "state": "wrong size",
+    "questions": {
+     "department": {
+      "type": "choice",
+      "instructions": "Which department is the customer asking for?",
+      "criteria": {
+       "billing": "charges, refunds, invoices or payment methods",
+       "orders": "placing, changing or cancelling an order",
+       "shipping": "where a package is, delivery dates, tracking or the delivery address",
+       "returns": "sending an item back or exchanging it",
+       "tech_support": "a product that isn't working or won't connect",
+       "none": "none of these fits, or it is unclear what the customer wants"
+      }
+     },
+     "urgency": {
+      "type": "score",
+      "instructions": "How urgent is the customer's request?",
+      "criteria": [
+       "not urgent",
+       "somewhat urgent",
+       "very urgent"
+      ]
+     }
+    }
+   }
+  },
+  {
+   "shape": "+score",
+   "text": "change the delivery address",
+   "status": 200,
+   "model_answered": "microsoft-decision-1.1",
+   "headers": {
+    "x-request-id": "43a90e43-8b81-4ebb-a9d9-054f76bf9b08",
+    "x-ms-client-request-id": "26a6b4f3-9b46-49aa-b3f2-1b101c8c822d",
+    "x-ms-inference-retry-history": "{\"v\":1,\"entries\":[{\"service_id\":\"mir.frontdoor\",\"layer\":\"regional\",\"role\":\"direct\",\"retries\":0}]}",
+    "x-ms-is-spilled-over": "false",
+    "apim-request-id": "26a6b4f3-9b46-49aa-b3f2-1b101c8c822d",
+    "x-ms-region": "Central US"
+   },
+   "probabilities": {
+    "billing": 0.0006646433878682416,
+    "none": 0.0009366468932889934,
+    "orders": 0.0018400461394112984,
+    "returns": 0.0005053476738330728,
+    "shipping": 0.9955253288302144,
+    "tech_support": 0.0005279870753840067
+   },
+   "others": {
+    "urgency": {
+     "type": "score",
+     "score": 0.5029357031783792,
+     "confidence": 0.2934932654132866,
+     "legend": {
+      "0": "not urgent",
+      "1": "somewhat urgent",
+      "2": "very urgent"
+     },
+     "probabilities": {
+      "0": 0.5289955102755244,
+      "1": 0.439073276270572,
+      "2": 0.03193121345390359
+     }
+    }
+   },
+   "request": {
+    "model": "decision-1",
+    "state": "change the delivery address",
+    "questions": {
+     "department": {
+      "type": "choice",
+      "instructions": "Which department is the customer asking for?",
+      "criteria": {
+       "billing": "charges, refunds, invoices or payment methods",
+       "orders": "placing, changing or cancelling an order",
+       "shipping": "where a package is, delivery dates, tracking or the delivery address",
+       "returns": "sending an item back or exchanging it",
+       "tech_support": "a product that isn't working or won't connect",
+       "none": "none of these fits, or it is unclear what the customer wants"
+      }
+     },
+     "urgency": {
+      "type": "score",
+      "instructions": "How urgent is the customer's request?",
+      "criteria": [
+       "not urgent",
+       "somewhat urgent",
+       "very urgent"
+      ]
+     }
+    }
+   }
+  },
+  {
+   "shape": "+score",
+   "text": "the thing I ordered",
+   "status": 200,
+   "model_answered": "microsoft-decision-1.1",
+   "headers": {
+    "x-request-id": "c2832769-5dfc-434d-9d5e-e1f1f8b14d0d",
+    "x-ms-client-request-id": "1c998d04-b067-45c9-8820-097a9918eff1",
+    "x-ms-inference-retry-history": "{\"v\":1,\"entries\":[{\"service_id\":\"mir.frontdoor\",\"layer\":\"regional\",\"role\":\"direct\",\"retries\":0}]}",
+    "x-ms-is-spilled-over": "false",
+    "apim-request-id": "1c998d04-b067-45c9-8820-097a9918eff1",
+    "x-ms-region": "Central US"
+   },
+   "probabilities": {
+    "billing": 0.013830861016182442,
+    "none": 0.3388115462742942,
+    "orders": 0.4933319065859742,
+    "returns": 0.024698113112415453,
+    "shipping": 0.11937425720454967,
+    "tech_support": 0.009953315806584135
+   },
+   "others": {
+    "urgency": {
+     "type": "score",
+     "score": 0.24780217732646367,
+     "confidence": 0.6454587664564395,
+     "legend": {
+      "0": "not urgent",
+      "1": "somewhat urgent",
+      "2": "very urgent"
+     },
+     "probabilities": {
+      "0": 0.7636391776376263,
+      "1": 0.22491946739828347,
+      "2": 0.011441354964090102
+     }
+    }
+   },
+   "request": {
+    "model": "decision-1",
+    "state": "the thing I ordered",
+    "questions": {
+     "department": {
+      "type": "choice",
+      "instructions": "Which department is the customer asking for?",
+      "criteria": {
+       "billing": "charges, refunds, invoices or payment methods",
+       "orders": "placing, changing or cancelling an order",
+       "shipping": "where a package is, delivery dates, tracking or the delivery address",
+       "returns": "sending an item back or exchanging it",
+       "tech_support": "a product that isn't working or won't connect",
+       "none": "none of these fits, or it is unclear what the customer wants"
+      }
+     },
+     "urgency": {
+      "type": "score",
+      "instructions": "How urgent is the customer's request?",
+      "criteria": [
+       "not urgent",
+       "somewhat urgent",
+       "very urgent"
+      ]
+     }
+    }
+   }
+  },
+  {
+   "shape": "+score",
+   "text": "help",
+   "status": 200,
+   "model_answered": "microsoft-decision-1.1",
+   "headers": {
+    "x-request-id": "4e4f98c5-234b-48b4-8cbb-5c811045333c",
+    "x-ms-client-request-id": "61f45aef-e3e2-4ebe-8090-4907fc956fda",
+    "x-ms-inference-retry-history": "{\"v\":1,\"entries\":[{\"service_id\":\"mir.frontdoor\",\"layer\":\"regional\",\"role\":\"direct\",\"retries\":0}]}",
+    "x-ms-is-spilled-over": "false",
+    "apim-request-id": "61f45aef-e3e2-4ebe-8090-4907fc956fda",
+    "x-ms-region": "Central US"
+   },
+   "probabilities": {
+    "billing": 0.004797191009346686,
+    "none": 0.982032868241687,
+    "orders": 0.004412708486067957,
+    "returns": 0.0025277973724487763,
+    "shipping": 0.0024536916369946905,
+    "tech_support": 0.0037757432534548455
+   },
+   "others": {
+    "urgency": {
+     "type": "score",
+     "score": 0.8027749353251001,
+     "confidence": 0.18052573620285672,
+     "legend": {
+      "0": "not urgent",
+      "1": "somewhat urgent",
+      "2": "very urgent"
+     },
+     "probabilities": {
+      "0": 0.4536838241352378,
+      "1": 0.2898574164044243,
+      "2": 0.2564587594603379
+     }
+    }
+   },
+   "request": {
+    "model": "decision-1",
+    "state": "help",
+    "questions": {
+     "department": {
+      "type": "choice",
+      "instructions": "Which department is the customer asking for?",
+      "criteria": {
+       "billing": "charges, refunds, invoices or payment methods",
+       "orders": "placing, changing or cancelling an order",
+       "shipping": "where a package is, delivery dates, tracking or the delivery address",
+       "returns": "sending an item back or exchanging it",
+       "tech_support": "a product that isn't working or won't connect",
+       "none": "none of these fits, or it is unclear what the customer wants"
+      }
+     },
+     "urgency": {
+      "type": "score",
+      "instructions": "How urgent is the customer's request?",
+      "criteria": [
+       "not urgent",
+       "somewhat urgent",
+       "very urgent"
+      ]
+     }
+    }
+   }
+  }
+ ],
+ "rejected": {}
+}

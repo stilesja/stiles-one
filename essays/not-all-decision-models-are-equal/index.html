@@ -24,7 +24,7 @@
 
     <span class="chip">Field Notes</span>
     <h1>Not All Decision Models Are Created Equal</h1>
-    <p class="meta"><time datetime="2026-11-23">November 23, 2026</time></p>
+    <p class="meta"><time datetime="2026-11-23">November 23, 2026</time> · Updated <time datetime="2026-11-25">November 25, 2026</time> with <a href="#follow-up">what triggers the shift</a></p>
 
     <p class="preamble">Decision models answer small, typed questions about text, with a probability for every answer. Their best feature is that you can ask several questions about the same text in one request and combine the answers in code. That only works if the questions don't affect each other. On one of the two decision models I tested, they do.</p>
 
@@ -70,6 +70,25 @@
 
     <p>Jev behaves differently. Its answers vary slightly from run to run, by up to 0.08 on the vaguest message, because TypeSafe aims for consistency, not determinism: the same input gives similar answers, not identical ones. But adding a second question doesn't move them. Across the three shapes the average shift was 0.02 at most, well inside that run-to-run range, and it never changed which answer came out on top.</p>
 
+    <h2 class="essay-kicker" id="follow-up">Follow-up: a switch, not a sum</h2>
+    <p><em>Added November 25.</em> Two days later I ran more variations on Decision-1.1 to pin down what triggers the shift: more questions, the questions in the other order, other question types, the same question twice, and longer requests. About 190 more requests, all with the same synthetic messages.</p>
+    <p><strong>One question or more than one is what matters.</strong> With two, three or five questions, the department answer is identical to every decimal place, as long as the request is about the same length. The second question's position doesn't matter: put it first and the department answer is the same. Nor does its type: a yes/no, a choice or a score question all shift the department answer by exactly the same amount. The same department question sent twice under two names gets identical answers both times.</p>
+    <p><strong>There is also a smaller length step, in short requests only.</strong> With two questions, the department answer changes once more between 188 and 189 input tokens. With three questions the step is at 158 to 159, as if each question carried about 30 tokens the count doesn't show. Above the step the answer was identical at every length I tried, up to 2,385 tokens, so this isn't a context limit or truncation. On "cancel it":</p>
+
+    <table>
+      <thead>
+        <tr><th>Request</th><th>"cancel it": orders</th><th>"the thing I ordered"</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Department question alone</td><td>0.91</td><td>none 0.62</td></tr>
+        <tr><td>Plus any other question, short request</td><td>0.80</td><td><strong>orders 0.49</strong></td></tr>
+        <tr><td>Plus any other questions, above the length step</td><td>0.73</td><td><strong>orders 0.49</strong></td></tr>
+      </tbody>
+    </table>
+
+    <p><strong>The same holds on my real menus.</strong> Those requests are 1,000 to 1,800 tokens, well past the length step. With two, three or four questions, the menu answer was identical every time, on all ten phrases I tried, and different from the menu question asked alone. On one menu every phrase lost confidence, one from 0.98 to 0.56. On the other, some gained: one rose from 0.70 to 0.87. So it isn't simply that extra questions make answers worse. Decision-1.1 seems to score a request one way when it holds one question and another way when it holds more. Each way is perfectly repeatable, and the two can disagree by a lot.</p>
+    <p>That's a useful result for anyone designing around it. With several questions, past the length step, the answers don't move: not with more questions, other questions or longer ones. A single question I couldn't test the same way, because there's no way to make one question longer without changing what it asks. So tune your thresholds with the request shape you'll ship. What you can't do is tune them with one question and ship with two.</p>
+
     <h2 class="essay-kicker">Why it matters</h2>
     <p>With six departments the Decision-1.1 shifts are noticeable. On my real menu, about 40 options, they decided the outcome: one phrase fell from 0.75 alone to 0.38 with a second question attached, from a confident match to "ask the caller again". In a broader set of 26 menu phrases, the average confidence in the right answer fell from 0.96 to 0.89, and three phrases dropped below the 0.7 threshold.</p>
 
@@ -85,6 +104,7 @@
       <li><strong><a href="data/repro.py">repro.py</a></strong>. The test. It sends the same department question in the three shapes to either model, and prints the request count without sending until you add <code>--send</code>. Jev reads <code>TYPESAFE_API_KEY</code>. Decision-1 uses an Azure CLI login, plus <code>D1_ENDPOINT</code> and <code>D1_DEPLOYMENT</code> for your own deployment.</li>
       <li><strong><a href="data/results-d1.json">results-d1.json</a></strong>, <strong><a href="data/repeat-d1.json">repeat-d1.json</a></strong>. Microsoft-Decision-1.1 (version 1, DataZoneStandard), every request and its department probabilities, first run and repeat.</li>
       <li><strong><a href="data/results-jev.json">results-jev.json</a></strong>, <strong><a href="data/repeat-jev.json">repeat-jev.json</a></strong>. Jev 1.14.0 (<code>jev-1.14.0</code>), first run and two repeats.</li>
+      <li><strong><a href="data/isolate.py">isolate.py</a></strong>, <strong><a href="data/isolate_length.py">isolate_length.py</a></strong>, <strong><a href="data/isolate_sweep.py">isolate_sweep.py</a></strong>. The follow-up on Decision-1.1 (2026-11-25): more questions, the other order, noul and score questions, the same question twice, and a length sweep that pads a neutral second question one word at a time. Same environment as <code>repro.py</code>. Results in <a href="data/isolate-d1.json">isolate-d1.json</a>, <a href="data/isolate-length-d1.json">isolate-length-d1.json</a> (with token counts) and <a href="data/isolate-sweep-d1.jsonl">isolate-sweep-d1.jsonl</a>. Every response keeps its request-id headers.</li>
       <li><strong>Method notes.</strong> Each model was tested on 2026-11-23 in one session. "Shift" is the change in the probability of the answer the model chose for the message alone, averaged over repeats. Requests that hit a rate limit were retried, never scored as answers.</li>
     </ul>
 
